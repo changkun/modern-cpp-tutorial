@@ -1,7 +1,7 @@
 《高速上手 C++11/14》相关源码
 ====
 
-**本仓库包含了《[高速上手 C++11/14](http://cpp.ouchangkun.com)》中的相关代码。**
+**本仓库包含了《[高速上手 C++11/14](https://www.gitbook.com/book/changkun/cpp1x-tutorial/details)》中的相关代码。**
 
 ![](./oreilly-cover.jpg)
 
