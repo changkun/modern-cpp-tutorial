@@ -30,10 +30,10 @@ C++17 则是近三年依赖 C++ 社区一致推进的方向，也指出了**现�
 
 本书每章中都出现了大量的代码，如果你在跟随本书介绍特性的思路编写自己的代码遇到问题时，不妨读一读随书附上的源码，你可以在[这里](../code)中找到书中介绍过的全部的源码，所有代码按章节组织，文件夹名称为章节序号。
 
-[返回目录](./toc.md) | 上一章 | [下一章](./1-intro.md)
+[返回目录](./toc.md) | 上一章 | [下一章：迈向 C++11/14/17](./1-intro.md)
 
 ## 许可
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
 
-本书由[欧长坤](https://github.com/changkun)撰写，采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc-nd/4.0/)许可。项目中代码使用 MIT 协议开源，参见[许可](../LICENSE)。
+本书系[欧长坤](https://github.com/changkun)著，采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc-nd/4.0/)许可。项目中代码使用 MIT 协议开源，参见[许可](../LICENSE)。

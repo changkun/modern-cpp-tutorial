@@ -116,7 +116,7 @@ clean:
 
 不必担心，本书的后续章节将为你介绍这一切。
 
-[返回目录](./toc.md) | [上一章](./0-preface.md) | [下一章](./2-usability.md)
+[返回目录](./toc.md) | [上一章](./0-preface.md) | [下一章：语言可用性强化](./2-usability.md)
 
 ## 进一步阅读的参考文献
 
@@ -129,4 +129,4 @@ clean:
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
 
-本教程由[欧长坤](https://github.com/changkun)撰写，采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc-nd/4.0/)许可。项目中代码使用 MIT 协议开源，参见[许可](../LICENSE)。
+本书系[欧长坤](https://github.com/changkun)著，采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc-nd/4.0/)许可。项目中代码使用 MIT 协议开源，参见[许可](../LICENSE)。
