@@ -12,6 +12,7 @@
 #include <functional>
 
 int main() {
+    // 使用 lambda 表达式
     [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
         out.get() << ".\n";
     }();

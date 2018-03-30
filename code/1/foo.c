@@ -9,6 +9,7 @@
 
 #include "foo.h"
 
+// C 语言代码
 int add(int x, int y) {
     return x+y;
 }
