@@ -2,7 +2,7 @@
 // 3.1.cpp
 // c++1x tutorial
 //
-// created by changkun at shiyanlou.com
+// created by changkun at changkun.de
 //
 // lambda expression
 

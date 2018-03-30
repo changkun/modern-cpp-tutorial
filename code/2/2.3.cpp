@@ -2,7 +2,7 @@
 // 2.3.cpp
 // c++1x tutorial
 //
-// created by changkun at shiyanlou.com
+// created by changkun at changkun.de
 //
 // auto/decltype/尾返回类型/返回类型推导
 

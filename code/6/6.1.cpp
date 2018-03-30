@@ -2,7 +2,7 @@
 // 6.1.cpp
 // c++1x tutorial
 //
-// created by changkun at shiyanlou.com
+// created by changkun at changkun.de
 //
 // 正则表达式库
 
