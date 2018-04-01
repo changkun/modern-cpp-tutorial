@@ -2,7 +2,7 @@
 // foo.h
 //
 // chapter 1 introduction
-// c++1x tutorial
+// modern cpp tutorial
 //
 // created by changkun at changkun.de
 //

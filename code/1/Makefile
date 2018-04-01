@@ -2,21 +2,21 @@
 # 1.1.cpp
 #
 # chapter 1 introduction
-# c++1x tutorial
+# modern cpp tutorial
 #
 # created by changkun at changkun.de
 #
 
 C = gcc
-CXX = g++
+CXX = clang++
 
 SOURCE_C = foo.c
 OBJECTS_C = foo.o 
 
-SOURCE_CXX = 1.1.cpp
+SOURCE_CXX = 1.1.c.and.cpp
 
-TARGET = 1.1
-LDFLAGS_COMMON = -std=c++1z
+TARGET = 1.1.out
+LDFLAGS_COMMON = -std=c++17
 
 all:
 	$(C) -c $(SOURCE_C)

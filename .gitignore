@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+node_modules
+website/public

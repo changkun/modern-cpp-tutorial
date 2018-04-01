@@ -32,7 +32,7 @@ int main() {
     
     int arr[10] = {0};
     auto auto_arr = arr;        // 正确，对整个类型进行推导
-    //auto auto_arr2[10] = arr; // 错误,  无法推导数组元素类型
+    // auto auto_arr2[10] = arr;   // 错误,  无法推导数组元素类型
 
     auto x = 1;
     auto y = 2;

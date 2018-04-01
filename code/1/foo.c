@@ -2,14 +2,14 @@
 // foo.c
 //
 // chapter 1 introduction
-// c++1x tutorial
+// modern cpp tutorial
 //
 // created by changkun at changkun.de
 //
 
 #include "foo.h"
 
-// C 语言代码
+// C code
 int add(int x, int y) {
     return x+y;
 }

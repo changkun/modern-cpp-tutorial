@@ -2,7 +2,7 @@
 // 1.1.cpp
 //
 // chapter 1 introduction
-// c++1x tutorial
+// modern cpp tutorial
 //
 // created by changkun at changkun.de
 //
@@ -12,7 +12,7 @@
 #include <functional>
 
 int main() {
-    // 使用 lambda 表达式
+    // use lambda expression
     [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
         out.get() << ".\n";
     }();
