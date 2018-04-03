@@ -70,7 +70,7 @@ std::sort(arr.begin(), arr.end());
 
 C++11 引入了两组无序容器：`std::unordered_map`/`std::unordered_multimap` 和 `std::unordered_set`/`std::unordered_multiset`。
 
-它们的用法和原有的 `std::map`/`std::multimap`/`std::set`/`set::multiset` 基本类似，由于这些容器我们已经很熟悉了，便不一一举例，我们直接来比较一下`std::map`和`std::multimap`：
+它们的用法和原有的 `std::map`/`std::multimap`/`std::set`/`set::multiset` 基本类似，由于这些容器我们已经很熟悉了，便不一一举例，我们直接来比较一下`std::map`和`std::unordered_map`：
 
 ```cpp
 #include <iostream>
