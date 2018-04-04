@@ -945,9 +945,9 @@ std::cout << new_enum::value3 << std::endl
 
 3. ​
 
-> 参考答案[见此](../code/2/solutions)。
+> 参考答案[见此](../exercises/2)。
 
-[返回目录](./toc) | [上一章](./1-intro) | [下一章：运行时强化](./3-runtime)
+[返回目录](./toc.md) | [上一章](./1-intro.md) | [下一章：运行时强化](./3-runtime.md)
 
 ## 进一步阅读的参考文献
 
