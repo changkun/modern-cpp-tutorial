@@ -5,11 +5,11 @@
 ## 目录
 
 - [**序言**](./0-preface.md)
-- [**第 1 章 迈向 C++11/14/17**](./1-intro.md)
+- [**第 1 章 迈向 C++11/14/17**](./01-intro.md)
     + 1.1 被弃用的特性
     + 1.2 与 C 的兼容性
     + 进一步阅读的参考文献
-- [**第二章 语言可用性的强化**](./2-usability.md)
+- [**第二章 语言可用性的强化**](./02-usability.md)
     + 2.1 常量
       - nullptr
       - constexpr
@@ -40,7 +40,7 @@
       - final
       - 显式禁用默认函数
       - 强类型枚举
-- [**第三章 语言运行期的强化**](./3-runtime.md)
+- [**第三章 语言运行期的强化**](./03-runtime.md)
     + lambda 表达式
         + lambda 表达式基础
             + 值捕获
@@ -56,7 +56,7 @@
         + 右值引用和左值引用
         + 移动语义
         + 完美转发
-- [**第四章 标准库: 容器**](./4-containers.md)
+- [**第四章 标准库: 容器**](./04-containers.md)
     + `std::array`
     + `std::forward_list`
     + `std::unordered_set`
@@ -65,12 +65,12 @@
         + 基本操作
         + 运行期索引
         + 合并与迭代
-- [**第五章 标准库: 指针**](./5-pointers.md)
+- [**第五章 标准库: 指针**](./05-pointers.md)
     + RAII 与引用计数
     + `std::shared_ptr`
     + `std::unique_ptr`
     + `std::weak_ptr`
-- [**第六章 标准库: 正则表达式**](./6-regex.md)
+- [**第六章 标准库: 正则表达式**](./06-regex.md)
     + 正则表达式简介
         + 普通字符
         + 特殊字符
@@ -79,15 +79,15 @@
         + `std::regex`
         + `std::regex_match`
         + `std::match_results`
-- [**第七章 标准库: 线程与并发**](./7-thread.md)
+- [**第七章 标准库: 线程与并发**](./07-thread.md)
     + `std::thread`
     + `std::mutex`
     + `std::unique_lock`
     + `std::future`
     + `std::packaged_task`
     + `std::condition_variable`
-- [**第八章 标准库: 文件系统**](./8-filesystem.md)
-- [**第九章 其他杂项**](./9-others.md)
+- [**第八章 标准库: 文件系统**](./08-filesystem.md)
+- [**第九章 其他杂项**](./09-others.md)
     + 新类型
         + `long long int`
     + `noexcept` 的修饰和操作
