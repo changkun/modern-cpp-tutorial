@@ -20,12 +20,12 @@
 #include <iostream>
 #include <thread>
 void foo() {
-std::cout << "hello world" << std::endl;
+    std::cout << "hello world" << std::endl;
 }
 int main() {
-std::thread t(foo);
-t.join();
-return 0;
+    std::thread t(foo);
+    t.join();
+    return 0;
 }
 ```
 
@@ -39,13 +39,13 @@ return 0;
 
 ```cpp
 void some_operation(const std::string &message) {
-static std::mutex mutex;
-std::lock_guard<std::mutex> lock(mutex);
+    static std::mutex mutex;
+    std::lock_guard<std::mutex> lock(mutex);
 
-// ...操作
+    // ...操作
 
-// 当离开这个作用域的时候，互斥锁会被析构，同时unlock互斥锁
-// 因此这个函数内部的可以认为是临界区
+    // 当离开这个作用域的时候，互斥锁会被析构，同时unlock互斥锁
+    // 因此这个函数内部的可以认为是临界区
 }
 ```
 
@@ -62,14 +62,14 @@ std::mutex mtx;
 
 void block_area() {
 std::unique_lock<std::mutex> lock(mtx);
-//...临界区
+    //...临界区
 }
 int main() {
-std::thread thd1(block_area);
+    std::thread thd1(block_area);
 
-thd1.join();
+    thd1.join();
 
-return 0;
+    return 0;
 }
 ```
 
@@ -92,15 +92,15 @@ return 0;
 
 int main()
 {
-// 将一个返回值为7的 lambda 表达式封装到 task 中
-// std::packaged_task 的模板参数为要封装函数的类型
-std::packaged_task<int()> task([](){return 7;});
-// 获得 task 的 future
-std::future<int> result = task.get_future(); // 在一个线程中执行 task
-std::thread(std::move(task)).detach(); std::cout << "Waiting...";
-result.wait();
-// 输出执行结果
-std::cout << "Done!" << std:: endl << "Result is " << result.get() << '\n';
+    // 将一个返回值为7的 lambda 表达式封装到 task 中
+    // std::packaged_task 的模板参数为要封装函数的类型
+    std::packaged_task<int()> task([](){return 7;});
+    // 获得 task 的 future
+    std::future<int> result = task.get_future(); // 在一个线程中执行 task
+    std::thread(std::move(task)).detach(); std::cout << "Waiting...";
+    result.wait();
+    // 输出执行结果
+    std::cout << "Done!" << std:: endl << "Result is " << result.get() << '\n';
 }
 ```
 
@@ -120,46 +120,46 @@ std::cout << "Done!" << std:: endl << "Result is " << result.get() << '\n';
 
 int main()
 {
-// 生产者数量
-std::queue<int> produced_nums;
-// 互斥锁
-std::mutex m;
-// 条件变量
-std::condition_variable cond_var;
-// 结束标志
-bool done = false;
-// 通知标志
-bool notified = false;
+    // 生产者数量
+    std::queue<int> produced_nums;
+    // 互斥锁
+    std::mutex m;
+    // 条件变量
+    std::condition_variable cond_var;
+    // 结束标志
+    bool done = false;
+    // 通知标志
+    bool notified = false;
 
-// 生产者线程
-std::thread producer([&]() {
-for (int i = 0; i < 5; ++i) {
-std::this_thread::sleep_for(std::chrono::seconds(1));
-// 创建互斥锁
-std::unique_lock<std::mutex> lock(m);
-std::cout << "producing " << i << '\n';
-produced_nums.push(i);
-notified = true;
-// 通知一个线程
-cond_var.notify_one();
-}
-done = true;
-cond_var.notify_one();
+    // 生产者线程
+    std::thread producer([&]() {
+    for (int i = 0; i < 5; ++i) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        // 创建互斥锁
+        std::unique_lock<std::mutex> lock(m);
+        std::cout << "producing " << i << '\n';
+        produced_nums.push(i);
+        notified = true;
+        // 通知一个线程
+        cond_var.notify_one();
+    }
+    done = true;
+    cond_var.notify_one();
 });
 
 // 消费者线程
 std::thread consumer([&]() {
-std::unique_lock<std::mutex> lock(m);
-while (!done) {
-while (!notified) { // 循环避免虚假唤醒
-cond_var.wait(lock);
-}
-while (!produced_nums.empty()) {
-std::cout << "consuming " << produced_nums.front() << '\n';
-produced_nums.pop();
-}
-notified = false;
-}
+    std::unique_lock<std::mutex> lock(m);
+    while (!done) {
+        while (!notified) { // 循环避免虚假唤醒
+            cond_var.wait(lock);
+        }
+        while (!produced_nums.empty()) {
+            std::cout << "consuming " << produced_nums.front() << '\n';
+            produced_nums.pop();
+        }
+        notified = false;
+    }
 });
 
 producer.join();
@@ -173,7 +173,7 @@ C++11 语言层提供了并发编程的相关支持，本节简单的介绍了 `
 
 > 本节提到的内容足以让我们使用不超过 100 行代码编写一个简单的线程池库
 >
-> 关于这方面的使用技巧，可以通过项目课：[100 行 C++ 代码实现线程池](https://www.shiyanlou.com/teacher/courses/565) 进行进一步巩固学习。
+> ~~关于这方面的使用技巧，可以通过项目课：[100 行 C++ 代码实现线程池](https://www.shiyanlou.com/teacher/courses/565) 进行进一步巩固学习。~~ TODO: 将这部分内容补充为习题
 
 ## 进一步阅读的参考资料
 

@@ -47,14 +47,14 @@ Lambda 表达式的基本语法如下：
 
 ```cpp
 void learn_lambda_func_1() {
-int value_1 = 1;
-auto copy_value_1 = [value_1] {
-return value_1;
+    int value_1 = 1;
+    auto copy_value_1 = [value_1] {
+    return value_1;
 };
 value_1 = 100;
 auto stored_value_1 = copy_value_1();
-// 这时, stored_value_1 == 1, 而 value_1 == 100.
-// 因为 copy_value_1 在创建时就保存了一份 value_1 的拷贝
+    // 这时, stored_value_1 == 1, 而 value_1 == 100.
+    // 因为 copy_value_1 在创建时就保存了一份 value_1 的拷贝
 }
 ```
 
@@ -64,14 +64,14 @@ auto stored_value_1 = copy_value_1();
 
 ```cpp
 void learn_lambda_func_2() {
-int value_2 = 1;
-auto copy_value_2 = [&value_2] {
-return value_2;
+    int value_2 = 1;
+    auto copy_value_2 = [&value_2] {
+    return value_2;
 };
 value_2 = 100;
 auto stored_value_2 = copy_value_2();
-// 这时, stored_value_2 == 100, value_1 == 100.
-// 因为 copy_value_2 保存的是引用
+    // 这时, stored_value_2 == 100, value_1 == 100.
+    // 因为 copy_value_2 保存的是引用
 }
 ```
 
@@ -99,12 +99,12 @@ C++14 给与了我们方便，允许捕获的成员用任意的表达式进行�
 #include <utility>
 
 int main() {
-auto important = std::make_unique<int>(1);
-auto add = [v1 = 1, v2 = std::move(important)](int x, int y) -> int {
-return x+y+v1+(*v2);
-};
-std::cout << add(3,4) << std::endl;
-return 0;
+    auto important = std::make_unique<int>(1);
+    auto add = [v1 = 1, v2 = std::move(important)](int x, int y) -> int {
+        return x+y+v1+(*v2);
+    };
+    std::cout << add(3,4) << std::endl;
+    return 0;
 }
 ```
 
@@ -118,7 +118,7 @@ return 0;
 
 ```cpp
 auto add = [](auto x, auto y) {
-return x+y;
+    return x+y;
 };
 
 add(1, 2);
@@ -137,17 +137,17 @@ Lambda 表达式的本质是一个函数对象，当 Lambda 表达式的捕获�
 #include <iostream>
 
 using foo = void(int); // 定义函数指针, using 的使用见上一节中的别名语法
-void functional(foo f) {
-f(1);
+    void functional(foo f) {
+    f(1);
 }
 
 int main() {
-auto f = [](int value) {
-std::cout << value << std::endl;
-};
-functional(f); // 函数指针调用
-f(1); // lambda 表达式调用
-return 0;
+    auto f = [](int value) {
+        std::cout << value << std::endl;
+    };
+    functional(f); // 函数指针调用
+    f(1); // lambda 表达式调用
+    return 0;
 }
 ```
 
@@ -160,19 +160,19 @@ C++11 `std::function` 是一种通用、多态的函数封装，它的实例可�
 #include <iostream>
 
 int foo(int para) {
-return para;
+    return para;
 }
 
 int main() {
-// std::function 包装了一个返回值为 int, 参数为 int 的函数
-std::function<int(int)> func = foo;
+    // std::function 包装了一个返回值为 int, 参数为 int 的函数
+    std::function<int(int)> func = foo;
 
-int important = 10;
-std::function<int(int)> func2 = [&](int value) -> int {
-return 1+value+important;
-};
-std::cout << func(10) << std::endl;
-std::cout << func2(10) << std::endl;
+    int important = 10;
+    std::function<int(int)> func2 = [&](int value) -> int {
+    return 1+value+important;
+    };
+    std::cout << func(10) << std::endl;
+    std::cout << func2(10) << std::endl;
 }
 ```
 
@@ -182,13 +182,13 @@ std::cout << func2(10) << std::endl;
 
 ```cpp
 int foo(int a, int b, int c) {
-;
+    ;
 }
 int main() {
-// 将参数1,2绑定到函数 foo 上，但是使用 std::placeholders::_1 来对第一个参数进行占位
-auto bindFoo = std::bind(foo, std::placeholders::_1, 1,2);
-// 这时调用 bindFoo 时，只需要提供第一个参数即可
-bindFoo(1);
+    // 将参数1,2绑定到函数 foo 上，但是使用 std::placeholders::_1 来对第一个参数进行占位
+    auto bindFoo = std::bind(foo, std::placeholders::_1, 1,2);
+    // 这时调用 bindFoo 时，只需要提供第一个参数即可
+    bindFoo(1);
 }
 ```
 
@@ -217,7 +217,7 @@ bindFoo(1);
 ```cpp
 std::vector<int> foo() {
 std::vector<int> temp = {1, 2, 3, 4};
-return temp;
+    return temp;
 }
 
 std::vector<int> v = foo();
@@ -240,30 +240,30 @@ C++11 提供了 `std::move` 这个方法将左值参数无条件的转换为右�
 #include <string>
 
 void reference(std::string& str) {
-std::cout << "左值" << std::endl;
+    std::cout << "左值" << std::endl;
 }
 void reference(std::string&& str) {
-std::cout << "右值" << std::endl;
+    std::cout << "右值" << std::endl;
 }
 
 int main()
 {
-std::string lv1 = "string,"; // lv1 是一个左值
-// std::string&& r1 = s1; // 非法, 右值引用不能引用左值
-std::string&& rv1 = std::move(lv1); // 合法, std::move可以将左值转移为右值
-std::cout << rv1 << std::endl; // string,
+    std::string lv1 = "string,"; // lv1 是一个左值
+    // std::string&& r1 = s1; // 非法, 右值引用不能引用左值
+    std::string&& rv1 = std::move(lv1); // 合法, std::move可以将左值转移为右值
+    std::cout << rv1 << std::endl; // string,
 
-const std::string& lv2 = lv1 + lv1; // 合法, 常量左值引用能够延长临时变量的申明周期
-// lv2 += "Test"; // 非法, 引用的右值无法被修改
-std::cout << lv2 << std::endl; // string,string
+    const std::string& lv2 = lv1 + lv1; // 合法, 常量左值引用能够延长临时变量的申明周期
+    // lv2 += "Test"; // 非法, 引用的右值无法被修改
+    std::cout << lv2 << std::endl; // string,string
 
-std::string&& rv2 = lv1 + lv2; // 合法, 右值引用延长临时对象声明周期
-rv2 += "Test"; // 合法, 非常量引用能够修改临时变量
-std::cout << rv2 << std::endl; // string,string,string,
+    std::string&& rv2 = lv1 + lv2; // 合法, 右值引用延长临时对象声明周期
+    rv2 += "Test"; // 合法, 非常量引用能够修改临时变量
+    std::cout << rv2 << std::endl; // string,string,string,
 
-reference(rv2); // 输出左值
+    reference(rv2); // 输出左值
 
-return 0;
+    return 0;
 }
 ```
 
@@ -279,25 +279,24 @@ return 0;
 #include <iostream>
 class A {
 public:
-int *pointer;
-A():pointer(new int(1)) { std::cout << "构造" << pointer << std::endl; }
-A(A& a):pointer(new int(*a.pointer)) { std::cout << "拷贝" << pointer << std::endl; } // 无意义的对象拷贝
-A(A&& a):pointer(a.pointer) { a.pointer = nullptr;std::cout << "移动" << pointer << std::endl; }
-~A(){ std::cout << "析构" << pointer << std::endl; delete pointer; }
+    int *pointer;
+    A():pointer(new int(1)) { std::cout << "构造" << pointer << std::endl; }
+    A(A& a):pointer(new int(*a.pointer)) { std::cout << "拷贝" << pointer << std::endl; } // 无意义的对象拷贝
+    A(A&& a):pointer(a.pointer) { a.pointer = nullptr;std::cout << "移动" << pointer << std::endl; }
+    ~A(){ std::cout << "析构" << pointer << std::endl; delete pointer; }
 };
 // 防止编译器优化
 A return_rvalue(bool test) {
-A a,b;
-if(test) return a;
-else return b;
+    A a,b;
+    if(test) return a;
+    else return b;
 }
 int main() {
-A obj = return_rvalue(false);
-std::cout << "obj:" << std::endl;
-std::cout << obj.pointer << std::endl;
-std::cout << *obj.pointer << std::endl;
-
-return 0;
+    A obj = return_rvalue(false);
+    std::cout << "obj:" << std::endl;
+    std::cout << obj.pointer << std::endl;
+    std::cout << *obj.pointer << std::endl;
+    return 0;
 }
 ```
 
@@ -319,19 +318,19 @@ int main() {
 std::string str = "Hello world.";
 std::vector<std::string> v;
 
-// 将使用 push_back(const T&), 即产生拷贝行为
-v.push_back(str);
-// 将输出 "str: Hello world."
-std::cout << "str: " << str << std::endl;
+    // 将使用 push_back(const T&), 即产生拷贝行为
+    v.push_back(str);
+    // 将输出 "str: Hello world."
+    std::cout << "str: " << str << std::endl;
 
-// 将使用 push_back(const T&&), 不会出现拷贝行为
-// 而整个字符串会被移动到 vector 中，所以有时候 std::move 会用来减少拷贝出现的开销
-// 这步操作后, str 中的值会变为空
-v.push_back(std::move(str));
-// 将输出 "str: "
-std::cout << "str: " << str << std::endl;
+    // 将使用 push_back(const T&&), 不会出现拷贝行为
+    // 而整个字符串会被移动到 vector 中，所以有时候 std::move 会用来减少拷贝出现的开销
+    // 这步操作后, str 中的值会变为空
+    v.push_back(std::move(str));
+    // 将输出 "str: "
+    std::cout << "str: " << str << std::endl;
 
-return 0;
+    return 0;
 }
 ```
 
@@ -341,25 +340,25 @@ return 0;
 
 ```cpp
 void reference(int& v) {
-std::cout << "左值" << std::endl;
+    std::cout << "左值" << std::endl;
 }
 void reference(int&& v) {
-std::cout << "右值" << std::endl;
+    std::cout << "右值" << std::endl;
 }
 template <typename T>
 void pass(T&& v) {
-std::cout << "普通传参:";
-reference(v); // 始终调用 reference(int& )
+    std::cout << "普通传参:";
+    reference(v); // 始终调用 reference(int& )
 }
 int main() {
-std::cout << "传递右值:" << std::endl;
-pass(1); // 1是右值, 但输出左值
+    std::cout << "传递右值:" << std::endl;
+    pass(1); // 1是右值, 但输出左值
 
-std::cout << "传递左值:" << std::endl;
-int v = 1;
-pass(v); // r 是左引用, 输出左值
+    std::cout << "传递左值:" << std::endl;
+    int v = 1;
+    pass(v); // r 是左引用, 输出左值
 
-return 0;
+    return 0;
 }
 ```
 
@@ -382,30 +381,30 @@ return 0;
 #include <iostream>
 #include <utility>
 void reference(int& v) {
-std::cout << "左值引用" << std::endl;
+    std::cout << "左值引用" << std::endl;
 }
 void reference(int&& v) {
-std::cout << "右值引用" << std::endl;
+    std::cout << "右值引用" << std::endl;
 }
 template <typename T>
 void pass(T&& v) {
-std::cout << "普通传参:";
-reference(v);
-std::cout << "std::move 传参:";
-reference(std::move(v));
-std::cout << "std::forward 传参:";
-reference(std::forward<T>(v));
+    std::cout << "普通传参:";
+    reference(v);
+    std::cout << "std::move 传参:";
+    reference(std::move(v));
+    std::cout << "std::forward 传参:";
+    reference(std::forward<T>(v));
 
 }
 int main() {
-std::cout << "传递右值:" << std::endl;
-pass(1);
+    std::cout << "传递右值:" << std::endl;
+    pass(1);
 
-std::cout << "传递左值:" << std::endl;
-int v = 1;
-pass(v);
+    std::cout << "传递左值:" << std::endl;
+    int v = 1;
+    pass(v);
 
-return 0;
+    return 0;
 }
 ```
 

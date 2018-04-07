@@ -559,14 +559,14 @@ extern template class std::vector<MagicClass>; // 不在该编译文件中实例
 在传统 C++ 的编译器中，`>>`一律被当做右移运算符来进行处理。但实际上我们很容易就写出了嵌套模板的代码：
 
 ```cpp
-std::vector<std::vector<int>> mtx;
+    std::vector<std::vector<int>> mtx;
 ```
 
 这在传统C++编译器下是不能够被编译的，而 C++11 开始，连续的右尖括号将变得合法，并且能够顺利通过编译。甚至于下下面这种写法都能够通过编译：
 
 ```cpp
 template<bool T> SuckType;
-std::vector<SuckType<(1>2)>> v; // 合法, 但不建议写出这样的代码
+    std::vector<SuckType<(1>2)>> v; // 合法, 但不建议写出这样的代码
 ```
 
 ### 类型别名模板
@@ -599,7 +599,7 @@ using NewType = SuckType<std::vector, std::string>;
 ```cpp
 template<typename T, typename U>
 auto add(T x, U y) -> decltype(x+y) {
-return x+y
+    return x+y
 }
 ```
 
@@ -610,7 +610,7 @@ return x+y
 ```cpp
 template<typename T = int, typename U = int>
 auto add(T x, U y) -> decltype(x+y) {
-return x+y
+    return x+y
 }
 ```
 
@@ -626,9 +626,9 @@ template<typename... Ts> class Magic;
 
 ```cpp
 class Magic<int,
-std::vector<int>,
-std::map<std::string,
-std::vector<int>>> darkMagic;
+            std::vector<int>,
+            std::map<std::string,
+            std::vector<int>>> darkMagic;
 ```
 
 既然是任意形式，所以个数为0的模板参数也是可以的：`class Magic<> nothing;`。
@@ -652,7 +652,7 @@ template<typename... Args> void printf(const std::string &str, Args... args);
 ```cpp
 template<typename... Args>
 void magic(Args... args) {
-std::cout << sizeof...(args) << std::endl;
+    std::cout << sizeof...(args) << std::endl;
 }
 ```
 我们可以传递任意个参数给 `magic` 函数：
@@ -710,14 +710,14 @@ void printf(T0 t0, T... t) {
 // 编译这个代码需要开启 -std=c++14
 template<typename T, typename... Args>
 auto print(T value, Args... args) {
-std::cout << value << std::endl;
-return std::initializer_list<T>{([&] {
-std::cout << args << std::endl;
-}(), value)...};
+    std::cout << value << std::endl;
+    return std::initializer_list<T>{([&] {
+        std::cout << args << std::endl;
+    }(), value)...};
 }
 int main() {
-print(1, 2.1, "123");
-return 0;
+    print(1, 2.1, "123");
+    return 0;
 }
 ```
 
@@ -753,20 +753,20 @@ C++11 引入了委托构造的概念，这使得构造函数可以在同一个�
 ```cpp
 class Base {
 public:
-int value1;
-int value2;
-Base() {
-value1 = 1;
-}
-Base(int value) : Base() { // 委托 Base() 构造函数
-value2 = 2;
-}
+    int value1;
+    int value2;
+    Base() {
+        value1 = 1;
+    }
+    Base(int value) : Base() { // 委托 Base() 构造函数
+        value2 = 2;
+    }
 };
 
 int main() {
-Base b(2);
-std::cout << b.value1 << std::endl;
-std::cout << b.value2 << std::endl;
+    Base b(2);
+    std::cout << b.value1 << std::endl;
+    std::cout << b.value2 << std::endl;
 }
 ```
 
@@ -777,23 +777,23 @@ std::cout << b.value2 << std::endl;
 ```cpp
 class Base {
 public:
-int value1;
-int value2;
-Base() {
-value1 = 1;
-}
-Base(int value) : Base() { // 委托 Base() 构造函数
-value2 = 2;
-}
+    int value1;
+    int value2;
+    Base() {
+        value1 = 1;
+    }
+    Base(int value) : Base() { // 委托 Base() 构造函数
+        value2 = 2;
+    }
 };
 class Subclass : public Base {
 public:
-using Base::Base; // 继承构造
+    using Base::Base; // 继承构造
 };
 int main() {
-Subclass s(3);
-std::cout << s.value1 << std::endl;
-std::cout << s.value2 << std::endl;
+    Subclass s(3);
+    std::cout << s.value1 << std::endl;
+    std::cout << s.value2 << std::endl;
 }
 ```
 
@@ -803,10 +803,10 @@ std::cout << s.value2 << std::endl;
 
 ```cpp
 struct Base {
-virtual void foo();
-};
-struct SubClass: Base {
-void foo();
+    virtual void foo();
+    };
+    struct SubClass: Base {
+    void foo();
 };
 ```
 
@@ -859,10 +859,10 @@ C++11 提供了上述需求的解决方案，允许显式的声明采用或拒�
 
 ```cpp
 class Magic {
-public:
-Magic() = default; // 显式声明使用编译器生成的构造
-Magic& operator=(const Magic&) = delete; // 显式声明拒绝编译器生成构造
-Magic(int magic_number);
+    public:
+    Magic() = default; // 显式声明使用编译器生成的构造
+    Magic& operator=(const Magic&) = delete; // 显式声明拒绝编译器生成构造
+    Magic(int magic_number);
 }
 ```
 
@@ -874,10 +874,10 @@ C++11 引入了枚举类（enumaration class），并使用 `enum class` 的语�
 
 ```cpp
 enum class new_enum : unsigned int {
-value1,
-value2,
-value3 = 100,
-value4 = 100
+    value1,
+    value2,
+    value3 = 100,
+    value4 = 100
 };
 ```
 
@@ -885,8 +885,8 @@ value4 = 100
 
 ```cpp
 if (new_enum::value3 == new_enum::value4) {
-// 会输出
-std::cout << "new_enum::value3 == new_enum::value4" << std::endl;
+    // 会输出
+    std::cout << "new_enum::value3 == new_enum::value4" << std::endl;
 }
 ```
 
@@ -899,7 +899,7 @@ std::cout << "new_enum::value3 == new_enum::value4" << std::endl;
 template<typename T>
 std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::ostream>::type& stream, const T& e)
 {
-return stream << static_cast<typename std::underlying_type<T>::type>(e);
+    return stream << static_cast<typename std::underlying_type<T>::type>(e);
 }
 ```
 

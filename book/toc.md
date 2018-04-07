@@ -86,8 +86,8 @@
     + `std::future`
     + `std::packaged_task`
     + `std::condition_variable`
-- [**第八章 标准库: 文件系统** TODO]
-- [**第九章 其他杂项**](./8-others.md)
+- [**第八章 标准库: 文件系统**](./8-filesystem.md)
+- [**第九章 其他杂项**](./9-others.md)
     + 新类型
         + `long long int`
     + `noexcept` 的修饰和操作
@@ -95,16 +95,11 @@
         + 原始字符串字面量
         + 自定义字面量
     + 数学库
-- **第十章 展望: ~~C++17~~ C++20 简介**
-    + ~~主要入选特性~~
-        + ~~非类型模板参数的 `auto`~~
-        + ~~`std::variant<>`~~
-        + ~~变量声明的强化~~
-    + 未入选特性
-        + Concept
-        + Range
-        + Module
-        + Coroutine
+- [**第十章 展望: C++20 简介**](./10-cpp20.md)
+    + Concept
+    + Range
+    + Module
+    + Coroutine
 
 
 返回目录 | 上一章 | [下一章：序言](./0-preface.md)

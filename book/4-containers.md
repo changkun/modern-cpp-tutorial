@@ -7,6 +7,9 @@
 本节内容包括：
 
 * 对标准库的扩充: 新增容器
+* `std::byte`
+* `std::any` `std::optional` `std::variant`
+* `std::string_view`
 * `std::array`
 * `std::forward_list`
 * `std::unordered_set`
@@ -42,7 +45,7 @@ std::array<int, len> arr = {1,2,3,4}; // 非法, 数组大小参数必须是常�
 
 ```cpp
 void foo(int *p, int len) {
-return;
+    return;
 }
 
 std::array<int, 4> arr = {1,2,3,4};
@@ -79,27 +82,27 @@ C++11 引入了两组无序容器：`std::unordered_map`/`std::unordered_multima
 #include <map>
 
 int main() {
-// 两组结构按同样的顺序初始化
-std::unordered_map<int, std::string> u = {
-{1, "1"},
-{3, "3"},
-{2, "2"}
-};
-std::map<int, std::string> v = {
-{1, "1"},
-{3, "3"},
-{2, "2"}
-};
+    // 两组结构按同样的顺序初始化
+    std::unordered_map<int, std::string> u = {
+        {1, "1"},
+        {3, "3"},
+        {2, "2"}
+    };
+    std::map<int, std::string> v = {
+        {1, "1"},
+        {3, "3"},
+        {2, "2"}
+    };
 
-// 分别对两组结构进行遍历
-std::cout << "std::unordered_map" << std::endl;
-for( const auto & n : u)
-std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
+    // 分别对两组结构进行遍历
+    std::cout << "std::unordered_map" << std::endl;
+    for( const auto & n : u)
+        std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
 
-std::cout << std::endl;
-std::cout << "std::map" << std::endl;
-for( const auto & n : v)
-std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
+    std::cout << std::endl;
+    std::cout << "std::map" << std::endl;
+    for( const auto & n : v)
+        std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
 }
 ```
 
@@ -138,33 +141,33 @@ auto get_student(int id)
 // 返回类型被推断为 std::tuple<double, char, std::string>
 
 if (id == 0)
-return std::make_tuple(3.8, 'A', "张三");
+    return std::make_tuple(3.8, 'A', "张三");
 if (id == 1)
-return std::make_tuple(2.9, 'C', "李四");
+    return std::make_tuple(2.9, 'C', "李四");
 if (id == 2)
-return std::make_tuple(1.7, 'D', "王五");
-return std::make_tuple(0.0, 'D', "null");
-// 如果只写 0 会出现推断错误, 编译失败
+    return std::make_tuple(1.7, 'D', "王五");
+    return std::make_tuple(0.0, 'D', "null");
+    // 如果只写 0 会出现推断错误, 编译失败
 }
 
 int main()
 {
-auto student = get_student(0);
-std::cout << "ID: 0, "
-<< "GPA: " << std::get<0>(student) << ", "
-<< "成绩: " << std::get<1>(student) << ", "
-<< "姓名: " << std::get<2>(student) << '\n';
+    auto student = get_student(0);
+    std::cout << "ID: 0, "
+    << "GPA: " << std::get<0>(student) << ", "
+    << "成绩: " << std::get<1>(student) << ", "
+    << "姓名: " << std::get<2>(student) << '\n';
 
-double gpa;
-char grade;
-std::string name;
+    double gpa;
+    char grade;
+    std::string name;
 
-// 元组进行拆包
-std::tie(gpa, grade, name) = get_student(1);
-std::cout << "ID: 1, "
-<< "GPA: " << gpa << ", "
-<< "成绩: " << grade << ", "
-<< "姓名: " << name << '\n';
+    // 元组进行拆包
+    std::tie(gpa, grade, name) = get_student(1);
+    std::cout << "ID: 1, "
+    << "GPA: " << gpa << ", "
+    << "成绩: " << grade << ", "
+    << "姓名: " << name << '\n';
 }
 ```
 
@@ -193,15 +196,15 @@ std::get<index>(t);
 template <size_t n, typename... T>
 boost::variant<T...> _tuple_index(size_t i, const std::tuple<T...>& tpl) {
 if (i == n)
-return std::get<n>(tpl);
+    return std::get<n>(tpl);
 else if (n == sizeof...(T) - 1)
-throw std::out_of_range("越界.");
+    throw std::out_of_range("越界.");
 else
-return _tuple_index<(n < sizeof...(T)-1 ? n+1 : 0)>(i, tpl);
+    return _tuple_index<(n < sizeof...(T)-1 ? n+1 : 0)>(i, tpl);
 }
 template <typename... T>
 boost::variant<T...> tuple_index(size_t i, const std::tuple<T...>& tpl) {
-return _tuple_index<0>(i, tpl);
+    return _tuple_index<0>(i, tpl);
 }
 ```
 
@@ -225,7 +228,7 @@ auto new_tuple = std::tuple_cat(get_student(1), std::move(t));
 ```cpp
 template <typename T>
 auto tuple_len(T &tpl) {
-return std::tuple_size<T>::value;
+    return std::tuple_size<T>::value;
 }
 ```
 
@@ -234,8 +237,8 @@ return std::tuple_size<T>::value;
 ```cpp
 // 迭代
 for(int i = 0; i != tuple_len(new_tuple); ++i)
-// 运行期索引
-std::cout << tuple_index(i, new_tuple) << std::endl;
+    // 运行期索引
+    std::cout << tuple_index(i, new_tuple) << std::endl;
 ```
 
 ## 总结

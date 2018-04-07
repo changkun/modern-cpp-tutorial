@@ -87,11 +87,11 @@ C++11 提供的正则表达式库操作 `std::string` 对象，模式 `std::rege
 #include <regex>
 
 int main() {
-std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
-// 在 C++ 中 `\` 会被作为字符串内的转义符，为使 `\.` 作为正则表达式传递进去生效，需要对 `\` 进行二次转义，从而有 `\\.`
-std::regex txt_regex("[a-z]+\\.txt");
-for (const auto &fname: fnames)
-std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
+    std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
+    // 在 C++ 中 `\` 会被作为字符串内的转义符，为使 `\.` 作为正则表达式传递进去生效，需要对 `\` 进行二次转义，从而有 `\\.`
+    std::regex txt_regex("[a-z]+\\.txt");
+    for (const auto &fname: fnames)
+        std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
 }
 ```
 
@@ -101,15 +101,15 @@ std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
 std::regex base_regex("([a-z]+)\\.txt");
 std::smatch base_match;
 for(const auto &fname: fnames) {
-if (std::regex_match(fname, base_match, base_regex)) {
-// sub_match 的第一个元素匹配整个字符串
-// sub_match 的第二个元素匹配了第一个括号表达式
-if (base_match.size() == 2) {
-std::string base = base_match[1].str();
-std::cout << "sub-match[0]: " << base_match[0].str() << std::endl;
-std::cout << fname << " sub-match[1]: " << base << std::endl;
-}
-}
+    if (std::regex_match(fname, base_match, base_regex)) {
+        // sub_match 的第一个元素匹配整个字符串
+        // sub_match 的第二个元素匹配了第一个括号表达式
+        if (base_match.size() == 2) {
+            std::string base = base_match[1].str();
+            std::cout << "sub-match[0]: " << base_match[0].str() << std::endl;
+            std::cout << fname << " sub-match[1]: " << base << std::endl;
+        }
+    }
 }
 ```
 
@@ -134,7 +134,7 @@ bar.txt sub-match[1]: bar
 
 > 本节提到的内容足以让我们开发编写一个简单的 Web 框架中关于URL匹配的功能。
 
-> 关于这方面的开发和细节，可以通过项目课：[C++ 开发 Web 服务框架](https://www.shiyanlou.com/courses/568) 进行进一步学习。
+> ~~关于这方面的开发和细节，可以通过项目课：[C++ 开发 Web 服务框架](https://www.shiyanlou.com/courses/568) 进行进一步学习。~~ TODO: 将这部分内容补充为习题
 
 ## 进一步阅读的参考资料
 
