@@ -49,10 +49,10 @@ Lambda 表达式的基本语法如下：
 void learn_lambda_func_1() {
     int value_1 = 1;
     auto copy_value_1 = [value_1] {
-    return value_1;
-};
-value_1 = 100;
-auto stored_value_1 = copy_value_1();
+        return value_1;
+    };
+    value_1 = 100;
+    auto stored_value_1 = copy_value_1();
     // 这时, stored_value_1 == 1, 而 value_1 == 100.
     // 因为 copy_value_1 在创建时就保存了一份 value_1 的拷贝
 }
@@ -66,10 +66,10 @@ auto stored_value_1 = copy_value_1();
 void learn_lambda_func_2() {
     int value_2 = 1;
     auto copy_value_2 = [&value_2] {
-    return value_2;
-};
-value_2 = 100;
-auto stored_value_2 = copy_value_2();
+        return value_2;
+    };
+    value_2 = 100;
+    auto stored_value_2 = copy_value_2();
     // 这时, stored_value_2 == 100, value_1 == 100.
     // 因为 copy_value_2 保存的是引用
 }
@@ -137,7 +137,7 @@ Lambda 表达式的本质是一个函数对象，当 Lambda 表达式的捕获�
 #include <iostream>
 
 using foo = void(int); // 定义函数指针, using 的使用见上一节中的别名语法
-    void functional(foo f) {
+void functional(foo f) {
     f(1);
 }
 
@@ -169,7 +169,7 @@ int main() {
 
     int important = 10;
     std::function<int(int)> func2 = [&](int value) -> int {
-    return 1+value+important;
+        return 1+value+important;
     };
     std::cout << func(10) << std::endl;
     std::cout << func2(10) << std::endl;
@@ -216,7 +216,7 @@ int main() {
 
 ```cpp
 std::vector<int> foo() {
-std::vector<int> temp = {1, 2, 3, 4};
+    std::vector<int> temp = {1, 2, 3, 4};
     return temp;
 }
 
