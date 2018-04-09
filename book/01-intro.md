@@ -1,8 +1,16 @@
 # 第 1 章 迈向 C++11/14/17
 
-<!-- toc -->
+[TOC]
 
-本书将使用 `clang++` 作为唯一使用的编译器，同时总是在代码中使用 `-std=c++17` 编译标志。
+**编译环境**：本书将使用 `clang++` 作为唯一使用的编译器，同时总是在代码中使用 `-std=c++17` 编译标志。
+
+```bash
+→ clang++ -v
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+```
 
 ## 1.1 被弃用的特性
 
