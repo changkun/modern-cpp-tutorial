@@ -737,7 +737,7 @@ C++ 17 中将变长参数这种特性进一步带给了表达式，考虑下面�
 #include <iostream>
 template<typename ... T>
 auto sum(T ... t) {
-    return (t + ...)
+    return (t + ...);
 }
 int main() {
     std::cout << sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) << std::endl;

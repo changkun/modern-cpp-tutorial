@@ -40,7 +40,7 @@
 
 笔者感谢以下读者指出本书中出现的错误：
 
-[Recolic Keghart](https://www.gitbook.com/@recolic), [sinomiko](https://www.gitbook.com/@sinomiko), [Wang Zhenhua](https://www.gitbook.com/@jackwish), [asm warrior](https://www.gitbook.com/@asmwarrior), [garicc](https://www.gitbook.com/@ihpy), [Wenhan Jiang](https://www.gitbook.com/@jiangwenhan), [liang xiao](https://www.gitbook.com/@liangx8), [slivermeteor](https://github.com/slivermeteor)
+[Recolic Keghart](https://www.gitbook.com/@recolic), [sinomiko](https://www.gitbook.com/@sinomiko), [Wang Zhenhua](https://www.gitbook.com/@jackwish), [asm warrior](https://www.gitbook.com/@asmwarrior), [garicc](https://www.gitbook.com/@ihpy), [Wenhan Jiang](https://www.gitbook.com/@jiangwenhan), [liang xiao](https://www.gitbook.com/@liangx8), [slivermeteor](https://github.com/slivermeteor), [inkedawn](https://github.com/inkedawn)
 
 ## 赞助
 
