@@ -163,8 +163,8 @@ int main() {
     }
 
     // 需要重新定义一个新的变量
-	const std::vector<int>::iterator itr2 = std::find(vec.begin(), vec.end(), 3);
-    if (itr != vec.end()) {
+    const std::vector<int>::iterator itr2 = std::find(vec.begin(), vec.end(), 3);
+    if (itr2 != vec.end()) {
         *itr2 = 4;
     }
 
