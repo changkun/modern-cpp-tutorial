@@ -330,8 +330,8 @@ int main() {
 一些其他的常见用法：
 
 ```cpp
-auto i = 5;             // i 被推导为 int
-auto arr = new auto(10) // arr 被推导为 int *
+auto i = 5;              // i 被推导为 int
+auto arr = new auto(10); // arr 被推导为 int *
 ```
 
 > **注意**：`auto` 不能用于函数传参，因此下面的做法是无法通过编译的（考虑重载的问题，我们应该使用模板）：
@@ -539,19 +539,19 @@ int main() {
 }
 ```
 
-> 直至往后的内容正在更新，尽请期待
-
 ## 2.5 模板
+
+C++ 的模板一直是这门语言的一种特殊的艺术，模板甚至可以独立作为一门新的语言来进行使用。模板的哲学在于将一切能够在编译期处理的问题丢到编译期进行处理，仅在运行时处理那些最核心的动态服务，进而大幅优化运行期的性能。因此模板也被很多人视作 C++ 的黑魔法之一。
 
 ### 外部模板
 
-传统 C++ 中，模板只有在使用时才会被编译器实例化。换句话说，只要在每个编译单元（文件）中编译的代码中遇到了被完整定义的模板，都会实例化。这就产生了重复实例化而导致的编译时间的增加。并且，我们没有办法通知编译器不要出发模板实例化。
+传统 C++ 中，模板只有在使用时才会被编译器实例化。换句话说，只要在每个编译单元（文件）中编译的代码中遇到了被完整定义的模板，都会实例化。这就产生了重复实例化而导致的编译时间的增加。并且，我们没有办法通知编译器不要触发模板的实例化。
 
-C++11 引入了外部模板，扩充了原来的强制编译器在特定位置实例化模板的语法，使得能够显式的告诉编译器何时进行模板的实例化：
+为此，C++11 引入了外部模板，扩充了原来的强制编译器在特定位置实例化模板的语法，使我们能够显式的通知编译器何时进行模板的实例化：
 
 ```cpp
-template class std::vector<MagicClass>; // 强行实例化
-extern template class std::vector<MagicClass>; // 不在该编译文件中实例化模板
+template class std::vector<bool>;          // 强行实例化
+extern template class std::vector<double>; // 不在该当前编译文件中实例化模板
 ```
 
 ### 尖括号 ">"
@@ -559,25 +559,36 @@ extern template class std::vector<MagicClass>; // 不在该编译文件中实例
 在传统 C++ 的编译器中，`>>`一律被当做右移运算符来进行处理。但实际上我们很容易就写出了嵌套模板的代码：
 
 ```cpp
-    std::vector<std::vector<int>> mtx;
+std::vector<std::vector<int>> matrix;
 ```
 
 这在传统C++编译器下是不能够被编译的，而 C++11 开始，连续的右尖括号将变得合法，并且能够顺利通过编译。甚至于下下面这种写法都能够通过编译：
 
 ```cpp
-template<bool T> SuckType;
-    std::vector<SuckType<(1>2)>> v; // 合法, 但不建议写出这样的代码
+template<bool T>
+class MagicType {
+    bool magic = T;
+};
+
+// in main function:
+std::vector<MagicType<(1>2)>> magic; // 合法, 但不建议写出这样的代码
 ```
 
 ### 类型别名模板
 
-在了解类型别名模板之前，需要理解『模板』和『类型』之间的不同。仔细体会这句话：**模板是用来产生类型的。**在传统 C++中，`typedef` 可以为类型定义一个新的名称，但是却没有办法为模板定义一个新的名称。因为，模板不是类型。例如：
+在了解类型别名模板之前，需要理解『模板』和『类型』之间的不同。仔细体会这句话：**模板是用来产生类型的。**在传统 C++ 中，`typedef`  可以为类型定义一个新的名称，但是却没有办法为模板定义一个新的名称。因为，模板不是类型。例如：
 
 ```cpp
 template<typename T, typename U>
-class SuckType;
+class MagicType {
+public:
+    T dark;
+    U magic;
+};
 
-typedef SuckType<std::vector, std::string> NewType; // 不合法
+// 不合法
+template<typename T>
+typedef MagicType<std::vector<T>, std::string> FakeDarkMagic;
 ```
 
 C++11 使用 `using` 引入了下面这种形式的写法，并且同时支持对传统 `typedef` 相同的功效：
@@ -585,12 +596,17 @@ C++11 使用 `using` 引入了下面这种形式的写法，并且同时支持�
 > 通常我们使用 `typedef` 定义别名的语法是：`typedef 原名称 新名称;`，但是对函数指针等别名的定义语法却不相同，这通常给直接阅读造成了一定程度的困难。
 
 ```cpp
-typedef int (*process)(void *); // 定义了一个返回类型为 int，参数为 void* 的函数指针类型，名字叫做 process
-using process = int(*)(void *); // 同上, 更加直观
-using NewType = SuckType<std::vector, std::string>;
+typedef int (*process)(void *);
+using NewProcess = int(*)(void *);
+template<typename T>
+using TrueDarkMagic = MagicType<std::vector<T>, std::string>;
+
+int main() {
+    TrueDarkMagic<bool> you;
+}
 ```
 
-<!--C++14 在这方面更进一步，提供了更加简洁的写法。命名规则为：如果标准库的某个类模板（std::template_class）只含有唯一的成员，即成员类型为`type`，那么标准库可以用 std::template_class_t<T> 作为 typename std::template_class:type 的别名。-->
+> 直至往后的内容正在更新，尽请期待
 
 ### 默认模板参数
 
