@@ -32,7 +32,7 @@
 ## 交流
 
 1. 笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [issue](https://github.com/changkun/cpp1x-tutorial/issues)；
-2. 本书有以下读者交流群，有兴趣的读者可以加入，加群需正确回答加群密码 `github`：
+2. 本书有以下读者交流群，有兴趣的读者可以加入，加群需正确回答加群密码（提示: `bW9kZXJuLWNwcC10dXRvcmlhbC1naXRodWI=`）：
 
 ![](assets/qq-group.png)
 
