@@ -137,7 +137,7 @@ Lambda 表达式的本质是一个函数对象，当 Lambda 表达式的捕获�
 #include <iostream>
 
 using foo = void(int); // 定义函数指针, using 的使用见上一节中的别名语法
-    void functional(foo f) {
+void functional(foo f) {
     f(1);
 }
 
@@ -216,7 +216,7 @@ int main() {
 
 ```cpp
 std::vector<int> foo() {
-std::vector<int> temp = {1, 2, 3, 4};
+    std::vector<int> temp = {1, 2, 3, 4};
     return temp;
 }
 
