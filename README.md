@@ -19,7 +19,11 @@
 
 ## 开始阅读
 
-你可以从[这里](./book/toc.md)开始阅读本书。
+你可以选择以下几种阅读方式：
+
+1. [GitHub 在线](./book/toc.md)
+2. [PDF 文档](./pdf/modern-cpp-tutorial.pdf)
+3. [网站]
 
 ## 相关代码
 
