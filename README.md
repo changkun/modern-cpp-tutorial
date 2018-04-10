@@ -1,8 +1,10 @@
+<img src="assets/cover-2nd.png" alt="logo" height="600" align="right" />
+
 # 《高速上手 C++11/14/17》
 
-> 本书正在向全面介绍 C++17 特性的内容过度，尽请期待。
+![](https://img.shields.io/badge/version-v2-green.svg) [![](https://img.shields.io/badge/%C2%A5-%E8%B5%9E%E5%8A%A9-ff69b4.svg)](./assets/donate.md) [![](https://img.shields.io/badge/chat-%E4%BA%A4%E6%B5%81-667ed5.svg)](./assets/community.md) 
 
-![](assets/cover-2nd.png)
+> 本书正在适配 C++17 新特性，尽请期待。
 
 ## 本书目的
 
@@ -33,26 +35,11 @@
 
 本书每章最后还加入了少量难度极小的习题，仅用于检验你是否能混合运用当前章节中的知识点。你可以在[这里](exercises)找到习题的答案，文件夹名称为章节序号。
 
-## 交流
-
-1. 笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [issue](https://github.com/changkun/cpp1x-tutorial/issues)；
-2. 本书有以下读者交流群，有兴趣的读者可以加入，加群需正确回答加群密码（提示: `bW9kZXJuLWNwcC10dXRvcmlhbC1naXRodWI=`）：
-
-![](assets/qq-group.png)
-
 ## 致谢
 
-笔者感谢以下读者指出本书中出现的错误：
+笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [issue](https://github.com/changkun/cpp1x-tutorial/issues)。并感谢以下读者指出本书中出现的错误：
 
 [Recolic Keghart](https://www.gitbook.com/@recolic), [sinomiko](https://www.gitbook.com/@sinomiko), [Wang Zhenhua](https://www.gitbook.com/@jackwish), [asm warrior](https://www.gitbook.com/@asmwarrior), [garicc](https://www.gitbook.com/@ihpy), [Wenhan Jiang](https://www.gitbook.com/@jiangwenhan), [liang xiao](https://www.gitbook.com/@liangx8), [slivermeteor](https://github.com/slivermeteor), [inkedawn](https://github.com/inkedawn), [zhaoyao73](https://github.com/zhaoyao73)
-
-## 赞助
-
-如果你认为本书对你起到了帮助，并希望赞助作者，可以通过下面的二维码给予支持：
-
-|微信|支付宝|
-|:--:|:--:|
-|![](assets/wechat.jpg) | ![](assets/alipay.jpg)|
 
 ## 许可
 
