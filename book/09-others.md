@@ -147,6 +147,8 @@ return 0;
 
 本节介绍的几个特性是从仍未介绍的 C++1x 新特性里使用频次较靠前的特性了，`noexcept` 是最为重要的特性，它的一个功能在于能够阻止异常的扩散传播，有效的让编译器最大限度的优化我们的代码。
 
+[返回目录](./toc.md) | [上一章](./08-filesystem.md) | [下一章 展望：C++20 简介](./10-cpp20.md)
+
 ## 许可
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>

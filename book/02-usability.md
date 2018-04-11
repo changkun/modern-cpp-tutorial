@@ -963,7 +963,7 @@ std::cout << new_enum::value3 << std::endl
 
 > 参考答案[见此](../exercises/2)。
 
-[返回目录](./toc.md) | [上一章](./01-intro.md) | [下一章：运行时强化](./03-runtime.md)
+[返回目录](./toc.md) | [上一章](./01-intro.md) | [下一章 运行时强化](./03-runtime.md)
 
 ## 进一步阅读的参考文献
 
