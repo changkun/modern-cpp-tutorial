@@ -65,7 +65,7 @@ foo(int) is called
 foo(char*) is called
 ```
 
-从输出中我们可以看出，`nullptr` 与 `NULL` 与 `0` 均不相同。所以，请养成直接使用 `nullptr`的习惯。
+从输出中我们可以看出，`NULL` 不同于 `0` 与 `nullptr`。所以，请养成直接使用 `nullptr`的习惯。
 
 此外，在上面的代码中，我们使用了 `decltype` 和 `std::is_same` 这两个属于现代 C++ 的语法，简单来说，`decltype` 用于类型推导，而 `std::is_same` 用于比较两个类型是否相等，我们会在后面 [decltype](#decltype) 一节中详细讨论。
 
