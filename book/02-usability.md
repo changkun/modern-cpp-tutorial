@@ -397,7 +397,8 @@ R add(T x, U y) {
 return x+y
 }
 ```
-> 注意：typename 和 class 在模板中没有区别，在 typename 这个关键字出现之前，都是使用 class 来定义模板参数的
+> 注意：typename 和 class 在模板参数列表中没有区别，在 typename 这个关键字出现之前，都是使用 class 来定义模板参数的。但在模板中定义有[嵌套依赖类型](http://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names)的变量时，需要用 typename 消除歧义
+
 
 这样的代码其实变得很丑陋，因为程序员在使用这个模板函数的时候，必须明确指出返回类型。但事实上我们并不知道 `add()` 这个函数会做什么样的操作，获得一个什么样的返回类型。
 
