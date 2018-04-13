@@ -18,7 +18,7 @@ pdf: markdown
 
 markdown:
 	@echo "Copy markdown files..."
-	@cp -r ../book/* .
+	@cp -r ../../book/zh-cn/* .
 	@echo "Aggregating markdown files..."
 	@python3 aggregator.py
 
