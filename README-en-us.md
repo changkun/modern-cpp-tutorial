@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/version-v2-green.svg) ![](https://img.shields.io/badge/language-English-blue.svg) [![](https://img.shields.io/badge/$-donate-ff69b4.svg)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg)](./assets/community.md) 
 
-> This book is adapting to C++17
+> This book is adapting to C++17 and translating to English.
 
 ## Languages
 
@@ -45,9 +45,9 @@ There are few exercises At the end of each chapter of the book. It is for testin
 
 ## Acknowledgements
 
-This book is originally written in Chinese, and the author's time, skills and languages are limited. If readers find any mistakes of the book or any language improvements, please feel free to open an [issue](https://github.com/changkun/modern-cpp-tutorial/issues). The author would like to appreciate all of the contributors of this book for discovering mistakes:
+This book is originally written in Chinese.
 
-[recolic](https://www.gitbook.com/@recolic), [sinomiko](https://www.gitbook.com/@sinomiko), [jackwish](https://www.gitbook.com/@jackwish), [asmwarrior](https://www.gitbook.com/@asmwarrior), [garicc](https://www.gitbook.com/@ihpy), [jiangwenhan](https://www.gitbook.com/@jiangwenhan), [liangx8](https://www.gitbook.com/@liangx8), [slivermeteor](https://github.com/slivermeteor), [inkedawn](https://github.com/inkedawn), [zhaoyao73](https://github.com/zhaoyao73), [sundy-li](https://github.com/sundy-li), [dontpanic92](https://github.com/dontpanic92)
+The author has limited time and language skills. If readers find any mistakes of the book or any language improvements, please feel free to open an [issue](https://github.com/changkun/modern-cpp-tutorial/issues).
 
 ## Licenses
 
