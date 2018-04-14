@@ -51,7 +51,13 @@ void some_operation(const std::string &message) {
 
 由于 C++保证了所有栈对象在声明周期结束时会被销毁，所以这样的代码也是异常安全的。无论 `some_operation()` 正常返回、还是在中途抛出异常，都会引发堆栈回退，也就自动调用了 `unlock()`。
 
-而 `std::unique_lock` 则相对于 `std::lock_guard` 出现的，`std::unique_lock` 更加灵活，`std::unique_lock` 的对象会以独占所有权（没有其他的 `unique_lock` 对象同时拥有某个 `mutex` 对象的所有权）的方式管理 `mutex` 对象上的上锁和解锁的操作。所以在并发编程中，推荐使用 `std::unique_lock`。例如：
+而 `std::unique_lock` 则相对于 `std::lock_guard` 出现的，`std::unique_lock` 更加灵活，`std::unique_lock` 的对象会以独占所有权（没有其他的 `unique_lock` 对象同时拥有某个 `mutex` 对象的所有权）的方式管理 `mutex` 对象上的上锁和解锁的操作。所以在并发编程中，推荐使用 `std::unique_lock`。
+
+`std::lock_guard` 不能显式的调用 `lock` 和 `unlock`， 而 `std::unique_lock` 可以在声明后的任意位置调用 ，可以缩小锁的作用范围，提供更高的并发度。
+
+如果你用到了条件变量 `std::condition_variable::wait` 则必须使用 `std::unique_lock` 作为参数。
+
+例如：
 
 ```cpp
 #include <iostream>
@@ -63,6 +69,9 @@ std::mutex mtx;
 void block_area() {
 std::unique_lock<std::mutex> lock(mtx);
     //...临界区
+lock.unlock();
+    //...some other code 
+lock.lock(); //  can lock again
 }
 int main() {
     std::thread thd1(block_area);
