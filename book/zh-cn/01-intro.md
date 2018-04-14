@@ -63,7 +63,7 @@ int add(int x, int y);
 
 // foo.c
 int add(int x, int y) {
-    reutrn x+y;
+    return x+y;
 }
 
 // 1.1.cpp
