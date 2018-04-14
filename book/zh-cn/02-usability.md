@@ -616,7 +616,7 @@ int main() {
 ```cpp
 template<typename T, typename U>
 auto add(T x, U y) -> decltype(x+y) {
-    return x+y
+    return x+y;
 }
 ```
 
@@ -627,7 +627,7 @@ auto add(T x, U y) -> decltype(x+y) {
 ```cpp
 template<typename T = int, typename U = int>
 auto add(T x, U y) -> decltype(x+y) {
-    return x+y
+    return x+y;
 }
 ```
 
