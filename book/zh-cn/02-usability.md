@@ -375,7 +375,7 @@ decltype(x+y) z;
 if (std::is_same<decltype(x), int>::value)
     std::cout << "type x == int" << std::endl;
 if (std::is_same<decltype(x), float>::value)
-    std::cout << "type z == float" << std::endl;
+    std::cout << "type x == float" << std::endl;
 if (std::is_same<decltype(x), decltype(z)>::value)
     std::cout << "type z == type x" << std::endl;
 ```
@@ -389,7 +389,7 @@ type z == type x
 
 ### 尾返回类型推导
 
-你可能会思考，在介绍 `auto`时，我们已经提过类型推导不能用于函数形参，那么`auto` 能不能用于推导函数的返回类型呢？还是考虑一个加法函数的例子，在传统 C++ 中我们必须这么写：
+你可能会思考，在介绍 `auto`时，我们已经提过类型推导不能用于函数形参，那么 `auto` 能不能用于推导函数的返回类型呢？还是考虑一个加法函数的例子，在传统 C++ 中我们必须这么写：
 
 ```cpp
 template<typename R, typename T, typename U>
