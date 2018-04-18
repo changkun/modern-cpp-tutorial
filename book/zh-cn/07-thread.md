@@ -153,6 +153,7 @@ int main()
         cond_var.notify_one();
     }
     done = true;
+    notified = true;
     cond_var.notify_one();
 });
 
