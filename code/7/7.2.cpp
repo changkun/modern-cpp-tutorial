@@ -39,6 +39,7 @@ int main()
             cond_var.notify_one();
         }
         done = true;
+        notified = true;
         cond_var.notify_one();
     });
     // 消费者线程
