@@ -23,7 +23,7 @@ InstalledDir: /Library/Developer/CommandLineTools/usr/bin
     char *str = "hello world!"; // 将出现弃用警告
     ```
 
-- **C++98 异常说明、 `unexcepted_handler`、`set_unexpected()` 等相关特性被弃用，应该使用 `noexcept`。**
+- **C++98 异常说明、 `unexpected_handler`、`set_unexpected()` 等相关特性被弃用，应该使用 `noexcept`。**
 
 - **`auto_ptr` 被弃用，应使用 `unique_ptr`。**
 
