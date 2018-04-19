@@ -38,7 +38,9 @@ int main() {
     // char arr_3[len];                  // illegal
 
     const int len_2 = len + 1;
-    char arr_4[len_2];                   // legal
+    constexpr int len_2_constexpr = 1 + 2 + 3;
+    // char arr_4[len_2];                // illegal, but ok for most of the compilers
+    char arr_4[len_2_constexpr];         // legal
 
     // char arr_5[len_foo()+5];          // illegal
     char arr_6[len_foo_constexpr() + 1]; // legal

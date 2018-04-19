@@ -97,24 +97,25 @@ int main() {
     // char arr_3[len];                  // 非法
 
     const int len_2 = len + 1;
-    char arr_4[len_2];                   // 合法
+    constexpr int len_2_constexpr = 1 + 2 + 3;
+    // char arr_4[len_2];                // 非法
+    char arr_4[len_2_constexpr];         // 合法
 
     // char arr_5[len_foo()+5];          // 非法
     char arr_6[len_foo_constexpr() + 1]; // 合法
-    
+
     std::cout << fibonacci(10) << std::endl;
     // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
-    
+
     return 0;
 }
 ```
 
-在 C++11 之前，可以在常量表达式中使用的变量必须被声明为 `const`，在上面代码中，`len_2` 被定义成了常量，因此 `len_2` 是一个常量表达式，所以能够合法的分配一个数组；而对于 `arr_5` 来说，C++98 之前的编译器无法得知 `len_foo()` 在运行期实际上是返回一个常数，这也就导致了非法的产生。
+上面的例子中，`char arr_4[len_2]` 可能比较令人困惑，因为 `len_2` 已经被定义为了常量。为什么 `char arr_4[len_2]` 仍然是非法的呢？这是因为 C++ 标准中数组的长度必须是一个常量表达式，而对于 `len_2` 而言，这是一个 `const` 常数，而不是一个常量表达式，因此（即便这种行为在大部分编译器中都支持，但是）它是一个非法的行为，我们需要使用接下来即将介绍的 C++11 引入的 `constexpr` 特性来解决这个问题；而对于 `arr_5` 来说，C++98 之前的编译器无法得知 `len_foo()` 在运行期实际上是返回一个常数，这也就导致了非法的产生。
 
 > 注意，现在大部分编译器其实都带有自身编译优化，很多非法行为在编译器优化的加持下会变得合法，若需重现编译报错的现象需要使用老版本的编译器。
 
-
-C++11 提供了 `constexpr` 让用户显式的声明函数或对象构造函数在编译器会成为常数，这个关键字明确的告诉编译器应该去验证 `len_foo` 在编译期就应该是一个常数。
+C++11 提供了 `constexpr` 让用户显式的声明函数或对象构造函数在编译器会成为常量表达式，这个关键字明确的告诉编译器应该去验证 `len_foo` 在编译期就应该是一个常量表达式。
 
 此外，`constexpr` 的函数可以使用递归：
 
@@ -128,9 +129,9 @@ constexpr int fibonacci(const int n) {
 
 ```cpp
 constexpr int fibonacci(const int n) {
-	if(n == 1) return 1;
-	if(n == 2) return 1;
-	return fibonacci(n-1) + fibonacci(n-2);
+    if(n == 1) return 1;
+    if(n == 2) return 1;
+    return fibonacci(n-1) + fibonacci(n-2);
 }
 ```
 
@@ -232,7 +233,7 @@ public:
 int main() {
     // after C++11
     MagicFoo magicFoo = {1, 2, 3, 4, 5};
-    
+
     std::cout << "magicFoo: ";
     for (std::vector<int>::iterator it = magicFoo.vec.begin(); it != magicFoo.vec.end(); ++it) std::cout << *it << std::endl;
 }
