@@ -43,7 +43,7 @@ Lambda 表达式的基本语法如下：
 
 **1. 值捕获**
 
-与参数传值类似，值捕获的前期是变量可以拷贝，不同之处则在于，被捕获的变量在 lambda 表达式被创建时拷贝，而非调用时才拷贝：
+与参数传值类似，值捕获的前提是变量可以拷贝，不同之处则在于，被捕获的变量在 lambda 表达式被创建时拷贝，而非调用时才拷贝：
 
 ```cpp
 void learn_lambda_func_1() {
@@ -253,13 +253,13 @@ int main()
     std::string&& rv1 = std::move(lv1); // 合法, std::move可以将左值转移为右值
     std::cout << rv1 << std::endl; // string,
 
-    const std::string& lv2 = lv1 + lv1; // 合法, 常量左值引用能够延长临时变量的申明周期
+    const std::string& lv2 = lv1 + lv1; // 合法, 常量左值引用能够延长临时变量的生命周期
     // lv2 += "Test"; // 非法, 引用的右值无法被修改
     std::cout << lv2 << std::endl; // string,string
 
-    std::string&& rv2 = lv1 + lv2; // 合法, 右值引用延长临时对象声明周期
+    std::string&& rv2 = lv1 + lv2; // 合法, 右值引用延长临时对象生命周期
     rv2 += "Test"; // 合法, 非常量引用能够修改临时变量
-    std::cout << rv2 << std::endl; // string,string,string,
+    std::cout << rv2 << std::endl; // string,string,string,Test
 
     reference(rv2); // 输出左值
 
@@ -425,7 +425,7 @@ std::forward 传参:左值引用
 
 唯独 `std::forward` 即没有造成任何多余的拷贝，同时**完美转发**\(传递\)了函数的实参给了内部调用的其他函数。
 
-> `std::forward` 和 `std::move` 一样，没有做任何事情，`std::move` 单纯的将左值转化为右值，`std::forward` 也只是单纯的将参数做了一个类型的转换，从是线上来看，`std::forward<T>(v)` 和 `static_cast<T&&>(v)` 是完全一样的。
+> `std::forward` 和 `std::move` 一样，没有做任何事情，`std::move` 单纯的将左值转化为右值，`std::forward` 也只是单纯的将参数做了一个类型的转换，从现象上来看，`std::forward<T>(v)` 和 `static_cast<T&&>(v)` 是完全一样的。
 
 ## 总结
 
