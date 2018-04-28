@@ -452,9 +452,7 @@ std::cout << "q: " << q << std::endl;
 简单来说，`decltype(auto)` 主要用于对转发函数或封装的返回类型进行推导，它使我们无需显式的指定 `decltype` 的参数表达式。考虑看下面的例子，当我们需要对下面两个函数进行封装时：
 
 ```cpp
-std::string  lookup1(std::string &str) {
-	return 
-}
+std::string  lookup1();
 std::string& lookup2();
 ```
 
