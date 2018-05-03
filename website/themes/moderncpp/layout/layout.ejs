@@ -1,0 +1,52 @@
+<% var isIndex = page.path === 'index.html' %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%- page.title ? page.title + ' — ' : '' %>changkun.de</title>
+    <meta charset="utf-8">
+    <meta name="description" content="<%- theme.site_description %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="msapplication-TileColor" content="#ec9325">
+    <meta name="theme-color" content="#ec8364">
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <%- css(isIndex ? 'modern-cpp/css/index' : 'modern-cpp/css/page') %>
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="<%- url_for("/modern-cpp/js/vue.min.js") %>"></script>
+    <script>window.PAGE_TYPE = "<%- page.type %>"</script>
+
+  </head>
+  <body class="<%- isIndex ? '' : 'docs' -%>">
+    <div id="mobile-bar" data-bg-text="高速上手 C++ 11/14/17" <%- isIndex ? 'class="top"' : '' %>>
+      <a class="menu-button"></a>
+      <a class="logo" href="/modern-cpp/"></a>
+    </div>
+    <%- partial('partials/header') %>
+    <% if (!isIndex) { %>
+      <div id="main" class="fix-sidebar">
+        <%- body %>
+      </div>
+    <% } else { %>
+        <%- body %>
+    <% } %>
+    <script src="<%- url_for("/modern-cpp/js/smooth-scroll.min.js") %>"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="<%- url_for("/modern-cpp/js/css.escape.js") %>"></script>
+    <script src="<%- url_for("/modern-cpp/js/common.js") %>"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+    <div class="list">
+      <h2>
+        <%-
+          type === 'exercises'
+            ? '习题'
+            : type === 'book-zh-cn'
+              ? '正文'
+              : type === 'answers'
+                ? '参考答案'
+                : type === 'about'
+                  ? '关于'
+                  : (type.charAt(0).toUpperCase() + type.slice(1)) 
+        %>
+      </h2>
+      <%- partial('partials/toc', { type: type }) %>
+    </div>
+  </div>
+</div>

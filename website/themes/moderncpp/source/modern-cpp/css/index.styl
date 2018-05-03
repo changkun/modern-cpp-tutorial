@@ -1,0 +1,156 @@
+@import "_common"
+@import "_header"
+@import "_sidebar"
+
+$width = 900px
+
+body
+  background-color: #fff
+
+#logo
+  span
+    font-size: 1.2em
+  img
+    display: none
+
+.beta
+  font-size: 12px;
+  color: #F7BA2F;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  font-style: oblique;
+
+.sidebar
+  display: none
+
+#mobile-bar
+  &.top
+    background-color: $theme
+    box-shadow: none
+    .logo
+      display: none
+
+#hero
+  padding: 100px 40px 40px 200px
+  background-color: #fff
+  .inner
+    max-width: $width
+    margin: 0 auto
+  .left, .right
+    display: inline-block
+    vertical-align: top
+  .left
+    width: 45%
+  .right
+    width: 55%
+  .hero-logo
+    width: 290px
+    float: right
+    margin-right: 60px
+    border-radius: 5px
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4)
+  h1
+    text-transform: uppercase
+    font-weight: 500
+    margin: 10px 0px
+    margin-top: 0px
+    font-size: 3.2em
+  h2
+    text-transform: uppercase
+    font-weight: 300
+    font-size: 2.4em
+    margin: 0 0 10px
+  h4
+    font-style: oblique
+    font-weight: 200
+    margin-bottom: 0px
+    font-size: 2em
+  .button
+    margin: 1em 0
+    font-size: 1.05em
+    font-weight: 600
+    letter-spacing: .1em
+    min-width: 8em
+    text-align: center
+    &:first-child
+      margin-right: 1em
+  .social-buttons
+    list-style-type: none
+    padding: 0
+    li
+      display: inline-block
+      vertical-align: middle
+      margin-right: 15px
+
+#highlights
+  background-color: #fff
+  padding-bottom: 70px
+  .inner
+    max-width: $width
+    margin: 0 auto
+    text-align: center
+  .point
+    width: 33%
+    display: inline-block
+    vertical-align: top
+    box-sizing: border-box
+    padding: 0 2em
+    h2
+      color: $theme
+      font-size: 1.5em
+      font-weight: 400
+      margin: 0
+      padding: .5em 0
+    p
+      color: $light
+
+#footer
+  background-color: #1e2318
+  bottom: 0
+  padding: 10px 0
+  position: fixed
+  width: 100%
+  color: #fff
+  text-align: center
+  a
+    font-weight: 700
+    color: #fff
+
+@media screen and (max-width: $width)
+  body
+    -webkit-text-size-adjust: none
+    font-size: 14px
+  .sidebar
+    display: block
+  #header
+    display: none
+  #mobile-bar
+    display: block
+  #hero
+    padding: 70px 40px 100px
+    .hero-logo
+      float: none
+      margin: 30px 0 30px
+      width: 200px
+    .left, .right
+      text-align: center
+      width: 100%
+    h1
+      text-transform: capitalize
+      font-size: 2.0em
+      display: block
+    h2
+      font-size: 1.0em
+    .button
+      font-size: .9em
+    h4
+      font-size: 0.9em
+  #highlights
+    .point
+      display: block
+      margin: 0 auto
+      width: 300px
+      padding: 0 40px 30px
+      &:before
+        content: "—"
+        color: $theme

@@ -1,0 +1,10 @@
+<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+  <title>
+    deu
+  </title>
+  <g fill-rule="nonzero" fill="none">
+    <path fill="#FFE600" d="M0 40h80v20H0"/>
+    <path fill="#000" d="M0 0h80v20H0"/>
+    <path fill="#F00" d="M0 20h80v20H0"/>
+  </g>
+</svg>

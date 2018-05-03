@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div class="left">
+      <img class="hero-logo" src="<%- url_for("/modern-cpp/images/cover-2nd.png") %>">
+    </div><div class="right">
+      <h4>欧长坤 著</h4>  
+      <h1>
+        高速上手<br>C++ 11/14/17
+      </h1>
+      <h2>第二版</h2>
+      <p>
+        <a class="button white" href="<%- url_for("/modern-cpp/book/00-preface/") %>">立即阅读</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <p>
+    <a href="https://changkun.de">欧长坤</a>版权所有 &copy; 2016-<%- new Date().getFullYear() %>，
+    采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+  </p>
+</div>
+<script src="https://cdn.rawgit.com/wnda/pivot/master/pivot.js"></script>
+<script>pivot.init({ selector: ".hero-logo", shine: true, shadow: true, scale: true});</script>

@@ -1,0 +1,184 @@
+@import "_settings"
+@import "_syntax"
+
+body
+  font-family: $body-font
+  font-size: $body-font-size
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: $medium
+  background-color: white
+  margin: 0
+  &.docs
+    padding-top: $header-height
+
+@media screen and (max-width: 900px)
+  body.docs
+    padding-top: 0
+
+a
+  text-decoration: none
+  color: $medium
+
+img
+  border: none
+
+h1, h2, h3, h4, strong
+  font-weight: 600
+  color: $dark
+
+code, pre
+  font-family: $code-font
+  font-size: $code-font-size
+  background-color: $codebg
+  -webkit-font-smoothing: initial
+  -moz-osx-font-smoothing: initial
+
+code
+  color: #e96900
+  padding: 3px 5px
+  margin: 0 2px
+  border-radius: 2px
+  white-space: nowrap
+
+em
+  color: $light
+
+p
+  word-spacing: 0.05em
+
+a.button
+  padding: 0.75em 2em
+  border-radius: 2em
+  display: inline-block
+  color: #fff
+  background-color: lighten($theme, 8%)
+  transition: all .15s ease
+  box-sizing: border-box
+  border: 1px solid lighten($theme, 8%)
+  &.white
+    background-color: #fff
+    color: $theme
+a.button:hover
+    background-color: $theme
+    color: #fff
+
+.highlight
+  overflow-x: auto
+  background-color: $codebg
+  padding: .4em 0 0
+  line-height: 1.1em
+  border-radius: $radius
+  position: relative
+  table, tr, td
+    width: 100%
+    border-collapse: collapse
+    padding: 0
+    margin: 0
+  .gutter
+    width: 1.5em
+  .code
+    $code-line-height = 1.5em
+    pre
+      padding: 1.2em 1.4em
+      line-height: $code-line-height
+      margin: 0
+    .line
+      min-height: $code-line-height
+  &.html, &.js, &.bash, &.css
+    .code:before
+      position: absolute
+      top: 0
+      right: 0
+      color: #ccc
+      text-align: right
+      font-size: .75em
+      padding: 5px 10px 0
+      line-height: 15px
+      height: 15px
+      font-weight: 600
+  &.html .code:before
+    content: "HTML"
+  &.js .code:before
+    content: "JS"
+  &.bash .code:before
+    content: "Shell"
+  &.css .code:before
+    content: "CSS"
+
+#main
+  position: relative
+  z-index: 1
+  padding: 0 60px 30px
+  overflow-x: hidden
+
+#nav
+  .nav-link
+    color: #fff
+    // cursor: pointer
+  .nav-dropdown-container
+    .nav-link
+      &:hover:not(.current)
+        border-bottom: none
+    &:hover
+      .nav-dropdown
+        display: block
+    &.language, &.ecosystem
+      margin-left: 20px
+    .arrow
+      pointer-events: none
+  .nav-dropdown
+    display: none
+    box-sizing: border-box
+    max-height: "calc(100vh - %s)" % $header-height
+    overflow-y: auto
+    position: absolute
+    top: 100%
+    right: -15px
+    background-color: $theme
+    padding: 10px 0
+    border: 1px solid #fff
+    border-bottom-color: $theme
+    text-align: left
+    border-radius: 4px
+    white-space: nowrap
+    li
+      line-height: 1.8em
+      margin: 0
+      display: block
+      > ul
+        padding-left: 0
+      &:first-child
+        h4
+          margin-top: 0
+          padding-top: 0
+          border-top: 0
+    a, h4
+      padding: 0 24px 0 20px
+    h4
+      margin: .45em 0 0
+      padding-top: .45em
+      border-top: 1px solid #eee
+    a
+      color: #fff
+      font-size: .9em
+      display: block
+      &:hover
+        color: $yellow
+  .arrow
+    display: inline-block
+    vertical-align: middle
+    margin-top: -1px
+    margin-left: 6px
+    margin-right: -14px
+    width: 0
+    height: 0
+    border-left: 4px solid transparent
+    border-right: 4px solid transparent
+    border-top: 5px solid #fff
+
+sup.beta.beta
+  font-size: .6em
+  margin-left: .7em
+  text-transform: uppercase
+  opacity: .6
