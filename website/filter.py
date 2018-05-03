@@ -20,8 +20,8 @@ for index, source in enumerate(source_dir):
         os.makedirs(dst_filepath)
         print(dst_filepath)
         print(dst_filepath + '/index.md')
-        with open(source+chapter, 'r') as source_file:
-            with open(dst_filepath + '/index.md', 'w') as output_file:
+        with open(source+chapter, 'r', encoding='utf-8') as source_file:
+            with open(dst_filepath + '/index.md', 'w', encoding='utf-8') as output_file:
                 for line in source_file:
                     if any(keyword in line for keyword in ignores):
                         continue
