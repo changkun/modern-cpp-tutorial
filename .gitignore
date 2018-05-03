@@ -28,5 +28,11 @@
 *.out
 *.app
 
+.vscode
+
 node_modules
+
+website/db.json
 website/public
+website/src/modern-cpp/book
+website/src/modern-cpp/images/cover-2nd.png
