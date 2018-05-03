@@ -18,7 +18,7 @@
     <%- css(isIndex ? 'modern-cpp/css/index' : 'modern-cpp/css/page') %>
 
     <!-- this needs to be loaded before guide's inline scripts -->
-    <script src="<%- url_for("/modern-cpp/js/vue.min.js") %>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>window.PAGE_TYPE = "<%- page.type %>"</script>
 
   </head>
@@ -35,10 +35,10 @@
     <% } else { %>
         <%- body %>
     <% } %>
-    <script src="<%- url_for("/modern-cpp/js/smooth-scroll.min.js") %>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
 
     <!-- main custom script for sidebars, version selects etc. -->
-    <script src="<%- url_for("/modern-cpp/js/css.escape.js") %>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
     <script src="<%- url_for("/modern-cpp/js/common.js") %>"></script>
 
     <!-- fastclick -->
