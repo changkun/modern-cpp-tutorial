@@ -1,19 +1,15 @@
 # Site Configuration
 title: 高速上手 C++ 11/14/17
-subtitle:
+subtitle: C++ 11/14/17 On the Fly
 description: "欧长坤"
 author: 欧长坤
-email:
-language:
+email: hi[at]changkun.us
+language: zh-CN
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://changkun.de/modern-cpp/
 root: /
 permalink: :year/:month/:day/:title/
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
 code_dir: downloads/code
 
 # Directory
@@ -45,27 +41,6 @@ toc:
     symbol: '#'
     style: header-anchor
 
-# Category & Tag
-default_category: uncategorized
-category_map:
-tag_map:
-
-# Archives
-## 2: Enable pagination
-## 1: Disable pagination
-## 0: Fully Disable
-archive: 0
-category: 0
-tag: 0
-
-# Server
-## Hexo uses Connect as a server
-## You can customize the logger format as defined in
-## http://www.senchalabs.org/connect/logger.html
-port: 4000
-logger: false
-logger_format:
-
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
@@ -92,17 +67,3 @@ markdown:
   breaks: true
   smartLists: true
   smartypants: true
-
-# Deployment
-## Docs: http://zespia.tw/hexo/docs/deployment.html
-deploy:
-  type: git
-  repository: 
-
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-
-alias:
-  modern-cpp/l/index.html: l/index.html
