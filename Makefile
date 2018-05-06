@@ -1,7 +1,8 @@
 all: pdf website
 
 pdf:
-	cd pdf/zh-cn && pwd && make
+	cd pdf/zh-cn && make
+	cd pdf/en-us && make
 
 website:
 	cd website && make
@@ -11,6 +12,7 @@ serve:
 
 clean:
 	cd pdf/zh-cn && make clean
+	cd pdf/en-us && make clean
 	cd website && make clean
 
 .PHONY : pdf website clean
