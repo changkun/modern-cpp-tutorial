@@ -8,17 +8,9 @@ order: 5
 
 > 内容修订中
 
-## 一、本节内容
+[TOC]
 
-本节内容包括：
-
-- 对标准库的扩充: 智能指针和引用计数
-+ RAII 与引用计数
-+ `std::shared_ptr`
-+ `std::unique_ptr`
-+ `std::weak_ptr`
-
-## 二、RAII 与引用计数
+## 5.1 RAII 与引用计数
 
 了解 `Objective-C`/`Swift` 的程序员应该知道引用计数的概念。引用计数这种计数是为了防止内存泄露而产生的。基本想法是对于动态分配的对象，进行引用计数，每当增加一次对同一个对象的引用，那么引用对象的引用计数就会增加一次，每删除一次引用，引用计数就会减一，当一个对象的引用计数减为零时，就自动删除指向的堆内存。
 
@@ -28,7 +20,7 @@ order: 5
 
 > 注意：引用计数不是垃圾回收，引用技术能够尽快收回不再被使用的对象，同时在回收的过程中也不会造成长时间的等待，更能够清晰明确的表明资源的生命周期。
 
-## 三、std::shared_ptr
+## 5.2 std::shared_ptr
 
 `std::shared_ptr` 是一种智能指针，它能够记录多少个 `shared_ptr` 共同指向一个对象，从而消除显示的调用 `delete`，当引用计数变为零的时候就会将对象自动删除。
 
@@ -78,8 +70,7 @@ std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl; // 
 std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl; // 0, pointer3 已 reset
 ```
 
-
-## 四、std::unique_ptr
+## 5.3 std::unique_ptr
 
 `std::unique_ptr` 是一种独占的智能指针，它禁止其他智能指针与其共享同一个对象，从而保证代码的安全：
 
@@ -138,7 +129,7 @@ int main() {
 }
 ```
 
-## 五、std::weak_ptr
+## 5.4 std::weak_ptr
 
 如果你仔细思考 `std::shared_ptr` 就会发现依然存在着资源无法释放的问题。看下面这个例子：
 

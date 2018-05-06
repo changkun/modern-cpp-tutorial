@@ -8,17 +8,9 @@ order: 7
 
 > 内容修订中
 
-## 一、本节内容
+[TOC]
 
-本节内容包括：
-
-* 对标准库的扩充: 语言级线程支持
-* std::thread
-* std::mutex/std::unique\_lock
-* std::future/std::packaged\_task
-* std::condition\_variable
-
-## 二、std::thread
+## 7.1 std::thread
 
 `std::thread` 用于创建一个执行的线程实例，所以它是一切并发编程的基础，使用时需要包含 `<thread>` 头文件，它提供了很多基本的线程操作，例如`get_id()`来获取所创建线程的线程 ID，例如使用 `join()` 来加入一个线程等等，例如：
 
@@ -35,7 +27,7 @@ int main() {
 }
 ```
 
-## 三、 std::mutex, std::unique\_lock
+## 7.2 std::mutex, std::unique\_lock
 
 我们在操作系统的相关知识中已经了解过了有关并发技术的基本知识，mutex 就是其中的核心之一。C++11引入了 mutex 相关的类，其所有相关的函数都放在 `<mutex>` 头文件中。
 
@@ -88,7 +80,7 @@ int main() {
 }
 ```
 
-#### std::future, std::packaged\_task
+## 7.3 std::future, std::packaged\_task
 
 `std::future` 则是提供了一个访问异步操作结果的途径，这句话很不好理解。为了理解这个特性，我们需要先理解一下在 C++11之前的多线程行为。
 
@@ -121,7 +113,7 @@ int main()
 
 在封装好要调用的目标后，可以使用 `get_future()` 来获得一个 `std::future` 对象，以便之后实施线程同步。
 
-#### std::condition\_variable
+## 7.4 std::condition_variable
 
 `std::condition_variable` 是为了解决死锁而生的。当互斥操作不够用而引入的。比如，线程可能需要等待某个条件为真才能继续执行，而一个忙等待循环中可能会导致所有其他线程都无法进入临界区使得条件为真时，就会发生死锁。所以，`condition_variable` 实例被创建出现主要就是用于唤醒等待线程从而避免死锁。`std::condition_variable`的 `notify_one()` 用于唤醒一个线程；`notify_all()` 则是通知所有线程。下面是一个生产者和消费者模型的例子：
 

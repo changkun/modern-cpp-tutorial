@@ -8,24 +8,9 @@ order: 4
 
 > 内容修订中
 
-## 一、本节内容
+[TOC]
 
-本节内容包括：
-
-* 对标准库的扩充: 新增容器
-* `std::byte`
-* `std::any` `std::optional` `std::variant`
-* `std::string_view`
-* `std::array`
-* `std::forward_list`
-* `std::unordered_set`
-* `std::unordered_map`
-* `std::tuple`
-* 基本操作
-* 运行期索引
-* 合并与迭代
-
-## 二、std::array 和 std::forward\_list
+## 4.1 std::array 和 std::forward\_list
 
 ### std::array
 
@@ -71,7 +56,7 @@ std::sort(arr.begin(), arr.end());
 
 需要知道的是，和 `std::list` 的双向链表的实现不同，`std::forward_list` 使用单向链表进行实现，提供了 `O(1)` 复杂度的元素插入，不支持快速随机访问（这也是链表的特点），也是标准库容器中唯一一个不提供 `size()` 方法的容器。当不需要双向迭代时，具有比 `std::list` 更高的空间利用率。
 
-## 三、无序容器
+## 4.2 无序容器
 
 我们已经熟知了传统 C++ 中的有序容器 `std::map`/`std::set`，这些元素内部通过红黑树进行实现，插入和搜索的平均复杂度均为 `O(log(size))`。在插入元素时候，会根据 `<` 操作符比较元素大小并判断元素是否相同，并选择合适的位置插入到容器中。当对这个容器中的元素进行遍历时，输出结果会按照 `<` 操作符的顺序来逐个遍历。
 
@@ -126,7 +111,7 @@ Key:[2] Value:[2]
 Key:[3] Value:[3]
 ```
 
-## 四、元组 std::tuple
+## 4.3 元组 std::tuple
 
 了解过 Python 的程序员应该知道元组的概念，纵观传统 C++ 中的容器，除了 `std::pair` 外，似乎没有现成的结构能够用来存放不同类型的数据（通常我们会自己定义结构）。但 `std::pair` 的缺陷是显而易见的，只能保存两个元素。
 
