@@ -42,11 +42,13 @@
 
 本书每章最后还加入了少量难度极小的习题，仅用于检验你是否能混合运用当前章节中的知识点。你可以在[这里](exercises)找到习题的答案，文件夹名称为章节序号。
 
+## 本书网站
+
+本书的[网站](https://changkun.de/modern-cpp)源码可以在[这里](./website)找到，由 [hexo](https://hexo.io) 和 [vuejs](https://vuejs.org) 协同构建而成。网站旨在提供一个除 GitHub 之外的阅读方式，除了在桌面端访问之外，你也可以在移动端上阅读本书。
+
 ## 致谢
 
-笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [issue](https://github.com/changkun/cpp1x-tutorial/issues)。并感谢以下读者指出本书中出现的错误：
-
-[recolic](https://www.gitbook.com/@recolic), [sinomiko](https://www.gitbook.com/@sinomiko), [jackwish](https://www.gitbook.com/@jackwish), [asmwarrior](https://www.gitbook.com/@asmwarrior), [garicc](https://www.gitbook.com/@ihpy), [jiangwenhan](https://www.gitbook.com/@jiangwenhan), [liangx8](https://www.gitbook.com/@liangx8), [slivermeteor](https://github.com/slivermeteor), [inkedawn](https://github.com/inkedawn), [zhaoyao73](https://github.com/zhaoyao73), [sundy-li](https://github.com/sundy-li), [dontpanic92](https://github.com/dontpanic92), [axionl](https://github.com/axionl), [Rholais](https://github.com/changkun/modern-cpp-tutorial/commits?author=Rholais) [MikuGhoul](https://github.com/MikuGhoul), [coderall](https://github.com/coderall)
+笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [issue](https://github.com/changkun/modern-cpp-tutorial/issues)，或者直接提 [Pull Request](https://github.com/changkun/modern-cpp-tutorial/pulls)。由衷感谢每一位指出本书中出现错误的读者。
 
 ## 许可
 
