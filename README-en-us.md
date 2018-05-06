@@ -2,14 +2,10 @@
 
 # C++11/14/17 On the Fly
 
-![](https://img.shields.io/badge/version-v2-green.svg) ![](https://img.shields.io/badge/language-English-blue.svg) [![](https://img.shields.io/badge/$-donate-ff69b4.svg)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg)](./assets/community.md) 
+![](https://img.shields.io/badge/version-v2-green.svg) [![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg)](./README-en-us.md) [![](https://img.shields.io/badge/$-donate-ff69b4.svg)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg)](./assets/community.md) 
+
 
 > This book is adapting to C++17 and translating to English.
-
-## Languages
-
-- 🇨🇳 [简体中文](./README.md)
-- 🇬🇧 English
 
 ## Purpose
 
