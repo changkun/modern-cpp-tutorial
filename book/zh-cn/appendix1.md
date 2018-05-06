@@ -1,10 +1,10 @@
 ---
-title: 附录：进一步阅读的学习材料
+title: 附录 1：进一步阅读的学习材料
 type: book-zh-cn
 order: 11
 ---
 
-# 附录：进一步阅读的学习材料
+# 附录 1：进一步阅读的学习材料
 
 首先，恭喜你阅读完本书 🎉 ！笔者希望本书有提起你对现代 C++ 的兴趣。
 
@@ -15,7 +15,7 @@ order: 11
 - [每位程序员都需要知道的内存知识](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 - 待补充
 
-[返回目录](./toc.md) | [上一章](./10-cpp20.md) | 下一章
+[返回目录](./toc.md) | [上一章](./10-cpp20.md) | [下一章](./12-appendix2.md)
 
 ## 许可
 
