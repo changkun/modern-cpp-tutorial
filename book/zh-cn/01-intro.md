@@ -97,7 +97,7 @@ gcc -c foo.c
 clang++ 1.1.cpp foo.o -std=c++17 -o 1.1
 ```
 
-当然，你可以可以使用 `Makefile` 来编译上面的代码：
+当然，你可以使用 `Makefile` 来编译上面的代码：
 
 ```makefile
 C = gcc
