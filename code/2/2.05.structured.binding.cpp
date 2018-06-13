@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <tuple>
 #include <string>
 
 std::tuple<int, double, std::string> f() {
