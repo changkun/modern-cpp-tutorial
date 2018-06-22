@@ -16,6 +16,7 @@ void learn_lambda_func_1() {
     };
     value_1 = 100;
     auto stored_value_1 = copy_value_1();
+    std::cout << "stored_value_1=" << stored_value_1 << std::endl;
     // 这时, stored_value_1 == 1, 而 value_1 == 100.
     // 因为 copy_value_1 在创建时就保存了一份 value_1 的拷贝
 }
@@ -27,6 +28,7 @@ void learn_lambda_func_2() {
     };
     value_2 = 100;
     auto stored_value_2 = copy_value_2();
+    std::cout << "stored_value_2=" << stored_value_2 << std::endl;
     // 这时, stored_value_2 == 100, value_1 == 100.
     // 因为 copy_value_2 保存的是引用
 }
