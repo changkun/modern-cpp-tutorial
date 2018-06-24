@@ -40,6 +40,8 @@ toc:
     position: after
     symbol: '#'
     style: header-anchor
+image_caption:
+  enable: true
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
