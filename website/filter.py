@@ -1,6 +1,7 @@
 # !/usr/bin/env python3
 # author: changkun<hi@changkun.us>
 import os
+import re
 
 source_dir = [
     '../book/zh-cn/'
@@ -26,4 +27,4 @@ for index, source in enumerate(source_dir):
                     if any(keyword in line for keyword in ignores):
                         continue
                     else:
-                        output_file.write(line)
+                        output_file.write(re.sub(r'(./)(.*?)(.md)', r'../\2/index.html', line))
