@@ -14,6 +14,6 @@
   },
   "devDependencies": {
     "hexo": "^3.7.1",
-    "serve": "^6.5.6"
+    "serve": "^6.5.8"
   }
 }
