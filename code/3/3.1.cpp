@@ -29,7 +29,7 @@ void learn_lambda_func_2() {
     value_2 = 100;
     auto stored_value_2 = copy_value_2();
     std::cout << "stored_value_2=" << stored_value_2 << std::endl;
-    // 这时, stored_value_2 == 100, value_1 == 100.
+    // 这时, stored_value_2 == 100, value_2 == 100.
     // 因为 copy_value_2 保存的是引用
 }
 
