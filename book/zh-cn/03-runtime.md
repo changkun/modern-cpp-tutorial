@@ -132,7 +132,7 @@ int main() {
     auto f = [](int value) {
         std::cout << value << std::endl;
     };
-    functional(f); // 作为函数类型传递，隐式转换为 foo*
+    functional(f); // 传递闭包对象，隐式转换为 foo* 类型的函数指针值
     f(1); // lambda 表达式调用
     return 0;
 }
