@@ -118,21 +118,21 @@ add(1.1, 2.2);
 
 ### std::function
 
-Lambda 表达式的本质是一个函数对象，当 Lambda 表达式的捕获列表为空时，Lambda 表达式还能够作为一个函数类型进行传递，例如：
+Lambda 表达式的本质是一个和函数对象类型相似的类类型（称为闭包类型）的对象（称为闭包对象），当 Lambda 表达式的捕获列表为空时，闭包对象还能够转换为函数指针值进行传递，例如：
 
 ```cpp
 #include <iostream>
 
 using foo = void(int); // 定义函数类型, using 的使用见上一节中的别名语法
-void functional(foo f) {
-    f(1); // 编译器将其隐式转化成函数指针
+void functional(foo f) { // 定义在参数列表中的函数类型 foo 被视为退化后的函数指针类型 foo*
+    f(1); // 通过函数指针调用函数
 }
 
 int main() {
     auto f = [](int value) {
         std::cout << value << std::endl;
     };
-    functional(f); // 作为函数类型传递
+    functional(f); // 作为函数类型传递，隐式转换为 foo*
     f(1); // lambda 表达式调用
     return 0;
 }
