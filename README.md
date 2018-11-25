@@ -7,8 +7,6 @@
 [![](https://img.shields.io/badge/%C2%A5-%E8%B5%9E%E5%8A%A9-ff69b4.svg)](./assets/donate.md)
 [![](https://img.shields.io/badge/chat-%E4%BA%A4%E6%B5%81-667ed5.svg)](./assets/community.md) 
 
-> 本书正在适配 C++17 新特性，尽请期待。
-
 ## 本书目的
 
 本书号称『高速上手』，从内容上对二十一世纪二十年代之前产生 C++ 的相关特性做了非常相对全面的介绍，读者可以自行根据下面的目录选取感兴趣的内容进行学习，快速熟悉需要了解的内容。这些特性并不需要全部掌握，只需针对自己的使用需求和特定的应用场景，学习、查阅最适合自己的新特性即可。
@@ -44,7 +42,7 @@
 
 ## 致谢
 
-笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [Issue](https://github.com/changkun/modern-cpp-tutorial/issues)，或者直接提 [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls)。由衷感谢每一位指出本书中出现错误的读者。
+笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [Issue](https://github.com/changkun/modern-cpp-tutorial/issues)，或者直接提 [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls)。由衷感谢每一位指出本书中出现错误的读者，包括但不限于 [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors)。
 
 ## 许可
 
