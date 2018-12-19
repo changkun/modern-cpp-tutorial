@@ -236,7 +236,7 @@ void reference(std::string&& str) {
 int main()
 {
     std::string lv1 = "string,"; // lv1 是一个左值
-    // std::string&& r1 = s1; // 非法, 右值引用不能引用左值
+    // std::string&& r1 = lv1; // 非法, 右值引用不能引用左值
     std::string&& rv1 = std::move(lv1); // 合法, std::move可以将左值转移为右值
     std::cout << rv1 << std::endl; // string,
 
