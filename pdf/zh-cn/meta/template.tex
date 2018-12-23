@@ -152,22 +152,25 @@ $endif$
 \setlength{\parskip}{1ex}
 \setlength{\parskip}{0.5\baselineskip}
 
+\input{revision}
+
+% fix build, see https://github.com/laboon/ebook/issues/139#issuecomment-408696480
+\newcommand{\passthrough}[1]{\lstset{mathescape=false}#1\lstset{mathescape=true}}
 
 \begin{document}
-
 \newcommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \thispagestyle{plain}
 \begin{center}
-
+  
   {\LARGE\textbf{高速上手 C++11/14/17}}
-
+  
   \vspace{1em}
   {\large 欧长坤 (hi@changkun.us)}
-
+  
   \vspace{1ex}
-  最后更新 \today
+  最后更新 \today - \revision
 
   \vspace{1em}
   \textbf{\large 版权声明}
