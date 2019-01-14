@@ -25,7 +25,7 @@ int main()
     std::cout << rv1 << std::endl;      // string,
     
     const std::string& lv2 = lv1 + lv1; // 合法, 常量左值引用能够延长临时变量的申明周期
-    // lv2 += "Test";                   // 非法, 引用的右值无法被修改
+    // lv2 += "Test";                   // 非法, 常量引用无法被修改
     std::cout << lv2 << std::endl;      // string,string
     
     std::string&& rv2 = lv1 + lv2;      // 合法, 右值引用延长临时对象声明周期
