@@ -50,9 +50,9 @@ std::cout << "size:" << v.size() << std::endl;         // 输出 0
 std::cout << "capacity:" << v.capacity() << std::endl; // 输出 0
 ```
 
-而第二个问题就更加简单，使用 `std::array` 能够让代码变得更加现代，且封装了一些操作函数，比如获取数组大小以及是否非空，同时还能够友好的使用标准库中的容器算法，比如 `std::sort`。
+而第二个问题就更加简单，使用 `std::array` 能够让代码变得更加“现代化”，且封装了一些操作函数，比如获取数组大小以及检查是否非空，同时还能够友好的使用标准库中的容器算法，比如 `std::sort`。
 
-使用 `std::array` 很简单，只需指定其类型和大小即可，需要注意的是，和传统数组不同，`std::array` 不会自动退化成指针：
+使用 `std::array` 很简单，只需指定其类型和大小即可：
 
 ```cpp
 std::array<int, 4> arr = {1, 2, 3, 4};
@@ -97,7 +97,7 @@ foo(arr.data(), arr.size());
 std::sort(arr.begin(), arr.end());
 ```
 
-### std::forward_list
+### std::forward\_list
 
 `std::forward_list` 是一个列表容器，使用方法和 `std::list` 基本类似，因此我们就不花费篇幅进行介绍了。
 
