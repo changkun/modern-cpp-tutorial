@@ -47,7 +47,7 @@ int main()
 }
 ```
 
-`std::shared_ptr` 可以通过 `get()` 方法来获取原始指针，通过 `reset()` 来减少一个引用计数，并通过`get_count()`来查看一个对象的引用计数。例如：
+`std::shared_ptr` 可以通过 `get()` 方法来获取原始指针，通过 `reset()` 来减少一个引用计数，并通过`use_count()`来查看一个对象的引用计数。例如：
 
 ```cpp
 auto pointer = std::make_shared<int>(10);
