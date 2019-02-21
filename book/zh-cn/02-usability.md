@@ -756,11 +756,21 @@ C++ 17 中将变长参数这种特性进一步带给了表达式，考虑下面�
 ```cpp
 #include <iostream>
 template<typename ... T>
-auto sum(T ... t) {
+auto sum_right(T ... t) {
     return (t + ...);
 }
+
+template<typename ... T>
+auto sum_left(T ... t) {
+    return (... + t);
+}
+
 int main() {
-    std::cout << sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) << std::endl;
+    std::cout << sum_left(1, 2, 3, 4) << std::endl;
+    //cal (((1+2)+3)+4)
+     
+    std::cout << sum_right(1, 2, 3, 4) << std::endl;
+    //cal (1+(2+(3+4)))
 }
 ```
 
@@ -965,7 +975,7 @@ std::cout << new_enum::value3 << std::endl
 
 3. ​
 
-> 参考答案[见此](../exercises/2)。
+> 参考答案[见此](../../exercises/2)。
 
 [返回目录](./toc.md) | [上一章](./01-intro.md) | [下一章 运行时强化](./03-runtime.md)
 
