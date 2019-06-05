@@ -102,9 +102,9 @@ C++11 提供了原始字符串字面量的写法，可以在一个字符串前�
 #include <string>
 
 int main() {
-std::string str = R"(C:\\What\\The\\Fxxk)";
-std::cout << str << std::endl;
-return 0;
+    std::string str = R"(C:\What\The\Fxxk)";
+    std::cout << str << std::endl;
+    return 0;
 }
 ```
 
