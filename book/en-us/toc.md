@@ -1,7 +1,5 @@
 # C++ 11/14/17 On The Fly
 
-> This book adapting to C++17 and translating to English
-
 ## Table of Contents
 
 - [**Preface**](./00-preface.md)
