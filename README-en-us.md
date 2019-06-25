@@ -19,7 +19,7 @@ In addition, The author would like to encourage that readers should be able to u
 
 ## Targets
 
-- This book assumes that readers are already familiar with traditional C++ (e.g. C++98), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
+- This book assumes that readers are already familiar with traditional C++ (i.e. C++98 or lower), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
 
 - This book introduces to a certain extent of the dark magic of modern C++. However, these magics are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is offering a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
 
@@ -45,9 +45,12 @@ The source code of the [website](https://changkun.de/modern-cpp) of this book ca
 
 ## Acknowledgements
 
-This book is originally written in Chinese.
+This book was originally made by [Ou Changkun](https://github.com/changkun) in Chinese and is being translated by [Swastik Baranwal](https://github.com/Delta456) 
 
-The author has limited time and language skills. If readers find any mistakes of the book or any language improvements, please feel free to open an [Issue](https://github.com/changkun/modern-cpp-tutorial/issues) or start a [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls).
+- [Issue](https://github.com/changkun/modern-cpp-tutorial/issues)
+- [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls) 
+- [Contributing](CONTRIBUTING-en-us.md)
+- [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors) 
 
 ## Licenses
 

@@ -13,7 +13,7 @@ Modern C++ also adds a lot of tools and methods to its own standard library, suc
 
 All in all, as an advocate and practitioner of C++, we always maintain an open mind to accept new things, and we can promote the development of C++ faster and better, making this old and novel language more vibrant.
 
-## Target Reader
+## Targeted Readers
 
 1. This book assumes that the reader is already familiar with traditional C++, at least not having difficulty reading traditional C++ code. In other words, those who have long used traditional C++, who are eager to quickly understand the features of **Modern C++** in a short period of time, are well suited to reading this book.
 
@@ -31,7 +31,7 @@ At the same time, in the process of introducing these features, the book introdu
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License Agreement" style="border-width:0" src ="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
 
-This book is originally written by [Ou Changkun](https://github.com/changkun) and translated by [Swastik Baranwal](https://github.com/Delta456) in English, using [Creative Commons](http://creativecommons.org/licenses/by-Nc-nd/4.0/) license. The code in the project is open source using the MIT protocol, see [License](../../LICENSE).
+This book is originally written by [Ou Changkun](https://github.com/changkun) in Chinese and translated by [Swastik Baranwal](https://github.com/Delta456) in English, using [Creative Commons](http://creativecommons.org/licenses/by-Nc-nd/4.0/) license. The code in the project is open source using the MIT protocol, see [License](../../LICENSE).
 
 
 
