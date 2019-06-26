@@ -25,7 +25,7 @@ This book is called "high-speed start-up". It is a relatively comprehensive intr
 
 At the same time, in the process of introducing these features, the book introduces the historical background and technical requirements of these features as simple and clear as possible. This book is a great help to understand these features and how to apply them.
 
-[Back to Contents](./toc.md) | Previous Chapter | [Next Chapter Towards C++11/14/17](./01-intro.md)
+[Back to Contents](./toc.md) | Previous Chapter | [Next Chapter](./01-intro.md)
 
 ## License
 

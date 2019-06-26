@@ -68,7 +68,8 @@ int add(int x, int y);
 #endif
 
 // foo.c
-int add(int x, int y) {
+int add(int x, int y) 
+{
     return x+y;
 }
 
@@ -77,10 +78,13 @@ int add(int x, int y) {
 #include <iostream>
 #include <functional>
 
-int main() {
-    [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
+int main() 
+{
+    [out = std::ref(std::cout << "Result from C code: " << add(1, 2))]()
+    {
         out.get() << ".\n";
     }();
+
     return 0;
 }
 ```
@@ -125,7 +129,8 @@ clean:
 如果你是首次接触现代 C++，那么你很可能还看不懂上面的那一小段代码，即：
 
 ```cpp
-[out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
+[out = std::ref(std::cout << "Result from C code: " << add(1, 2))]()
+{
     out.get() << ".\n";
 }();
 ```
