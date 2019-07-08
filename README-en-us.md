@@ -1,8 +1,8 @@
-<img src="assets/cover-2nd-en.png" alt="logo" height="600" align="right" />
+<img src="assets/cover-2nd-en.png" alt="logo" height="550" align="right" />
 
 # C++11/14/17/20 On the Fly
 
-![](https://img.shields.io/badge/version-v2-green.svg) [![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg)](./README-en-us.md) [![](https://img.shields.io/badge/$-donate-ff69b4.svg)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg)](./assets/community.md) 
+[![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README-en-us.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./DONATE.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./COMMUNITY.md)
 
 ## Purpose
 
@@ -16,7 +16,7 @@ In addition, The author would like to encourage that readers should be able to u
 
 ## Targets
 
-- This book assumes that readers are already familiar with traditional C++ (e.g. C++98), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
+- This book assumes that readers are already familiar with traditional C++ (i.e. C++98 or earlier), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
 
 - This book introduces to a certain extent of the dark magic of modern C++. However, these magics are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is offering a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
 
@@ -42,9 +42,11 @@ The source code of the [website](https://changkun.de/modern-cpp) of this book ca
 
 ## Acknowledgements
 
-This book is originally written in Chinese.
+This book was originally written in Chinese by [Changkun Ou](https://changkun.de).
 
-The author has limited time and language skills. If readers find any mistakes of the book or any language improvements, please feel free to open an [Issue](https://github.com/changkun/modern-cpp-tutorial/issues) or start a [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls).
+The author has limited time and language skills. If readers find any mistakes of the book or any language improvements, please feel free to open an [Issue](https://github.com/changkun/modern-cpp-tutorial/issues) or start a [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls). For detailed guidelines and checklist, please refer to [How to contribute](CONTRIBUTING.md).
+
+The author would be grateful to all contributors, including but not limited to [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors).
 
 ## Licenses
 

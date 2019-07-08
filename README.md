@@ -2,8 +2,7 @@
 
 # 《高速上手 C++11/14/17/20》
 
-[![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg)](./README-en-us.md) 
-[![](https://img.shields.io/badge/%C2%A5-%E8%B5%9E%E5%8A%A9-ff69b4.svg)](./assets/donate.md)
+[![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README-en-us.md) [![](https://img.shields.io/badge/%C2%A5-%E8%B5%9E%E5%8A%A9-ff69b4.svg?style=flat-square)](./DONATE.md) [![](https://img.shields.io/badge/%E4%BA%A4%E6%B5%81-%E7%A4%BE%E5%8C%BA-667ed5.svg?style=flat-square)](./COMMUNITY.md)
 
 ## 本书目的
 

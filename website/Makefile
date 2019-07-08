@@ -4,7 +4,7 @@ all: clean
 	cp ../assets/cover-2nd.png ./src/modern-cpp/assets/cover-2nd.png
 	cp ../assets/alipay.jpg ./src/modern-cpp/assets/alipay.jpg
 	cp ../assets/wechat.jpg ./src/modern-cpp/assets/wechat.jpg
-	cp ../assets/donate.md ./src/modern-cpp/about/
+	cp ../DONATE.md ./src/modern-cpp/about/
 	cp -r ../assets/figures ./src/modern-cpp/assets/figures
 	cp -r ../exercises ./src/modern-cpp/book/
 	cp -r ../code ./src/modern-cpp/book/
