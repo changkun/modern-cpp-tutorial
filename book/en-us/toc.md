@@ -1,9 +1,9 @@
-# C++ 11/14/17 On The Fly
+# C++ 11/14/17/20 On The Fly
 
 ## Table of Contents
 
 - [**Preface**](./00-preface.md)
-- [**Chapter 01 Towards C++11/14/17**](./01-intro.md)
+- [**Chapter 01 Towards Modern C++**](./01-intro.md)
     + 1.1 Deprecated Features
     + 1.2 Compatibility with C
     + Further Readings
@@ -39,69 +39,71 @@
       - Explicit delete default function
       - Strongly typed enumerations
 - [**Chapter 03 Language Runtime Enhancements**](./03-runtime.md)
-    + Lambda expression
+    + 3.1 Lambda expression
         + Basics
             + Value capture
             + Reference capture
             + Implicit capture
             + Expression capture
         + Generic lambda
-    + Function object wrapper
+    + 3.2 Function object wrapper
         + std::function
         + std::bind/std::placeholder
-    + rvalue reference
+    + 3.3 rvalue reference
         + lvalue, rvalue, prvalue, xvalue
         + rvalue reference & lvalue reference
         + Move semantics
         + Perfect forwarding
 - [**Chapter 04 Sandard Library: Containers**](./04-containers.md)
-    + `std::array`
-    + `std::forward_list`
-    + `std::unordered_set`
-    + `std::unordered_map`
-    + `std::tuple`
+    + 4.1 `std::array` and `std::forward_list`
+    + 4.2 Unordered containers
+      + `std::unordered_set`
+      + `std::unordered_map`
+    + 4.3 Tuples `std::tuple`
         + basic operation
         + runtime indexing
         + merge and iteration
 - [**Chapter 05 Sandard Library: Pointers**](./05-pointers.md)
-    + RAII and reference counting
-    + `std::shared_ptr`
-    + `std::unique_ptr`
-    + `std::weak_ptr`
+    + 5.1 RAII and reference counting
+    + 5.2 `std::shared_ptr`
+    + 5.3 `std::unique_ptr`
 - [**Chapter 06 Sandard Library: Regular Expression**](./06-regex.md)
-    + Regular Expression Introduction
+    + 6.1 Regular Expression Introduction
         + Normal characters
         + Special characters
         + Determinative
-    + `std::regex`
+    + 6.2 `std::regex` and related
         + `std::regex`
         + `std::regex_match`
         + `std::match_results`
 - [**Chapter 07 Sandard Library: Threads and Concurrency**](./07-thread.md)
-    + `std::thread`
-    + `std::mutex`
-    + `std::unique_lock`
-    + `std::future`
-    + `std::packaged_task`
-    + `std::condition_variable`
+    + 7.1 `std::thread`
+    + 7.2 `std::mutex` and `std::unique_lock`
+    + 7.3 `std::future` and `std::packaged_task`
+    + 7.4 `std::condition_variable`
+    + 7.5 `std::atomic` and memory order
+    + 7.6 Transactional memory
 - [**Chapter 08 Sandard Library: File System**](./08-filesystem.md)
+    + 8.1 Documents and links
+    + 8.2 `std::filesystem`
 - [**Chapter 09 Minor Features**](./09-others.md)
-    + New Types
+    + 9.1 New Types
         + `long long int`
-    + `noexcept`
-    + Literal
+    + 9.2 `noexcept` and its operates
+    + 9.3 Literal
         + Raw string literal
         + Custom string literal
-    + Math Library
+    + 9.4 Math Library
 - [**Chapter 10 Outlook: Introduction of C++20**](./10-cpp20.md)
     + Concept
     + Range
     + Module
     + Coroutine
-- [**Appendix: Further Study Materials**](./appendix.md)
+- [**Appendix 1: Further Study Materials**](./appendix1.md)
+- [**Appendix 2: Modern C++ Best Practices**](./appendix2.md)
 
 Table of Content | Last Chapter | [Next Chapter: Preface](./00-preface.md)
 
 ## Licenses
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](./LICENSE).
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](./LICENSE).

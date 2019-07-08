@@ -1,6 +1,6 @@
 # changkun.de/modern-cpp
 
-Welcome to Modern C++ Tutorial! This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `../book`. And all static files will be built into `./public`, which is served by a nginx server at [changkun.de](https://changkun.de).
+Welcome to Modern C++ Tutorial! This site is built with [hexo](http://hexo.io/). Site content was written in Markdown format located in `../book`. And all static files will be built into `./public`, which is served by a nginx server at [changkun.de](https://changkun.de).
 
 ## Requirements
 

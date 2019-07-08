@@ -1,6 +1,6 @@
-<img src="assets/cover-2nd.png" alt="logo" height="600" align="right" />
+<img src="assets/cover-2nd.png" alt="logo" height="550" align="right" />
 
-# 《高速上手 C++11/14/17》
+# 《高速上手 C++11/14/17/20》
 
 [![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg)](./README-en-us.md) 
 [![](https://img.shields.io/badge/%C2%A5-%E8%B5%9E%E5%8A%A9-ff69b4.svg)](./assets/donate.md)
@@ -11,7 +11,7 @@
 
 同时，本书在介绍这些特性的过程中，尽可能简单明了的介绍了这些特性产生的历史背景和技术需求，这为理解这些特性、运用这些特性提供了很大的帮助。
 
-此外，笔者希望读者在阅读本书后，能够努力在新项目中直接使用 C++17，并努力将旧项目逐步迁移到 C++17。也算是笔者为推进现代 C++ 的普及贡献了一些绵薄之力。
+此外，笔者希望读者在阅读本书后，能够努力在新项目中直接使用现代 C++，并努力将旧项目逐步迁移到现代 C++。也算是笔者为推进现代 C++ 的普及贡献了一些绵薄之力。
 
 ## 目标读者
 

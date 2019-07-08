@@ -1,4 +1,4 @@
-title = '高速上手 C++11/14/17'
+title = '高速上手 C++11/14/17/20'
 filename = 'modern-cpp-tutorial'
 outputname='modern-cpp-tutorial'
 revision = $(shell git describe --always --tags)

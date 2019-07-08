@@ -1,11 +1,8 @@
 <img src="assets/cover-2nd-en.png" alt="logo" height="600" align="right" />
 
-# C++11/14/17 On the Fly
+# C++11/14/17/20 On the Fly
 
 ![](https://img.shields.io/badge/version-v2-green.svg) [![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg)](./README-en-us.md) [![](https://img.shields.io/badge/$-donate-ff69b4.svg)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg)](./assets/community.md) 
-
-
-> This book is adapting to C++17 and translating to English.
 
 ## Purpose
 
@@ -15,7 +12,7 @@ Readers should aware that all of these features are not required. It should be l
 
 At the same time, instead of grammar-only, the book introduces the historical background as simple as possible of its technical requirements, which provides great help in understanding why these features comes out.
 
-In addition, The author would like to encourage that readers should be able to use C++17 directly in their new projects and  migrate their old projects to C++17 gradually after read the book.
+In addition, The author would like to encourage that readers should be able to use modern C++ directly in their new projects and  migrate their old projects to modern C++ gradually after read the book.
 
 ## Targets
 
@@ -51,4 +48,4 @@ The author has limited time and language skills. If readers find any mistakes of
 
 ## Licenses
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](./LICENSE).
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](./LICENSE).

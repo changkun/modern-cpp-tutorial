@@ -9,7 +9,7 @@ ignores = ['TOC', '返回目录', '许可', 'license']
 
 with open('modern-cpp-tutorial.md', 'w') as outfile:
     outfile.write("""---
-title: "高速上手 C++11/14/17"
+title: "高速上手 C++11/14/17/20"
 author: 欧长坤 <hi@changkun.us>
 copyright: cc-by-nc-nd 4.0
 ---

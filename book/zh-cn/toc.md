@@ -1,11 +1,9 @@
-# 高速上手 C++ 11/14/17
-
-> 正在向全面介绍 C++17 特性的内容过度
+# 高速上手 C++ 11/14/17/20
 
 ## 目录
 
 - [**序言**](./00-preface.md)
-- [**第 1 章 迈向 C++11/14/17**](./01-intro.md)
+- [**第 1 章 迈向现代 C++**](./01-intro.md)
     + 1.1 被弃用的特性
     + 1.2 与 C 的兼容性
     + 进一步阅读的参考文献
@@ -83,6 +81,8 @@
     + 7.2 `std::mutex` 和 `std::unique_lock`
     + 7.3 `std::future` 和 `std::packaged_task`
     + 7.4 `std::condition_variable`
+    + 7.5 `std::atomic` 与内存顺序
+    + 7.6 事务内存
 - [**第 8 章 标准库: 文件系统**](./08-filesystem.md)
     + 8.1 文档与链接
     + 8.2 `std::filesystem`

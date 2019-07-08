@@ -1,4 +1,4 @@
-title = 'C++11/14/17 On the Fly'
+title = 'C++11/14/17/20 On the Fly'
 filename = 'modern-cpp-tutorial'
 outputname='modern-cpp-tutorial'
 revision = $(shell git describe --always --tags)
