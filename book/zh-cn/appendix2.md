@@ -32,7 +32,7 @@ TODO
 
 TODO
 
-[返回目录](./toc.md) | [上一章](./11-appendix1.md) | 下一章
+[返回目录](./toc.md) | [上一章](./11-appendix1.md)
 
 ## 许可
 
