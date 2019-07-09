@@ -11,7 +11,7 @@ order: 1
 **编译环境**：本书将使用 `clang++` 作为唯一使用的编译器，同时总是在代码中使用 `-std=c++2a` 编译标志。
 
 ```bash
-$ clang++ -v
+> clang++ -v
 Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 Target: x86_64-apple-darwin18.6.0
 Thread model: posix

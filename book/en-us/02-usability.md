@@ -1,5 +1,5 @@
 ---
-title: Chapter 02：Language Usability Enhancements
+title: "Chapter 02: Language Usability Enhancements"
 type: book-en-us
 order: 2
 ---

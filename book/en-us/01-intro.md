@@ -1,5 +1,5 @@
 ---
-title: Chapter 01：Towards Modern C++
+title: "Chapter 01: Towards Modern C++"
 type: book-en-us
 order: 1
 ---
@@ -12,7 +12,7 @@ order: 1
 and always use the `-std=c++2a` compilation flag in your code.
 
 ```bash
-$ clang++ -v
+> clang++ -v
 Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 Target: x86_64-apple-darwin18.6.0
 Thread model: posix

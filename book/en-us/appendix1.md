@@ -1,10 +1,10 @@
 ---
-title: Appendix 1：Further Study Materials
+title: "Appendix 1: Further Study Materials"
 type: book-en-us
 order: 11
 ---
 
-# Appendix 1：Further Study Materials
+# Appendix 1: Further Study Materials
 
 First of all, congratulations 🎉 on reading this book! I hope this book has raised your interest in modern C++.
 

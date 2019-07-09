@@ -1,5 +1,5 @@
 ---
-title: Chapter 06 Sandard Library：Regular Expression
+title: "Chapter 06 Sandard Library: Regular Expression"
 type: book-en-us
 order: 6
 ---

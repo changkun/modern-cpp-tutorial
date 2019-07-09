@@ -1,5 +1,5 @@
 ---
-title: Chapter 05 Sandard Library：Pointers
+title: "Chapter 05 Sandard Library: Pointers"
 type: book-en-us
 order: 5
 ---
