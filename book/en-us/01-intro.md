@@ -36,9 +36,9 @@ Before learning modern C++, let's take a look at the main features that have bee
 
 - **`register` keyword is deprecated and can be used but no longer has any practical meaning.**
 
-- The `++` operation of the **`bool` type is deprecated.**
+- **The `++` operation of the `bool` type is deprecated.**
 
-- ** If a class has a destructor, the properties for which it generates copy constructors and copy assignment operators are deprecated.**
+- **If a class has a destructor, the properties for which it generates copy constructors and copy assignment operators are deprecated.**
 
 - **C language style type conversion is deprecated (ie using `(convert_type)`) before variables, and `static_cast`, `reinterpret_cast`, `const_cast` should be used for type conversion.**
 

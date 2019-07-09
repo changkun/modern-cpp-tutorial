@@ -1,48 +1,53 @@
-<img src="assets/cover-2nd.png" alt="logo" height="550" align="right" />
+<img src="assets/cover-2nd-en.png" alt="logo" height="550" align="right" />
 
-# 《高速上手 C++11/14/17/20》
+# C++11/14/17/20 On the Fly
 
-[![](https://img.shields.io/badge/language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README-en-us.md) [![](https://img.shields.io/badge/%C2%A5-%E8%B5%9E%E5%8A%A9-ff69b4.svg?style=flat-square)](./DONATE.md) [![](https://img.shields.io/badge/%E4%BA%A4%E6%B5%81-%E7%A4%BE%E5%8C%BA-667ed5.svg?style=flat-square)](./COMMUNITY.md)
+[![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./DONATE.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./COMMUNITY.md)
 
-## 本书目的
+## Purpose
 
-本书号称『高速上手』，从内容上对二十一世纪二十年代之前产生 C++ 的相关特性做了非常相对全面的介绍，读者可以自行根据下面的目录选取感兴趣的内容进行学习，快速熟悉需要了解的内容。这些特性并不需要全部掌握，只需针对自己的使用需求和特定的应用场景，学习、查阅最适合自己的新特性即可。
+The book claims "On the Fly". Its intent is to provide a comprehensive introduction to the relevant features regarding modern C++ (before 2020s).
+Readers can choose interesting content according to the following table of content to learn and quickly familiarize the new features you would like to learn.
+Readers should aware that all of these features are not required. It should be leart when you really need it.
 
-同时，本书在介绍这些特性的过程中，尽可能简单明了的介绍了这些特性产生的历史背景和技术需求，这为理解这些特性、运用这些特性提供了很大的帮助。
+At the same time, instead of grammar-only, the book introduces the historical background as simple as possible of its technical requirements, which provides great help in understanding why these features comes out.
 
-此外，笔者希望读者在阅读本书后，能够努力在新项目中直接使用现代 C++，并努力将旧项目逐步迁移到现代 C++。也算是笔者为推进现代 C++ 的普及贡献了一些绵薄之力。
+In addition, The author would like to encourage that readers should be able to use modern C++ directly in their new projects and  migrate their old projects to modern C++ gradually after read the book.
 
-## 目标读者
+## Targets
 
-1. 本书假定读者已经熟悉了传统 C++ ，至少在阅读传统 C++ 代码上不具备任何困难。换句话说，那些长期使用传统 C++进行编码的人、渴望在短时间内迅速了解**现代 C++** 特性的人非常适合阅读本书；
-2. 本书一定程度上介绍了一些现代 C++ 的**黑魔法**，但这些魔法毕竟有限，不适合希望进阶学习现代 C++ 的读者，本书的定位系**现代 C++ 的快速上手**。当然，希望进阶学习的读者可以使用本书来回顾并检验自己对 **现代 C++** 的熟悉度。
+- This book assumes that readers are already familiar with traditional C++ (i.e. C++98 or earlier), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
 
-## 开始阅读
+- This book introduces to a certain extent of the dark magic of modern C++. However, these magics are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is offering a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
 
-你可以选择以下几种阅读方式：
+## Start
 
-1. [GitHub 在线](./book/zh-cn/toc.md)
-2. [PDF 文档](./pdf/zh-cn/modern-cpp-tutorial.pdf)
-3. [网站](https://changkun.de/modern-cpp/)
+You can choose from the following reading methods:
 
-## 相关代码
+- [GitHub Online](./book/en-us/toc.md)
+- [PDF document](./pdf/en-us/modern-cpp-tutorial.pdf)
+- [Website](https://changkun.de/modern-cpp)
 
-本书每章中都出现了大量的代码，如果你在跟随本书介绍特性的思路编写自己的代码遇到问题时，不妨读一读随书附上的源码，你可以在[这里](./code)中找到书中介绍过的全部的源码，所有代码按章节组织，文件夹名称为章节序号。
+## Code
 
-## 随书习题
+Each chapter of this book has a lot of code. If you encounter problems when writing your own code with the introductory features of the book, you might as well read the source code attached to the book. You can find the book [here](./code). All the code organized by chapter, the folder name is the chapter number.
 
-本书每章最后还加入了少量难度极小的习题，仅用于检验你是否能混合运用当前章节中的知识点。你可以在[这里](exercises)找到习题的答案，文件夹名称为章节序号。
+## Exercises
 
-## 本书网站
+There are few exercises At the end of each chapter of the book. It is for testing whether you can use the knowledge points in the current chapter. You can find the possible answer to the problem from [here](./exercise). The folder name is the chapter number.
 
-本书的[网站](https://changkun.de/modern-cpp)源码可以在[这里](./website)找到，由 [hexo](https://hexo.io) 和 [vuejs](https://vuejs.org) 协同构建而成。网站旨在提供一个除 GitHub 之外的阅读方式，除了在桌面端访问之外，你也可以在移动端上阅读本书。
+## Website
 
-## 致谢
+The source code of the [website](https://changkun.de/modern-cpp) of this book can be found [here](./website), which is built by [hexo](https://hexo.io) and [vuejs](https://vuejs.org). The website provides you another way of reading the book, it is also adapts to mobile.
 
-笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [Issue](https://github.com/changkun/modern-cpp-tutorial/issues)，或者直接提 [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls)。详细贡献指南请参考[如何参与贡献](CONTRIBUTING.md)，由衷感谢每一位指出本书中出现错误的读者，包括但不限于 [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors)。
+## Acknowledgements
 
-## 许可
+This book was originally written in Chinese by [Changkun Ou](https://changkun.de).
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+The author has limited time and language skills. If readers find any mistakes of the book or any language improvements, please feel free to open an [Issue](https://github.com/changkun/modern-cpp-tutorial/issues) or start a [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls). For detailed guidelines and checklist, please refer to [How to contribute](CONTRIBUTING.md).
 
-本书系[欧长坤](https://github.com/changkun)著，采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc-nd/4.0/)许可。项目中代码使用 MIT 协议开源，参见[许可](./LICENSE)。
+The author would be grateful to all contributors, including but not limited to [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors).
+
+## Licenses
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](./LICENSE).

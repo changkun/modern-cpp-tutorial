@@ -1,3 +1,36 @@
+# How to contribute
+
+## Submit Issue
+
+C++ 11/14/17 issue is used to track the principle description error, `typo` error, and the questions to the author of the book.
+
+- Usually, you may encounter typos, semantic errors, grammatical errors, and etc. These are all `typo` errors. If an error has caused some obstacles to your reading and you strongly believe that the `typo` will also affect others reading. Then you are very welcome to [submit issue](https://github.com/changkun/modern-cpp-tutorial/issues) to report the `typo` error.
+
+- Do not hasitate to submit a principle error because it prevent wrong knowledge being propagation.
+Report the error immediately by [submitting issue](https://github.com/changkun/modern-cpp-tutorial/issues) to avoid the spread of wrong knowledge.
+
+- If you found some part of the book is confusing, you are very welcome to [submit an issue](https://github.com/changkun/modern-cpp-tutorial/issues) for asking questions.
+
+- The book cannot cover the entire C++ of course, however, you are very welcome to [submit an issue](https://github.com/changkun/modern-cpp-tutorial/issues) for a suggestion if you found some important feature is missing in the book.
+
+## Pull Request
+
+"C++ 11/14/17 On the Fly" is open source so that everyone can contribute to contribute to PR. However, it is required read the following instructions carefully before submitting your pull request:
+
+- Before you submit your pull request, make sure that the [issue list](https://github.com/changkun/modern-cpp-tutorial/issues) already contains the problem you want to solve. If not, please refer to the **Submit Issue** section.
+
+- Make sure your PR has improved the `typo` error of more than 50 words, otherwise please do not submit a PR.
+
+- For a PR that fixes principled errors, please don't hesitate, all readers of the book are very grateful for your contribution!
+
+- If you would like to be a co-author of this book, please send an email to ask: `hi at changkun dot us`.
+
+Since this repository provides a variety of reading approaches, thus make sure you have checked all items in the following checklist:
+
+ - [ ] If you only making changes to the main part of the book (i.e. the `book` folder), and no changes to the code snippet, then you are good to go;
+- [ ] If you also change the code snippet in the main body of the book, then you need to synchronize the corresponding code snippet in the `code` folder;
+- [ ] If you changes also involve the exercises, you also need to synchronize the contents of the `exercises` folder.
+
 # 如何参与贡献
 
 ## 提交 Issue
@@ -36,36 +69,3 @@
 - [ ] 只改动原书正文 `book` 下的部分内容，不涉及代码片段的修改，则无需进行修改
 - [ ] 如果同时还改动了正文中的代码片段，则需要同步 `code` 文件夹下对应的代码片段
 - [ ] 如果改动还涉及习题的设计，则需要同步 `exercises` 文件夹下的内容
-
-# How to contribute
-
-## Submit Issue
-
-C++ 11/14/17 issue is used to track the principle description error, `typo` error, and the questions to the author of the book.
-
-- Usually, you may encounter typos, semantic errors, grammatical errors, and etc. These are all `typo` errors. If an error has caused some obstacles to your reading and you strongly believe that the `typo` will also affect others reading. Then you are very welcome to [submit issue](https://github.com/changkun/modern-cpp-tutorial/issues) to report the `typo` error.
-
-- Do not hasitate to submit a principle error because it prevent wrong knowledge being propagation.
-Report the error immediately by [submitting issue](https://github.com/changkun/modern-cpp-tutorial/issues) to avoid the spread of wrong knowledge.
-
-- If you found some part of the book is confusing, you are very welcome to [submit an issue](https://github.com/changkun/modern-cpp-tutorial/issues) for asking questions.
-
-- The book cannot cover the entire C++ of course, however, you are very welcome to [submit an issue](https://github.com/changkun/modern-cpp-tutorial/issues) for a suggestion if you found some important feature is missing in the book.
-
-## Pull Request
-
-"C++ 11/14/17 On the Fly" is open source so that everyone can contribute to contribute to PR. However, it is required read the following instructions carefully before submitting your pull request:
-
-- Before you submit your pull request, make sure that the [issue list](https://github.com/changkun/modern-cpp-tutorial/issues) already contains the problem you want to solve. If not, please refer to the **Submit Issue** section.
-
-- Make sure your PR has improved the `typo` error of more than 50 words, otherwise please do not submit a PR.
-
-- For a PR that fixes principled errors, please don't hesitate, all readers of the book are very grateful for your contribution!
-
-- If you would like to be a co-author of this book, please send an email to ask: `hi at changkun dot us`.
-
-Since this repository provides a variety of reading approaches, thus make sure you have checked all items in the following checklist:
-
- - [ ] If you only making changes to the main part of the book (i.e. the `book` folder), and no changes to the code snippet, then you are good to go;
-- [ ] If you also change the code snippet in the main body of the book, then you need to synchronize the corresponding code snippet in the `code` folder;
-- [ ] If you changes also involve the exercises, you also need to synchronize the contents of the `exercises` folder.
