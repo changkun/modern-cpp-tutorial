@@ -16,7 +16,7 @@ OBJECTS_C = foo.o
 SOURCE_CXX = 1.1.c.and.cpp
 
 TARGET = 1.1.out
-LDFLAGS_COMMON = -std=c++17
+LDFLAGS_COMMON = -std=c++2a
 
 all:
 	$(C) -c $(SOURCE_C)

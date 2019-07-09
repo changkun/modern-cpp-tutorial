@@ -1,6 +1,6 @@
 //
 // 7.1.cpp
-// c++1x tutorial
+// modern c++ tutorial
 //
 // created by changkun at changkun.de
 //
