@@ -1,7 +1,11 @@
 <div class="sidebar">
   <div class="sidebar-inner-index">
     <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+      <% if (page.type == 'book-en-us') { %>
+        <%- partial('partials/main_menu_en', { context: 'nav' }) %>
+      <% } else {%>
+        <%- partial('partials/main_menu', { context: 'nav' }) %>
+      <% } %>
     </ul>
   </div>
 </div>
@@ -17,9 +21,26 @@
       </h1>
       <h2>第二版</h2>
       <p>
-        <a class="button white" href="<%- url_for("/modern-cpp/book/00-preface/") %>">立即阅读</a>
+        <a class="button white" href="<%- url_for("/modern-cpp/zh-cn/00-preface/") %>">🇨🇳 立即阅读</a>
       </p>
     </div>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+      <div class="left">
+        <img class="hero-logo" src="<%- url_for("/modern-cpp/assets/cover-2nd-en.png") %>">
+      </div><div class="right">
+        <h4>Changkun Ou</h4>  
+        <h1>
+          C++ 11/14/17/20<br>On the Fly
+        </h1>
+        <h2>Second Edition</h2>
+        <p>
+          <a class="button white" href="<%- url_for("/modern-cpp/en-us/00-preface/") %>">🇬🇧 Read Now</a>
+        </p>
+      </div>
   </div>
 </div>
 
@@ -27,6 +48,10 @@
   <p>
     <a href="https://changkun.de">欧长坤</a> &copy; 2016-<%- new Date().getFullYear() %> 版权所有，
     采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+  </p>
+  <p>
+    <a href="https://changkun.de">Changkun Ou</a> &copy; 2016-<%- new Date().getFullYear() %>.
+    The book is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0</a>, code is open sourced under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> License. </a>
   </p>
 </div>
 <script src="https://cdn.rawgit.com/wnda/pivot/master/pivot.js"></script>

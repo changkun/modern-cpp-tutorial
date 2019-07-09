@@ -1,7 +1,11 @@
 <div class="sidebar blog">
   <div class="sidebar-inner">
     <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'nav' }) %>
+        <% if (page.type == 'book-en-us') { %>
+          <%- partial('partials/main_menu_en', { context: 'nav' }) %>
+        <% } else {%>
+          <%- partial('partials/main_menu', { context: 'nav' }) %>
+        <% } %>
     </ul>
     <div class="list">
       <ul style="padding: 0;">
