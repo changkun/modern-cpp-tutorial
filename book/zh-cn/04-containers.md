@@ -228,22 +228,27 @@ int index = 1;
 std::get<index>(t);
 ```
 
-那么要怎么处理？答案是，**标准库做不到**。这里介绍一个使用 `boost::variant` 配合变长模板参数的黑魔法：
+那么要怎么处理？答案是，使用 `std::variant<>`（C++ 17 引入），提供给 `variant<>` 的类型模板参数
+可以让一个 `variant<>` 从而容纳提供的几种类型的变量（在其他语言，例如 Python/JavaScript 等，表现为动态类型）：
 
 ```cpp
-#include <boost/variant.hpp>
+#include <variant>
 template <size_t n, typename... T>
-boost::variant<T...> _tuple_index(size_t i, const std::tuple<T...>& tpl) {
-if (i == n)
-    return std::get<n>(tpl);
-else if (n == sizeof...(T) - 1)
-    throw std::out_of_range("越界.");
-else
-    return _tuple_index<(n < sizeof...(T)-1 ? n+1 : 0)>(i, tpl);
+constexpr std::variant<T...> _tuple_index(const std::tuple<T...>& tpl, size_t i) {
+    if constexpr (n >= sizeof...(T))
+        throw std::out_of_range("越界.");
+    if (i == n)
+        return std::variant<T...>{ std::in_place_index<n>, std::get<n>(tpl) };
+    return _tuple_index<(n < sizeof...(T)-1 ? n+1 : 0)>(tpl, i);
 }
 template <typename... T>
-boost::variant<T...> tuple_index(size_t i, const std::tuple<T...>& tpl) {
-    return _tuple_index<0>(i, tpl);
+constexpr std::variant<T...> tuple_index(const std::tuple<T...>& tpl, size_t i) {
+    return _tuple_index<0>(tpl, i);
+}
+template <typename T0, typename ... Ts>
+std::ostream & operator<< (std::ostream & s, std::variant<T0, Ts...> const & v) { 
+    std::visit([&](auto && x){ s << x;}, v); 
+    return s;
 }
 ```
 
@@ -251,7 +256,7 @@ boost::variant<T...> tuple_index(size_t i, const std::tuple<T...>& tpl) {
 
 ```cpp
 int i = 1;
-std::cout << tuple_index(i, t) << std::endl;
+std::cout << tuple_index(t, i) << std::endl;
 ```
 
 ### 元组合并与遍历
