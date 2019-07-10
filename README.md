@@ -34,7 +34,7 @@ Each chapter of this book has a lot of code. If you encounter problems when writ
 
 ## Exercises
 
-There are few exercises At the end of each chapter of the book. It is for testing whether you can use the knowledge points in the current chapter. You can find the possible answer to the problem from [here](./exercise). The folder name is the chapter number.
+There are few exercises At the end of each chapter of the book. It is for testing whether you can use the knowledge points in the current chapter. You can find the possible answer to the problem from [here](./exercises). The folder name is the chapter number.
 
 ## Website
 

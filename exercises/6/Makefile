@@ -2,7 +2,7 @@
 # Makefile
 # web_server
 #
-# created by changkun at labex.io
+# created by changkun at changkun.de/modern-cpp
 #
 
 CXX = g++
@@ -15,15 +15,16 @@ SOURCE_HTTPS = main.https.cpp
 OBJECTS_HTTP = main.http.o
 OBJECTS_HTTPS =  main.https.o
 
-LDFLAGS_COMMON = -std=c++11 -O3 -pthread -lboost_system
+LDFLAGS_COMMON = -std=c++2a -O3 -pthread -lboost_system
 LDFLAGS_HTTP =
 LDFLAGS_HTTPS = -lssl -lcrypto
 
 LPATH_COMMON = -I/usr/include/boost
 LPATH_HTTP =
-LPATH_HTTPS = -I/usr/include/openssl
+LPATH_HTTPS = -I/usr/local/opt/openssl/include
 
 LLIB_COMMON = -L/usr/lib
+LLIB_HTTPS = -L/usr/local/opt/openssl/lib
 
 all:
 	make http

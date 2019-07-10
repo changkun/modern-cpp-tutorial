@@ -8,7 +8,7 @@
 #include <fstream>
 
 using namespace std;
-using namespace LabexWeb;
+using namespace Web;
 
 template<typename SERVER_TYPE>
 void start_server(SERVER_TYPE &server) {

@@ -8,7 +8,7 @@
 #include "server.http.hpp"
 #include "handler.hpp"
 
-using namespace LabexWeb;
+using namespace Web;
 
 int main() {
     // HTTP server runs in port 12345 HTTP, enable 4 threads

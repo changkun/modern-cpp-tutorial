@@ -10,7 +10,7 @@
 #include "server.http.hpp"
 #include <boost/asio/ssl.hpp>
 
-namespace LabexWeb {
+namespace Web {
 
     // define HTTPS type
     typedef boost::asio::ssl::stream<boost::asio::ip::tcp::socket> HTTPS;

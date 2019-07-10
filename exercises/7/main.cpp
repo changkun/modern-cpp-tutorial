@@ -1,3 +1,12 @@
+//
+// main.cpp
+//
+// exercise solution - chapter 7
+// modern cpp tutorial
+//
+// created by changkun at changkun.de/modern-cpp
+//
+
 #include <iostream> // std::cout, std::endl
 
 #include <vector>   // std::vector
@@ -6,7 +15,7 @@
 #include <thread>   // std::this_thread::sleep_for
 #include <chrono>   // std::chrono::seconds
 
-#include "ThreadPool.hpp"
+#include "thread_pool.hpp"
 
 int main()
 {
@@ -35,6 +44,6 @@ int main()
     for(auto && result: results)
         std::cout << result.get() << ' ';
     std::cout << std::endl;
-    
+
     return 0;
 }

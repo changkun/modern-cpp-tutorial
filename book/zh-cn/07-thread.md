@@ -1,16 +1,18 @@
 ---
-title: 第 7 章 标准库：线程与并发
+title: 第 7 章 并行与并发
 type: book-zh-cn
 order: 7
 ---
 
-# 第 7 章 标准库：线程与并发
+# 第 7 章 并行与并发
 
 > 内容修订中
 
 [TOC]
 
-## 7.1 std::thread
+## 7.1 线程与并行
+
+### std::thread
 
 `std::thread` 用于创建一个执行的线程实例，所以它是一切并发编程的基础，使用时需要包含 `<thread>` 头文件，它提供了很多基本的线程操作，例如`get_id()`来获取所创建线程的线程 ID，例如使用 `join()` 来加入一个线程等等，例如：
 
@@ -179,7 +181,21 @@ consumer.join();
 
 C++11 语言层提供了并发编程的相关支持，本节简单的介绍了 `std::thread`/`std::mutex`/`std::future` 这些并发编程中不可回避的重要工具。
 
-> 本节提到的内容足以让我们使用不超过 100 行代码编写一个简单的线程池库，请参考习题 TODO
+## 习题
+
+1. 请编写一个线程池，提供如下功能：
+
+```cpp
+ThreadPool p(4); // 指定四个工作线程
+
+// 将任务在池中入队，并返回一个 std::future
+auto f = pool.enqueue([](int life) {
+    return meaning;
+}, 42);
+
+// 从 future 中获得执行结果
+std::cout << f.get() << std::endl;
+```
 
 [返回目录](./toc.md) | [上一章](./06-regex.md) | [下一章 标准库：文件系统](./08-filesystem.md)
 
@@ -187,8 +203,6 @@ C++11 语言层提供了并发编程的相关支持，本节简单的介绍了 `
 
 1. [C++ 并发编程\(中文版\)](https://www.gitbook.com/book/chenxiaowei/cpp_concurrency_in_action/details)
 2. [线程支持库文档](http://en.cppreference.com/w/cpp/thread)
-3. [100 行 C++ 代码实现线程池](https://www.shiyanlou.com/teacher/courses/565)
-
 
 ## 许可
 

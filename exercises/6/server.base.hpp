@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <thread>
 
-namespace LabexWeb {
+namespace Web {
     struct Request {
         // request method, POST, GET; path; HTTP version
         std::string method, path, http_version;

@@ -1,3 +1,12 @@
+//
+// structured.binding.cpp
+//
+// exercise solution - chapter 2
+// modern cpp tutorial
+//
+// created by changkun at changkun.de
+//
+
 #include <iostream>
 #include <map>
 #include <string>

@@ -1,3 +1,12 @@
+//
+// thread_pool.hpp
+//
+// exercise solution - chapter 7
+// modern cpp tutorial
+//
+// created by changkun at changkun.de/modern-cpp
+//
+
 #ifndef THREAD_POOL_H
 #define THREAD_POOL_H
 
@@ -22,9 +31,8 @@ public:
     
     // enqueue new thread task
     template<class F, class... Args>
-    auto enqueue(F&& f, Args&&... args) 
-        -> std::future<typename std::result_of<F(Args...)>::type>;
-    
+    decltype(auto) enqueue(F&& f, Args&&... args);
+
     // destroy thread pool and all created threads
     ~ThreadPool();
 private:
@@ -45,21 +53,15 @@ private:
 };
  
 // constructor initialize a fixed size of worker
-inline ThreadPool::ThreadPool(size_t threads): stop(false)
-{
+inline ThreadPool::ThreadPool(size_t threads): stop(false) {
     // initialize worker
     for(size_t i = 0;i<threads;++i)
         // std::vector::emplace_back :
         //    append to the end of vector container
         //    this element will be constructed at the end of container, without copy and move behavior
-        workers.emplace_back(
-            // the lambda express capture this, i.e. the instance of thread pool
-            [this]
-            {
+        workers.emplace_back([this] { // the lambda express capture this, i.e. the instance of thread pool
                 // avoid fake awake
-                for(;;)
-                {
-                    
+                for(;;) {
                     // define function task container, return type is void
                     std::function<void()> task;
 
@@ -91,19 +93,17 @@ inline ThreadPool::ThreadPool(size_t threads): stop(false)
 // Enqueue a new thread
 // use variadic templates and tail return type 
 template<class F, class... Args>
-auto ThreadPool::enqueue(F&& f, Args&&... args) 
-    -> std::future<typename std::result_of<F(Args...)>::type>
-{
+decltype(auto) ThreadPool::enqueue(F&& f, Args&&... args) {
     // deduce return type
     using return_type = typename std::result_of<F(Args...)>::type;
-    
+
     // fetch task
-    auto task = std::make_shared< std::packaged_task<return_type()> >(
+    auto task = std::make_shared<std::packaged_task<return_type()>>(
         std::bind(std::forward<F>(f), std::forward<Args>(args)...)
     );
-        
+
     std::future<return_type> res = task->get_future();
-    
+
     // critical section
     {
         std::unique_lock<std::mutex> lock(queue_mutex);
@@ -115,7 +115,7 @@ auto ThreadPool::enqueue(F&& f, Args&&... args)
         // add thread to queue
         tasks.emplace([task]{ (*task)(); });
     }
-    
+
     // notify a wait thread
     condition.notify_one();
     return res;
@@ -129,10 +129,10 @@ inline ThreadPool::~ThreadPool()
         std::unique_lock<std::mutex> lock(queue_mutex);
         stop = true;
     }
-    
+
     // wake up all threads
     condition.notify_all();
-    
+
     // let all processes into synchronous execution, use c++11 new for-loop: for(value:values)
     for(std::thread &worker: workers)
         worker.join();

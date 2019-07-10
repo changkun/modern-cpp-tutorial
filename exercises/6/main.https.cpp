@@ -6,7 +6,7 @@
 #include <iostream>
 #include "server.https.hpp"
 #include "handler.hpp"
-using namespace LabexWeb;
+using namespace Web;
 
 int main() {
     // HTTPS server runs in port 12345, enable 4 threads

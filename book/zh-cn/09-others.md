@@ -39,26 +39,26 @@ void no_throw() noexcept; // 不可能抛出异常
 ```cpp
 #include <iostream>
 void may_throw() {
-throw true;
+    throw true;
 }
 auto non_block_throw = []{
-may_throw();
+    may_throw();
 };
 void no_throw() noexcept {
-return;
+    return;
 }
 
 auto block_throw = []() noexcept {
-no_throw();
+    no_throw();
 };
 int main()
 {
-std::cout << std::boolalpha
-<< "may_throw() noexcept? " << noexcept(may_throw()) << std::endl
-<< "no_throw() noexcept? " << noexcept(no_throw()) << std::endl
-<< "lmay_throw() noexcept? " << noexcept(non_block_throw()) << std::endl
-<< "lno_throw() noexcept? " << noexcept(block_throw()) << std::endl;
-return 0;
+    std::cout << std::boolalpha
+        << "may_throw() noexcept? " << noexcept(may_throw()) << std::endl
+        << "no_throw() noexcept? " << noexcept(no_throw()) << std::endl
+        << "lmay_throw() noexcept? " << noexcept(non_block_throw()) << std::endl
+        << "lno_throw() noexcept? " << noexcept(block_throw()) << std::endl;
+    return 0;
 }
 ```
 
@@ -66,19 +66,19 @@ return 0;
 
 ```cpp
 try {
-may_throw();
+    may_throw();
 } catch (...) {
-std::cout << "捕获异常, 来自 my_throw()" << std::endl;
+    std::cout << "捕获异常, 来自 my_throw()" << std::endl;
 }
 try {
-non_block_throw();
+    non_block_throw();
 } catch (...) {
-std::cout << "捕获异常, 来自 non_block_throw()" << std::endl;
+    std::cout << "捕获异常, 来自 non_block_throw()" << std::endl;
 }
 try {
-block_throw();
+    block_throw();
 } catch (...) {
-std::cout << "捕获异常, 来自 block_throw()" << std::endl;
+    std::cout << "捕获异常, 来自 block_throw()" << std::endl;
 }
 ```
 
@@ -116,19 +116,19 @@ C++11 引进了自定义字面量的能力，通过重载双引号后缀运算�
 
 // 字符串字面量自定义必须设置如下的参数列表
 std::string operator"" _wow1(const char *wow1, size_t len) {
-return std::string(wow1)+"woooooooooow, amazing";
+    return std::string(wow1)+"woooooooooow, amazing";
 }
 
 std::string operator"" _wow2 (unsigned long long i) {
-return std::to_string(i)+"woooooooooow, amazing";
+    return std::to_string(i)+"woooooooooow, amazing";
 }
 
 int main() {
-auto str = "abc"_wow1;
-auto num = 1_wow2;
-std::cout << str << std::endl;
-std::cout << num << std::endl;
-return 0;
+    auto str = "abc"_wow1;
+    auto num = 1_wow2;
+    std::cout << str << std::endl;
+    std::cout << num << std::endl;
+    return 0;
 }
 ```
 

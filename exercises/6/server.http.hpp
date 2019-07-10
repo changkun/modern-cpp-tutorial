@@ -9,7 +9,7 @@
 
 #include "server.base.hpp"
 
-namespace LabexWeb {
+namespace Web {
     typedef boost::asio::ip::tcp::socket HTTP;
     template<>
     class Server<HTTP> : public ServerBase<HTTP> {

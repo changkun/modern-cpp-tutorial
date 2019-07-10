@@ -134,7 +134,6 @@ bar.txt sub-match[1]: bar
 
 1. [知乎『如何评价 GCC 的 C++11 正则表达式？』中原库作者 Tim Shen 的回答](http://zhihu.com/question/23070203/answer/84248248)
 2. [正则表达式库文档](http://en.cppreference.com/w/cpp/regex)
-3. [C++ 开发 Web 服务框架](https://www.shiyanlou.com/courses/568)
 
 ## 许可
 
