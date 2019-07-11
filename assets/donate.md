@@ -8,7 +8,7 @@ order: 1
 
 I would love if you support me to make the book better:
 
-[![](https://img.shields.io/badge/donate-PayPal-104098.svg?style=popout-square&logo=PayPal)](https://www.paypal.me/ouchangkun/4.99eur)
+[![](https://img.shields.io/badge/donate-PayPal-104098.svg?style=popout-square&logo=PayPal)](https://www.paypal.me/changkunde/4.99eur)
 
 ## 资助
 

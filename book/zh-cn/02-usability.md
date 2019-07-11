@@ -651,7 +651,7 @@ class Magic<int,
             std::vector<int>>> darkMagic;
 ```
 
-既然是任意形式，所以个数为0的模板参数也是可以的：`class Magic<> nothing;`。
+既然是任意形式，所以个数为 0 的模板参数也是可以的：`class Magic<> nothing;`。
 
 如果不希望产生的模板参数个数为0，可以手动的定义至少一个模板参数：
 
@@ -670,8 +670,8 @@ template<typename... Args> void printf(const std::string &str, Args... args);
 首先，我们可以使用 `sizeof...` 来计算参数的个数，：
 
 ```cpp
-template<typename... Args>
-void magic(Args... args) {
+template<typename... Ts>
+void magic(Ts... args) {
     std::cout << sizeof...(args) << std::endl;
 }
 ```
@@ -692,19 +692,21 @@ magic(1, ""); // 输出2
 ```cpp
 #include <iostream>
 template<typename T0>
-void printf(T0 value) {
+void printf1(T0 value) {
     std::cout << value << std::endl;
 }
-template<typename T, typename... Args>
-void printf(T value, Args... args) {
+template<typename T, typename... Ts>
+void printf1(T value, Ts... args) {
     std::cout << value << std::endl;
-    printf(args...);
+    printf1(args...);
 }
 int main() {
-printf(1, 2, "123", 1.1);
-return 0;
+    printf1(1, 2, "123", 1.1);
+    return 0;
 }
 ```
+
+**2. 变参模板展开**
 
 你应该感受到了这很繁琐，在 C++17 中增加了变参模板展开的支持，于是你可以在一个函数中完成 `printf` 的编写：
 
@@ -716,38 +718,7 @@ void printf(T0 t0, T... t) {
 }
 ```
 
-
-
-**2. 初始化列表展开**
-
-> 这个方法需要之后介绍的知识，读者可以简单阅读一下，将这个代码段保存，在后面的内容了解过了之后再回过头来阅读此处方法会大有收获。
-
-递归模板函数是一种标准的做法，但缺点显而易见的在于必须定义一个终止递归的函数。
-
-这里介绍一种使用初始化列表展开的黑魔法：
-
-```cpp
-// 编译这个代码需要开启 -std=c++14
-template<typename T, typename... Args>
-auto print(T value, Args... args) {
-    std::cout << value << std::endl;
-    return std::initializer_list<T>{([&] {
-        std::cout << args << std::endl;
-    }(), value)...};
-}
-int main() {
-    print(1, 2.1, "123");
-    return 0;
-}
-```
-
-在这个代码中，额外使用了 C++11 中提供的初始化列表以及 Lambda 表达式的特性（下一节中将提到），而 std::initializer_list 也是 C++11 新引入的容器（以后会介绍到）。
-
-通过初始化列表，`(lambda 表达式, value)...` 将会被展开。由于逗号表达式的出现，首先会执行前面的 lambda 表达式，完成参数的输出。唯一不美观的地方在于如果不使用 `return` 编译器会给出未使用的变量作为警告。
-
 > 事实上，有时候我们虽然使用了变参模板，却不一定需要对参数做逐个遍历，我们可以利用 `std::bind` 及完美转发等特性实现对函数和参数的绑定，从而达到成功调用的目的。
-
-> 关于这方面的使用技巧，请参考习题，TODO
 
 ### 折叠表达式
 
@@ -761,6 +732,51 @@ auto sum(T ... t) {
 }
 int main() {
     std::cout << sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) << std::endl;
+}
+```
+
+### 非类型模板参数推导
+
+前面我们主要提及的是模板参数的一种形式：类型模板参数。
+
+```cpp
+template <typename T, typename U>
+    auto add(T t, U u) {
+    return t+u;
+}
+```
+
+其中模板的参数 `T` 和 `U` 为具体的类型。
+但还有一种常见模板参数形式可以让不同字面量成为模板参数，即非类型模板参数：
+
+```cpp
+template <typename T, int BufSize>
+class buffer_t {
+public:
+    T& alloc();
+    void free(T& item);
+private:
+    T data[BufSize];
+}
+
+buffer_t<int, 100> buf; // 100 作为模板参数
+```
+
+在这种模板参数形式下，我们可以将 `100` 作为模板的参数进行传递。
+在 C++11 引入了类型推导这一特性后，我们会很自然的问，既然此处的模板参数
+以具体的字面量进行传递，能否让编译器辅助我们进行类型推导，
+通过使用占位符 `auto` 从而不再需要明确指明类型？
+幸运的是，C++17 引入了这一特性，我们的确可以 `auto` 关键字，让编译器辅助完成具体类型的推导，
+例如：
+
+```cpp
+template <auto value> void foo() {
+    std::cout << value << std::endl;
+    return;
+}
+
+int main() {
+    foo<10>();  // value 被推导为 int 类型
 }
 ```
 

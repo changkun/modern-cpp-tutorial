@@ -19,5 +19,5 @@ template<bool T> class MagicType {
 int main() {
     // the >> in template
     std::vector<std::vector<int>> matrix;
-    std::vector<MagicType<(1>2)>> magic;
+    std::vector<MagicType<(1>2)>> magic; // legal, but not recommended
 }

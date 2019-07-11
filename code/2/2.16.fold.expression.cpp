@@ -1,3 +1,11 @@
+//
+// 2.16.fold.expression.cpp
+// chapter 2 language usability
+// modern cpp tutorial
+//
+// created by changkun at changkun.de
+//
+
 #include <iostream>
 template<typename ... T>
 auto sum(T ... t) {
