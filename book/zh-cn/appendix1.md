@@ -15,7 +15,7 @@ order: 11
 - [Ulrich Drepper. 每位程序员都需要知道的内存知识. 2007](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 - 待补充
 
-[返回目录](./toc.md) | [上一章](./10-cpp20.md) | [下一章](./12-appendix2.md)
+[返回目录](./toc.md) | [上一章](./10-cpp20.md) | [下一章 现代 C++ 的最佳实践](./appendix2.md)
 
 ## 许可
 
