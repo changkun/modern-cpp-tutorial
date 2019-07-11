@@ -712,13 +712,36 @@ int main() {
 
 ```cpp
 template<typename T0, typename... T>
-void printf(T0 t0, T... t) {
+void printf2(T0 t0, T... t) {
     std::cout << t0 << std::endl;
-    if constexpr (sizeof...(t) > 0) printf(t...);
+    if constexpr (sizeof...(t) > 0) printf2(t...);
 }
 ```
 
 > 事实上，有时候我们虽然使用了变参模板，却不一定需要对参数做逐个遍历，我们可以利用 `std::bind` 及完美转发等特性实现对函数和参数的绑定，从而达到成功调用的目的。
+
+**3. 初始化列表展开**
+
+> 这个方法需要之后介绍的知识，读者可以简单阅读一下，将这个代码段保存，在后面的内容了解过了之后再回过头来阅读此处方法会大有收获。
+
+递归模板函数是一种标准的做法，但缺点显而易见的在于必须定义一个终止递归的函数。
+
+这里介绍一种使用初始化列表展开的黑魔法：
+
+```cpp
+template<typename T, typename... Ts>
+auto printf3(T value, Ts... args) {
+    std::cout << value << std::endl;
+    (void) std::initializer_list<T>{([&args] {
+        std::cout << args << std::endl;
+    }(), value)...};
+}
+```
+
+在这个代码中，额外使用了 C++11 中提供的初始化列表以及 Lambda 表达式的特性（下一节中将提到），而 std::initializer_list 也是 C++11 新引入的容器（以后会介绍到）。
+
+通过初始化列表，`(lambda 表达式, value)...` 将会被展开。由于逗号表达式的出现，首先会执行前面的 lambda 表达式，完成参数的输出。
+为了避免编译器警告，我们可以将 `std::initializer_list` 显式的转为 `void`。
 
 ### 折叠表达式
 
