@@ -197,7 +197,7 @@ auto f = pool.enqueue([](int life) {
 std::cout << f.get() << std::endl;
 ```
 
-[返回目录](./toc.md) | [上一章](./06-regex.md) | [下一章 标准库：文件系统](./08-filesystem.md)
+[返回目录](./toc.md) | [上一章](./06-regex.md) | [下一章 文件系统](./08-filesystem.md)
 
 ## 进一步阅读的参考资料
 

@@ -1,12 +1,12 @@
 ---
-title: "Chapter 06 Sandard Library: Regular Expression"
+title: "Chapter 06 Standard Library: Regular Expression"
 type: book-en-us
 order: 6
 ---
 
-# Chapter 06 Sandard Library: Regular Expression
+# Chapter 06 Standard Library: Regular Expression
 
-[Table of Content](./toc.md) | [Previous Chapter](./05-pointers.md) | [Next Chapter: Sandard Library: Threads and Concurrency](./07-thread.md)
+[Table of Content](./toc.md) | [Previous Chapter](./05-pointers.md) | [Next Chapter: Standard Library: Threads and Concurrency](./07-thread.md)
 
 ## Further Readings
 

@@ -1,12 +1,12 @@
 ---
-title: "Chapter 07 Sandard Library: Threads and Concurrency"
+title: "Chapter 07 Standard Library: Threads and Concurrency"
 type: book-en-us
 order: 7
 ---
 
-# Chapter 07 Sandard Library: Threads and Concurrency
+# Chapter 07 Standard Library: Threads and Concurrency
 
-[Table of Content](./toc.md) | [Previous Chapter](./06-regex.md) | [Next Chapter: Sandard Library: File System](./08-filesystem.md)
+[Table of Content](./toc.md) | [Previous Chapter](./06-regex.md) | [Next Chapter: File System](./08-filesystem.md)
 
 ## Further Readings
 

@@ -54,7 +54,7 @@
         + rvalue reference & lvalue reference
         + Move semantics
         + Perfect forwarding
-- [**Chapter 04 Sandard Library: Containers**](./04-containers.md)
+- [**Chapter 04 Standard Library: Containers**](./04-containers.md)
     + 4.1 `std::array` and `std::forward_list`
     + 4.2 Unordered containers
       + `std::unordered_set`
@@ -63,11 +63,11 @@
         + basic operation
         + runtime indexing
         + merge and iteration
-- [**Chapter 05 Sandard Library: Pointers**](./05-pointers.md)
+- [**Chapter 05 Standard Library: Pointers**](./05-pointers.md)
     + 5.1 RAII and reference counting
     + 5.2 `std::shared_ptr`
     + 5.3 `std::unique_ptr`
-- [**Chapter 06 Sandard Library: Regular Expression**](./06-regex.md)
+- [**Chapter 06 Standard Library: Regular Expression**](./06-regex.md)
     + 6.1 Regular Expression Introduction
         + Normal characters
         + Special characters
@@ -84,16 +84,16 @@
     + 7.5 `std::atomic` and memory order
     + 7.6 Transactional memory
     + 7.7 Coroutine
-- [**Chapter 08 Sandard Library: File System**](./08-filesystem.md)
+- [**Chapter 08 File System**](./08-filesystem.md)
     + 8.1 Documents and links
     + 8.2 `std::filesystem`
 - [**Chapter 09 Minor Features**](./09-others.md)
     + 9.1 New Types
         + `long long int`
-    + 9.2 `noexcept` and its operates
+    + 9.2 `noexcept` and Its Operations
     + 9.3 Literal
-        + Raw string literal
-        + Custom string literal
+        + Raw String Literal
+        + Custom String Literal
     + 9.4 Math Library
 - [**Chapter 10 Outlook: Introduction of C++20**](./10-cpp20.md)
     + Concept

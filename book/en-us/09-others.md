@@ -18,7 +18,7 @@ so most compilers already support it.
 C++11 now formally incorporate it into the standard library, 
 specifying a `long long int` type with at least 64 bits.
 
-## 9.2 `noexcept` Operations
+## 9.2 `noexcept` and Its Operations
 
 One of the big advantages of C++ over C is that 
 C++ itself defines a complete set of exception handling mechanisms. 
@@ -106,7 +106,7 @@ exception captured, from non_block_throw()
 
 ## 9.3 Literal
 
-### String Literal
+### Raw String Literal
 
 In traditional C++, it is very painful to write a string full of 
 special characters. For example, a string containing HTML ontology 

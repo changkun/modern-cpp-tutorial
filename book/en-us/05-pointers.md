@@ -1,12 +1,12 @@
 ---
-title: "Chapter 05 Sandard Library: Pointers"
+title: "Chapter 05 Standard Library: Pointers"
 type: book-en-us
 order: 5
 ---
 
-# Chapter 05 Sandard Library: Pointers
+# Chapter 05 Standard Library: Pointers
 
-[Table of Content](./toc.md) | [Previous Chapter](./04-containers.md) | [Next Chapter: Sandard Library: Regular Expression](./06-regex.md)
+[Table of Content](./toc.md) | [Previous Chapter](./04-containers.md) | [Next Chapter: Standard Library: Regular Expression](./06-regex.md)
 
 ## Further Readings
 

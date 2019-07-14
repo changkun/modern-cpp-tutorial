@@ -1,12 +1,12 @@
 ---
-title: "Chapter 04 Sandard Library: Containers"
+title: "Chapter 04 Standard Library: Containers"
 type: book-en-us
 order: 4
 ---
 
-# Chapter 04 Sandard Library: Containers
+# Chapter 04 Standard Library: Containers
 
-[Table of Content](./toc.md) | [Previous Chapter](./03-runtime.md) | [Next Chapter: Sandard Library: Pointers](./05-pointers.md)
+[Table of Content](./toc.md) | [Previous Chapter](./03-runtime.md) | [Next Chapter: Standard Library: Pointers](./05-pointers.md)
 
 ## Further Readings
 

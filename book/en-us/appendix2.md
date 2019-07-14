@@ -10,27 +10,27 @@ In this appendix we will briefly talk about the best practices of modern C++. In
 
 ## Common Tools
 
-TODO
+TODO:
 
 ## Coding Style
 
-TODO
+TODO:
 
 ## Overall Performance
 
-TODO
+TODO:
 
 ## Code Security
 
-TODO
+TODO:
 
 ## Maintainability
 
-TODO
+TODO:
 
 ## Portability
 
-TODO
+TODO:
 
 [Table of Content](./toc.md) | [Previous Chapter](./appendix1.md)
 
