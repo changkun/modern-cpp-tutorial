@@ -33,18 +33,18 @@ int main()
     try {
         may_throw();
     } catch (...) {
-        std::cout << "捕获异常, 来自 my_throw()" << std::endl;
+        std::cout << "exception captured from my_throw()" << std::endl;
     }
     
     try {
         non_block_throw();
     } catch (...) {
-        std::cout << "捕获异常, 来自 non_block_throw()" << std::endl;
+        std::cout << "exception captured from non_block_throw()" << std::endl;
     }
     
     try {
         block_throw();
     } catch (...) {
-        std::cout << "捕获异常, 来自 block_throw()" << std::endl;
+        std::cout << "exception captured from block_throw()" << std::endl;
     }
 }

@@ -4,7 +4,7 @@
 //
 // created by changkun at changkun.de
 //
-// 字面量
+// literals
 
 #include <iostream>
 #include <string>
@@ -18,16 +18,16 @@ std::string operator""_wow2 (unsigned long long i) {
 }
 
 int main() {
-    std::string str = R"(C:\\What\\The\\Fxxk)";
+    std::string str = R"(C:\\File\\To\\Path)";
     std::cout << str << std::endl;
     
     int value = 0b1001010101010;
     std::cout << value << std::endl;
     
     
-    auto str = "abc"_wow1;
+    auto str2 = "abc"_wow1;
     auto num = 1_wow2;
-    std::cout << str << std::endl;
+    std::cout << str2 << std::endl;
     std::cout << num << std::endl;
     return 0;
 }
