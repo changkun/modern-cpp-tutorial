@@ -4,6 +4,31 @@ about: 报告错误
 
 ---
 
+<!-- English Version -->
+
+## Actual Description
+
+- File Path: for example, `book/en-us/02-usability.md`
+- Original paragraph:
+
+```
+A copy of the original paragraph
+```
+
+## Expected Description
+
+```
+A modified paragraph
+```
+
+## Attachments
+
+Attach screenshot or files if necessary.
+
+---
+
+<!-- 中文版本 -->
+
 ## 实际描述
 
 - 文件路径：例如，book/zh-cn/02-usability.md

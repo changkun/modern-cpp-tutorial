@@ -4,6 +4,20 @@ about: 内容建议
 
 ---
 
+<!-- English Version -->
+
+## Motivation
+
+Please briefly describe your motivation.
+
+## Requirements
+
+Please list all of your suggestions.
+
+---
+
+<!-- 中文版 -->
+
 ## 动机
 
 请描述你提交内容建议的动机。
