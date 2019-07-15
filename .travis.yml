@@ -6,7 +6,6 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 - git config --global user.name "Changkun Ou"
 - git config --global user.email "hi@changkun.us"
-- make build-env
 
 addons:
   ssh_known_hosts:

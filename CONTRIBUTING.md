@@ -27,7 +27,7 @@ Report the error immediately by [submitting issue](https://github.com/changkun/m
 
 Since this repository provides a variety of reading approaches, thus make sure you have checked all items in the following checklist:
 
- - [ ] If you only making changes to the main part of the book (i.e. the `book` folder), and no changes to the code snippet, then you are good to go;
+- [ ] If you only making changes to the main part of the book (i.e. the `book` folder), and no changes to the code snippet, then you are good to go;
 - [ ] If you also change the code snippet in the main body of the book, then you need to synchronize the corresponding code snippet in the `code` folder;
 - [ ] If you changes also involve the exercises, you also need to synchronize the contents of the `exercises` folder.
 
