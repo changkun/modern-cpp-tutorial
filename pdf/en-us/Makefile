@@ -11,21 +11,21 @@ revision:
 
 pdf: markdown
 	@echo "Compiling PDF file..."
-	@pandoc -f markdown+smart -s $(filename).md -o $(filename).pdf \
+	pandoc -f markdown+smart -s $(filename).md -o $(filename).pdf \
 		--title-prefix $(title) \
 		--listings -H meta/cpp-listings.tex \
 		--template=meta/template.tex \
 		--pdf-engine=`which xelatex`
 	@echo "Done."
-	@rm *.md revision.tex
+	rm *.md revision.tex
 
 markdown:
 	@echo "Copy markdown files..."
-	@cp -r ../../book/en-us/* .
+	cp -r ../../book/en-us/* .
 	@echo "Aggregating markdown files..."
-	@python3 aggregator.py
+	python3 aggregator.py
 
 clean:
-	rm -rf revision.tex *.md *.pdf
+	rm -rf revision.tex *.md
 
 .PHONY: markdown pdf clean

@@ -37,6 +37,14 @@
 
 本书的[网站](https://changkun.de/modern-cpp)源码可以在[这里](./website)找到，由 [hexo](https://hexo.io) 和 [vuejs](https://vuejs.org) 协同构建而成。网站旨在提供一个除 GitHub 之外的阅读方式，除了在桌面端访问之外，你也可以在移动端上阅读本书。
 
+## 构建
+
+如果你希望在本地编译整个仓库，我们建议使用 [Docker](https://docs.docker.com/install/)。如果 Docker 在你的本地能正常使用，则可以简单的通过运行下面的指令完成构建：
+
+```bash
+$ make build
+```
+
 ## 致谢
 
 笔者时间和水平有限，如果读者发现书中内容的错误，欢迎提 [Issue](https://github.com/changkun/modern-cpp-tutorial/issues)，或者直接提 [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls)。详细贡献指南请参考[如何参与贡献](CONTRIBUTING.md)，由衷感谢每一位指出本书中出现错误的读者，包括但不限于 [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors)。

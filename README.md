@@ -40,6 +40,14 @@ There are few exercises At the end of each chapter of the book. It is for testin
 
 The source code of the [website](https://changkun.de/modern-cpp) of this book can be found [here](./website), which is built by [hexo](https://hexo.io) and [vuejs](https://vuejs.org). The website provides you another way of reading the book, it is also adapts to mobile.
 
+## Build
+
+If you are interested in build everything locally, it is recommended using [Docker](https://docs.docker.com/install/). To build, simply run:
+
+```bash
+$ make build
+```
+
 ## Acknowledgements
 
 This book was originally written in Chinese by [Changkun Ou](https://changkun.de).
