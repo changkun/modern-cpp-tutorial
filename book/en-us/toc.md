@@ -78,12 +78,12 @@
         + `std::regex_match`
         + `std::match_results`
 - [**Chapter 07 Parallelism and Concurrency**](./07-thread.md)
-    + 7.1 `std::thread`
-    + 7.2 `std::mutex` and `std::unique_lock`
-    + 7.3 `std::future` and `std::packaged_task`
-    + 7.4 `std::condition_variable`
-    + 7.5 `std::atomic` and memory order
-    + 7.6 Transactional memory
+    + 7.1 Basic of Parallelism
+    + 7.2 Mutex and Critical Section
+    + 7.3 Futures
+    + 7.4 Condition Variable
+    + 7.5 Atomic Operation and Memory Order
+    + 7.6 Transactional Memory
     + 7.7 Coroutine
 - [**Chapter 08 File System**](./08-filesystem.md)
     + 8.1 Documents and links

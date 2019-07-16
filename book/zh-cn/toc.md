@@ -78,13 +78,12 @@
         + `std::regex_match`
         + `std::match_results`
 - [**第 7 章 并行与并发**](./07-thread.md)
-    + 7.1 `std::thread`
-    + 7.2 `std::mutex` 和 `std::unique_lock`
-    + 7.3 `std::future` 和 `std::packaged_task`
-    + 7.4 `std::condition_variable`
-    + 7.5 `std::atomic` 与内存顺序
+    + 7.1 并发基础
+    + 7.2 互斥量与临界区
+    + 7.3 期物
+    + 7.4 条件变量
+    + 7.5 原子操作与内存一致性
     + 7.6 事务内存
-    + 7.7 协程
 - [**第 8 章 文件系统**](./08-filesystem.md)
     + 8.1 文档与链接
     + 8.2 `std::filesystem`
