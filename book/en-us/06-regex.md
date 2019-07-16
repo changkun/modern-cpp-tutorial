@@ -136,6 +136,91 @@ and then introduces the use of the regular expression library
 through a practical example based on the main requirements of 
 using regular expressions.
 
+## Exercise
+
+In web server development, we usually want to serve some routes that satisfy a certain condition. 
+Regular expressions are one of the tools to accomplish this.
+Given the following request structure:
+
+```cpp
+struct Request {
+    // request method, POST, GET; path; HTTP version
+    std::string method, path, http_version;
+    // use smart pointer for reference counting of content
+    std::shared_ptr<std::istream> content;
+    // hash container, key-value dict
+    std::unordered_map<std::string, std::string> header;
+    // use regular expression for path match
+    std::smatch path_match;
+};
+```
+
+Requested resource type:
+
+```cpp
+typedef std::map<
+    std::string, std::unordered_map<
+        std::string,std::function<void(std::ostream&, Request&)>>> resource_type;
+```
+
+And server template:
+
+```cpp
+template <typename socket_type>
+class ServerBase {
+public:
+    resource_type resource;
+    resource_type default_resource;
+
+    void start() {
+        // TODO
+    }
+protected:
+    Request parse_request(std::istream& stream) const {
+        // TODO
+    }
+}
+```
+
+Please implement the member functions `start()` and `parse_request`. Enable server template users to specify routes as follows:
+
+```cpp
+template<typename SERVER_TYPE>
+void start_server(SERVER_TYPE &server) {
+
+    // process GET request for /match/[digit+numbers], e.g. GET request is /match/abc123, will return abc123
+    server.resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
+        string number=request.path_match[1];
+        response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length() << "\r\n\r\n" << number;
+    };
+
+    // peocess default GET request; anonymous function will be called if no other matches
+    // response files in folder web/
+    // default: index.html
+    server.default_resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
+        string filename = "www/";
+
+        string path = request.path_match[1];
+
+        // forbidden use `..` access content outside folder web/
+        size_t last_pos = path.rfind(".");
+        size_t current_pos = 0;
+        size_t pos;
+        while((pos=path.find('.', current_pos)) != string::npos && pos != last_pos) {
+            current_pos = pos;
+            path.erase(pos, 1);
+            last_pos--;
+        }
+
+        // (...)
+    };
+
+    server.start();
+}
+```
+
+An suggested solution can be found [here](../../exercises/6).
+
 [Table of Content](./toc.md) | [Previous Chapter](./05-pointers.md) | [Next Chapter: Threads and Concurrency](./07-thread.md)
 
 ## Further Readings

@@ -18,7 +18,8 @@ order: 6
 2. 将匹配的子串替换；
 3. 从某个串中取出符合条件的子串。
 
-正则表达式是由普通字符（例如 a 到 z）以及特殊字符组成的文字模式。模式描述在搜索文本时要匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。
+正则表达式是由普通字符（例如 a 到 z）以及特殊字符组成的文字模式。模式描述在搜索文本时要匹配的一个或多个字符串。
+正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。
 
 
 ### 普通字符
@@ -49,12 +50,12 @@ order: 6
 
 
 |字符|描述|
-|:---:|:------------------------------------------------------|
-|`*`|匹配前面的子表达式零次或多次。例如，`foo*` 能匹配 `fo` 以及 `foooo`。`*` 等价于`{0,}`。|
-|`+`|匹配前面的子表达式一次或多次。例如，`foo+` 能匹配 `foo` 以及 `foooo`，但不能匹配 `fo`。`+` 等价于 `{1,}`。|
-|`?`|匹配前面的子表达式零次或一次。例如，`Your(s)?` 可以匹配 `Your` 或 `Yours` 中的`Your` 。`?` 等价于 `{0,1}`。|
-|`{n}`| `n` 是一个非负整数。匹配确定的 `n` 次。例如，`o{2}` 不能匹配 `for` 中的 `o`，但是能匹配 `foo` 中的两个 `o`。|
-|`{n,}`| `n` 是一个非负整数。至少匹配 `n` 次。例如，`o{2,}` 不能匹配 `for` 中的 `o`，但能匹配 `foooooo` 中的所有 `o`。`o{1,}` 等价于 `o+`。`o{0,}` 则等价于 `o*`。|
+|:-----:|:------------------------------------------------------|
+|`*`    |匹配前面的子表达式零次或多次。例如，`foo*` 能匹配 `fo` 以及 `foooo`。`*` 等价于`{0,}`。|
+|`+`    |匹配前面的子表达式一次或多次。例如，`foo+` 能匹配 `foo` 以及 `foooo`，但不能匹配 `fo`。`+` 等价于 `{1,}`。|
+|`?`    |匹配前面的子表达式零次或一次。例如，`Your(s)?` 可以匹配 `Your` 或 `Yours` 中的`Your` 。`?` 等价于 `{0,1}`。|
+|`{n}`  | `n` 是一个非负整数。匹配确定的 `n` 次。例如，`o{2}` 不能匹配 `for` 中的 `o`，但是能匹配 `foo` 中的两个 `o`。|
+|`{n,}` | `n` 是一个非负整数。至少匹配 `n` 次。例如，`o{2,}` 不能匹配 `for` 中的 `o`，但能匹配 `foooooo` 中的所有 `o`。`o{1,}` 等价于 `o+`。`o{0,}` 则等价于 `o*`。|
 |`{n,m}`| `m` 和 `n` 均为非负整数，其中 `n` 小于等于 `m`。最少匹配 `n` 次且最多匹配 `m` 次。例如，`o{1,3}` 将匹配 `foooooo` 中的前三个 `o`。`o{0,1}` 等价于 `o?`。注意，在逗号和两个数之间不能有空格。|
 
 有了这两张表，我们通常就能够读懂几乎所有的正则表达式了。
@@ -77,7 +78,10 @@ C++11 提供的正则表达式库操作 `std::string` 对象，
 
 我们通过一个简单的例子来简单介绍这个库的使用。考虑下面的正则表达式:
 
-- `[a-z]+\.txt`: 在这个正则表达式中, `[a-z]` 表示匹配一个小写字母, `+` 可以使前面的表达式匹配多次，因此 `[a-z]+` 能够匹配一个小写字母组成的字符串。在正则表达式中一个 `.` 表示匹配任意字符，而 `\.` 则表示匹配字符 `.`，最后的 `txt` 表示严格匹配 `txt` 则三个字母。因此这个正则表达式的所要匹配的内容就是由纯小写字母组成的文本文件。
+- `[a-z]+\.txt`: 在这个正则表达式中, `[a-z]` 表示匹配一个小写字母, `+` 可以使前面的表达式匹配多次，
+因此 `[a-z]+` 能够匹配一个小写字母组成的字符串。
+在正则表达式中一个 `.` 表示匹配任意字符，而 `\.` 则表示匹配字符 `.`，
+最后的 `txt` 表示严格匹配 `txt` 则三个字母。因此这个正则表达式的所要匹配的内容就是由纯小写字母组成的文本文件。
 
 `std::regex_match` 用于匹配字符串和正则表达式，有很多不同的重载形式。
 最简单的一个形式就是传入 `std::string` 以及一个 `std::regex` 进行匹配，
@@ -90,7 +94,7 @@ C++11 提供的正则表达式库操作 `std::string` 对象，
 
 int main() {
     std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
-    // 在 C++ 中 `\` 会被作为字符串内的转义符，为使 `\.` 作为正则表达式传递进去生效，需要对 `\` 进行二次转义，从而有 `\\.`
+    // 在 C++ 中 \ 会被作为字符串内的转义符，为使 \. 作为正则表达式传递进去生效，需要对 \ 进行二次转义，从而有 \\.
     std::regex txt_regex("[a-z]+\\.txt");
     for (const auto &fname: fnames)
         std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
@@ -121,7 +125,7 @@ for(const auto &fname: fnames) {
 
 以上两个代码段的输出结果为：
 
-```
+```txt
 foo.txt: 1
 bar.txt: 1
 test: 0
@@ -132,7 +136,6 @@ foo.txt sub-match[1]: foo
 sub-match[0]: bar.txt
 bar.txt sub-match[1]: bar
 ```
-
 
 ## 总结
 
@@ -191,7 +194,7 @@ template<typename SERVER_TYPE>
 void start_server(SERVER_TYPE &server) {
 
     // process GET request for /match/[digit+numbers], e.g. GET request is /match/abc123, will return abc123
-    server.resource["^/match/([0-9a-zA-Z]+)/?$"]["GET"] = [](ostream& response, Request& request) {
+    server.resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
         string number=request.path_match[1];
         response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length() << "\r\n\r\n" << number;
     };
@@ -199,7 +202,7 @@ void start_server(SERVER_TYPE &server) {
     // peocess default GET request; anonymous function will be called if no other matches
     // response files in folder web/
     // default: index.html
-    server.default_resource["^/?(.*)$"]["GET"] = [](ostream& response, Request& request) {
+    server.default_resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
         string filename = "www/";
 
         string path = request.path_match[1];

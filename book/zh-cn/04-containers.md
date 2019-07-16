@@ -10,16 +10,18 @@ order: 4
 
 [TOC]
 
-## 4.1 std::array 和 std::forward\_list
+## 4.1 `std::array` 和 `std::forward_list`
 
-### std::array
+### `std::array`
 
 看到这个容器的时候肯定会出现这样的问题：
 
 1. 为什么要引入 `std::array` 而不是直接使用 `std::vector`？
 2. 已经有了传统数组，为什么要用 `std::array`?
 
-先回答第一个问题，与 `std::vector` 不同，`std::array` 对象的大小是固定的，如果容器大小是固定的，那么可以优先考虑使用 `std::array` 容器。另外由于 `std::vector` 是自动扩容的，当存入大量的数据后，并且对容器进行了删除操作，容器并不会自动归还被删除元素相应的内存，这时候就需要手动运行 `shrink_to_fit()` 释放这部分内存。
+先回答第一个问题，与 `std::vector` 不同，`std::array` 对象的大小是固定的，如果容器大小是固定的，那么可以优先考虑使用 `std::array` 容器。
+另外由于 `std::vector` 是自动扩容的，当存入大量的数据后，并且对容器进行了删除操作，
+容器并不会自动归还被删除元素相应的内存，这时候就需要手动运行 `shrink_to_fit()` 释放这部分内存。
 
 ```cpp
 std::vector<int> v;
@@ -98,21 +100,28 @@ foo(arr.data(), arr.size());
 std::sort(arr.begin(), arr.end());
 ```
 
-### std::forward\_list
+### `std::forward_list`
 
 `std::forward_list` 是一个列表容器，使用方法和 `std::list` 基本类似，因此我们就不花费篇幅进行介绍了。
 
-需要知道的是，和 `std::list` 的双向链表的实现不同，`std::forward_list` 使用单向链表进行实现，提供了 `O(1)` 复杂度的元素插入，不支持快速随机访问（这也是链表的特点），也是标准库容器中唯一一个不提供 `size()` 方法的容器。当不需要双向迭代时，具有比 `std::list` 更高的空间利用率。
+需要知道的是，和 `std::list` 的双向链表的实现不同，`std::forward_list` 使用单向链表进行实现，
+提供了 `O(1)` 复杂度的元素插入，不支持快速随机访问（这也是链表的特点），
+也是标准库容器中唯一一个不提供 `size()` 方法的容器。当不需要双向迭代时，具有比 `std::list` 更高的空间利用率。
 
 ## 4.2 无序容器
 
-我们已经熟知了传统 C++ 中的有序容器 `std::map`/`std::set`，这些元素内部通过红黑树进行实现，插入和搜索的平均复杂度均为 `O(log(size))`。在插入元素时候，会根据 `<` 操作符比较元素大小并判断元素是否相同，并选择合适的位置插入到容器中。当对这个容器中的元素进行遍历时，输出结果会按照 `<` 操作符的顺序来逐个遍历。
+我们已经熟知了传统 C++ 中的有序容器 `std::map`/`std::set`，这些元素内部通过红黑树进行实现，
+插入和搜索的平均复杂度均为 `O(log(size))`。在插入元素时候，会根据 `<` 操作符比较元素大小并判断元素是否相同，
+并选择合适的位置插入到容器中。当对这个容器中的元素进行遍历时，输出结果会按照 `<` 操作符的顺序来逐个遍历。
 
-而无序容器中的元素是不进行排序的，内部通过 Hash 表实现，插入和搜索元素的平均复杂度为 `O(constant)`，在不关心容器内部元素顺序时，能够获得显著的性能提升。
+而无序容器中的元素是不进行排序的，内部通过 Hash 表实现，插入和搜索元素的平均复杂度为 `O(constant)`，
+在不关心容器内部元素顺序时，能够获得显著的性能提升。
 
-C++11 引入了两组无序容器：`std::unordered_map`/`std::unordered_multimap` 和 `std::unordered_set`/`std::unordered_multiset`。
+C++11 引入了两组无序容器：`std::unordered_map`/`std::unordered_multimap` 和 
+`std::unordered_set`/`std::unordered_multiset`。
 
-它们的用法和原有的 `std::map`/`std::multimap`/`std::set`/`set::multiset` 基本类似，由于这些容器我们已经很熟悉了，便不一一举例，我们直接来比较一下`std::map`和`std::unordered_map`：
+它们的用法和原有的 `std::map`/`std::multimap`/`std::set`/`set::multiset` 基本类似，
+由于这些容器我们已经很熟悉了，便不一一举例，我们直接来比较一下`std::map`和`std::unordered_map`：
 
 ```cpp
 #include <iostream>
@@ -147,7 +156,7 @@ int main() {
 
 最终的输出结果为：
 
-```
+```txt
 std::unordered_map
 Key:[2] Value:[2]
 Key:[3] Value:[3]
@@ -159,9 +168,11 @@ Key:[2] Value:[2]
 Key:[3] Value:[3]
 ```
 
-## 4.3 元组 std::tuple
+## 4.3 元组 `std::tuple`
 
-了解过 Python 的程序员应该知道元组的概念，纵观传统 C++ 中的容器，除了 `std::pair` 外，似乎没有现成的结构能够用来存放不同类型的数据（通常我们会自己定义结构）。但 `std::pair` 的缺陷是显而易见的，只能保存两个元素。
+了解过 Python 的程序员应该知道元组的概念，纵观传统 C++ 中的容器，除了 `std::pair` 外，
+似乎没有现成的结构能够用来存放不同类型的数据（通常我们会自己定义结构）。
+但 `std::pair` 的缺陷是显而易见的，只能保存两个元素。
 
 ### 元组基本操作
 
@@ -267,7 +278,8 @@ std::cout << tuple_index(t, i) << std::endl;
 auto new_tuple = std::tuple_cat(get_student(1), std::move(t));
 ```
 
-马上就能够发现，应该如何快速遍历一个元组？但是我们刚才介绍了如何在运行期通过非常数索引一个 `tuple` 那么遍历就变得简单了，首先我们需要知道一个元组的长度，可以：
+马上就能够发现，应该如何快速遍历一个元组？但是我们刚才介绍了如何在运行期通过非常数索引一个 `tuple` 那么遍历就变得简单了，
+首先我们需要知道一个元组的长度，可以：
 
 ```cpp
 template <typename T>
