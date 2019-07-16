@@ -3,6 +3,7 @@
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
 //
 // 右值引用 rvalue reference
 

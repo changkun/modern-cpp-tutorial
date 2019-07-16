@@ -4,6 +4,7 @@
 // modern cpp tutorial
 //
 // created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
 //
 
 #include <initializer_list>
