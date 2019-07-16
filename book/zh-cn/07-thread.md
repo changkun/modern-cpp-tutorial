@@ -194,7 +194,7 @@ int main() {
     auto consumer = [&]() {
         while (true) {
             std::unique_lock<std::mutex> lock(mtx);
-            while (!notified) {  // avoid spurious wakeup
+            while (!notified) {  // 避免虚假唤醒
                 cv.wait(lock);
             }
             // 短暂取消锁，使得生产者有机会在消费者消费空前继续生产
@@ -230,7 +230,36 @@ int main() {
 
 ## 7.5 原子操作与内存一致性
 
+细心的读者可能会对前一小节中生产者消费者模型的例子可能存在编译器优化导致程序出错的情况产生疑惑。
+例如，布尔值 `notified` 没有被 `volatile` 修饰，编译器可能对此变量存在优化，例如将其作为一个寄存器的值，
+从而导致消费者线程永远无法观察到此值的变化。这是一个好问题，为了解释清楚这个问题，我们需要进一步讨论
+从 C++ 11 起引入的内存模型这一概念。我们首先来看一个问题，下面这段代码输出结果是多少？
 
+```cpp
+#include <thread>
+#include <iostream>
+
+int main() {
+    int a = 0;
+    volatile int flag = 0;
+
+    std::thread t1([&]() {
+        while (flag != 1);
+
+        int b = a;
+        std::cout << "b = " << b << std::endl;
+    });
+
+    std::thread t2([&]() {
+        a = 5;
+        flag = 1;
+    });
+
+    t1.join();
+    t2.join();
+    return 0;
+}
+```
 
 ## 7.6 事务内存
 
