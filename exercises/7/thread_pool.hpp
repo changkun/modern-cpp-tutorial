@@ -4,7 +4,8 @@
 // exercise solution - chapter 7
 // modern cpp tutorial
 //
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #ifndef THREAD_POOL_H

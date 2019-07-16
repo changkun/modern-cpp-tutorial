@@ -6,7 +6,7 @@ order: 5
 
 # Chapter 05 Standard Library: Pointers
 
-[Table of Content](./toc.md) | [Previous Chapter](./04-containers.md) | [Next Chapter: Standard Library: Regular Expression](./06-regex.md)
+[Table of Content](./toc.md) | [Previous Chapter](./04-containers.md) | [Next Chapter: Regular Expression](./06-regex.md)
 
 ## Further Readings
 

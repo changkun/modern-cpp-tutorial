@@ -1,7 +1,8 @@
 //
 // handler.hpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #include "server.base.hpp"

@@ -1,7 +1,8 @@
 //
 // server_https.hpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #ifndef SERVER_HTTPS_HPP

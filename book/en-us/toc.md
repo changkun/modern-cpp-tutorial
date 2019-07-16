@@ -30,6 +30,7 @@
       - Default template parameters
       - Variadic templates
       - Fold expression
+      - Non-type template parameter deduction
     + 2.6 Object-oriented
       - Delegate constructor
       - Inheritance constructor
@@ -68,11 +69,11 @@
     + 5.2 `std::shared_ptr`
     + 5.3 `std::unique_ptr`
 - [**Chapter 06 Standard Library: Regular Expression**](./06-regex.md)
-    + 6.1 Regular Expression Introduction
-        + Normal characters
+    + 6.1 Introduction
+        + Ordinary characters
         + Special characters
-        + Determinative
-    + 6.2 `std::regex` and related
+        + Quantifiers
+    + 6.2 `std::regex` and its related
         + `std::regex`
         + `std::regex_match`
         + `std::match_results`

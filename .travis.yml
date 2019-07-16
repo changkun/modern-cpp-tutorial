@@ -11,5 +11,8 @@ addons:
   ssh_known_hosts:
   - changkun.de
 
+script:
+  - make build
+
 after_success:
   scp -r website/public/modern-cpp/* $encrypted_server_user@changkun.de:$encrypted_server_path

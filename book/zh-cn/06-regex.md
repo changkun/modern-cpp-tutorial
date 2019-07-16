@@ -1,12 +1,10 @@
 ---
-title: 第 6 章 标准库：正则表达式
+title: 第 6 章 正则表达式
 type: book-zh-cn
 order: 6
 ---
 
-# 第 6 章 标准库：正则表达式
-
-> 内容修订中
+# 第 6 章 正则表达式
 
 [TOC]
 
@@ -59,21 +57,31 @@ order: 6
 |`{n,}`| `n` 是一个非负整数。至少匹配 `n` 次。例如，`o{2,}` 不能匹配 `for` 中的 `o`，但能匹配 `foooooo` 中的所有 `o`。`o{1,}` 等价于 `o+`。`o{0,}` 则等价于 `o*`。|
 |`{n,m}`| `m` 和 `n` 均为非负整数，其中 `n` 小于等于 `m`。最少匹配 `n` 次且最多匹配 `m` 次。例如，`o{1,3}` 将匹配 `foooooo` 中的前三个 `o`。`o{0,1}` 等价于 `o?`。注意，在逗号和两个数之间不能有空格。|
 
-有了这三张表，我们通常就能够读懂几乎所有的正则表达式了。
+有了这两张表，我们通常就能够读懂几乎所有的正则表达式了。
 
 ## 6.2 std::regex 及其相关
 
-对字符串内容进行匹配的最常见手段就是使用正则表达式。可惜在传统 C++ 中正则表达式一直没有得到语言层面的支持，没有纳入标准库，而 C++ 作为一门高性能语言，在后台服务的开发中，对 URL 资源链接进行判断时，使用正则表达式也是工业界最为成熟的普遍做法。
+对字符串内容进行匹配的最常见手段就是使用正则表达式。
+可惜在传统 C++ 中正则表达式一直没有得到语言层面的支持，没有纳入标准库，
+而 C++ 作为一门高性能语言，在后台服务的开发中，对 URL 资源链接进行判断时，
+使用正则表达式也是工业界最为成熟的普遍做法。
 
-一般的解决方案就是使用 `boost` 的正则表达式库。而 C++11 正式将正则表达式的的处理方法纳入标准库的行列，从语言级上提供了标准的支持，不再依赖第三方。
+一般的解决方案就是使用 `boost` 的正则表达式库。
+而 C++11 正式将正则表达式的的处理方法纳入标准库的行列，从语言级上提供了标准的支持，
+不再依赖第三方。
 
-C++11 提供的正则表达式库操作 `std::string` 对象，模式 `std::regex` (本质是 `std::basic_regex`)进行初始化，通过 `std::regex_match` 进行匹配，从而产生 `std::smatch` （本质是 `std::match_results` 对象）。
+C++11 提供的正则表达式库操作 `std::string` 对象，
+模式 `std::regex` (本质是 `std::basic_regex`)进行初始化，
+通过 `std::regex_match` 进行匹配，
+从而产生 `std::smatch` （本质是 `std::match_results` 对象）。
 
-我们通过一个简单的例子来简单介绍这个库的使用。考虑下面的正则表达式
+我们通过一个简单的例子来简单介绍这个库的使用。考虑下面的正则表达式:
 
 - `[a-z]+\.txt`: 在这个正则表达式中, `[a-z]` 表示匹配一个小写字母, `+` 可以使前面的表达式匹配多次，因此 `[a-z]+` 能够匹配一个小写字母组成的字符串。在正则表达式中一个 `.` 表示匹配任意字符，而 `\.` 则表示匹配字符 `.`，最后的 `txt` 表示严格匹配 `txt` 则三个字母。因此这个正则表达式的所要匹配的内容就是由纯小写字母组成的文本文件。
 
-`std::regex_match` 用于匹配字符串和正则表达式，有很多不同的重载形式。最简单的一个形式就是传入 `std::string` 以及一个 `std::regex` 进行匹配，当匹配成功时，会返回 `true`，否则返回 `false`。例如：
+`std::regex_match` 用于匹配字符串和正则表达式，有很多不同的重载形式。
+最简单的一个形式就是传入 `std::string` 以及一个 `std::regex` 进行匹配，
+当匹配成功时，会返回 `true`，否则返回 `false`。例如：
 
 ```cpp
 #include <iostream>
@@ -89,15 +97,19 @@ int main() {
 }
 ```
 
-另一种常用的形式就是依次传入 `std::string`/`std::smatch`/`std::regex` 三个参数，其中 `std::smatch` 的本质其实是 `std::match_results`，在标准库中， `std::smatch` 被定义为了 `std::match_results<std::string::const_iterator>`，也就是一个子串迭代器类型的 `match_results`。使用 `std::smatch` 可以方便的对匹配的结果进行获取，例如：
+另一种常用的形式就是依次传入 `std::string`/`std::smatch`/`std::regex` 三个参数，
+其中 `std::smatch` 的本质其实是 `std::match_results`。
+在标准库中， `std::smatch` 被定义为了 `std::match_results<std::string::const_iterator>`，
+也就是一个子串迭代器类型的 `match_results`。
+使用 `std::smatch` 可以方便的对匹配的结果进行获取，例如：
 
 ```cpp
 std::regex base_regex("([a-z]+)\\.txt");
 std::smatch base_match;
 for(const auto &fname: fnames) {
     if (std::regex_match(fname, base_match, base_regex)) {
-        // sub_match 的第一个元素匹配整个字符串
-        // sub_match 的第二个元素匹配了第一个括号表达式
+        // std::smatch 的第一个元素匹配整个字符串
+        // std::smatch 的第二个元素匹配了第一个括号表达式
         if (base_match.size() == 2) {
             std::string base = base_match[1].str();
             std::cout << "sub-match[0]: " << base_match[0].str() << std::endl;
@@ -126,9 +138,92 @@ bar.txt sub-match[1]: bar
 
 本节简单介绍了正则表达式本身，然后根据使用正则表达式的主要需求，通过一个实际的例子介绍了正则表达式库的使用。
 
-> 本节提到的内容足以让我们开发编写一个简单的 Web 框架中关于URL匹配的功能，请参考习题 TODO
+## 习题
 
-[返回目录](./toc.md) | [上一章](./05-pointers.md) | [下一章 标准库：线程与并发](./07-thread.md)
+1. 在 Web 服务器开发中，我们通常希望服务某些满足某个条件的路由。正则表达式便是完成这一目标的工具之一。
+
+给定如下请求结构：
+
+```cpp
+struct Request {
+    // request method, POST, GET; path; HTTP version
+    std::string method, path, http_version;
+    // use smart pointer for reference counting of content
+    std::shared_ptr<std::istream> content;
+    // hash container, key-value dict
+    std::unordered_map<std::string, std::string> header;
+    // use regular expression for path match
+    std::smatch path_match;
+};
+```
+
+请求的资源类型：
+
+```cpp
+typedef std::map<
+    std::string, std::unordered_map<
+        std::string,std::function<void(std::ostream&, Request&)>>> resource_type;
+```
+
+以及服务端模板：
+
+```cpp
+template <typename socket_type>
+class ServerBase {
+public:
+    resource_type resource;
+    resource_type default_resource;
+
+    void start() {
+        // TODO
+    }
+protected:
+    Request parse_request(std::istream& stream) const {
+        // TODO
+    }
+}
+```
+
+请实现成员函数 `start()` 与 `parse_request`。使得服务器模板使用者可以如下指定路由：
+
+```cpp
+template<typename SERVER_TYPE>
+void start_server(SERVER_TYPE &server) {
+
+    // process GET request for /match/[digit+numbers], e.g. GET request is /match/abc123, will return abc123
+    server.resource["^/match/([0-9a-zA-Z]+)/?$"]["GET"] = [](ostream& response, Request& request) {
+        string number=request.path_match[1];
+        response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length() << "\r\n\r\n" << number;
+    };
+
+    // peocess default GET request; anonymous function will be called if no other matches
+    // response files in folder web/
+    // default: index.html
+    server.default_resource["^/?(.*)$"]["GET"] = [](ostream& response, Request& request) {
+        string filename = "www/";
+
+        string path = request.path_match[1];
+
+        // forbidden use `..` access content outside folder web/
+        size_t last_pos = path.rfind(".");
+        size_t current_pos = 0;
+        size_t pos;
+        while((pos=path.find('.', current_pos)) != string::npos && pos != last_pos) {
+            current_pos = pos;
+            path.erase(pos, 1);
+            last_pos--;
+        }
+
+        // (...)
+    };
+
+    server.start();
+}
+```
+
+参考答案[见此](../../exercises/6)。
+
+[返回目录](./toc.md) | [上一章](./05-pointers.md) | [下一章 线程与并发](./07-thread.md)
 
 ## 进一步阅读的参考资料
 
