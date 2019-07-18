@@ -62,7 +62,7 @@ exclude_generator:
 # Markdown
 ## https://github.com/chjj/marked
 markdown:
-  gfm: true
+  gfm: false
   pedantic: false
   sanitize: false
   tables: true
