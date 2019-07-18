@@ -82,7 +82,7 @@
     + 7.2 Mutex and Critical Section
     + 7.3 Futures
     + 7.4 Condition Variable
-    + 7.5 Atomic Operation and Memory Order
+    + 7.5 Atomic Operation and Memory Model
     + 7.6 Transactional Memory
     + 7.7 Coroutine
 - [**Chapter 08 File System**](./08-filesystem.md)
