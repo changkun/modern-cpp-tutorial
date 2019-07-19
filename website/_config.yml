@@ -61,8 +61,8 @@ exclude_generator:
 
 # Markdown
 ## https://github.com/chjj/marked
-markdown:
-  gfm: false
+marked:
+  gfm: true
   pedantic: false
   sanitize: false
   tables: true
