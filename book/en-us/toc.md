@@ -93,7 +93,7 @@
     + 9.3 Literal
         + Raw String Literal
         + Custom String Literal
-    + 9.4 Math Library
+    + 9.4 Memory Alignment
 - [**Chapter 10 Outlook: Introduction of C++20**](./10-cpp20.md)
     + 10.1 Concept
     + 10.2 Range

@@ -159,6 +159,40 @@ Custom literals support four literals:
 3. String literals: A parameter table of the form `(const char *, size_t)` must be used;
 4. Character literals: Parameters can only be `char`, `wchar_t`, `char16_t`, `char32_t`.
 
+## 9.4 Memory Alignment
+
+C++ 11 introduces two new keywords, `alignof` and `alignas`, to support control of memory alignment.
+The `alignof` keyword can get a platform-dependent value of type `std::size_t` to query the alignment of the platform.
+Of course, we are sometimes not satisfied with this, and even want to customize the alignment of the structure. Similarly, C++ 11 introduces `alignas`.
+To reshape the alignment of a structure. Let's look at two examples:
+
+```cpp
+#include <iostream>
+
+struct Storage {
+    char      a;
+    int       b;
+    double    c;
+    long long d;
+};
+
+struct alignas(std::max_align_t) AlignasStorage {
+    char      a;
+    int       b;
+    double    c;
+    long long d;
+};
+
+int main() {
+    std::cout << alignof(Storage) << std::endl;
+    std::cout << alignof(AlignasStorage) << std::endl;
+    return 0;
+}
+```
+
+where `std::max_align_t` requires exactly the same alignment for each scalar type, so it has almost no difference in maximum scalars.
+In turn, the result on most platforms is `long double`, so the alignment requirement for `AlignasStorage` we get here is 8 or 16.
+
 ## Conclusion
 
 Several of the features introduced in this section are those that 
