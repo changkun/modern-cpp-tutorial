@@ -1,3 +1,12 @@
+//
+// 5.2.unique.ptr.cpp
+// chapter 05 start pointers and memory management
+// modern c++ tutorial
+//
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
+//
+
 #include <iostream>
 #include <memory>
 
@@ -14,28 +23,28 @@ void f(const Foo &) {
 int main() {
     std::unique_ptr<Foo> p1(std::make_unique<Foo>());
     
-    // p1 不空, 输出
+    // p1 is not empty, prints
     if (p1) p1->foo();
     {
         std::unique_ptr<Foo> p2(std::move(p1));
         
-        // p2 不空, 输出
+        // p2 is not empty, prints
         f(*p2);
         
-        // p2 不空, 输出
+        // p2 is not empty, prints
         if(p2) p2->foo();
         
-        // p1 为空, 无输出
+        // p1 is empty, no prints
         if(p1) p1->foo();
         
         p1 = std::move(p2);
         
-        // p2 为空, 无输出
+        // p2 is empty, no prints
         if(p2) p2->foo();
-        std::cout << "p2 被销毁" << std::endl;
+        std::cout << "p2 was destroied" << std::endl;
     }
-    // p1 不空, 输出
+    // p1 is not empty, prints
     if (p1) p1->foo();
     
-    // Foo 的实例会在离开作用域时被销毁
+    // Foo instance will be destroied when leaving the scope
 }

@@ -44,12 +44,12 @@ void foo(std::shared_ptr<int> i)
 }
 int main()
 {
-    // auto pointer = new int(10); // 非法, 不允许直接赋值
-    // 构造了一个 std::shared_ptr
+    // auto pointer = new int(10); // illegal, no direct assignment
+    // Constructed a std::shared_ptr
     auto pointer = std::make_shared<int>(10);
     foo(pointer);
     std::cout << *pointer << std::endl; // 11
-    // 离开作用域前，shared_ptr 会被析构，从而释放内存
+    // The shared_ptr will be destructed before leaving the scope
     return 0;
 }
 ```
@@ -137,7 +137,7 @@ int main() {
 }
 ```
 
-## 5.4 std::weak_ptr
+## 5.4 `std::weak_ptr`
 
 如果你仔细思考 `std::shared_ptr` 就会发现依然存在着资源无法释放的问题。看下面这个例子：
 
@@ -165,13 +165,13 @@ int main() {
 }
 ```
 
-运行结果是 A, B 都不会被销毁，这是因为 a,b 内部的 pointer 同时又引用了 `a,b`，这使得 `a,b` 的引用计数均变为了 2，而离开作用域时，`a,b` 智能指针被析构，却只能造成这块区域的引用计数减一，这样就导致了 `a,b` 对象指向的内存区域引用计数不为零，而外部已经没有办法找到这块区域了，也就造成了内存泄露，如图所示：
+运行结果是 A, B 都不会被销毁，这是因为 a,b 内部的 pointer 同时又引用了 `a,b`，这使得 `a,b` 的引用计数均变为了 2，而离开作用域时，`a,b` 智能指针被析构，却只能造成这块区域的引用计数减一，这样就导致了 `a,b` 对象指向的内存区域引用计数不为零，而外部已经没有办法找到这块区域了，也就造成了内存泄露，如图 5.1：
 
-![](../../assets/figures/pointers1.png)
+![图 5.1](../../assets/figures/pointers1.png)
 
-解决这个问题的办法就是使用弱引用指针 `std::weak_ptr`，`std::weak_ptr`是一种弱引用（相比较而言 `std::shared_ptr` 就是一种强引用）。弱引用不会引起引用计数增加，当换用弱引用时候，最终的释放流程如下图所示：
+解决这个问题的办法就是使用弱引用指针 `std::weak_ptr`，`std::weak_ptr`是一种弱引用（相比较而言 `std::shared_ptr` 就是一种强引用）。弱引用不会引起引用计数增加，当换用弱引用时候，最终的释放流程如图 5.2 所示：
 
-![](../../assets/figures/pointers2.png)
+![图 5.2](../../assets/figures/pointers2.png)
 
 在上图中，最后一步只剩下 B，而 B 并没有任何智能指针引用它，因此这块内存资源也会被释放。
 

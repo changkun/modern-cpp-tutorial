@@ -68,6 +68,7 @@
     + 5.1 RAII and reference counting
     + 5.2 `std::shared_ptr`
     + 5.3 `std::unique_ptr`
+    + 5.4 `std::weak_ptr`
 - [**Chapter 06 Regular Expression**](./06-regex.md)
     + 6.1 Introduction
         + Ordinary characters
