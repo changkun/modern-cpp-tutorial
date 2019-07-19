@@ -9,13 +9,7 @@
 
 #include <iostream>
 #include <thread>
-#include <iostream>
 #include <future>
-#include <thread>
-
-void foo() {
-
-}
 
 int main() {
     // pack a lambda expression that returns 7 into a std::packaged_task

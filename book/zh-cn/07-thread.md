@@ -8,13 +8,10 @@ order: 7
 
 [TOC]
 
-## 7.1 线程与并行
-
-### std::thread
+## 7.1 并行基础
 
 `std::thread` 用于创建一个执行的线程实例，所以它是一切并发编程的基础，使用时需要包含 `<thread>` 头文件，
-它提供了很多基本的线程操作，例如 `get_id()` 来获取所创建线程的线程 ID，
-例如使用 `join()` 来加入一个线程等等，例如：
+它提供了很多基本的线程操作，例如 `get_id()` 来获取所创建线程的线程 ID，使用 `join()` 来加入一个线程等等，例如：
 
 ```cpp
 #include <iostream>
@@ -76,7 +73,7 @@ int main() {
 `std::unique_lock` 的对象会以独占所有权（没有其他的 `unique_lock` 对象同时拥有某个 `mutex` 对象的所有权）
 的方式管理 `mutex` 对象上的上锁和解锁的操作。所以在并发编程中，推荐使用 `std::unique_lock`。
 
-`std::lock_guard` 不能显式的调用 `lock` 和 `unlock`， 而 `std::unique_lock` 可以在声明后的任意位置调用 ，
+`std::lock_guard` 不能显式的调用 `lock` 和 `unlock`， 而 `std::unique_lock` 可以在声明后的任意位置调用，
 可以缩小锁的作用范围，提供更高的并发度。
 
 如果你用到了条件变量 `std::condition_variable::wait` 则必须使用 `std::unique_lock` 作为参数。
@@ -525,7 +522,7 @@ struct A {
 
 ## 总结
 
-C++11 语言层提供了并发编程的相关支持，本节简单的介绍了 `std::thread`/`std::mutex`/`std::future` 这些并发编程中不可回避的重要工具。
+C++11 语言层提供了并发编程的相关支持，本节简单的介绍了 `std::thread`, `std::mutex`, `std::future` 这些并发编程中不可回避的重要工具。
 除此之外，我们还介绍了 C++11 最重要的几个特性之一的『内存模型』，
 它们为 C++ 在标准化高性能计算中提供了重要的基础。
 
@@ -545,7 +542,7 @@ C++11 语言层提供了并发编程的相关支持，本节简单的介绍了 `
     std::cout << f.get() << std::endl;
     ```
 
-2. 请使用 `std::atomic<book>` 实现一个互斥锁。
+2. 请使用 `std::atomic<bool>` 实现一个互斥锁。
 
 [返回目录](./toc.md) | [上一章](./06-regex.md) | [下一章 文件系统](./08-filesystem.md)
 

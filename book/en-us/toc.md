@@ -83,6 +83,9 @@
     + 7.3 Futures
     + 7.4 Condition Variable
     + 7.5 Atomic Operation and Memory Model
+        + Atomic Operation
+        + Concistency Model
+        + Memory Orders
 - [**Chapter 08 File System**](./08-filesystem.md)
     + 8.1 Documents and links
     + 8.2 `std::filesystem`
