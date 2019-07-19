@@ -1,11 +1,11 @@
 //
-// 8.2.cpp
+// 9.2.literals.cpp
+// chapter 09 others
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// literals
 
 #include <iostream>
 #include <string>

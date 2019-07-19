@@ -1,11 +1,11 @@
 //
-// 8.1.cpp
+// 9.1.noexcept.cpp
+// chapter 09 others
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// noexcept
 
 #include <iostream>
 

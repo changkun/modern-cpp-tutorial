@@ -1,3 +1,13 @@
+//
+// 9.3.alignment.cpp
+// chapter 09 others
+// modern c++ tutorial
+//
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
+//
+
+
 #include <iostream>
 
 struct Storage {

@@ -1,5 +1,5 @@
 //
-// 7.2.critical.section.a.cpp
+// 7.4.futures.cpp
 // chapter 7 parallelism and concurrency
 // modern c++ tutorial
 //

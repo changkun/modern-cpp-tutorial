@@ -1,5 +1,5 @@
 //
-// 7.5.cpp
+// 7.5.producer.consumer.cpp
 // chapter 7 parallelism and concurrency
 // modern c++ tutorial
 //

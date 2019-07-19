@@ -1,3 +1,12 @@
+//
+// 7.8.memory.order.cpp
+// chapter 7 parallelism and concurrency
+// modern c++ tutorial
+//
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
+//
+
 #include <atomic>
 #include <thread>
 #include <vector>

@@ -1,3 +1,12 @@
+//
+// 7.7.is.lock.free.cpp
+// chapter 7 parallelism and concurrency
+// modern c++ tutorial
+//
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
+//
+
 #include <atomic>
 #include <iostream>
 

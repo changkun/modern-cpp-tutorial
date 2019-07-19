@@ -1,11 +1,11 @@
 //
-// 6.1.cpp
+// 6.1.regex.cpp
+// chapter 06 regular expression
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// Regular Expression
 
 #include <iostream>
 #include <string>

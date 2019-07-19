@@ -1,3 +1,12 @@
+//
+// 7.6.bad.example.cpp
+// chapter 7 parallelism and concurrency
+// modern c++ tutorial
+//
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
+//
+
 #include <thread>
 #include <iostream>
 
