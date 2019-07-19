@@ -22,7 +22,7 @@
 你可以选择以下几种阅读方式：
 
 1. [GitHub 在线](./book/zh-cn/toc.md)
-2. [PDF 文档](./pdf/zh-cn/modern-cpp-tutorial.pdf)
+2. [PDF 文档](https://changkun.de/modern-cpp/modern-cpp-tutorial-zh-cn.pdf)
 3. [网站](https://changkun.de/modern-cpp/)
 
 ## 相关代码

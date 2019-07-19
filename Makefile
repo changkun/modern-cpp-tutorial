@@ -1,6 +1,6 @@
 DOCKER_ENV=changkun/modern-cpp-tutorial:build-env
 LANGS = zh-cn en-us
-ALL_BUILDS = pdf website
+ALL_BUILDS = website pdf
 
 # dep
 
@@ -9,6 +9,8 @@ all: $(ALL_BUILDS)
 pdf: $(LANGS)
 $(LANGS):
 	cd pdf/$@ && make && make clean
+	mkdir -p website/public/modern-cpp/pdf
+	mv pdf/$@/modern-cpp-tutorial.pdf website/public/modern-cpp/pdf/modern-cpp-tutorial-$@.pdf
 
 website:
 	cd website && make
