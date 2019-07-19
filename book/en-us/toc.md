@@ -56,13 +56,15 @@
         + Move semantics
         + Perfect forwarding
 - [**Chapter 04 Containers**](./04-containers.md)
-    + 4.1 `std::array` and `std::forward_list`
+    + 4.1 Linear containers
+        + `std::array`
+        + `std::forward_list`
     + 4.2 Unordered containers
-      + `std::unordered_set`
-      + `std::unordered_map`
+        + `std::unordered_set`
+        + `std::unordered_map`
     + 4.3 Tuples `std::tuple`
         + basic operation
-        + runtime indexing
+        + runtime indexing `std::variant`
         + merge and iteration
 - [**Chapter 05 Smart Pointers and Memory Management**](./05-pointers.md)
     + 5.1 RAII and reference counting

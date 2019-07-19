@@ -1,11 +1,11 @@
 //
-// 4.2.cpp
+// 4.2.unordered.map.cpp
+// chapter 04 containers
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// 无序容器
 
 #include <iostream>
 #include <string>
@@ -13,7 +13,7 @@
 #include <map>
 
 int main() {
-    // 两组结构按同样的顺序初始化
+    // initialized in same order
     std::unordered_map<int, std::string> u = {
         {1, "1"},
         {3, "3"},
@@ -25,7 +25,7 @@ int main() {
         {2, "2"}
     };
     
-    // 分别对两组结构进行遍历
+    // iterates in the same way
     std::cout << "std::unordered_map" << std::endl;
     for( const auto & n : u)
         std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";

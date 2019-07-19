@@ -56,13 +56,15 @@
         + 移动语义
         + 完美转发
 - [**第 4 章 标准库: 容器**](./04-containers.md)
-    + 4.1 `std::array` 和 `std::forward_list`
+    + 4.1 线性容器
+        + `std::array`
+        + `std::forward_list`
     + 4.2 无序容器
         + `std::unordered_set`
         + `std::unordered_map`
     + 4.3 元组 `std::tuple`
         + 基本操作
-        + 运行期索引
+        + 运行期索引 `std::variant`
         + 合并与迭代
 - [**第 5 章 标准库: 指针**](./05-pointers.md)
     + 5.1 RAII 与引用计数
