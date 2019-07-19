@@ -83,8 +83,6 @@
     + 7.3 Futures
     + 7.4 Condition Variable
     + 7.5 Atomic Operation and Memory Model
-    + 7.6 Transactional Memory
-    + 7.7 Coroutine
 - [**Chapter 08 File System**](./08-filesystem.md)
     + 8.1 Documents and links
     + 8.2 `std::filesystem`
@@ -97,10 +95,11 @@
         + Custom String Literal
     + 9.4 Math Library
 - [**Chapter 10 Outlook: Introduction of C++20**](./10-cpp20.md)
-    + Concept
-    + Range
-    + Module
-    + Coroutine
+    + 10.1 Concept
+    + 10.2 Range
+    + 10.3 Module
+    + 10.4 Coroutine
+    + 10.5 Transaction Memory
 - [**Appendix 1: Further Study Materials**](./appendix1.md)
 - [**Appendix 2: Modern C++ Best Practices**](./appendix2.md)
 
