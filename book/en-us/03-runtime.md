@@ -6,7 +6,7 @@ order: 3
 
 # Chapter 03: Language Runtime Enhancements
 
-[Table of Content](./toc.md) | [Previous Chapter](./02-usability.md) | [Next Chapter: Standard Library: Containers](./04-containers.md)
+[Table of Content](./toc.md) | [Previous Chapter](./02-usability.md) | [Next Chapter: Containers](./04-containers.md)
 
 ## Further Readings
 

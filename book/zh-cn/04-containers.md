@@ -1,12 +1,10 @@
 ---
-title: 第 4 章 标准库：容器
+title: 第 4 章 容器
 type: book-zh-cn
 order: 4
 ---
 
-# 第 4 章 标准库：容器
-
-> 内容修订中
+# 第 4 章 容器
 
 [TOC]
 
@@ -303,7 +301,7 @@ for(int i = 0; i != tuple_len(new_tuple); ++i)
 
 `std::tuple` 虽然有效，但是标准库提供的功能有限，没办法满足运行期索引和迭代的需求，好在我们还有其他的方法可以自行实现。
 
-[返回目录](./toc.md) | [上一章](./03-runtime.md) | [下一章 标准库：指针](./05-pointers.md)
+[返回目录](./toc.md) | [上一章](./03-runtime.md) | [下一章 智能指针与内存管理](./05-pointers.md)
 
 ## 许可
 

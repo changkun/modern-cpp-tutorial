@@ -55,7 +55,7 @@
         + rvalue reference & lvalue reference
         + Move semantics
         + Perfect forwarding
-- [**Chapter 04 Standard Library: Containers**](./04-containers.md)
+- [**Chapter 04 Containers**](./04-containers.md)
     + 4.1 `std::array` and `std::forward_list`
     + 4.2 Unordered containers
       + `std::unordered_set`
@@ -64,11 +64,11 @@
         + basic operation
         + runtime indexing
         + merge and iteration
-- [**Chapter 05 Standard Library: Pointers**](./05-pointers.md)
+- [**Chapter 05 Smart Pointers and Memory Management**](./05-pointers.md)
     + 5.1 RAII and reference counting
     + 5.2 `std::shared_ptr`
     + 5.3 `std::unique_ptr`
-- [**Chapter 06 Standard Library: Regular Expression**](./06-regex.md)
+- [**Chapter 06 Regular Expression**](./06-regex.md)
     + 6.1 Introduction
         + Ordinary characters
         + Special characters

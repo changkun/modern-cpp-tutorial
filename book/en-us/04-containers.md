@@ -1,12 +1,12 @@
 ---
-title: "Chapter 04 Standard Library: Containers"
+title: "Chapter 04 Containers"
 type: book-en-us
 order: 4
 ---
 
-# Chapter 04 Standard Library: Containers
+# Chapter 04 Containers
 
-[Table of Content](./toc.md) | [Previous Chapter](./03-runtime.md) | [Next Chapter: Standard Library: Pointers](./05-pointers.md)
+[Table of Content](./toc.md) | [Previous Chapter](./03-runtime.md) | [Next Chapter: Smart Pointers and Memory Management](./05-pointers.md)
 
 ## Further Readings
 

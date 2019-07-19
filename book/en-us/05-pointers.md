@@ -1,10 +1,10 @@
 ---
-title: "Chapter 05 Standard Library: Pointers"
+title: "Chapter 05 Smart Pointers and Memory Management"
 type: book-en-us
 order: 5
 ---
 
-# Chapter 05 Standard Library: Pointers
+# Chapter 05 Smart Pointers and Memory Management
 
 [Table of Content](./toc.md) | [Previous Chapter](./04-containers.md) | [Next Chapter: Regular Expression](./06-regex.md)
 
