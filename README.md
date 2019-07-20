@@ -25,7 +25,7 @@ In addition, The author would like to encourage that readers should be able to u
 You can choose from the following reading methods:
 
 - [GitHub Online](./book/en-us/toc.md)
-- [PDF document](https://changkun.de/modern-cpp/modern-cpp-tutorial-en-us.pdf)
+- [PDF document](https://changkun.de/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf)
 - [Website](https://changkun.de/modern-cpp)
 
 ## Code
