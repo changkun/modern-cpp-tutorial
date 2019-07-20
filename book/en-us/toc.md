@@ -42,17 +42,13 @@
 - [**Chapter 03 Language Runtime Enhancements**](./03-runtime.md)
     + 3.1 Lambda expression
         + Basics
-            + Value capture
-            + Reference capture
-            + Implicit capture
-            + Expression capture
-        + Generic lambda
+        + Generics
     + 3.2 Function object wrapper
         + std::function
         + std::bind/std::placeholder
     + 3.3 rvalue reference
         + lvalue, rvalue, prvalue, xvalue
-        + rvalue reference & lvalue reference
+        + rvalue reference and lvalue reference
         + Move semantics
         + Perfect forwarding
 - [**Chapter 04 Containers**](./04-containers.md)
@@ -87,7 +83,7 @@
     + 7.4 Condition Variable
     + 7.5 Atomic Operation and Memory Model
         + Atomic Operation
-        + Concistency Model
+        + Consistency Model
         + Memory Orders
 - [**Chapter 08 File System**](./08-filesystem.md)
     + 8.1 Documents and links

@@ -41,15 +41,11 @@
       - 强类型枚举
 - [**第 3 章 语言运行期的强化**](./03-runtime.md)
     + 3.1 lambda 表达式
-        + lambda 表达式基础
-            + 值捕获
-            + 引用捕获
-            + 隐式捕获
-            + 表达式捕获
-        + 泛型 lambda
+        + 基础
+        + 泛型
     + 3.2 函数对象包装器
         + std::function
-        + std::bind/std::placeholder
+        + std::bind 和 std::placeholder
     + 3.3 右值引用
         + 左值、右值的纯右值、将亡值、右值
         + 右值引用和左值引用

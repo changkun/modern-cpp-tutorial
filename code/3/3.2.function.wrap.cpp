@@ -1,16 +1,16 @@
 //
-// 3.2.cpp
+// 3.2.function.wrap.cpp
+// chapter 03 runtime enhancement
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// std::function std::bind
 
 #include <functional>
 #include <iostream>
 
-using foo = void(int);  // 定义函数指针
+using foo = void(int);  // function pointer
 void functional(foo f) {
     f(1);
 }
@@ -24,29 +24,28 @@ int foo3(int a, int b, int c) {
 }
 
 int main() {
-    
+
     auto f = [](int value) {
         std::cout << value << std::endl;
     };
-    functional(f);  // 函数指针调用
-    f(1);           // lambda 表达式调用
-    
-    // std::function 包装了一个返回值为 int, 参数为 int 的函数
+    functional(f);  // call by function pointer
+    f(1);           // call by lambda expression
+
+    // std::function wraps a function that take int paremeter and returns int value
     std::function<int(int)> func = foo2;
-    
+
     int important = 10;
     std::function<int(int)> func2 = [&](int value) -> int {
         return 1+value+important;
     };
     std::cout << func(10) << std::endl;
     std::cout << func2(10) << std::endl;
-    
-    
-    // 将参数1,2绑定到函数 foo 上，但是使用 std::placeholders::_1 来对第一个参数进行占位
+
+    // bind parameter 1, 2 on function foo, and use std::placeholders::_1 as placeholder
+    // for the first parameter.
     auto bindFoo = std::bind(foo3, std::placeholders::_1, 1,2);
-    // 这时调用 bindFoo 时，只需要提供第一个参数即可
+    // when call bindFoo, we only need one param left
     bindFoo(1);
-    
-    
+
     return 0;
 }
