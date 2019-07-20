@@ -8,7 +8,7 @@ chapters = ['00-preface.md', '01-intro.md',  '02-usability.md', '03-runtime.md',
 ignores = ['TOC', '返回目录', '许可', 'license']
 
 head = """---
-title: "高速上手 C++11/14/17/20"
+title: "现代 C++ 教程：高速上手 C++11/14/17/20"
 author: 欧长坤 <hi@changkun.us>
 copyright: cc-by-nc-nd 4.0
 ---

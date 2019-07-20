@@ -1,6 +1,6 @@
 <img src="assets/cover-2nd-en.png" alt="logo" height="550" align="right" />
 
-# C++11/14/17/20 On the Fly
+# Modern C++ Tutorial: C++11/14/17/20 On the Fly
 
 [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./assets/community.md)
 

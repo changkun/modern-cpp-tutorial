@@ -10,7 +10,7 @@ ignores = ['TOC', 'Table of Content', 'License', 'license']
 
 with open('modern-cpp-tutorial.md', 'w') as outfile:
     outfile.write("""---
-title: "C++11/14/17/20 On the Fly"
+title: "Modern C++ Tutorial: C++11/14/17/20 On the Fly"
 author: Changkun Ou <hi@changkun.us>
 copyright: cc-by-nc-nd 4.0
 ---

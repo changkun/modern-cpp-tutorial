@@ -1,6 +1,6 @@
 <img src="assets/cover-2nd.png" alt="logo" height="550" align="right" />
 
-# 《高速上手 C++11/14/17/20》
+# 现代 C++ 教程：高速上手 C++11/14/17/20
 
 [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./assets/community.md)
 
