@@ -1,11 +1,10 @@
 //
-// 2.8.cpp
+// 2.20.strong.type.enum.cpp
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// 强类型枚举
 
 #include <iostream>
 template<typename T>
@@ -14,7 +13,7 @@ std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::os
     return stream << static_cast<typename std::underlying_type<T>::type>(e);
 }
 
-// 如果两个都定义为 value1 和 value2，将引发重定义错误
+// there will be compile error if all define value1 和 value2
 enum Left {
     left_value1 = 1,
     left_value2
@@ -37,8 +36,8 @@ int main() {
         std::cout << "Left::value1 == Right::value2" << std::endl;
     }
     
-    // 引发编译错误
-    // if(new_enum::value1 == 1) {
+    // compile error
+    // if(new_enum::left_value1 == 1) {
     //     std::cout << "true!" << std::endl;
     // }
     if (new_enum::value3 == new_enum::value4) {

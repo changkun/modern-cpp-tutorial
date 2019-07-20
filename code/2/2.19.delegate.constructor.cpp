@@ -1,11 +1,11 @@
 //
-// 2.7.cpp
+// 2.19.constructor.cpp
+// chapter 2 language usability
 // modern c++ tutorial
 //
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-// 面向对象增强
 
 #include <iostream>
 #include <string>
@@ -18,12 +18,12 @@ public:
         str = s;
     }
     
-    // 委托构造
+    // delegate constructor
     Base(std::string s, int v) : Base(s) {
         value = v;
     }
     
-    // 终止重载
+    // final constructor
     virtual void foo() final {
         return;
     }
@@ -36,26 +36,26 @@ public:
     double floating;
     Subclass() = delete;
     
-    // 继承构造
+    // inherit constructor
     Subclass(double f, int v, std::string s) : Base(s, v) {
         floating = f;
     }
     
-    // 显式重载
+    // explifict constructor
     virtual void foo(int v) override {
         std::cout << v << std::endl;
         value = v;
     }
-};  // 合法 final
+};  // legal final
 
 // class Subclass2 : Subclass {
-// };  // 非法, Subclass 已 final
+// };  // illegal, Subclass has final
 // class Subclass3 : Base {
-//    void foo(); // 非法, foo 已 final
+//    void foo(); // illegal, foo has final
 // }
 
 int main() {
-    // Subclass oops; // 非法, 默认构造已删除
+    // Subclass oops; // illegal, default constructor has deleted
     Subclass s(1.2, 3, "abc");
     
     s.foo(1);
