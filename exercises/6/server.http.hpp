@@ -1,7 +1,8 @@
 //
 // server_http.hpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #ifndef SERVER_HTTP_HPP
@@ -9,7 +10,7 @@
 
 #include "server.base.hpp"
 
-namespace LabexWeb {
+namespace Web {
     typedef boost::asio::ip::tcp::socket HTTP;
     template<>
     class Server<HTTP> : public ServerBase<HTTP> {

@@ -1,7 +1,8 @@
 //
 // server_https.hpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #ifndef SERVER_HTTPS_HPP
@@ -10,7 +11,7 @@
 #include "server.http.hpp"
 #include <boost/asio/ssl.hpp>
 
-namespace LabexWeb {
+namespace Web {
 
     // define HTTPS type
     typedef boost::asio::ssl::stream<boost::asio::ip::tcp::socket> HTTPS;

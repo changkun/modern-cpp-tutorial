@@ -1,9 +1,18 @@
 <div id="header">
   <a id="logo" href="<%- url_for("/modern-cpp/") %>">
-    <img src="<%- url_for("/modern-cpp/assets/cover-2nd.png") %>">
-    <span>高速上手 C++ 11/14/17</span><sup class="beta">beta</sup>
+    <% if (page.type == 'book-en-us') { %>
+      <img src="<%- url_for("/modern-cpp/assets/cover-2nd-en.png") %>">
+      <span>Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</span>
+    <% } else {%>
+      <img src="<%- url_for("/modern-cpp/assets/cover-2nd.png") %>">
+      <span>现代 C++ 教程：高速上手 C++ 11/14/17/20</span>
+    <% } %>
   </a>
   <ul id="nav">
-    <%- partial('partials/main_menu', { context: 'nav' }) %>
+    <% if (page.type == 'book-en-us') { %>
+      <%- partial('partials/main_menu_en', { context: 'nav' }) %>
+    <% } else {%>
+      <%- partial('partials/main_menu', { context: 'nav' }) %>
+    <% } %>
   </ul>
 </div>

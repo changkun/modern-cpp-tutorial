@@ -1,14 +1,15 @@
 //
 // main_http.cpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #include <iostream>
 #include "server.http.hpp"
 #include "handler.hpp"
 
-using namespace LabexWeb;
+using namespace Web;
 
 int main() {
     // HTTP server runs in port 12345 HTTP, enable 4 threads

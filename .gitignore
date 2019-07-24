@@ -36,6 +36,11 @@ pdf/zh-cn/*.md
 
 website/db.json
 website/public/*
-website/src/modern-cpp/book/*
+website/src/modern-cpp/zh-cn/*
+website/src/modern-cpp/en-us/*
+website/src/modern-cpp/exercises
+website/src/modern-cpp/code
+website/src/modern-cpp/assets/cover-2nd-en.png
 website/src/modern-cpp/assets/cover-2nd.png
+website/src/modern-cpp/assets/qq-group.png
 website/src/modern-cpp/assets/figures/*

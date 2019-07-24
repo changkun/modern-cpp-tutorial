@@ -4,6 +4,7 @@
 // modern cpp tutorial
 //
 // created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
 //
 
 #include <iostream>
@@ -13,13 +14,12 @@
 int main() {
     std::vector<int> vec = {1, 2, 3, 4};
 
-    // before c++17, can be simplefied by using `auto`
+    // after c++17, can be simplefied by using `auto`
     const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 2);
     if (itr != vec.end()) {
         *itr = 3;
     }
 
-    // after c++17, can be simplefied by using `auto`
     if (const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 3);
         itr != vec.end()) {
         *itr = 4;

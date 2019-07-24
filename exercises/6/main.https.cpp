@@ -1,12 +1,13 @@
 //
 // main_https.cpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 #include <iostream>
 #include "server.https.hpp"
 #include "handler.hpp"
-using namespace LabexWeb;
+using namespace Web;
 
 int main() {
     // HTTPS server runs in port 12345, enable 4 threads

@@ -4,6 +4,7 @@
 // modern cpp tutorial
 //
 // created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial
 //
 
 #include <iostream>
@@ -19,5 +20,5 @@ template<bool T> class MagicType {
 int main() {
     // the >> in template
     std::vector<std::vector<int>> matrix;
-    std::vector<MagicType<(1>2)>> magic;
+    std::vector<MagicType<(1>2)>> magic; // legal, but not recommended
 }

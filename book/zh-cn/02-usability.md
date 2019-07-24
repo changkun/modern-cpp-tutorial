@@ -112,7 +112,7 @@ int main() {
 
     std::cout << fibonacci(10) << std::endl;
     // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
-
+    std::cout << fibonacci(10) << std::endl;
     return 0;
 }
 ```
@@ -131,7 +131,7 @@ constexpr int fibonacci(const int n) {
 }
 ```
 
-从 C++14 开始，constexptr 函数可以在内部使用局部变量、循环和分支等简单语句，例如下面的代码在 C++11 的标准下是不能够通过编译的：
+从 C++14 开始，constexpr 函数可以在内部使用局部变量、循环和分支等简单语句，例如下面的代码在 C++11 的标准下是不能够通过编译的：
 
 ```cpp
 constexpr int fibonacci(const int n) {
@@ -195,7 +195,12 @@ if (const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 3);
 
 ### 初始化列表
 
-初始化是一个非常重要的语言特性，最常见的就是在对象进行初始化时进行使用。在传统 C++ 中，不同的对象有着不同的初始化方法，例如普通数组、POD （**P**lain **O**ld **D**ata，即没有构造、析构和虚函数的类或结构体）类型都可以使用 `{}` 进行初始化，也就是我们所说的初始化列表。而对于类对象的初始化，要么需要通过拷贝构造、要么就需要使用 `()` 进行。这些不同方法都针对各自对象，不能通用。例如：
+初始化是一个非常重要的语言特性，最常见的就是在对象进行初始化时进行使用。
+在传统 C++ 中，不同的对象有着不同的初始化方法，例如普通数组、
+POD （**P**lain **O**ld **D**ata，即没有构造、析构和虚函数的类或结构体）
+类型都可以使用 `{}` 进行初始化，也就是我们所说的初始化列表。
+而对于类对象的初始化，要么需要通过拷贝构造、要么就需要使用 `()` 进行。
+这些不同方法都针对各自对象，不能通用。例如：
 
 ```cpp
 #include <iostream>
@@ -258,15 +263,15 @@ public:
 magicFoo.foo({6,7,8,9});
 ```
 
-
 其次，C++11 还提供了统一的语法来初始化任意的对象，例如：
+
 ```cpp
 Foo foo2 {3, 4};
 ```
 
 ### 结构化绑定
 
-结构化绑定提供了类似其他语言中提供的多返回值的功能。在[标准库扩充：容器]()一章中，我们会学到 C++11 新增了 `std::tuple` 容器用于构造一个元组，进而囊括多个返回值。但缺陷是，C++11/14 并没有提供一种简单的方法直接从元组中拿到并定义元组中的元素，尽管我们可以使用 `std::tie` 对元组进行拆包，但我们依然必须非常清楚这个元组包含多少个对象，各个对象是什么类型，非常麻烦。
+结构化绑定提供了类似其他语言中提供的多返回值的功能。在容器一章中，我们会学到 C++11 新增了 `std::tuple` 容器用于构造一个元组，进而囊括多个返回值。但缺陷是，C++11/14 并没有提供一种简单的方法直接从元组中拿到并定义元组中的元素，尽管我们可以使用 `std::tie` 对元组进行拆包，但我们依然必须非常清楚这个元组包含多少个对象，各个对象是什么类型，非常麻烦。
 
 C++17 完善了这一设定，给出的结构化绑定可以让我们写出这样的代码：
 
@@ -401,9 +406,10 @@ type z == type x
 ```cpp
 template<typename R, typename T, typename U>
 R add(T x, U y) {
-return x+y
+    return x+y
 }
 ```
+
 > 注意：typename 和 class 在模板参数列表中没有区别，在 typename 这个关键字出现之前，都是使用 class 来定义模板参数的。但在模板中定义有[嵌套依赖类型](http://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names)的变量时，需要用 typename 消除歧义
 
 
@@ -454,7 +460,6 @@ std::cout << "q: " << q << std::endl;
 
 > 要理解它你需要知道 C++ 中参数转发的概念，我们会在[语言运行时强化](./03-runtime.md)一章中详细介绍，你可以到时再回来看这一小节的内容。
 
-
 简单来说，`decltype(auto)` 主要用于对转发函数或封装的返回类型进行推导，它使我们无需显式的指定 `decltype` 的参数表达式。考虑看下面的例子，当我们需要对下面两个函数进行封装时：
 
 ```cpp
@@ -491,7 +496,7 @@ decltype(auto) look_up_a_string_2() {
 
 正如本章开头出，我们知道了 C++11 引入了 `constexpr` 关键字，它将表达式或函数编译为常量结果。一个很自然的想法是，如果我们把这一特性引入到条件判断中去，让代码在编译时就完成分支判断，岂不是能让程序效率更高？C++17 将 `constexpr` 这个关键字引入到 `if` 语句中，允许在代码中声明常量表达式的判断条件，考虑下面的代码：
 
-```Cpp
+```cpp
 #include <iostream>
 
 template<typename T>
@@ -636,7 +641,10 @@ auto add(T x, U y) -> decltype(x+y) {
 
 ### 变长参数模板
 
-模板一直是 C++ 所独有的**黑魔法**（一起念：**Dark Magic**）之一。在 C++11 之前，无论是类模板还是函数模板，都只能按其指定的样子，接受一组固定数量的模板参数；而 C++11 加入了新的表示方法，允许任意个数、任意类别的模板参数，同时也不需要在定义时将参数的个数固定。
+模板一直是 C++ 所独有的**黑魔法**（一起念：**Dark Magic**）之一。
+在 C++11 之前，无论是类模板还是函数模板，都只能按其指定的样子，
+接受一组固定数量的模板参数；而 C++11 加入了新的表示方法，
+允许任意个数、任意类别的模板参数，同时也不需要在定义时将参数的个数固定。
 
 ```cpp
 template<typename... Ts> class Magic;
@@ -651,7 +659,7 @@ class Magic<int,
             std::vector<int>>> darkMagic;
 ```
 
-既然是任意形式，所以个数为0的模板参数也是可以的：`class Magic<> nothing;`。
+既然是任意形式，所以个数为 0 的模板参数也是可以的：`class Magic<> nothing;`。
 
 如果不希望产生的模板参数个数为0，可以手动的定义至少一个模板参数：
 
@@ -659,7 +667,13 @@ class Magic<int,
 template<typename Require, typename... Args> class Magic;
 ```
 
-变长参数模板也能被直接调整到到模板函数上。传统 C 中的 printf 函数，虽然也能达成不定个数的形参的调用，但其并非类别安全。而 C++11 除了能定义类别安全的变长参数函数外，还可以使类似 printf 的函数能自然地处理非自带类别的对象。除了在模板参数中能使用 `...` 表示不定长模板参数外，函数参数也使用同样的表示法代表不定长参数，这也就为我们简单编写变长参数函数提供了便捷的手段，例如：
+变长参数模板也能被直接调整到到模板函数上。传统 C 中的 `printf` 函数，
+虽然也能达成不定个数的形参的调用，但其并非类别安全。
+而 C++11 除了能定义类别安全的变长参数函数外，
+还可以使类似 printf 的函数能自然地处理非自带类别的对象。
+除了在模板参数中能使用 `...` 表示不定长模板参数外，
+函数参数也使用同样的表示法代表不定长参数，
+这也就为我们简单编写变长参数函数提供了便捷的手段，例如：
 
 ```cpp
 template<typename... Args> void printf(const std::string &str, Args... args);
@@ -670,11 +684,12 @@ template<typename... Args> void printf(const std::string &str, Args... args);
 首先，我们可以使用 `sizeof...` 来计算参数的个数，：
 
 ```cpp
-template<typename... Args>
-void magic(Args... args) {
+template<typename... Ts>
+void magic(Ts... args) {
     std::cout << sizeof...(args) << std::endl;
 }
 ```
+
 我们可以传递任意个参数给 `magic` 函数：
 
 ```cpp
@@ -692,62 +707,54 @@ magic(1, ""); // 输出2
 ```cpp
 #include <iostream>
 template<typename T0>
-void printf(T0 value) {
+void printf1(T0 value) {
     std::cout << value << std::endl;
 }
-template<typename T, typename... Args>
-void printf(T value, Args... args) {
+template<typename T, typename... Ts>
+void printf1(T value, Ts... args) {
     std::cout << value << std::endl;
-    printf(args...);
+    printf1(args...);
 }
 int main() {
-printf(1, 2, "123", 1.1);
-return 0;
+    printf1(1, 2, "123", 1.1);
+    return 0;
 }
 ```
+
+**2. 变参模板展开**
 
 你应该感受到了这很繁琐，在 C++17 中增加了变参模板展开的支持，于是你可以在一个函数中完成 `printf` 的编写：
 
 ```cpp
 template<typename T0, typename... T>
-void printf(T0 t0, T... t) {
+void printf2(T0 t0, T... t) {
     std::cout << t0 << std::endl;
-    if constexpr (sizeof...(t) > 0) printf(t...);
+    if constexpr (sizeof...(t) > 0) printf2(t...);
 }
 ```
 
+> 事实上，有时候我们虽然使用了变参模板，却不一定需要对参数做逐个遍历，我们可以利用 `std::bind` 及完美转发等特性实现对函数和参数的绑定，从而达到成功调用的目的。
 
-
-**2. 初始化列表展开**
-
-> 这个方法需要之后介绍的知识，读者可以简单阅读一下，将这个代码段保存，在后面的内容了解过了之后再回过头来阅读此处方法会大有收获。
+**3. 初始化列表展开**
 
 递归模板函数是一种标准的做法，但缺点显而易见的在于必须定义一个终止递归的函数。
 
 这里介绍一种使用初始化列表展开的黑魔法：
 
 ```cpp
-// 编译这个代码需要开启 -std=c++14
-template<typename T, typename... Args>
-auto print(T value, Args... args) {
+template<typename T, typename... Ts>
+auto printf3(T value, Ts... args) {
     std::cout << value << std::endl;
-    return std::initializer_list<T>{([&] {
+    (void) std::initializer_list<T>{([&args] {
         std::cout << args << std::endl;
     }(), value)...};
 }
-int main() {
-    print(1, 2.1, "123");
-    return 0;
-}
 ```
 
-在这个代码中，额外使用了 C++11 中提供的初始化列表以及 Lambda 表达式的特性（下一节中将提到），而 std::initializer_list 也是 C++11 新引入的容器（以后会介绍到）。
+在这个代码中，额外使用了 C++11 中提供的初始化列表以及 Lambda 表达式的特性（下一节中将提到）。
 
-通过初始化列表，`(lambda 表达式, value)...` 将会被展开。由于逗号表达式的出现，首先会执行前面的 lambda 表达式，完成参数的输出。唯一不美观的地方在于如果不使用 `return` 编译器会给出未使用的变量作为警告。
-
-> 事实上，有时候我们虽然使用了变参模板，却不一定需要对参数做逐个遍历，我们可以利用 `std::bind` 及完美转发等特性实现对函数和参数的绑定，从而达到成功调用的目的。
-
-> 关于这方面的使用技巧，请参考习题，TODO
+通过初始化列表，`(lambda 表达式, value)...` 将会被展开。由于逗号表达式的出现，首先会执行前面的 lambda 表达式，完成参数的输出。
+为了避免编译器警告，我们可以将 `std::initializer_list` 显式的转为 `void`。
 
 ### 折叠表达式
 
@@ -761,6 +768,51 @@ auto sum(T ... t) {
 }
 int main() {
     std::cout << sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) << std::endl;
+}
+```
+
+### 非类型模板参数推导
+
+前面我们主要提及的是模板参数的一种形式：类型模板参数。
+
+```cpp
+template <typename T, typename U>
+    auto add(T t, U u) {
+    return t+u;
+}
+```
+
+其中模板的参数 `T` 和 `U` 为具体的类型。
+但还有一种常见模板参数形式可以让不同字面量成为模板参数，即非类型模板参数：
+
+```cpp
+template <typename T, int BufSize>
+class buffer_t {
+public:
+    T& alloc();
+    void free(T& item);
+private:
+    T data[BufSize];
+}
+
+buffer_t<int, 100> buf; // 100 作为模板参数
+```
+
+在这种模板参数形式下，我们可以将 `100` 作为模板的参数进行传递。
+在 C++11 引入了类型推导这一特性后，我们会很自然的问，既然此处的模板参数
+以具体的字面量进行传递，能否让编译器辅助我们进行类型推导，
+通过使用占位符 `auto` 从而不再需要明确指明类型？
+幸运的是，C++17 引入了这一特性，我们的确可以 `auto` 关键字，让编译器辅助完成具体类型的推导，
+例如：
+
+```cpp
+template <auto value> void foo() {
+    std::cout << value << std::endl;
+    return;
+}
+
+int main() {
+    foo<10>();  // value 被推导为 int 类型
 }
 ```
 
@@ -869,13 +921,21 @@ struct SubClass3: Base {
 
 ### 显式禁用默认函数
 
-在传统 C++ 中，如果程序员没有提供，编译器会默认为对象生成默认构造函数、复制构造、赋值算符以及析构函数。另外，C++ 也为所有类定义了诸如 `new` `delete` 这样的运算符。当程序员有需要时，可以重载这部分函数。
+在传统 C++ 中，如果程序员没有提供，编译器会默认为对象生成默认构造函数、
+复制构造、赋值算符以及析构函数。
+另外，C++ 也为所有类定义了诸如 `new` `delete` 这样的运算符。
+当程序员有需要时，可以重载这部分函数。
 
-这就引发了一些需求：无法精确控制默认函数的生成行为。例如禁止类的拷贝时，必须将复制构造函数与赋值算符声明为 `private`。尝试使用这些未定义的函数将导致编译或链接错误，则是一种非常不优雅的方式。
+这就引发了一些需求：无法精确控制默认函数的生成行为。
+例如禁止类的拷贝时，必须将复制构造函数与赋值算符声明为 `private`。
+尝试使用这些未定义的函数将导致编译或链接错误，则是一种非常不优雅的方式。
 
-并且，编译器产生的默认构造函数与用户定义的构造函数无法同时存在。若用户定义了任何构造函数，编译器将不再生成默认构造函数，但有时候我们却希望同时拥有这两种构造函数，这就造成了尴尬。
+并且，编译器产生的默认构造函数与用户定义的构造函数无法同时存在。
+若用户定义了任何构造函数，编译器将不再生成默认构造函数，
+但有时候我们却希望同时拥有这两种构造函数，这就造成了尴尬。
 
-C++11 提供了上述需求的解决方案，允许显式的声明采用或拒绝编译器自带的函数。例如：
+C++11 提供了上述需求的解决方案，允许显式的声明采用或拒绝编译器自带的函数。
+例如：
 
 ```cpp
 class Magic {
@@ -890,7 +950,7 @@ class Magic {
 
 在传统 C++中，枚举类型并非类型安全，枚举类型会被视作整数，则会让两种完全不同的枚举类型可以进行直接的比较（虽然编译器给出了检查，但并非所有），**甚至同一个命名空间中的不同枚举类型的枚举值名字不能相同**，这通常不是我们希望看到的结果。
 
-C++11 引入了枚举类（enumaration class），并使用 `enum class` 的语法进行声明：
+C++11 引入了枚举类（enumeration class），并使用 `enum class` 的语法进行声明：
 
 ```cpp
 enum class new_enum : unsigned int {
@@ -901,7 +961,8 @@ enum class new_enum : unsigned int {
 };
 ```
 
-这样定义的枚举实现了类型安全，首先他不能够被隐式的转换为整数，同时也不能够将其与整数数字进行比较，更不可能对不同的枚举类型的枚举值进行比较。但相同枚举值之间如果指定的值相同，那么可以进行比较：
+这样定义的枚举实现了类型安全，首先他不能够被隐式的转换为整数，同时也不能够将其与整数数字进行比较，
+更不可能对不同的枚举类型的枚举值进行比较。但相同枚举值之间如果指定的值相同，那么可以进行比较：
 
 ```cpp
 if (new_enum::value3 == new_enum::value4) {
@@ -931,7 +992,7 @@ std::cout << new_enum::value3 << std::endl
 
 ## 总结
 
-本节介绍了 C++11/14/17 中对语言可用性的增强，其中笔者认为最为重要的几个特性是几乎所有人都需要了解并熟练使用的：
+本节介绍了现代 C++ 中对语言可用性的增强，其中笔者认为最为重要的几个特性是几乎所有人都需要了解并熟练使用的：
 
 1. auto 类型推导
 2. 范围 for 迭代
@@ -963,16 +1024,9 @@ std::cout << new_enum::value3 << std::endl
 
 2. 尝试用[折叠表达式](#折叠表达式)实现用于计算均值的函数，传入允许任意参数。
 
-3. ​
-
-> 参考答案[见此](../exercises/2)。
+> 参考答案[见此](../../exercises/2)。
 
 [返回目录](./toc.md) | [上一章](./01-intro.md) | [下一章 运行时强化](./03-runtime.md)
-
-## 进一步阅读的参考文献
-
-1. [深入理解 C++11: C++11 新特性解析与应用. Michael Wong, IBM XL 编译器中国开发团队著](https://www.amazon.cn/dp/B00ETOV2OQ/ref=sr_1_1?ie=UTF8&qid=1522429506&sr=8-1&keywords=%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3+C%2B%2B11%3A+C%2B%2B11+%E6%96%B0%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8)
-2. [深入应用 C++11: 代码优化与工程级应用. 祁宇著](https://www.amazon.cn/dp/B00YGVLVA2/ref=sr_1_1?ie=UTF8&qid=1522429525&sr=8-1&keywords=%E6%B7%B1%E5%85%A5%E5%BA%94%E7%94%A8+C%2B%2B11%3A+%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E4%B8%8E%E5%B7%A5%E7%A8%8B%E7%BA%A7%E5%BA%94%E7%94%A8)
 
 ## 许可
 

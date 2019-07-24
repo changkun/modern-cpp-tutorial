@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%- page.title ? page.title : '' %> 高速上手 C++ 11/14/17 - C++ 11/14/17 On the Fly</title>
+    <title><%- page.title ? page.title : '' %> 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
     <meta charset="utf-8">
     <meta name="description" content="<%- theme.site_description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,10 +23,17 @@
 
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
-    <div id="mobile-bar" data-bg-text="高速上手 C++ 11/14/17" <%- isIndex ? 'class="top"' : '' %>>
-      <a class="menu-button"></a>
-      <a class="logo" href="/modern-cpp/"></a>
-    </div>
+    <% if (page.type == 'book-en-us') { %>
+      <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" <%- isIndex ? 'class="top"' : '' %>>
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    <% } else {%>
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" <%- isIndex ? 'class="top"' : '' %>>
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    <% } %>
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>
       <div id="main" class="fix-sidebar">

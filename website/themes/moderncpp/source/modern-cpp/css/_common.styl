@@ -56,12 +56,16 @@ a.button
   transition: all .15s ease
   box-sizing: border-box
   border: 1px solid lighten($theme, 8%)
+  width: 200px;
   &.white
     background-color: #fff
     color: $theme
-a.button:hover
+  &.download
     background-color: $theme
     color: #fff
+a.button:hover
+  background-color: $theme
+  color: #fff
 
 .highlight
   overflow-x: auto
@@ -176,9 +180,3 @@ a.button:hover
     border-left: 4px solid transparent
     border-right: 4px solid transparent
     border-top: 5px solid #fff
-
-sup.beta.beta
-  font-size: .6em
-  margin-left: .7em
-  text-transform: uppercase
-  opacity: .6

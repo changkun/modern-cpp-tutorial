@@ -4,16 +4,18 @@ import os
 import re
 
 source_dir = [
-    '../book/zh-cn/'
+    '../book/zh-cn/',
+    '../book/en-us/'
 ]
 
 destination_dir = [
-    './src/modern-cpp/book/'
+    './src/modern-cpp/zh-cn/',
+    './src/modern-cpp/en-us/'
 ]
 
 chapters = ['00-preface.md', '01-intro.md',  '02-usability.md', '03-runtime.md', '04-containers.md', '05-pointers.md', '06-regex.md', '07-thread.md', '08-filesystem.md', '09-others.md', '10-cpp20.md', 'appendix1.md', 'appendix2.md']
 
-ignores = ['TOC', '返回目录', '许可', 'license']
+ignores = ['TOC', '返回目录', '许可', 'license', 'Table of Content', 'License']
 
 for index, source in enumerate(source_dir):
     for chapter in chapters:

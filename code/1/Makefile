@@ -5,6 +5,7 @@
 # modern cpp tutorial
 #
 # created by changkun at changkun.de
+# https://github.com/changkun/modern-cpp-tutorial
 #
 
 C = gcc
@@ -16,7 +17,7 @@ OBJECTS_C = foo.o
 SOURCE_CXX = 1.1.c.and.cpp
 
 TARGET = 1.1.out
-LDFLAGS_COMMON = -std=c++17
+LDFLAGS_COMMON = -std=c++2a
 
 all:
 	$(C) -c $(SOURCE_C)

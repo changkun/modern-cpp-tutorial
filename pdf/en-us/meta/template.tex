@@ -15,11 +15,7 @@
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 
-\linespread{1.2}\selectfont                       % 行距
-%\XeTeXlinebreaklocale "zh"                        % 针对中文自动换行
-%\XeTeXlinebreakskip = 0pt plus 1pt                % 字与字之间加入 0pt 至 1pt 的间距，确保左右对齐
-%\parindent 0em                                    % 段落缩进
-%\setlength{\parskip}{20pt}                        % 段落间距
+\linespread{1.2}\selectfont
 \ifxetex
   \usepackage{xltxtra,xunicode}
 \fi
@@ -140,28 +136,29 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
-%%%% 段落首行缩进两个字 %%%%
 \makeatletter
 \let\@afterindentfalse\@afterindenttrue
 \@afterindenttrue
 \makeatother
-\setlength{\parindent}{2em}  %中文缩进两个汉字位
+\setlength{\parindent}{2em}
 
-%%%% 下面的命令设置行间距与段落间距 %%%%
 \linespread{1.4}
 \setlength{\parskip}{1ex}
 \setlength{\parskip}{0.5\baselineskip}
 
+\input{revision}
+% fix build, see https://github.com/laboon/ebook/issues/139#issuecomment-408696480
 
+\newcommand{\passthrough}[1]{\lstset{mathescape=false}#1\lstset{mathescape=true}}
 \begin{document}
 
-\newcommand{\tightlist}{%
+\newcommand{\tightlist}{
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \thispagestyle{plain}
 \begin{center}
 
-  {\LARGE\textbf{C++11/14/17 On the Fly}}
+  {\LARGE\textbf{Modern C++ Tutorial: C++11/14/17/20 On the Fly}}
 
   \vspace{1em}
   {\large Changkun Ou (hi@changkun.us)}
@@ -169,12 +166,17 @@ $endif$
   \vspace{1ex}
   Last update: \today
 
+  \vspace{1ex}
+  \textbf{Notice}
+
+  \noindent The content in this PDF file may outdated, please check \href{https://changkun.de/modern-cpp}{our website} or \href{https://github.com/changkun/modern-cpp-tutorial}{GitHub repository} for the latest book updates.
+
   \vspace{1em}
   \textbf{\large License}
 
-  \noindent This work is written by \href{https://github.com/changkun}{Ou Changkun} and licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. \texttt{\small http://creativecommons.org/licenses/by-nc-nd/4.0/}
+  \noindent This work was written by \href{https://github.com/changkun}{Ou Changkun} and licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. \texttt{\small http://creativecommons.org/licenses/by-nc-nd/4.0/}
 
-  \vspace{8em}
+  \vspace{5em}
   \includegraphics{../../assets/cover-2nd-en}
 
 \end{center}

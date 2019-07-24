@@ -1,14 +1,15 @@
 //
 // handler.hpp
 // web_server
-// created by changkun at changkun.de/modern-cpp
+// created by changkun at changkun.de
+// https://github.com/changkun/modern-cpp-tutorial/
 //
 
 #include "server.base.hpp"
 #include <fstream>
 
 using namespace std;
-using namespace LabexWeb;
+using namespace Web;
 
 template<typename SERVER_TYPE>
 void start_server(SERVER_TYPE &server) {

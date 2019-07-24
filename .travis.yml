@@ -1,0 +1,18 @@
+services:
+  - docker
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_9157553ce13c_key -iv $encrypted_9157553ce13c_iv -in .travis/travis.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- git config --global user.name "Changkun Ou"
+- git config --global user.email "hi@changkun.us"
+
+addons:
+  ssh_known_hosts:
+  - changkun.de
+
+script:
+  - make build
+
+after_success:
+  scp -r website/public/modern-cpp/* $encrypted_server_user@changkun.de:$encrypted_server_path

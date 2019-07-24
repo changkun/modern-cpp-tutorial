@@ -1,11 +1,9 @@
-# 高速上手 C++ 11/14/17
-
-> 正在向全面介绍 C++17 特性的内容过度
+# 现代 C++ 教程：高速上手 C++ 11/14/17/20
 
 ## 目录
 
 - [**序言**](./00-preface.md)
-- [**第 1 章 迈向 C++11/14/17**](./01-intro.md)
+- [**第 1 章 迈向现代 C++**](./01-intro.md)
     + 1.1 被弃用的特性
     + 1.2 与 C 的兼容性
     + 进一步阅读的参考文献
@@ -32,6 +30,7 @@
       - 默认模板参数
       - 变长参数模板
       - 折叠表达式
+      - 非类型模板参数推导
     + 2.6 面向对象
       - 委托构造
       - 继承构造
@@ -42,33 +41,32 @@
       - 强类型枚举
 - [**第 3 章 语言运行期的强化**](./03-runtime.md)
     + 3.1 lambda 表达式
-        + lambda 表达式基础
-            + 值捕获
-            + 引用捕获
-            + 隐式捕获
-            + 表达式捕获
-        + 泛型 lambda
+        + 基础
+        + 泛型
     + 3.2 函数对象包装器
         + std::function
-        + std::bind/std::placeholder
+        + std::bind 和 std::placeholder
     + 3.3 右值引用
         + 左值、右值的纯右值、将亡值、右值
         + 右值引用和左值引用
         + 移动语义
         + 完美转发
 - [**第 4 章 标准库: 容器**](./04-containers.md)
-    + 4.1 `std::array` 和 `std::forward_list`
+    + 4.1 线性容器
+        + `std::array`
+        + `std::forward_list`
     + 4.2 无序容器
         + `std::unordered_set`
         + `std::unordered_map`
     + 4.3 元组 `std::tuple`
         + 基本操作
-        + 运行期索引
+        + 运行期索引 `std::variant`
         + 合并与迭代
 - [**第 5 章 标准库: 指针**](./05-pointers.md)
     + 5.1 RAII 与引用计数
     + 5.2 `std::shared_ptr`
     + 5.3 `std::unique_ptr`
+    + 5.4 `std::weak_ptr`
 - [**第 6 章 标准库: 正则表达式**](./06-regex.md)
     + 6.1 正则表达式简介
         + 普通字符
@@ -78,12 +76,16 @@
         + `std::regex`
         + `std::regex_match`
         + `std::match_results`
-- [**第 7 章 标准库: 线程与并发**](./07-thread.md)
-    + 7.1 `std::thread`
-    + 7.2 `std::mutex` 和 `std::unique_lock`
-    + 7.3 `std::future` 和 `std::packaged_task`
-    + 7.4 `std::condition_variable`
-- [**第 8 章 标准库: 文件系统**](./08-filesystem.md)
+- [**第 7 章 并行与并发**](./07-thread.md)
+    + 7.1 并行基础
+    + 7.2 互斥量与临界区
+    + 7.3 期物
+    + 7.4 条件变量
+    + 7.5 原子操作与内存模型
+        + 原子操作
+        + 一致性模型
+        + 内存顺序
+- [**第 8 章 文件系统**](./08-filesystem.md)
     + 8.1 文档与链接
     + 8.2 `std::filesystem`
 - [**第 9 章 其他杂项**](./09-others.md)
@@ -93,12 +95,13 @@
     + 9.3 字面量
         + 原始字符串字面量
         + 自定义字面量
-    + 9.4 数学库
+    + 9.4 内存对齐
 - [**第 10 章 展望: C++20 简介**](./10-cpp20.md)
     + 10.1 Concept
     + 10.2 Range
     + 10.3 Module
     + 10.4 Coroutine
+    + 10.5 事务内存
 - [**附录 1：进一步阅读的学习材料**](./appendix1.md)
 - [**附录 2：现代 C++ 的最佳实践**](./appendix2.md)
 

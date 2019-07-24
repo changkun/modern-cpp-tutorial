@@ -1,5 +1,25 @@
 resolve #issue_id
 
+<!-- English Version -->
+
+## Description
+
+Please describe the motivation of this pull request, and what problem was solved in this PR.
+
+## Change List
+
+- Fix typo error of XXX
+- Add description regarding XXX feature
+- Resolve error content of XXX
+
+## Reference
+
+Please add reference if necessary
+
+---
+
+<!-- 中文版 -->
+
 ## 说明
 
 此处详细说明 PR 的动机是什么、解决了什么样的问题。
