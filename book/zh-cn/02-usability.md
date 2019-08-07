@@ -232,6 +232,7 @@ int main() {
 
 ```cpp
 #include <initializer_list>
+#include <vector>
 class MagicFoo {
 public:
     std::vector<int> vec;
@@ -277,6 +278,7 @@ C++17 完善了这一设定，给出的结构化绑定可以让我们写出这�
 
 ```cpp
 #include <iostream>
+#include <tuple>
 
 std::tuple<int, double, std::string> f() {
     return std::make_tuple(1, 2.3, "456");
@@ -823,6 +825,7 @@ int main() {
 C++11 引入了委托构造的概念，这使得构造函数可以在同一个类中一个构造函数调用另一个构造函数，从而达到简化代码的目的：
 
 ```cpp
+#include <iostream>
 class Base {
 public:
     int value1;
@@ -847,6 +850,7 @@ int main() {
 在传统 C++ 中，构造函数如果需要继承是需要将参数一一传递的，这将导致效率低下。C++11 利用关键字 using 引入了继承构造函数的概念：
 
 ```cpp
+#include <iostream>
 class Base {
 public:
     int value1;

@@ -138,7 +138,7 @@ Don't worry at the moment, we will come to meet them in our later chapters.
 ## Further Readings
 
 - [A Tour of C++ (2nd Edition) Bjarne Stroustrup](https://www.amazon.com/dp/0134997832/ref=cm_sw_em_r_mt_dp_U_GogjDbHE2H53B)
-- [C++ History](http://en.cppreference.com/w/cpp/language/history)
+  [History of C++](http://en.cppreference.com/w/cpp/language/history)
 - [C++ compiler support](https://en.cppreference.com/w/cpp/compiler_support)
 - [Incompatibilities Between ISO C and ISO C++](http://david.tribble.com/text/cdiffs.htm#C99-vs-CPP98)
 
