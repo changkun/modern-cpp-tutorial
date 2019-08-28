@@ -153,7 +153,7 @@ constexpr int fibonacci(const int n) {
 
 ### if/switch 变量声明强化
 
-在传统 C++ 中，变量的声明在虽然能够位于任何位置，甚至于 `for` 语句内能够声明一个临时变量 `int`，但始终没有办法在 `if` 和 `switch` 语句中声明一个临时的变量。例如：
+在传统 C++ 中，变量的声明虽然能够位于任何位置，甚至于 `for` 语句内能够声明一个临时变量 `int`，但始终没有办法在 `if` 和 `switch` 语句中声明一个临时的变量。例如：
 
 ```cpp
 #include <iostream>
