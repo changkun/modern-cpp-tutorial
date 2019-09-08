@@ -1,6 +1,6 @@
 DOCKER_ENV=changkun/modern-cpp-tutorial:build-env
 LANGS = zh-cn en-us
-ALL_BUILDS = website pdf
+ALL_BUILDS = website pdf epub
 
 # dep
 
@@ -11,6 +11,12 @@ $(LANGS):
 	cd pdf/$@ && make && make clean
 	mkdir -p website/public/modern-cpp/pdf
 	mv pdf/$@/modern-cpp-tutorial.pdf website/public/modern-cpp/pdf/modern-cpp-tutorial-$@.pdf
+
+epub: $(LANGS)
+$(LANGS):
+	cd epub/$@ && make && make clean
+	mkdir -p website/public/modern-cpp/epub
+	mv epub/$@/modern-cpp-tutorial.epub website/public/modern-cpp/epub/modern-cpp-tutorial-$@.epub
 
 website:
 	cd website && make

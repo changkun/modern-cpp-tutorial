@@ -26,6 +26,7 @@ You can choose from the following reading methods:
 
 - [GitHub Online](./book/en-us/toc.md)
 - [PDF document](https://changkun.de/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf)
+- [EPUB document](https://changkun.de/modern-cpp/epub/modern-cpp-tutorial-en-us.epub)
 - [Website](https://changkun.de/modern-cpp)
 
 ## Code
