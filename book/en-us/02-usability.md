@@ -286,6 +286,7 @@ such as:
 
 ```cpp
 #include <initializer_list>
+#include <vector>
 class MagicFoo {
 public:
     std::vector<int> vec;
@@ -342,6 +343,7 @@ and the structured bindings let us write code like this:
 
 ```cpp
 #include <iostream>
+#include <tuple>
 
 std::tuple<int, double, std::string> f() {
     return std::make_tuple(1, 2.3, "456");
@@ -776,6 +778,7 @@ how to unpack the parameters?
 First, we can use `sizeof...` to calculate the number of arguments:
 
 ```cpp
+#include <iostream>
 template<typename... Ts>
 void magic(Ts... args) {
     std::cout << sizeof...(args) << std::endl;
@@ -919,6 +922,7 @@ C++11 introduces the concept of a delegate construct, which allows a constructor
 in a constructor in the same class, thus simplifying the code:
 
 ```cpp
+#include <iostream>
 class Base {
 public:
     int value1;
@@ -943,6 +947,7 @@ int main() {
 In traditional C++, constructors need to pass arguments one by one if they need inheritance, which leads to inefficiency. C++11 introduces the concept of inheritance constructors using the keyword using:
 
 ```cpp
+#include <iostream>
 class Base {
 public:
     int value1;
@@ -1091,6 +1096,10 @@ This section introduces the enhancements to language usability in modern C++, wh
 1. Using structured binding, implement the following functions with just one line of function code:
 
    ```cpp
+   #include <string>
+   #include <map>
+   #include <iostream>
+   
    template <typename Key, typename Value, typename F>
    void update(std::map<Key, Value>& m, F foo) {
        // TODO:
