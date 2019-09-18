@@ -2,7 +2,7 @@
 
 # 现代 C++ 教程：高速上手 C++11/14/17/20
 
-[![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./assets/community.md)
+![](https://img.shields.io/travis/changkun/modern-cpp-tutorial/master?style=flat-square) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./assets/community.md)
 
 ## 本书目的
 
@@ -23,7 +23,8 @@
 
 1. [GitHub 在线](./book/zh-cn/toc.md)
 2. [PDF 文档](https://changkun.de/modern-cpp/modern-cpp-tutorial-zh-cn.pdf)
-3. [网站](https://changkun.de/modern-cpp/)
+3. [EPUB 文档](https://changkun.de/modern-cpp/epub/modern-cpp-tutorial-zh-cn.epub)
+4. [网站](https://changkun.de/modern-cpp/)
 
 ## 相关代码
 

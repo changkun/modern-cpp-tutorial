@@ -2,7 +2,7 @@
 
 # Modern C++ Tutorial: C++11/14/17/20 On the Fly
 
-[![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./assets/community.md)
+![](https://img.shields.io/travis/changkun/modern-cpp-tutorial/master?style=flat-square) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md) [![](https://img.shields.io/badge/chat-community-667ed5.svg?style=flat-square)](./assets/community.md) 
 
 ## Purpose
 
@@ -26,6 +26,7 @@ You can choose from the following reading methods:
 
 - [GitHub Online](./book/en-us/toc.md)
 - [PDF document](https://changkun.de/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf)
+- [EPUB document](https://changkun.de/modern-cpp/epub/modern-cpp-tutorial-en-us.epub)
 - [Website](https://changkun.de/modern-cpp)
 
 ## Code
