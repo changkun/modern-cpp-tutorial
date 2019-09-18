@@ -22,7 +22,6 @@ void f(const Foo &) {
 
 int main() {
     std::unique_ptr<Foo> p1(std::make_unique<Foo>());
-    
     // p1 is not empty, prints
     if (p1) p1->foo();
     {
@@ -32,15 +31,15 @@ int main() {
         f(*p2);
         
         // p2 is not empty, prints
-        if(p2) p2->foo();
+        if (p2) p2->foo();
         
         // p1 is empty, no prints
-        if(p1) p1->foo();
+        if (p1) p1->foo();
         
         p1 = std::move(p2);
         
         // p2 is empty, no prints
-        if(p2) p2->foo();
+        if (p2) p2->foo();
         std::cout << "p2 was destroied" << std::endl;
     }
     // p1 is not empty, prints

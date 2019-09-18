@@ -20,7 +20,7 @@ void reference(std::string&& str) {
 int main()
 {
     std::string  lv1 = "string,";       // lv1 is a lvalue
-    // std::string&& r1 = s1;           // illegal, rvalue can't ref to lvalue
+    // std::string&& r1 = lv1;          // illegal, rvalue can't ref to lvalue
     std::string&& rv1 = std::move(lv1); // legal, std::move can convert lvalue to rvalue
     std::cout << rv1 << std::endl;      // string,
     

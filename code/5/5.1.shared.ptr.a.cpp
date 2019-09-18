@@ -43,7 +43,7 @@ int main()
     std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;
     std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl;
     std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl;
-    // std::cout << *pointer << std::endl; // reference count equals 0, illegal access
+    // std::cout << *pointer3 << std::endl; // reference count equals 0, illegal access
 
 
     // Before leaving the scope, the pointer is destructed and

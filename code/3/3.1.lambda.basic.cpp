@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <utility>
+#include <memory>
 
 void lambda_value_capture() {
     int value = 1;

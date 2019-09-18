@@ -13,19 +13,19 @@ public:
     A():pointer(new int(1)) { 
         std::cout << "construct" << pointer << std::endl; 
     }
-    A(A& a):pointer(new int(*a.pointer)) { 
+    A(const A& a):pointer(new int(*a.pointer)) {
         std::cout << "copy" << pointer << std::endl; 
     } // meaningless object copy
-    A(A&& a):pointer(a.pointer) { 
+    A(A&& a):pointer(a.pointer) {
         a.pointer = nullptr;
         std::cout << "move" << pointer << std::endl; 
     }
-    ~A(){ 
+    ~A() {
         std::cout << "destruct" << pointer << std::endl; 
         delete pointer; 
     }
 };
-// avoid compiler optimization
+// avoid compiler RVO optimization
 A return_rvalue(bool test) {
     A a,b;
     if(test) return a; // equal to static_cast<A&&>(a);

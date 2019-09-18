@@ -24,6 +24,7 @@ public:
 class B {
 public:
     std::shared_ptr<A> pointer;
+    // std::weak_ptr<A> pointer;
     ~B() {
         std::cout << "B was destroied" << std::endl;
     }
