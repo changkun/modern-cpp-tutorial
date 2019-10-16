@@ -10,7 +10,7 @@
 #include <iostream>
 
 template<typename T = int, typename U = int>
-auto add(T x, U y) -> decltype(x+y) {
+auto add(T x, U y) {
     return x+y;
 }
 
