@@ -160,8 +160,8 @@ struct B {
 int main() {
     auto a = std::make_shared<A>();
     auto b = std::make_shared<B>();
-    a.pointer = b;
-    b.pointer = a;
+    a->pointer = b;
+    b->pointer = a;
 }
 ```
 
