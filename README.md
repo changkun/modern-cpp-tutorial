@@ -6,19 +6,19 @@
 
 ## Purpose
 
-The book claims "On the Fly". Its intent is to provide a comprehensive introduction to the relevant features regarding modern C++ (before 2020s).
+The book claims to be "On the Fly". Its intent is to provide a comprehensive introduction to the relevant features regarding modern C++ (before 2020s).
 Readers can choose interesting content according to the following table of content to learn and quickly familiarize the new features you would like to learn.
-Readers should aware that all of these features are not required. It should be leart when you really need it.
+Readers should be aware that not all of these features are required. Instead, it should be learned when you really need it.
 
-At the same time, instead of grammar-only, the book introduces the historical background as simple as possible of its technical requirements, which provides great help in understanding why these features comes out.
+At the same time, instead of coding-only, the book introduces the historical background of its technical requirements (as simple as possible), which provides great help in understanding why these features came out.
 
-In addition, The author would like to encourage that readers should be able to use modern C++ directly in their new projects and  migrate their old projects to modern C++ gradually after read the book.
+In addition, the author would like to encourage readers to use modern C++ directly in their new projects and  migrate their old projects to modern C++ gradually after reading the book.
 
 ## Targets
 
-- This book assumes that readers are already familiar with traditional C++ (i.e. C++98 or earlier), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
+- This book assumes that readers are already familiar with traditional C++ (i.e. C++98 or earlier), or at least that they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book.
 
-- This book introduces to a certain extent of the dark magic of modern C++. However, these magics are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is offering a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
+- This book introduces, to a certain extent, the dark magic of modern C++. However, these magic tricks are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is offering a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
 
 ## Start
 
@@ -31,19 +31,19 @@ You can choose from the following reading methods:
 
 ## Code
 
-Each chapter of this book has a lot of code. If you encounter problems when writing your own code with the introductory features of the book, you might as well read the source code attached to the book. You can find the book [here](./code). All the code organized by chapter, the folder name is the chapter number.
+Each chapter of this book contains a lot of code. If you encounter problems while writing your own code with the introductory features of the book, reading the source code attached to the book might be of help. You can find the book [here](./code). All the code is organized by chapter, the folder name is the chapter number.
 
 ## Exercises
 
-There are few exercises At the end of each chapter of the book. It is for testing whether you can use the knowledge points in the current chapter. You can find the possible answer to the problem from [here](./exercises). The folder name is the chapter number.
+There are few exercises at the end of each chapter of the book. These are ment to test whether you have mastered the knowledge in the current chapter. You can find the possible answer to the problem [here](./exercises). Again, the folder name is the chapter number.
 
 ## Website
 
-The source code of the [website](https://changkun.de/modern-cpp) of this book can be found [here](./website), which is built by [hexo](https://hexo.io) and [vuejs](https://vuejs.org). The website provides you another way of reading the book, it is also adapts to mobile.
+The source code of the [website](https://changkun.de/modern-cpp) of this book can be found [here](./website), which is built by [hexo](https://hexo.io) and [vuejs](https://vuejs.org). The website provides you another way of reading the book, it also adapts to mobile browsers.
 
 ## Build
 
-If you are interested in build everything locally, it is recommended using [Docker](https://docs.docker.com/install/). To build, simply run:
+If you are interested in building everything locally, it is recommended using [Docker](https://docs.docker.com/install/). To build, simply run:
 
 ```bash
 $ make build
@@ -53,9 +53,9 @@ $ make build
 
 This book was originally written in Chinese by [Changkun Ou](https://changkun.de).
 
-The author has limited time and language skills. If readers find any mistakes of the book or any language improvements, please feel free to open an [Issue](https://github.com/changkun/modern-cpp-tutorial/issues) or start a [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls). For detailed guidelines and checklist, please refer to [How to contribute](CONTRIBUTING.md).
+The author has limited time and language skills. If readers find any mistakes in the book or any language improvements, please feel free to open an [Issue](https://github.com/changkun/modern-cpp-tutorial/issues) or start a [Pull request](https://github.com/changkun/modern-cpp-tutorial/pulls). For detailed guidelines and checklist, please refer to [How to contribute](CONTRIBUTING.md).
 
-The author would be grateful to all contributors, including but not limited to [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors).
+The author is grateful to all contributors, including but not limited to [Contributors](https://github.com/changkun/modern-cpp-tutorial/graphs/contributors).
 
 ## Licenses
 
