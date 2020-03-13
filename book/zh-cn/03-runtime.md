@@ -470,7 +470,7 @@ void pass(T&& v) {
     std::cout << "    std::forward 传参: ";
     reference(std::forward<T>(v));
     std::cout << "static_cast<T&&> 传参: ";
-    reference(std::forward<T>(v));
+    reference(static_cast<T&&>(v));
 }
 int main() {
     std::cout << "传递右值:" << std::endl;
