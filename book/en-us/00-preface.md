@@ -11,7 +11,7 @@ order: 0
 ## Introduction
 
 C++ user group is a fairly large. From the advent of C++98 to the official finalization of C++11, it has accumulated over a decade. C++14/17 is an important complement and optimization for C++11, and C++20 brings this language to the door of modernization. The extended features of all these new standards are given to the C++ language. Infused with new vitality.
-C++ programmers, who are still using **traditional C++** (this book refers to C++98 and its previous C++ standards as traditional C++), may even amzed by the fact that they are not using the same language while reading modern C++ code.
+C++ programmers, who are still using **traditional C++** (this book refers to C++98 and its previous C++ standards as traditional C++), may even amazed by the fact that they are not using the same language while reading modern C++ code.
 
 **Modern C++** (this book refers to C++11/14/17/20) introduces a lot of features into traditional C++, which makes the whole C++ become language that modernized. Modern C++ not only enhances the usability of the C++ language itself, but the modification of the `auto` keyword semantics gives us more confidence in manipulating extremely complex template types. At the same time, a lot of enhancements have been made to the language runtime. The emergence of Lambda expressions has made C++ have the "closure" feature of "anonymous functions", which is almost in modern programming languages ​​(such as Python/Swift/.. It has become commonplace, and the emergence of rvalue references has solved the problem of temporary object efficiency that C++ has long been criticized.
 

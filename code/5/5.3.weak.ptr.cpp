@@ -18,14 +18,14 @@ class A {
 public:
     std::shared_ptr<B> pointer;
     ~A() {
-        std::cout << "A was destroied" << std::endl;
+        std::cout << "A was destroyed" << std::endl;
     }
 };
 class B {
 public:
     std::shared_ptr<A> pointer;
     ~B() {
-        std::cout << "B was destroied" << std::endl;
+        std::cout << "B was destroyed" << std::endl;
     }
 };
 int main() {

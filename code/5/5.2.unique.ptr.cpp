@@ -41,10 +41,10 @@ int main() {
         
         // p2 is empty, no prints
         if(p2) p2->foo();
-        std::cout << "p2 was destroied" << std::endl;
+        std::cout << "p2 was destroyed" << std::endl;
     }
     // p1 is not empty, prints
     if (p1) p1->foo();
     
-    // Foo instance will be destroied when leaving the scope
+    // Foo instance will be destroyed when leaving the scope
 }

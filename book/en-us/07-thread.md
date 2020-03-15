@@ -35,9 +35,9 @@ C++11 introduces a class related to `mutex`, with all related functions in the `
 It can be locked by its member function `lock()`, and `unlock()` can be unlocked.
 But in the process of actually writing the code, it is best not to directly call the member function,
 Because calling member functions, you need to call `unlock()` at the exit of each critical section, and of course, exceptions.
-At this time, C++11 also provides a template class `std::lock_gurad` for the RAII syntax for the mutex.
+At this time, C++11 also provides a template class `std::lock_guard` for the RAII syntax for the mutex.
 
-RAII guarantees the exceptional security of the code while losing the simplicity of the code.
+RAII guarantees the exceptional security of the code while keeping the simplicity of the code.
 
 ```cpp
 #include <iostream>
@@ -156,7 +156,7 @@ The condition variable `std::condition_variable` was born to solve the deadlock 
 For example, a thread may need to wait for a condition to be true to continue execution.
 A dead wait loop can cause all other threads to fail to enter the critical section so that when the condition is true, a deadlock occurs.
 Therefore, the `condition_variable` instance is created primarily to wake up the waiting thread and avoid deadlocks.
-`notd_one()` of `std::condition_variable` is used to wake up a thread;
+`notify_one()` of `std::condition_variable` is used to wake up a thread;
 `notify_all()` is to notify all threads. Below is an example of a producer and consumer model:
 
 ```cpp
@@ -253,7 +253,7 @@ int main() {
 }
 ```
 
-Intuitively, ʻa = 5;` in `t2` seems to always execute before `flag = 1;`, and `while (flag != 1)` in `t1` seems to guarantee `std ::cout << "b = " << b << std::endl;` will not be executed before the mark is changed. Logically, it seems that the value of `b` should be equal to 5.
+Intuitively, `a = 5;` seems in `t2` seems to always execute before `flag = 1;`, and `while (flag != 1)` in `t1` seems to guarantee `std ::cout << "b = " << b << std::endl;` will not be executed before the mark is changed. Logically, it seems that the value of `b` should be equal to 5.
 But the actual situation is much more complicated than this, or the code itself is undefined behavior, because for `a` and `flag`, they are read and written in two parallel threads.
 There has been competition. In addition, even if we ignore competing reading and writing, it is still possible to receive out-of-order execution of the CPU, and the impact of the compiler on the rearrangement of instructions.
 Cause `a = 5` to occur after `flag = 1`. Thus `b` may output 0.

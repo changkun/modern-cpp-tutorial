@@ -109,7 +109,7 @@ decltype(auto) ThreadPool::enqueue(F&& f, Args&&... args) {
     {
         std::unique_lock<std::mutex> lock(queue_mutex);
 
-        // avoid add new thread if theadpool is destroied
+        // avoid add new thread if theadpool is destroyed
         if(stop)
             throw std::runtime_error("enqueue on stopped ThreadPool");
 

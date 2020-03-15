@@ -26,7 +26,7 @@ These smart pointers include `std::shared_ptr`/`std::unique_ptr`/`std::weak_ptr`
 
 ## 5.2 `std::shared_ptr`
 
-`std::shared_ptr` is a smart pointer that records how many `shared_ptr` points to an object, eliminating the display call `delete`, which automatically deletes the object when the reference count becomes zero.
+`std::shared_ptr` is a smart pointer that records how many `shared_ptr` points to an object, eliminating to call `delete`, which automatically deletes the object when the reference count becomes zero.
 
 But not enough, because using `std::shared_ptr` still needs to be called with `new`, which makes the code a certain degree of asymmetry.
 
@@ -133,12 +133,12 @@ int main() {
         
         // p2 is empty, no prints
         if(p2) p2->foo();
-        std::cout << "p2 was destroied" << std::endl;
+        std::cout << "p2 was destroyed" << std::endl;
     }
     // p1 is not empty, prints
     if (p1) p1->foo();
     
-    // Foo instance will be destroied when leaving the scope
+    // Foo instance will be destroyed when leaving the scope
 }
 ```
 
@@ -157,14 +157,14 @@ class A {
 public:
     std::shared_ptr<B> pointer;
     ~A() {
-        std::cout << "A was destroied" << std::endl;
+        std::cout << "A was destroyed" << std::endl;
     }
 };
 class B {
 public:
     std::shared_ptr<A> pointer;
     ~B() {
-        std::cout << "B was destroied" << std::endl;
+        std::cout << "B was destroyed" << std::endl;
     }
 };
 int main() {
@@ -177,9 +177,9 @@ int main() {
 }
 ```
 
-The result is that A and B will not be destroyed. This is because the pointer inside a, b also references `a, b`, which makes the reference count of `a, b` become 2, leaving the scope. When the `a, b` smart pointer is destructed, it can only cause the reference count of this area to be decremented by one. This causes the memory area reference count pointed to by the `a, b` object to be non-zero, but the external has no The way to find this area, it also caused a memory leak, as shown in Figure 5.1:
+The result is that A and B will not be destroyed. This is because the pointer inside a, b also references `a, b`, which makes the reference count of `a, b` become 2, leaving the scope. When the `a, b` smart pointer is destructed, it can only cause the reference count of this area to be decremented by one. This causes the memory area reference count pointed to by the `a, b` object to be non-zero, but the external has no way to find this area, it also caused a memory leak, as shown in Figure 5.1:
 
-![Figure 5.1](../../assets/figures/pointers1.png)
+![Figure 5.1](../../assets/figures/pointers1_en.png)
 
 The solution to this problem is to use the weak reference pointer `std::weak_ptr`, which is a weak reference (compared to `std::shared_ptr` is a strong reference). A weak reference does not cause an increase in the reference count. When a weak reference is used, the final release process is shown in Figure 5.2:
 

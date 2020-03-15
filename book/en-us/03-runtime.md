@@ -11,7 +11,7 @@ order: 3
 ## 3.1 Lambda Expression
 
 Lambda expressions are one of the most important features in modern C++, and Lambda expressions actually provide a feature like anonymous functions.
-Anonymous functions are used when a function is needed, but you don't want to use a function to name a function. There are actually many, many scenes like this.
+Anonymous functions are used when a function is needed, but you don’t want to use name to call a function. There are actually many, many scenes like this.
 So anonymous functions are almost standard on modern programming languages.
 
 ### Basics
@@ -24,7 +24,7 @@ The basic syntax of a Lambda expression is as follows:
 }
 ```
 
-The above grammar rules are well understood except for the things in `[catch list]`, 
+The above grammar rules are well understood except for the things in `[capture list]`, 
 except that the function name of the general function is omitted.
 The return value is in the form of a `->` 
 (we have already mentioned this in the tail return type earlier in the previous section).
@@ -143,7 +143,7 @@ void lambda_generic() {
 
 ## 3.2 Function Object Wrapper
 
-Although this part of the standard library is part of the standard library, 
+Although the features are part of the standard library and not found in runtime, 
 it enhances the runtime capabilities of the C++ language.
 This part of the content is also very important, so put it here for introduction.
 
@@ -262,7 +262,7 @@ are all pure rvalue values.
 
 **xvalue, expiring value** is the concept proposed by C++11 to introduce 
 rvalue references (so in traditional C++, pure rvalue and rvalue are the same concept), 
-that is, A value that is destroyed but can be moved.
+a value that is destroyed but can be moved.
 
 It would be a little hard to understand the xvalue, 
 let's look at the code like this:
@@ -330,7 +330,7 @@ int main()
     
     std::string&& rv2 = lv1 + lv2;      // legal, rvalue ref extend lifecycle
     rv2 += "string";                    // legal, non-const reference can be modified
-    std::cout << rv2 << std::endl;      // string,string,string,
+    std::cout << rv2 << std::endl;      // string,string,string,string
     
     reference(rv2);                     // output: lvalue
     
@@ -496,7 +496,7 @@ For `pass(1)`, although the value is the rvalue, since `v` is a reference, it is
 Therefore `reference(v)` will call `reference(int&)` and output lvalue.
 For `pass(l)`, `l` is an lvalue, why is it successfully passed to `pass(T&&)`?
 
-This is based on the **reference contraction rule**: In traditional C++, we are not able to continue to reference a reference type.
+This is based on the **reference collapsing rule**: In traditional C++, we are not able to continue to reference a reference type.
 However, 
 C++ has relaxed this practice with the advent of rvalue references, 
 resulting in a reference collapse rule that allows us to reference references, 

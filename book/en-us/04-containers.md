@@ -172,7 +172,7 @@ Key:[3] Value:[3]
 ## 4.3 Tuples
 
 Programmers who have known Python should be aware of the concept of tuples. Looking at the containers in traditional C++, except for `std::pair`
-There seems to be no ready-made structure to store different types of data (usually we will define the structure ourselves).
+there seems to be no ready-made structure to store different types of data (usually we will define the structure ourselves).
 But the flaw of `std::pair` is obvious, only two elements can be saved.
 
 ### Basic Operations
