@@ -462,7 +462,7 @@ In order to achieve the ultimate performance and achieve consistency of various 
 
 3. Release/Acquire model: Under this model, we can further tighten the order of atomic operations between different threads, specifying the timing between releasing `std::memory_order_release` and getting `std::memory_order_acquire`. **All** write operations before the release operation are visible to any other thread, ie, happens-before.
 
-    As you can see, `std::memory_order_release` ensures that the write behavior after it does not occur before the release operation, is a backward barrier, and `std::memory_order_acquire` ensures the previous write behavior after it, no It will happen after the get operation, it is a forward barrier. For the option `std::memory_order_acq_rel`, it combines the characteristics of the two, and only determines a memory barrier, so that the current thread reads and writes to the memory. Will not be rearranged before and after this operation.
+    As you can see, `std::memory_order_release` ensures that the write behavior after it does not occur before the release operation, which is a backward barrier, and`std::memory_order_acquire` ensures that its previous write behavior does not occur after this acquisition operation, there is a forward barrier. For the `std::memory_order_acq_rel` option, it combines the characteristics of the two and uniquely determines a memory barrier, so that the current thread's reading and writing of memory will not be rearranged before and after this operation.
 
     Let's check an example:
 
