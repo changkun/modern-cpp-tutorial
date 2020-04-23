@@ -779,7 +779,7 @@ int main() {
 
 ```cpp
 template <typename T, typename U>
-    auto add(T t, U u) {
+auto add(T t, U u) {
     return t+u;
 }
 ```
