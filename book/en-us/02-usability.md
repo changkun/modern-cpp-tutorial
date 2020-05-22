@@ -874,7 +874,7 @@ What we mainly mentioned above is a form of template parameters: type template p
 
 ```cpp
 template <typename T, typename U>
-    auto add(T t, U u) {
+auto add(T t, U u) {
     return t+u;
 }
 ```
