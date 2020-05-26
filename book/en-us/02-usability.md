@@ -87,9 +87,8 @@ So, develop the habit of using `nullptr` directly.
 In addition, in the above code, we used `decltype` and 
 `std::is_same` which are modern C++ syntax. 
 In simple terms, `decltype` is used for type derivation, 
-and `std::is_same` is used. 
-To compare the equality of the two types, 
-we will discuss them in detail later in the [decltype](#decltype) section.
+and `std::is_same` is used to compare the equality of the two types. 
+We will discuss them in detail later in the [decltype](#decltype) section.
 
 ### constexpr
 
