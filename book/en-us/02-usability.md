@@ -435,7 +435,7 @@ auto arr = new auto(10); // arr as int *
 ### decltype
 
 The `decltype` keyword is used to solve the defect that the auto keyword 
-can only type the variable. Its usage is very similar to `sizeof`:
+can only type the variable. Its usage is very similar to `typeof`:
 
 
 ```cpp

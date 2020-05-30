@@ -369,7 +369,7 @@ auto arr = new auto(10); // arr 被推导为 int *
 
 ### decltype
 
-`decltype` 关键字是为了解决 auto 关键字只能对变量进行类型推导的缺陷而出现的。它的用法和 `sizeof` 很相似：
+`decltype` 关键字是为了解决 auto 关键字只能对变量进行类型推导的缺陷而出现的。它的用法和 `typeof` 很相似：
 
 ```cpp
 decltype(表达式)
