@@ -239,6 +239,7 @@ public:
 int main(){
     const char* const &left = "this is Left"; // 此处字符串字面量为左值
 }
+```
 
 **将亡值(xvalue, expiring value)**，是 C++11 为了引入右值引用而提出的概念（因此在传统 C++中，
 纯右值和右值是同一个概念），也就是即将被销毁、却能够被移动的值。
