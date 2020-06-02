@@ -231,7 +231,7 @@ int main() {
 class Context{
         const char*&& right = "Hello, World"; // 此处字符串字面量为右值
 public:
-        void test(){
+        void bar(){
             right = "Also Right"; // 此处字符串字面量为右值
         } 
 };
