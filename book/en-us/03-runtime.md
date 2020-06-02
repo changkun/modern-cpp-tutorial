@@ -260,10 +260,10 @@ Temporary variables returned by non-references, temporary variables generated
 by operation expressions, original literals, and Lambda expressions 
 are all pure rvalue values.
 
-note: string literal became rvalue only in ``class context``, else it would be a lvalue：
+Note that a string literal became rvalue in a class, and remains an lvalue in other cases (e.g., in a function)：
 
 ```cpp
-class Context{
+class Foo {
         const char*&& right = "this is a rvalue";
 public:
         void bar(){
