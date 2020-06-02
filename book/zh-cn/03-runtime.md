@@ -231,7 +231,7 @@ int main() {
 class Foo {
         const char*&& right = "this is a rvalue"; // 此处字符串字面量为右值
 public:
-        void bar(){
+        void bar() {
             right = "still rvalue"; // 此处字符串字面量为右值
         } 
 };
