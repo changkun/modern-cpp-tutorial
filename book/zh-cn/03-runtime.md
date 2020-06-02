@@ -236,7 +236,7 @@ public:
         } 
 };
 
-int main(){
+int main() {
     const char* const &left = "this is an lvalue"; // 此处字符串字面量为左值
 }
 ```
