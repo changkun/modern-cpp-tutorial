@@ -266,7 +266,7 @@ Note that a string literal became rvalue in a class, and remains an lvalue in ot
 class Foo {
         const char*&& right = "this is a rvalue";
 public:
-        void bar(){
+        void bar() {
             right = "still rvalue"; // the string literal is a rvalue
         } 
 };
