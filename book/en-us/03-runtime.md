@@ -267,7 +267,7 @@ class Context{
         const char*&& right = "this is a rvalue";
 public:
         void bar(){
-            right = "Also Right"; // here string literal is a rvalue
+            right = "still rvalue"; // the string literal is a rvalue
         } 
 };
 
