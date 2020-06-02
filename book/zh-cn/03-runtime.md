@@ -225,11 +225,11 @@ int main() {
 要么是求值结果相当于字面量或匿名临时对象，例如 `1+2`。非引用返回的临时变量、运算表达式产生的临时变量、
 原始字面量、Lambda 表达式都属于纯右值。
 
-需要注意的是：字符串字面量只有在类中才是右值，当其位于普通函数中是左值。例如：
+需要注意的是，字符串字面量只有在类中才是右值，当其位于普通函数中是左值。例如：
 
 ```cpp
-class Context{
-        const char*&& right = "Hello, World"; // 此处字符串字面量为右值
+class Foo{
+        const char*&& right = "this is a rvalue"; // 此处字符串字面量为右值
 public:
         void bar(){
             right = "still rvalue"; // 此处字符串字面量为右值
@@ -237,7 +237,7 @@ public:
 };
 
 int main(){
-    const char* const &left = "this is Left"; // 此处字符串字面量为左值
+    const char* const &left = "this is an lvalue"; // 此处字符串字面量为左值
 }
 ```
 
