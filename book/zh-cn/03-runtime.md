@@ -228,7 +228,7 @@ int main() {
 需要注意的是，字符串字面量只有在类中才是右值，当其位于普通函数中是左值。例如：
 
 ```cpp
-class Foo{
+class Foo {
         const char*&& right = "this is a rvalue"; // 此处字符串字面量为右值
 public:
         void bar(){
