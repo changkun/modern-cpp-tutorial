@@ -268,7 +268,7 @@ class Foo {
 public:
         void bar() {
             right = "still rvalue"; // the string literal is a rvalue
-        } 
+        }
 };
 
 int main() {
