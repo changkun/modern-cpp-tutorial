@@ -266,7 +266,7 @@ note: string literal became rvalue only in ``class context``, else it would be a
 class Context{
         const char*&& right = "this is a rvalue";
 public:
-        void test(){
+        void bar(){
             right = "Also Right"; // here string literal is a rvalue
         } 
 };
