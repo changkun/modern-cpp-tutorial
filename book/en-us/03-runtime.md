@@ -264,7 +264,7 @@ note: string literal became rvalue only in ``class context``, else it would be a
 
 ```cpp
 class Context{
-        const char*&& right = "Hello, World"; // here string literal is a rvalue
+        const char*&& right = "this is a rvalue";
 public:
         void test(){
             right = "Also Right"; // here string literal is a rvalue
