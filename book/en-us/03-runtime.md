@@ -272,7 +272,7 @@ public:
 };
 
 int main() {
-    const char* const &left = "this is Left"; // here string literal is a lvalue
+    const char* const &left = "this is an lvalue"; // the string literal is an lvalue
 }
 ```
 
