@@ -260,6 +260,22 @@ Temporary variables returned by non-references, temporary variables generated
 by operation expressions, original literals, and Lambda expressions 
 are all pure rvalue values.
 
+Note that a string literal became rvalue in a class, and remains an lvalue in other cases (e.g., in a function)：
+
+```cpp
+class Foo {
+        const char*&& right = "this is a rvalue";
+public:
+        void bar() {
+            right = "still rvalue"; // the string literal is a rvalue
+        }
+};
+
+int main() {
+    const char* const &left = "this is an lvalue"; // the string literal is an lvalue
+}
+```
+
 **xvalue, expiring value** is the concept proposed by C++11 to introduce 
 rvalue references (so in traditional C++, pure rvalue and rvalue are the same concept), 
 a value that is destroyed but can be moved.
