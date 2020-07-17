@@ -48,7 +48,7 @@ and is also the core matching syntax of a regular expression. See the table belo
 | `\`| Marks the next character as either a special character, or a literal character, or a backward reference, or an octal escape character. For example, `n` Matches the character `n`. `\n` matches newline characters. The sequence `\\` Matches the `'\'` character, while `\(` matches the `'('` character.|
 |`^`| Matches the beginning of the input string, unless it is used in a square bracket expression, at which point it indicates that the set of characters is not accepted. |
 |`{`| Marks the beginning of a qualifier expression. |
-|`\`| Indicates a choice between the two. |
+|`\|`| Indicates a choice between the two. |
 
 ### Quantifiers
 
