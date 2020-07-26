@@ -13,7 +13,6 @@ pdf: markdown
 	@echo "Compiling PDF file..."
 	pandoc -f markdown+smart -s $(filename).md -o $(filename).pdf \
 		--title-prefix $(title) \
-		--listings -H meta/cpp-listings.tex \
 		--template=meta/template.tex \
 		--pdf-engine=`which xelatex`
 	@echo "Done."
