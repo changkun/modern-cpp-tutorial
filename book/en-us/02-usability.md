@@ -426,10 +426,10 @@ auto arr = new auto(10); // arr as int *
 > In addition, `auto` cannot be used to derive array types:
 > 
 > ```cpp
-> auto auto_arr2[10] = arr;   // illegal, can't infer array type
+> auto auto_arr2[10] = {arr};   // illegal, can't infer array type
 >
 > 2.6.auto.cpp:30:19: error: 'auto_arr2' declared as array of 'auto'
->     auto auto_arr2[10] = arr;
+>     auto auto_arr2[10] = {arr};
 > ```
 
 ### decltype

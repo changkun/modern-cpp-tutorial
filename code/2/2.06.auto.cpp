@@ -37,7 +37,7 @@ int main() {
     auto i = 5;                 // type int
     auto j = 6;                 // type int
     auto arr = new auto(10);    // type int*
-    // auto auto_arr2[10] = arr;
+    // auto auto_arr2[10] = {arr};
     // std::cout << add(i, j) << std::endl;
     return 0;
 }
