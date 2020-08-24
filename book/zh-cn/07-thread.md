@@ -453,7 +453,7 @@ int main() {
 2. 释放/消费模型：在此模型中，我们开始限制进程间的操作顺序，如果某个线程需要修改某个值，但另一个线程会对该值的某次操作产生依赖，即后者依赖前者。具体而言，线程 A 完成了三次对 `x` 的写操作，线程 `B` 仅依赖其中第三次 `x` 的写操作，与 `x` 的前两次写行为无关，则当 `A` 主动 `x.release()` 时候（即使用 `std::memory_order_release`），选项 `std::memory_order_consume` 能够确保 `B` 在调用 `x.load()` 时候观察到 `A` 中第三次对 `x` 的写操作。我们来看一个例子：
 
     ```cpp
-    std::atomic<int*> ptr;
+    std::atomic<int*> ptr(nullptr);
     int v;
     std::thread producer([&]() {
         int* p = new int(42);
@@ -509,7 +509,7 @@ int main() {
     std::atomic<int> counter = {0};
     std::vector<std::thread> vt;
     for (int i = 0; i < 100; ++i) {
-        vt.emplace_back([](){
+        vt.emplace_back([&](){
             counter.fetch_add(1, std::memory_order_seq_cst);
         });
     }
