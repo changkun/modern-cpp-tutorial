@@ -15,15 +15,15 @@
 using namespace std;
 using namespace std::chrono;
 
-atomic<int> counter = {0};
 const int N = 10000;
 
 void relaxed_order() {
     cout << "relaxed_order: " << endl;
 
+    atomic<int> counter = {0};
     vector<thread> vt;
     for (int i = 0; i < N; ++i) {
-        vt.emplace_back([](){
+        vt.emplace_back([&](){
             counter.fetch_add(1, memory_order_relaxed);
         });
     }
@@ -86,9 +86,10 @@ void release_acquire_order() {
 void sequential_consistent_order() {
     cout << "sequential_consistent_order: " << endl;
 
+    atomic<int> counter = {0};
     vector<thread> vt;
     for (int i = 0; i < N; ++i) {
-        vt.emplace_back([](){
+        vt.emplace_back([&](){
             counter.fetch_add(1, memory_order_seq_cst);
         });
     }
