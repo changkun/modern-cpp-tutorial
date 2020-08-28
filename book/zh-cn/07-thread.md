@@ -439,7 +439,7 @@ int main() {
     std::atomic<int> counter = {0};
     std::vector<std::thread> vt;
     for (int i = 0; i < 100; ++i) {
-        vt.emplace_back([](){
+        vt.emplace_back([&](){
             counter.fetch_add(1, std::memory_order_relaxed);
         });
     }
@@ -453,7 +453,7 @@ int main() {
 2. 释放/消费模型：在此模型中，我们开始限制进程间的操作顺序，如果某个线程需要修改某个值，但另一个线程会对该值的某次操作产生依赖，即后者依赖前者。具体而言，线程 A 完成了三次对 `x` 的写操作，线程 `B` 仅依赖其中第三次 `x` 的写操作，与 `x` 的前两次写行为无关，则当 `A` 主动 `x.release()` 时候（即使用 `std::memory_order_release`），选项 `std::memory_order_consume` 能够确保 `B` 在调用 `x.load()` 时候观察到 `A` 中第三次对 `x` 的写操作。我们来看一个例子：
 
     ```cpp
-    /* consumer线程有可能比producer线程先执行，ptr初始化为nullptr，防止consumer线程先执行时得到一个野指针，而出现不可预期的错误。 */
+    // 初始化为 nullptr 防止 consumer 线程从野指针进行读取
     std::atomic<int*> ptr(nullptr);
     int v;
     std::thread producer([&]() {
@@ -509,7 +509,6 @@ int main() {
     ```cpp
     std::atomic<int> counter = {0};
     std::vector<std::thread> vt;
-    /* 如果counter不在全局范围内，则必须使用捕获；如果在全局范围内，捕获列表可以为空 */
     for (int i = 0; i < 100; ++i) {
         vt.emplace_back([&](){
             counter.fetch_add(1, std::memory_order_seq_cst);

@@ -429,7 +429,7 @@ In order to achieve the ultimate performance and achieve consistency of various 
     std::atomic<int> counter = {0};
     std::vector<std::thread> vt;
     for (int i = 0; i < 100; ++i) {
-        vt.emplace_back([](){
+        vt.emplace_back([&](){
             counter.fetch_add(1, std::memory_order_relaxed);
         });
     }
@@ -444,6 +444,7 @@ In order to achieve the ultimate performance and achieve consistency of various 
 2. Release/consumption model: In this model, we begin to limit the order of operations between processes. If a thread needs to modify a value, but another thread will have a dependency on that operation of the value, that is, the latter depends. former. Specifically, thread A has completed three writes to `x`, and thread `B` relies only on the third `x` write operation, regardless of the first two write behaviors of `x`, then `A ` When active `x.release()` (ie using `std::memory_order_release`), the option `std::memory_order_consume` ensures that `B` observes `A` when calling `x.load()` Three writes to `x`. Let's look at an example:
 
     ```cpp
+    // initialize as nullptr to prevent consumer load a dangling pointer
     std::atomic<int*> ptr(nullptr);
     int v;
     std::thread producer([&]() {
