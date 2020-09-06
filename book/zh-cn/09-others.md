@@ -179,6 +179,56 @@ int main() {
 其中 `std::max_align_t` 要求每个标量类型的对齐方式严格一样，因此它几乎是最大标量没有差异，
 进而大部分平台上得到的结果为 `long double`，因此我们这里得到的 `AlignasStorage` 的对齐要求是 8 或 16。
 
+## 9.5 字符串与数值转换
+
+### 数值转字符串
+
+- std::to_string(val)
+
+### 字符串转整型
+
+- stoi(s, p, b)
+- stol(s, p, b)
+- stoul(s, p, b)
+- stoll(s, p, b)
+- stoull(s, p, b)
+
+返回s的起始子串(表示整数内容)的数值,
+返回值类型分别是int, long, unsigned long, long long, unsigned long long. 
+b 表示转换所用的基数, 默认值是10(十进制). 
+p是size_t指针, 用来保存s中第一个非数值字符的下标, p默认为0(不保存下标)
+
+### 字符串转浮点型
+
+- stof(s, p)
+- stod(s, p)
+- stold(s, p)
+
+返回s的起始子串(表示浮点数内容)的数值,
+返回值类型分别是float, double, long double. 参数p的作用和字符串转整型一样
+
+**使用示例**  
+
+```cpp
+#include <iostream>
+
+int main(void)
+{
+    std::cout << std::to_string(123) << std::endl;
+    std::cout << std::to_string(1.23) << std::endl;
+    std::cout << std::stoi("-23") << std::endl;
+    std::cout << std::stol("-23") << std::endl;
+    std::cout << std::stof("1.23") << std::endl;
+    std::cout << std::stod("1.23") << std::endl;
+
+    size_t p = 0;
+    std::cout << std::stoi("123456abc789", &p) << std::endl;
+    std::cout << "p: " << p << std::endl;
+
+    return 0;
+}
+```
+
 ## 总结
 
 本节介绍的几个特性是从仍未介绍的现代 C++ 新特性里使用频次较靠前的特性了，`noexcept` 是最为重要的特性，它的一个功能在于能够阻止异常的扩散传播，有效的让编译器最大限度的优化我们的代码。
