@@ -23,7 +23,7 @@ traditional C++ treats `NULL` and `0` as the same thing,
 depending on how the compiler defines NULL, 
 and some compilers define NULL as `((void*)0)` Some will define it directly as `0`.
 
-C++ ** does not allow ** to implicitly convert `void *` to other types. 
+C++ **does not allow** to implicitly convert `void *` to other types. 
 But if the compiler tries to define `NULL` as `((void*)0)`, then in the following code:
 
 ```cpp
