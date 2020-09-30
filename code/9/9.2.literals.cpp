@@ -6,7 +6,7 @@
 // created by changkun at changkun.de
 // https://github.com/changkun/modern-cpp-tutorial
 //
-
+#include <bits/stdc++.h>
 #include <iostream>
 #include <string>
 
