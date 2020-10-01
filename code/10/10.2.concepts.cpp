@@ -29,7 +29,7 @@ struct Person {
     double height, weight;
     Person(double a, double b) : height(a), weight(b) {}
     string to_string(){
-        return "weight: "+ std::to_string(weight) + ", height: "+ std::to_string(height);
+        return "weight: "+to_string(weight) + ", height: "+ to_string(height);
 	}
 };
 
@@ -56,17 +56,17 @@ string to_string(std::vector<int> v){
 
 
  void print(Stringable a){
-    std::cout << a.to_string() << std::endl;
+    cout << a.to_string() << endl;
 }
 
  void print(HasStringFunc a){
-    std::cout << to_string(a) << std::endl;
+    cout << to_string(a) << endl;
 }
 
  int main() {
-    std::list<int> l {1, 2, 3};
+    list<int> l {1, 2, 3};
     Person p(57, 170.0);
-    std::vector<int> v { 34, 23, 34, 56, 78};
+    vector<int> v { 34, 23, 34, 56, 78};
 
     print(p); // uses concept Stringable
     print(l);
