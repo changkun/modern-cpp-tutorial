@@ -1,18 +1,20 @@
-//
-// 10.1.without.concepts.cpp
-// chapter 10 cpp20
-// modern c++ tutorial
-//
-// created by changkun at changkun.de
-// https://github.com/changkun/modern-cpp-tutorial
-//
-
-
 #include <list>
 #include <algorithm>
-
+using namespace std;
 int main() {
-    std::list<int> l = {1, 2, 3};
-    // std::sort(l.begin(), l.end()); // tons of compile error
+    list<int> l;
+    list<int>::iterator i;
+    l.push_back(10);
+    l.push_back(2);
+    l.push_back(13);
+    l.push_back(56);
+    l.push_back(7);
+    l.push_back(3);
+    l.sort(); //You can use sort() function for sorting the list.
+    cout<<"The Elements after sorting are:"<<endl;
+    for(i =l.begin();i!=l.end();i++)
+    {
+    	cout<<*i<<endl;
+	}
     return 0;
 }
