@@ -43,7 +43,8 @@ void foo(char *);
 void foo(int);
 
 int main() {
-    if (std::is_same<decltype(NULL), decltype(0)>::value)
+    if (std::is_same<decltype(NULL), decltype(0)>::value ||
+        std::is_same<decltype(NULL), decltype(0L)>::value)
         std::cout << "NULL == 0" << std::endl;
     if (std::is_same<decltype(NULL), decltype((void*)0)>::value)
         std::cout << "NULL == (void *)0" << std::endl;
@@ -237,7 +238,7 @@ class MagicFoo {
 public:
     std::vector<int> vec;
     MagicFoo(std::initializer_list<int> list) {
-        for (std::initializer_list<int>::iterator it = list.begin(); 
+        for (std::initializer_list<int>::iterator it = list.begin();
              it != list.end(); ++it)
             vec.push_back(*it);
     }
@@ -256,7 +257,7 @@ int main() {
 初始化列表除了用在对象构造上，还能将其作为普通函数的形参，例如：
 
 ```Cpp
-public: 
+public:
     void foo(std::initializer_list<int> list) {
             for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) vec.push_back(*it);
     }

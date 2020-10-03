@@ -8,22 +8,22 @@ order: 2
 
 [TOC]
 
-When we declare, define a variable or constant, and control the flow of code, 
-object-oriented functions, template programming, etc., before the runtime, 
-it may happen when writing code or compiler compiling code. 
-To this end, we usually talk about **language usability**, 
+When we declare, define a variable or constant, and control the flow of code,
+object-oriented functions, template programming, etc., before the runtime,
+it may happen when writing code or compiler compiling code.
+To this end, we usually talk about **language usability**,
 which refers to the language behavior that occurred before the runtime.
 
 ## 2.1 Constants
 
 ### nullptr
 
-The purpose of `nullptr` appears to replace `NULL`. In a sense, 
-traditional C++ treats `NULL` and `0` as the same thing, 
-depending on how the compiler defines NULL, 
+The purpose of `nullptr` appears to replace `NULL`. In a sense,
+traditional C++ treats `NULL` and `0` as the same thing,
+depending on how the compiler defines NULL,
 and some compilers define NULL as `((void*)0)` Some will define it directly as `0`.
 
-C++ **does not allow** to implicitly convert `void *` to other types. 
+C++ **does not allow** to implicitly convert `void *` to other types.
 But if the compiler tries to define `NULL` as `((void*)0)`, then in the following code:
 
 ```cpp
@@ -53,7 +53,8 @@ void foo(char *);
 void foo(int);
 
 int main() {
-    if (std::is_same<decltype(NULL), decltype(0)>::value)
+    if (std::is_same<decltype(NULL), decltype(0)>::value ||
+        std::is_same<decltype(NULL), decltype(0L)>::value)
         std::cout << "NULL == 0" << std::endl;
     if (std::is_same<decltype(NULL), decltype((void*)0)>::value)
         std::cout << "NULL == (void *)0" << std::endl;
@@ -81,22 +82,22 @@ foo(int) is called
 foo(char*) is called
 ```
 
-From the output we can see that `NULL` is different from `0` and `nullptr`. 
+From the output we can see that `NULL` is different from `0` and `nullptr`.
 So, develop the habit of using `nullptr` directly.
 
-In addition, in the above code, we used `decltype` and 
-`std::is_same` which are modern C++ syntax. 
-In simple terms, `decltype` is used for type derivation, 
-and `std::is_same` is used to compare the equality of the two types. 
+In addition, in the above code, we used `decltype` and
+`std::is_same` which are modern C++ syntax.
+In simple terms, `decltype` is used for type derivation,
+and `std::is_same` is used to compare the equality of the two types.
 We will discuss them in detail later in the [decltype](#decltype) section.
 
 ### constexpr
 
-C++ itself already has the concept of constant expressions, 
-such as 1+2, 3*4. Such expressions always produce the same result 
-without any side effects. If the compiler can directly optimize 
-and embed these expressions into the program at compile time, 
-it will increase the performance of the program. 
+C++ itself already has the concept of constant expressions,
+such as 1+2, 3*4. Such expressions always produce the same result
+without any side effects. If the compiler can directly optimize
+and embed these expressions into the program at compile time,
+it will increase the performance of the program.
 A very obvious example is in the definition phase of an array:
 
 ```cpp
@@ -130,7 +131,7 @@ int main() {
 
     // char arr_5[len_foo()+5];          // illegal
     char arr_6[len_foo_constexpr() + 1]; // legal
-    
+
     // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
     std::cout << fibonacci(10) << std::endl;
 
@@ -138,22 +139,22 @@ int main() {
 }
 ```
 
-In the above example, `char arr_4[len_2]` may be confusing because `len_2` has been defined as a constant. 
-Why is `char arr_4[len_2]` still illegal? 
-This is because the length of the array in the C++ standard must be a constant expression, 
-and for `len_2`, this is a `const` constant, not a constant expression, 
-so even if this behavior is supported by most compilers, but it is an illegal behavior, 
-we need to use the `constexpr` feature introduced in C++11, which will be introduced next, 
-to solve this problem; for `arr_5`, before C++98 The compiler cannot know that `len_foo()` 
+In the above example, `char arr_4[len_2]` may be confusing because `len_2` has been defined as a constant.
+Why is `char arr_4[len_2]` still illegal?
+This is because the length of the array in the C++ standard must be a constant expression,
+and for `len_2`, this is a `const` constant, not a constant expression,
+so even if this behavior is supported by most compilers, but it is an illegal behavior,
+we need to use the `constexpr` feature introduced in C++11, which will be introduced next,
+to solve this problem; for `arr_5`, before C++98 The compiler cannot know that `len_foo()`
 actually returns a constant at runtime, which causes illegal production.
 
-> Note that most compilers now have their own compiler optimizations. 
-> Many illegal behaviors become legal under the compiler's optimization. 
+> Note that most compilers now have their own compiler optimizations.
+> Many illegal behaviors become legal under the compiler's optimization.
 > If you need to reproduce the error, you need to use the old version of the compiler.
 
-C++11 provides `constexpr` to let the user explicitly declare that the function or 
-object constructor will become a constant expression at compile time. 
-This keyword explicitly tells the compiler that it should verify that `len_foo` 
+C++11 provides `constexpr` to let the user explicitly declare that the function or
+object constructor will become a constant expression at compile time.
+This keyword explicitly tells the compiler that it should verify that `len_foo`
 should be a compile time constant expression. Constant expression.
 
 In addition, the function of `constexpr` can use recursion:
@@ -164,9 +165,9 @@ constexpr int fibonacci(const int n) {
 }
 ```
 
-Starting with C++14, 
-the constexpr function can use simple statements such as local variables, 
-loops, and branches internally. 
+Starting with C++14,
+the constexpr function can use simple statements such as local variables,
+loops, and branches internally.
 For example, the following code cannot be compiled under the C++11 standard:
 
 ```cpp
@@ -177,7 +178,7 @@ constexpr int fibonacci(const int n) {
 }
 ```
 
-To do this, we can write a simplified version like this 
+To do this, we can write a simplified version like this
 to make the function available from C++11:
 
 ```cpp
@@ -190,9 +191,9 @@ constexpr int fibonacci(const int n) {
 
 ### if-switch
 
-In traditional C++, the declaration of a variable can declare a temporary variable `int` 
-even though it can be located anywhere, even within a `for` statement, 
-but there is always no way to declare a temporary variable in the `if` and `switch` statements. 
+In traditional C++, the declaration of a variable can declare a temporary variable `int`
+even though it can be located anywhere, even within a `for` statement,
+but there is always no way to declare a temporary variable in the `if` and `switch` statements.
 E.g:
 
 ```cpp
@@ -220,9 +221,9 @@ int main() {
 }
 ```
 
-In the above code, we can see that the `itr` variable is defined in the scope of 
-the entire `main()`, which causes us to rename the other when a variable need to traverse 
-the entire `std::vectors` again. C++17 eliminates this limitation so that 
+In the above code, we can see that the `itr` variable is defined in the scope of
+the entire `main()`, which causes us to rename the other when a variable need to traverse
+the entire `std::vectors` again. C++17 eliminates this limitation so that
 we can do this in if(or switch):
 
 ```cpp
@@ -236,17 +237,17 @@ Is it similar to the Go?
 
 ### Initializer list
 
-Initialization is a very important language feature, 
-the most common one is when the object is initialized. 
+Initialization is a very important language feature,
+the most common one is when the object is initialized.
 In traditional C++, different objects have different initialization methods,
-such as ordinary arrays, PODs (**P**lain **O**ld **D**ata, 
-ie classes without constructs, destructors, and virtual functions) 
-Or struct type can be initialized with `{}`, 
-which is what we call the initialization list. 
-For the initialization of the class object, 
-you need to use the copy construct, 
-or you need to use `()`. 
-These different methods are specific to each other and cannot be generic. 
+such as ordinary arrays, PODs (**P**lain **O**ld **D**ata,
+ie classes without constructs, destructors, and virtual functions)
+Or struct type can be initialized with `{}`,
+which is what we call the initialization list.
+For the initialization of the class object,
+you need to use the copy construct,
+or you need to use `()`.
+These different methods are specific to each other and cannot be generic.
 E.g:
 
 ```cpp
@@ -275,12 +276,12 @@ int main() {
 }
 ```
 
-To solve this problem, 
-C++11 first binds the concept of the initialization list to the type 
-and calls it `std::initializer_list`, 
-allowing the constructor or other function to use the initialization list 
-like a parameter, which is the initialization of class objects provides 
-a unified bridge between normal arrays and POD initialization methods, 
+To solve this problem,
+C++11 first binds the concept of the initialization list to the type
+and calls it `std::initializer_list`,
+allowing the constructor or other function to use the initialization list
+like a parameter, which is the initialization of class objects provides
+a unified bridge between normal arrays and POD initialization methods,
 such as:
 
 ```cpp
@@ -290,7 +291,7 @@ class MagicFoo {
 public:
     std::vector<int> vec;
     MagicFoo(std::initializer_list<int> list) {
-        for (std::initializer_list<int>::iterator it = list.begin(); 
+        for (std::initializer_list<int>::iterator it = list.begin();
              it != list.end(); ++it)
             vec.push_back(*it);
     }
@@ -304,14 +305,14 @@ int main() {
 }
 ```
 
-This constructor is called the initialize list constructor, and the type with 
+This constructor is called the initialize list constructor, and the type with
 this constructor will be specially taken care of during initialization.
 
-In addition to the object construction, the initialization list can also 
+In addition to the object construction, the initialization list can also
 be used as a formal parameter of a normal function, for example:
 
 ```Cpp
-public: 
+public:
     void foo(std::initializer_list<int> list) {
             for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) vec.push_back(*it);
     }
@@ -327,17 +328,17 @@ Foo foo2 {3, 4};
 
 ### Structured binding
 
-Structured bindings provide functionality similar to the multiple return values 
-provided in other languages. In the chapter on containers, 
-we will learn that C++11 has added a `std::tuple` container for 
-constructing a tuple that encloses multiple return values. But the flaw 
-is that C++11/14 does not provide a simple way to get and define 
-the elements in the tuple directly from the tuple, 
-although we can unpack the tuple using `std::tie` 
-But we still have to be very clear about how many objects this tuple contains, 
+Structured bindings provide functionality similar to the multiple return values
+provided in other languages. In the chapter on containers,
+we will learn that C++11 has added a `std::tuple` container for
+constructing a tuple that encloses multiple return values. But the flaw
+is that C++11/14 does not provide a simple way to get and define
+the elements in the tuple directly from the tuple,
+although we can unpack the tuple using `std::tie`
+But we still have to be very clear about how many objects this tuple contains,
 what type of each object is, very troublesome.
 
-C++17 completes this setting, 
+C++17 completes this setting,
 and the structured bindings let us write code like this:
 
 ```cpp
@@ -355,7 +356,7 @@ int main() {
 }
 ```
 
-The `auto` type derivation is described in the 
+The `auto` type derivation is described in the
 [auto type inference](#auto) section.
 
 ## 2.3 Type inference
@@ -412,8 +413,8 @@ auto i = 5;              // i as int
 auto arr = new auto(10); // arr as int *
 ```
 
-> **Note**: `auto` cannot be used for function arguments, so the following 
-> is not possible to compile (considering overloading, 
+> **Note**: `auto` cannot be used for function arguments, so the following
+> is not possible to compile (considering overloading,
 > we should use templates):
 > ```cpp
 > int add(auto x, auto y);
@@ -424,7 +425,7 @@ auto arr = new auto(10); // arr as int *
 > ```
 >
 > In addition, `auto` cannot be used to derive array types:
-> 
+>
 > ```cpp
 > auto auto_arr2[10] = {arr};   // illegal, can't infer array type
 >
@@ -434,7 +435,7 @@ auto arr = new auto(10); // arr as int *
 
 ### decltype
 
-The `decltype` keyword is used to solve the defect that the auto keyword 
+The `decltype` keyword is used to solve the defect that the auto keyword
 can only type the variable. Its usage is very similar to `typeof`:
 
 
@@ -450,9 +451,9 @@ auto y = 2;
 decltype(x+y) z;
 ```
 
-You have seen in the previous example that 
-`decltype` is used to infer the usage of the type. 
-The following example is to determine 
+You have seen in the previous example that
+`decltype` is used to infer the usage of the type.
+The following example is to determine
 if the above variables `x, y, z` are of the same type:
 
 ```cpp
@@ -464,7 +465,7 @@ if (std::is_same<decltype(x), decltype(z)>::value)
     std::cout << "type z == type x" << std::endl;
 ```
 
-Among them, `std::is_same<T, U>` is used to determine whether 
+Among them, `std::is_same<T, U>` is used to determine whether
 the two types `T` and `U` are equal. The output is:
 
 ```
@@ -485,23 +486,23 @@ R add(T x, U y) {
 
 > Note: There is no difference between typename and class in the template parameter list. Before the keyword typename appears, class is used to define the template parameters. However, when defining a variable with [nested dependency type](http://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names) in the template, you need to use typename to eliminate ambiguity.
 
-Such code is actually very ugly, because the programmer must explicitly 
-indicate the return type when using this template function. 
-But in fact we don't know what kind of operation 
+Such code is actually very ugly, because the programmer must explicitly
+indicate the return type when using this template function.
+But in fact we don't know what kind of operation
 the `add()` function will do, and what kind of return type to get.
 
-This problem was solved in C++11. Although you may immediately 
-react to using `decltype` to derive the type of `x+y`, 
+This problem was solved in C++11. Although you may immediately
+react to using `decltype` to derive the type of `x+y`,
 write something like this:
 
 ```cpp
 decltype(x+y) add(T x, U y)
 ```
 
-But in fact, this way of writing can not be compiled. 
-This is because `x` and `y` have not been defined 
-when the compiler reads decltype(x+y). 
-To solve this problem, C++11 also introduces a trailing return type, 
+But in fact, this way of writing can not be compiled.
+This is because `x` and `y` have not been defined
+when the compiler reads decltype(x+y).
+To solve this problem, C++11 also introduces a trailing return type,
 which uses the auto keyword to post the return type:
 
 ```cpp
@@ -511,7 +512,7 @@ auto add2(T x, U y) -> decltype(x+y){
 }
 ```
 
-The good news is that from C++14 it is possible to directly derive the return value of 
+The good news is that from C++14 it is possible to directly derive the return value of
 a normal function, so the following way becomes legal:
 
 ```cpp
@@ -540,16 +541,16 @@ std::cout << "q: " << q << std::endl;
 
 `decltype(auto)` is a slightly more complicated use of C++14.
 
-> To understand it you need to know the concept of parameter forwarding 
-> in C++, which we will cover in detail in the 
-> [Language Runtime Hardening](./03-runtime.md) chapter, 
+> To understand it you need to know the concept of parameter forwarding
+> in C++, which we will cover in detail in the
+> [Language Runtime Hardening](./03-runtime.md) chapter,
 > and you can come back to the contents of this section later.
 
-In simple terms, `decltype(auto)` is mainly used to derive 
-the return type of a forwarding function or package, 
-which does not require us to explicitly specify 
-the parameter expression of `decltype`. 
-Consider the following example, when we need to wrap the following 
+In simple terms, `decltype(auto)` is mainly used to derive
+the return type of a forwarding function or package,
+which does not require us to explicitly specify
+the parameter expression of `decltype`.
+Consider the following example, when we need to wrap the following
 two functions:
 
 ```cpp
@@ -619,7 +620,7 @@ int main() {
 
 ### Range-based for loop
 
-Finally, C++11 introduces a range-based iterative method, and we have the ability to write loops that are as concise 
+Finally, C++11 introduces a range-based iterative method, and we have the ability to write loops that are as concise
 as Python, and we can further simplify the previous example:
 
 ```cpp
@@ -663,9 +664,9 @@ In the traditional C++ compiler, `>>` is always treated as a right shift operato
 std::vector<std::vector<int>> matrix;
 ```
 
-This is not compiled under the traditional C++ compiler, 
-and C++11 starts with continuous right angle brackets that become legal 
-and can be compiled successfully. 
+This is not compiled under the traditional C++ compiler,
+and C++11 starts with continuous right angle brackets that become legal
+and can be compiled successfully.
 Even the following writing can be compiled by:
 
 ```cpp
@@ -734,19 +735,19 @@ auto add(T x, U y) -> decltype(x+y) {
 
 ### Variadic templates
 
-The template has always been one of C++'s unique **Black Magic**. 
-In traditional C++, 
-both a class template and a function template could only accept 
-a fixed set of template parameters as specified; 
-C++11 added a new representation, allowing any number, 
-template parameters of any category, 
+The template has always been one of C++'s unique **Black Magic**.
+In traditional C++,
+both a class template and a function template could only accept
+a fixed set of template parameters as specified;
+C++11 added a new representation, allowing any number,
+template parameters of any category,
 and there is no need to fix the number of parameters when defining.
 
 ```cpp
 template<typename... Ts> class Magic;
 ```
 
-The template class Magic object can accept unrestricted number of typename as 
+The template class Magic object can accept unrestricted number of typename as
 a formal parameter of the template, such as the following definition:
 
 ```cpp
@@ -764,14 +765,14 @@ If you do not want to generate 0 template parameters, you can manually define at
 template<typename Require, typename... Args> class Magic;
 ```
 
-The variable length parameter template can also be directly adjusted to the template function. 
+The variable length parameter template can also be directly adjusted to the template function.
 The `printf` function in the traditional C, although it can also reach the call of an indefinite number of formal parameters, is not class safe. In addition to the variable-length parameter functions that define class safety, C++11 can also make printf-like functions naturally handle objects that are not self-contained. In addition to the use of `...` in the template parameters to indicate the indefinite length of the template parameters, the function parameters also use the same representation to represent the indefinite length parameters, which provides a convenient means for us to simply write variable length parameter functions, such as:
 
 ```cpp
 template<typename... Args> void printf(const std::string &str, Args... args);
 ```
 
-Then we define variable length template parameters, 
+Then we define variable length template parameters,
 how to unpack the parameters?
 
 First, we can use `sizeof...` to calculate the number of arguments:
@@ -792,7 +793,7 @@ magic(1);     // 1
 magic(1, ""); // 2
 ```
 
-Second, the parameters are unpacked. So far there is no simple way to process 
+Second, the parameters are unpacked. So far there is no simple way to process
 the parameter package, but there are two classic processing methods:
 
 **1. Recursive template function**
@@ -879,7 +880,7 @@ auto add(T t, U u) {
 ```
 
 The parameters of the template `T` and `U` are specific types.
-But there is also a common form of template parameter that allows different literals 
+But there is also a common form of template parameter that allows different literals
 to be template parameters, ie non-type template parameters:
 
 ```cpp
@@ -917,7 +918,7 @@ int main() {
 
 ### Delegate constructor
 
-C++11 introduces the concept of a delegate construct, which allows a constructor to call another constructor 
+C++11 introduces the concept of a delegate construct, which allows a constructor to call another constructor
 in a constructor in the same class, thus simplifying the code:
 
 ```cpp
@@ -1002,7 +1003,7 @@ struct SubClass: Base {
 
 ### final
 
-`final` is to prevent the class from being continued to inherit and to terminate 
+`final` is to prevent the class from being continued to inherit and to terminate
 the virtual function to continue to be overloaded.
 
 ```cpp
@@ -1098,7 +1099,7 @@ This section introduces the enhancements to language usability in modern C++, wh
    #include <string>
    #include <map>
    #include <iostream>
-   
+
    template <typename Key, typename Value, typename F>
    void update(std::map<Key, Value>& m, F foo) {
        // TODO:
