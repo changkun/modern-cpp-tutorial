@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <memory>
+using namespace std;
 
 void foo(std::shared_ptr<int> i)
 {
@@ -25,7 +26,7 @@ int main()
     
     
     foo(pointer);
-    std::cout << *pointer << std::endl; // 11
+    cout << *pointer << std::endl; // 11
     int *p = pointer.get();             // does not increase reference count
     
     std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;
