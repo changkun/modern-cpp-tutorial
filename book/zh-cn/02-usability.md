@@ -43,8 +43,7 @@ void foo(char *);
 void foo(int);
 
 int main() {
-    if (std::is_same<decltype(NULL), decltype(0)>::value ||
-        std::is_same<decltype(NULL), decltype(0L)>::value)
+    if (std::is_same<decltype(NULL), decltype(0)>::value)
         std::cout << "NULL == 0" << std::endl;
     if (std::is_same<decltype(NULL), decltype((void*)0)>::value)
         std::cout << "NULL == (void *)0" << std::endl;
