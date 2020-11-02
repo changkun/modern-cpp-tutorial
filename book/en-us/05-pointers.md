@@ -96,6 +96,8 @@ std::unique_ptr<int> pointer2 = pointer; // illegal
 >
 > As for why it wasn't provided, Herb Sutter, chairman of the C++ Standards Committee, mentioned in his [blog](https://herbsutter.com/gotw/_102/) that it was because they were forgotten.
 
+Note: Since C++14, `std::make_unique` is provided, and its usage and principle are the same as `std::make_shared`.
+
 Since it is monopolized, in other words, it cannot be copied. However, we can use `std::move` to transfer it to other `unique_ptr`, for example:
 
 ```cpp

@@ -98,7 +98,7 @@ std::unique_ptr<int> pointer2 = pointer; // 非法
 >
 > 至于为什么没有提供，C++ 标准委员会主席 Herb Sutter 在他的[博客](https://herbsutter.com/gotw/_102/)中提到原因是因为『被他们忘记了』。
     
-注：从C++14开始提供了`std::make_unique`，其用法和原理与`std::make_shared`相同。
+注：从 C++14 开始提供了 `std::make_unique`，其用法和原理与 `std::make_shared` 相同。
 
 既然是独占，换句话说就是不可复制。但是，我们可以利用 `std::move` 将其转移给其他的 `unique_ptr`，例如：
 
