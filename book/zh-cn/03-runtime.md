@@ -550,7 +550,7 @@ constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type&& __t) noexcep
 可见 `std::forward` 的原理在于巧妙的利用了模板类型推导中产生的差异。
 
 这时我们能回答这样一个问题：为什么在使用循环语句的过程中，`auto&&` 是最安全的方式？
-因为当 `auto` 被推到为不同的左右引用时，与 `&&` 的坍缩组合是完美转发。
+因为当 `auto` 被推导为不同的左右引用时，与 `&&` 的坍缩组合是完美转发。
 
 ## 总结
 
