@@ -399,7 +399,7 @@ through copy constructors and assignment operators,
 but in order to implement the movement of resources,
 The caller must use the method of copying and then destructing first, 
 otherwise you need to implement the interface of the mobile object yourself.
-Imagine moving to move your home directly to your new home instead of 
+Imagine moving your home directly to your new home instead of 
 copying everything (rebuy) to your new home.
 Throwing away (destroying) all the original things is a very anti-human thing.
 
@@ -607,7 +607,7 @@ constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type&& __t) noexcep
 ```
 
 In this implementation, the function of `std::remove_reference` is to eliminate references in the type.
-And `std::is_lvalue_reference` is used to check if the type derivation is correct, in the second implementation of `std::forward`
+And `std::is_lvalue_reference` is used to check if the type derivation is correct, in the second implementation of `std::forward`.
 Check that the received value is indeed an lvalue, which in turn reflects the collapse rule.
 
 When `std::forward` accepts an lvalue, `_Tp` is deduced to the lvalue, so the return value is the lvalue; and when it accepts the rvalue,

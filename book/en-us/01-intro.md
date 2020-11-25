@@ -93,7 +93,7 @@ You should first compile the C code with `gcc`:
 gcc -c foo.c
 ```
 
-Compile and output the `foo.o` file, and link the C++ code to the `.o` file using `clang++` (or both compile to `.o` and then unlink them together):
+Compile and output the `foo.o` file, and link the C++ code to the `.o` file using `clang++` (or both compile to `.o` and then link them together):
 
 ```bash
 clang++ 1.1.cpp foo.o -std=c++2a -o 1.1
