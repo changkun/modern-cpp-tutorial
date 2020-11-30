@@ -83,7 +83,7 @@ the external will not trigger. For instance:
 try {
     may_throw();
 } catch (...) {
-    std::cout << "exception captured from my_throw()" << std::endl;
+    std::cout << "exception captured from may_throw()" << std::endl;
 }
 try {
     non_block_throw();
@@ -100,7 +100,7 @@ try {
 The final output is:
 
 ```
-exception captured, from my_throw()
+exception captured, from may_throw()
 exception captured, from non_block_throw()
 ```
 

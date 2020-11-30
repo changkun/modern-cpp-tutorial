@@ -303,7 +303,7 @@ int main() {
 }
 ```
 
-Of course, not all types provide atomic operations because the feasibility of atomic operations depends on the architecture of the CPU and whether the type structure being instantiated satisfies the memory alignment requirements of the architecture, so we can always pass Std::atomic<T>::is_lock_free` to check if the atom type needs to support atomic operations, for example:
+Of course, not all types provide atomic operations because the feasibility of atomic operations depends on the architecture of the CPU and whether the type structure being instantiated satisfies the memory alignment requirements of the architecture, so we can always pass `std::atomic<T>::is_lock_free` to check if the atom type needs to support atomic operations, for example:
 
 ```cpp
 #include <atomic>
@@ -366,7 +366,7 @@ Weakening the synchronization conditions between processes, usually we will cons
           x.store(2)
     ```
 
-    Under the order consistency requirement, `x.load()` must read the last written data, so `x.store(2)` and `x.store(1)` do not have any guarantees, ie As long as ``x.store(2)` of `T2` occurs before `x.store(3)`.
+    Under the order consistency requirement, `x.load()` must read the last written data, so `x.store(2)` and `x.store(1)` do not have any guarantees, ie As long as `x.store(2)` of `T2` occurs before `x.store(3)`.
 
 3. Causal consistency: its requirements are further reduced, only the sequence of causal operations is guaranteed, and the order of non-causal operations is not required.
 
