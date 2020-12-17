@@ -1,0 +1,29 @@
+name: Website
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Website
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        env:
+          USER: ${{ secrets.SERVER_USER }}
+          TARGET: ${{ secrets.SERVER_PATH }}
+          KEY: ${{ secrets.SERVER_KEY }}
+          DOMAIN: ${{ secrets.SERVER_DOMAIN }}
+        run: |
+          make build
+          mkdir ~/.ssh
+          echo "$KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 400 ~/.ssh/id_ed25519
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_ed25519
+          ssh-keyscan -H $DOMAIN >> ~/.ssh/known_hosts
+          scp -r website/public/modern-cpp/* $USER@$DOMAIN:$TARGET
