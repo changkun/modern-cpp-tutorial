@@ -1,5 +1,5 @@
 # !/usr/bin/env python3
-# author: changkun<hi@changkun.us>
+# author: changkun<hi[at]changkun.de>
 
 import os, io
 
@@ -9,7 +9,7 @@ ignores = ['TOC', '返回目录', '许可', 'license']
 
 head = """---
 title: "现代 C++ 教程：高速上手 C++11/14/17/20"
-author: 欧长坤 <hi@changkun.us>
+author: 欧长坤 <hi[at]changkun.de>
 copyright: cc-by-nc-nd 4.0
 ---
 """

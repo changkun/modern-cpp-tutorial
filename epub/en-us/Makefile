@@ -8,7 +8,7 @@ all: revision epub
 revision:
 	@echo '---' >> meta.markdown
 	@echo 'title: "Modern C++ Tutorial: C++11/14/17/20 On the Fly"' >> meta.markdown
-	@echo 'author: Changkun Ou <hi@changkun.us>' >> meta.markdown
+	@echo 'author: Changkun Ou <hi[at]changkun.de>' >> meta.markdown
 	@echo 'subtitle: |' >> meta.markdown
 	@echo '  The content in this PDF file may outdated, please check our website <https://changkun.de/modern-cpp> or GitHub repository <https://github.com/changkun/modern-cpp-tutorial> for the latest book updates. Last update: ${date}' >> meta.markdown
 	@echo 'rights: © Ou Changkun, CC BY-NC-ND 4.0.' >> meta.markdown

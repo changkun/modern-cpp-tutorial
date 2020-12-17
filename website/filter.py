@@ -1,5 +1,5 @@
 # !/usr/bin/env python3
-# author: changkun<hi@changkun.us>
+# author: changkun<hi[at]changkun.de>
 import os
 import re
 

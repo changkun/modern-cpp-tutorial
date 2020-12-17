@@ -8,7 +8,7 @@ all: revision epub
 revision:
 	@echo '---' >> meta.markdown
 	@echo 'title: "现代 C++ 教程：高速上手 C++11/14/17/20"' >> meta.markdown
-	@echo 'author: 欧长坤 <hi@changkun.us>' >> meta.markdown
+	@echo 'author: 欧长坤 <hi[at]changkun.de>' >> meta.markdown
 	@echo 'subtitle: |' >> meta.markdown
 	@echo '  此文件的内容可能过期，请检查本书网站 <https://changkun.de/modern-cpp> 及 GitHub 仓库<https://github.com/changkun/modern-cpp-tutorial> 以获取最新内容。最后更新：${date}' >> meta.markdown
 	@echo 'rights: © Ou Changkun, CC BY-NC-ND 4.0.' >> meta.markdown

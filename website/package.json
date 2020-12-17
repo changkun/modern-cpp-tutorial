@@ -3,17 +3,17 @@
   "version": "2.0.0",
   "private": true,
   "hexo": {
-    "version": "4.2.1"
+    "version": "5.3.0"
   },
   "dependencies": {
-    "hexo-generator-index": "^0.2.1",
+    "hexo-generator-index": "^2.0.0",
     "hexo-image-caption": "^0.1.1",
-    "hexo-renderer-ejs": "^0.3.1",
-    "hexo-renderer-marked": "^1.0.1",
-    "hexo-renderer-stylus": "^0.3.3"
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-marked": "^3.3.0",
+    "hexo-renderer-stylus": "^2.0.1"
   },
   "devDependencies": {
-    "hexo": "^4.2.1",
+    "hexo": "^5.3.0",
     "serve": "^11.3.2"
   }
 }

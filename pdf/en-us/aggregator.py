@@ -1,5 +1,5 @@
 # !/usr/bin/env python3
-# author: changkun<hi@changkun.us>
+# author: changkun<hi[at]changkun.de>
 
 import os
 
@@ -11,7 +11,7 @@ ignores = ['TOC', 'Table of Content', 'License', 'license']
 with open('modern-cpp-tutorial.md', 'w') as outfile:
     outfile.write("""---
 title: "Modern C++ Tutorial: C++11/14/17/20 On the Fly"
-author: Changkun Ou <hi@changkun.us>
+author: Changkun Ou <hi[at]changkun.de>
 copyright: cc-by-nc-nd 4.0
 ---
 """)
