@@ -1,10 +1,10 @@
 FROM node:latest
 
-LABEL "maintainer"="Changkun Ou <hi@changkun.us>"
+LABEL "maintainer"="Changkun Ou <hi[at]changkun.de>"
 LABEL "repository"="https://github.com/changkun/modern-cpp-tutorial"
 LABEL "homepage"="https://changkun.de/modern-cpp/"
 
-# FUCKING UNICODE
+# For Unicode
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
