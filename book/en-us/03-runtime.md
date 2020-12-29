@@ -87,8 +87,8 @@ capture lists can be:
 
 - \[\] empty capture list
 - \[name1, name2, ...\] captures a series of variables
-- \[&\] reference capture, let the compiler derive the capture list by itself
-- \[=\] value capture, let the compiler execute the list of derivation applications
+- \[&\] reference capture, let the compiler deduce the reference list by itself
+- \[=\] value capture, let the compiler deduce the value list by itself
 
 #### 4. Expression capture
 
