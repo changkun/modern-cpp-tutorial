@@ -8,7 +8,6 @@ all: clean
 	cp ../assets/alipay.jpg ./src/modern-cpp/assets/alipay.jpg
 	cp ../assets/wechat.jpg ./src/modern-cpp/assets/wechat.jpg
 	cp ../assets/donate.md ./src/modern-cpp/about/
-	cp ../assets/community.md ./src/modern-cpp/about/
 	cp -r ../assets/figures ./src/modern-cpp/assets/figures
 	cp -r ../exercises ./src/modern-cpp/
 	cp -r ../code ./src/modern-cpp/
@@ -25,7 +24,6 @@ clean:
 		./src/modern-cpp/assets/alipay.jpg \
 		./src/modern-cpp/assets/wechat.jpg \
 		./src/modern-cpp/about/donate.md \
-		./src/modern-cpp/about/community.md \
 		./src/modern-cpp/code \
 		./src/modern-cpp/exercises \
 		public db.json src/modern-cpp/zh-cn src/modern-cpp/en-us
