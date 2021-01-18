@@ -1,52 +1,117 @@
 ---
-title: Preface
+title: Prefacio
 type: book-pt-br
 order: 0
 ---
 
-# Preface
+# Prefacio
 
 [TOC]
 
-## Introduction
+## Introdução
 
-C++ user group is fairly large. From the advent of C++98 to the official finalization of C++11, it has accumulated over a decade. C++14/17 is an important complement and optimization for C++11, and C++20 brings this language to the door of modernization. The extended features of all these new standards are given to the C++ language. Infused with new vitality.
-C++ programmers, who are still using **traditional C++** (this book refers to C++98 and its previous C++ standards as traditional C++), may even amazed by the fact that they are not using the same language while reading modern C++ code.
+O grupo de usuários de C++ é muito grande.  Desde o advento do C++98 até
+a finalização oficial do C++11 passou mais de uma década. O C++14/17 são
+importantes complementos e optimizações para o C++11, e o C++20 traz essa
+linguagem para a porta da modernização. Os recursos estendidos de todos esses
+novos padrões são fornecidos à linguagem C++. Infundido com uma nova
+vitalidade.
 
-**Modern C++** (this book refers to C++11/14/17/20) introduces a lot of features into traditional C++, which makes the whole C++ become language that modernized. Modern C++ not only enhances the usability of the C++ language itself, but the modification of the `auto` keyword semantics gives us more confidence in manipulating extremely complex template types. At the same time, a lot of enhancements have been made to the language runtime. The emergence of Lambda expressions has made C++ have the "closure" feature of "anonymous functions", which is almost in modern programming languages ​​(such as Python/Swift/.. It has become commonplace, and the emergence of rvalue references has solved the problem of temporary object efficiency that C++ has long been criticized.
+Os programadores C++ que ainda estão usando o **C++ tradicional** (este livro
+se refere a C++98 e seus padrões C++ anteriores como C++ tradicional) podem até
+ficar surpresos pelo fato de não estarem usando a mesma linguagem ao ler
+o código do C++ moderno.
 
-C++17 is the direction that has been promoted by the C++ community in the past three years. It also points out an important development direction of **modern C++** programming. Although it does not appear as much as C++11, it contains a large number of small and beautiful languages ​​and features (such as structured binding), and the appearance of these features once again corrects our programming paradigm in C++.
+O **C++ moderno** (este livro se refere a C++11/14/17/20) introduz muitos
+recursos ao C++ tradicional, o que faz com que todo o C++ se torne uma
+linguagem modernizada. O C++ moderno não apenas melhora a usabilidade da
+linguagem C++ em si, mas a modificação da semântica da palavra-chave `auto` nos
+dá mais confiança na manipulação de tipos de template extremamente complexos.
+Ao mesmo tempo, muitos aprimoramentos foram feitos no tempo de execução da
+linguagem. O surgimento de expressões Lambda fez com que C++ tivesse o recurso
+de "fechamento" de "funções anônimas", que é quase em linguagens de programação
+modernas (como Python/Swift/... Tornou-se comum, e o surgimento de
+referências rvalueresolveu o problema da eficiência do objeto temporário que
+o C++ há muito vem sendo criticado.
 
-Modern C++ also adds a lot of tools and methods to its own standard library, such as `std::thread` at the level of the language itself, which supports concurrent programming and no longer depends on the underlying system on different platforms. The API implements cross-platform support at the language level; `std::regex` provides full regular expression support and more. C++98 has been proven to be a very successful "paradigm", and the emergence of modern C++ further promotes this paradigm, making C++ a better language for system programming and library development. Concepts provide verification on the compile-time of template parameters, further enhancing the usability of the language.
+C++17 está na direção que tem sido promovida pela comunidade C++ nos últimos
+anos. Ele também aponta uma importante direção de desenvolvimento da
+programação C++ moderna. Embora não apareça tanto quanto C++11, ele contém um
+grande número de pequenas e belos recursos de linguagens (como vinculação
+estruturada), e o aparecimento desses recursos mais uma vez corrige nosso
+paradigma de programação em C++.
 
-In conclusion, as an advocate and practitioner of C++, we always maintain an open mind to accept new things, and we can promote the development of C++ faster, making this old and novel language more vibrant.
+O C++ moderno também adiciona muitas ferramentas e métodos à sua própria
+biblioteca padrão, como `std::thread` no nível da própria linguagem, que
+oferece suporte à programação simultânea e não depende mais do sistema
+subjacente em diferentes plataformas. A API implementa suporte de plataforma
+cruzada no nível de linguagem;`std::regex` fornece suporte completo
+a expressões regulares e muito mais. C++98 provou ser um "paradigma" de muito
+sucesso, e o surgimento do C++ moderno promove ainda mais esse paradigma,
+tornando o C++ uma linguagem melhor para programação de sistemas
+e desenvolvimento de bibliotecas. Os conceitos fornecem verificação no tempo de
+compilação dos parâmetros do modelo, melhorando ainda mais a usabilidade da
+linguagem.
 
-## Targets
+Concluindo, como defensores e praticantes de C++, sempre mantemos a mente
+aberta para aceitar coisas novas e podemos promover o desenvolvimento de C++
+mais rápido, tornando esta linguagem antiga e inovadora mais vibrante.
 
-- This book assumes that readers are already familiar with traditional C++ (i.e. C++98 or earlier), at least they do not have any difficulty in reading traditional C++ code. In other words, those who have long experience in traditional C++ and people who desire to quickly understand the features of modern C++ in a short period of time are well suited to read the book;
+## Objetivos
 
-- This book introduces to a certain extent of the dark magic of modern C++. However, these magics are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is offering a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
+- Este livro assume que os leitores já estão familiarizados com o C++
+  tradicional (ou seja, C++98 ou anterior), pelo menos eles não têm nenhuma
+  dificuldade em ler o código C++ tradicional. Em outras palavras, aqueles que
+  têm longa experiência em C++ tradicional e pessoas que desejam entender
+  rapidamente os recursos do C++ moderno em um curto período de tempo estão bem
+  preparados para ler o livro;
+- Este livro apresenta, até certo ponto, a magia negra do C++ moderno. No
+  entanto, essas magias são muito limitadas, não são adequadas para leitores
+  que desejam aprender C++ avançado. O objetivo deste livro é oferecer um
+  início rápido para o C++ moderno. Obviamente, leitores avançados também podem
+  usar este livro para revisar e examinar a si mesmos no C++ moderno.
 
-## Purpose
+## Propósito
 
-The book claims "On the Fly". Its intent is to provide a comprehensive introduction to the relevant features regarding modern C++ (before 2020s).
-Readers can choose interesting content according to the following table of content to learn and quickly familiarize the new features you would like to learn.
-Readers should aware that all of these features are not required. It should be learnt when you really need it.
+O livro afirma "On the Fly". Sua intenção é fornecer uma introdução abrangente
+aos recursos relevantes relacionados ao C++ moderno (antes de 2020).
 
-At the same time, instead of grammar-only, the book introduces the historical background as simple as possible of its technical requirements, which provides great help in understanding why these features comes out.
+Os leitores podem escolher conteúdo interessante de acordo com a tabela de
+conteúdo a seguir para aprender e familiarizar-se rapidamente com os novos
+recursos que você gostaria de aprender.
 
-In addition, The author would like to encourage that readers should be able to use modern C++ directly in their new projects and  migrate their old projects to modern C++ gradually after read the book.
+Os leitores devem estar cientes de que todos esses recursos não são
+necessários. Deve ser aprendido quando você realmente precisar.
 
-## Code
+Ao mesmo tempo, em vez de apenas gramática, o livro apresenta o contexto
+histórico o mais simples possível de seus requisitos técnicos, o que fornece
+uma grande ajuda para entender por que esses recursos aparecem.
 
-Each chapter of this book has a lot of code. If you encounter problems when writing your own code with the introductory features of the book, you might as well read the source code attached to the book. You can find the book [here](../../code). All the code organized by chapter, the folder name is the chapter number.
+Além disso, o autor gostaria de encorajar que os leitores sejam capazes de usar
+C++ moderno diretamente em seus novos projetos e migrar seus projetos antigos
+para C++ moderno gradualmente depois de ler o livro.
 
-## Exercises
+## Código
 
-There are few exercises At the end of each chapter of the book. It is for testing whether you can use the knowledge points in the current chapter. You can find the possible answer to the problem from [here](../../exercise). The folder name is the chapter number.
+Cada capítulo deste livro contém muitos códigos. Se você encontrar problemas ao
+escrever seu próprio código com os recursos introdutórios do livro, você também
+pode ler o código-fonte anexado ao livro. Você pode encontrar o livro [aqui](../../code).
+Todo o código organizado por capítulo, o nome da pasta é o número do capítulo.
 
-[Sumário](./toc.md) | [Próximo Capítulo: Towards Modern C++](./01-intro.md)
+## Exercícios
 
-## Licenses
+Existem alguns exercícios no final de cada capítulo do livro.É para testar se
+você pode usar os pontos de conhecimento do capítulo atual. Você pode encontrar
+a possível resposta para o problema [aqui](../../exercise). O nome da pasta
+é o número do capítulo.
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).
+[Sumário](./toc.md) | [Próximo Capítulo: Towards Modern C++ ](./01-intro.md)
+
+## Licenças
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+<img alt="Creative Commons License" style="border-width: 0" src ="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+</a><br />
+Este trabalho foi escrito por [Ou Changkun](https://changkun.de) e licenciado sob a
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licença Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International</a>.
+O código deste repositório é de código aberto sob a [licença MIT] (../../LICENSE).
