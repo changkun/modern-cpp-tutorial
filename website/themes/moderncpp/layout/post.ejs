@@ -3,6 +3,8 @@
     <ul class="main-menu">
         <% if (page.type == 'book-en-us') { %>
           <%- partial('partials/main_menu_en', { context: 'nav' }) %>
+        <% } else if (page.type == 'book-pt-br') { %>
+          <%- partial('partials/main_menu_pt', { context: 'nav' }) %>
         <% } else {%>
           <%- partial('partials/main_menu', { context: 'nav' }) %>
         <% } %>

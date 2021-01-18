@@ -26,4 +26,4 @@ clean:
 		./src/modern-cpp/about/donate.md \
 		./src/modern-cpp/code \
 		./src/modern-cpp/exercises \
-		public db.json src/modern-cpp/zh-cn src/modern-cpp/en-us
+		public db.json src/modern-cpp/zh-cn src/modern-cpp/en-us src/modern-cpp/pt-br

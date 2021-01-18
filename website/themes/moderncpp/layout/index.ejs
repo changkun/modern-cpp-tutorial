@@ -3,6 +3,8 @@
     <ul class="main-menu">
       <% if (page.type == 'book-en-us') { %>
         <%- partial('partials/main_menu_en', { context: 'nav' }) %>
+      <% } else if (page.type == 'book-pt-br') { %>
+        <%- partial('partials/main_menu_pt', { context: 'nav' }) %>
       <% } else {%>
         <%- partial('partials/main_menu', { context: 'nav' }) %>
       <% } %>
@@ -43,6 +45,25 @@
         <p>
           <a class="button white" href="<%- url_for("/modern-cpp/en-us/00-preface/") %>">🇬🇧 Read Online</a>
           <a class="button download" href="<%- url_for("/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf") %>">🇬🇧 Download</a>
+        </p>
+      </div>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+      <div class="left">
+        <img class="hero-logo" src="<%- url_for("/modern-cpp/assets/cover-2nd-pt.png") %>">
+      </div><div class="right">
+        <h4>Changkun Ou</h4>  
+        <h1>
+          Modern C++ Tutorial
+        </h1>
+        <h2>C++ 11/14/17/20 On the Fly</h2>
+        <h3>SEGUNDA EDIÇÃO</h3>
+        <p>
+          <a class="button white" href="<%- url_for("/modern-cpp/pt-br/00-preface/") %>">🇧🇷 Ler Online</a>
+          <a class="button download" href="<%- url_for("/modern-cpp/pdf/modern-cpp-tutorial-pt-br.pdf") %>">🇧🇷 Baixar</a>
         </p>
       </div>
   </div>

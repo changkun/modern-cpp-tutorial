@@ -1,7 +1,7 @@
 NAME=modern-cpp-tutorial
 DOCKER_ENV=changkun/$(NAME):build-env
 TARGET = pdf epub
-LANGS = zh-cn en-us
+LANGS = zh-cn en-us pt-br
 ALL_BUILDS = website $(TARGET)
 
 # dep
