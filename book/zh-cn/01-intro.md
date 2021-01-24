@@ -25,6 +25,7 @@ InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 > **注意**：弃用并非彻底不能用，只是用于暗示程序员这些特性将从未来的标准中消失，应该尽量避免使用。但是，已弃用的特性依然是标准库的一部分，并且出于兼容性的考虑，大部分特性其实会『永久』保留。
 
 - **不再允许字符串字面值常量赋值给一个 `char *`。如果需要用字符串字面值常量赋值和初始化一个 `char *`，应该使用 `const char *` 或者 `auto`。**
+
     ```cpp
     char *str = "hello world!"; // 将出现弃用警告
     ```
