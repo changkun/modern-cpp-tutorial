@@ -292,7 +292,7 @@ This will iterate over the tuple:
 ```cpp
 for(int i = 0; i != tuple_len(new_tuple); ++i)
     // runtime indexing
-    std::cout << tuple_index(i, new_tuple) << std::endl;
+    std::cout << tuple_index(new_tuple, i) << std::endl;
 ```
 
 ## Conclusion
