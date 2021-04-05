@@ -292,7 +292,7 @@ auto tuple_len(T &tpl) {
 // 迭代
 for(int i = 0; i != tuple_len(new_tuple); ++i)
     // 运行期索引
-    std::cout << tuple_index(i, new_tuple) << std::endl;
+    std::cout << tuple_index(new_tuple, i) << std::endl;
 ```
 
 ## 总结
