@@ -55,7 +55,7 @@ For some force majeure and historical reasons, we had to use some C code (even o
 
 ![Figure 1.2: Compatabilities between ISO C and ISO C++](../../assets/figures/comparison.png)
 
-From now on, you should have the idea that "C++ is **not** a superset of C" in your mind (and not from the beginning, later [References for further reading] (# further reading references) The difference between C++98 and C99 is given). When writing C++, you should also avoid using program styles such as `void*` whenever possible. When you have to use C, you should pay attention to the use of `extern "C"`, separate the C language code from the C++ code, and then unify the link, for instance:
+From now on, you should have the idea that "C++ is **not** a superset of C" in your mind (and not from the beginning, later [References for further reading](#further-readings) The difference between C++98 and C99 is given). When writing C++, you should also avoid using program styles such as `void*` whenever possible. When you have to use C, you should pay attention to the use of `extern "C"`, separate the C language code from the C++ code, and then unify the link, for instance:
 
 ```cpp
 // foo.h
