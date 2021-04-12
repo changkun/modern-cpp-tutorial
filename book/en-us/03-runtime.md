@@ -114,7 +114,7 @@ void lambda_expression_capture() {
 }
 ```
 
-In the above code, `important` is an exclusive pointer that cannot be caught. 
+In the above code, `important` is an exclusive pointer that cannot be caught by Value capture. 
 At this time we need to transfer it to the rvalue and 
 initialize it in the expression.
 
