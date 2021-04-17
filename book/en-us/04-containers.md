@@ -12,13 +12,13 @@ order: 4
 
 ### `std::array`
 
-When you see this container, you will definitely have this problem:
+When you see this container, you will have this problem:
 
 1. Why introduce `std::array` instead of `std::vector` directly?
 2. Already have a traditional array, why use `std::array`?
 
-First answer the first question. Unlike `std::vector`, the size of the `std::array` object is fixed. If the container size is fixed, then the `std::array` container can be used first.
-In addition, since `std::vector` is automatically expanded, when a large amount of data is stored, and the container is deleted,
+First, answer the first question. Unlike `std::vector`, the size of the `std::array` object is fixed. If the container size is fixed, then the `std::array` container can be used first.
+Also, since `std::vector` is automatically expanded, when a large amount of data is stored, and the container is deleted,
 The container does not automatically return the corresponding memory of the deleted element. In this case, you need to manually run `shrink_to_fit()` to release this part of the memory.
 
 ```cpp
@@ -26,9 +26,9 @@ std::vector<int> v;
 std::cout << "size:" << v.size() << std::endl;         // output 0
 std::cout << "capacity:" << v.capacity() << std::endl; // output 0
 
-// As you can see, the storage of std::vector is automatically managed and 
+// As you can see, the storage of std::vector is automatically managed and
 // automatically expanded as needed.
-// But if there is not enough space, you need to redistribute more memory, 
+// But if there is not enough space, you need to redistribute more memory,
 // and reallocating memory is usually a performance-intensive operation.
 v.push_back(1);
 v.push_back(2);
@@ -42,9 +42,9 @@ v.push_back(5);
 std::cout << "size:" << v.size() << std::endl;         // output 5
 std::cout << "capacity:" << v.capacity() << std::endl; // output 8
 
-// As can be seen below, although the container empties the element, 
+// As can be seen below, although the container empties the element,
 // the memory of the emptied element is not returned.
-v.clear();                                             
+v.clear();
 std::cout << "size:" << v.size() << std::endl;         // output 0
 std::cout << "capacity:" << v.capacity() << std::endl; // output 8
 
@@ -103,7 +103,7 @@ std::sort(arr.begin(), arr.end());
 
 ### `std::forward_list`
 
-`std::forward_list` is a list container, and the usage is basically similar to `std::list`, so we don't spend a lot of time introducing it.
+`std::forward_list` is a list container, and the usage is similar to `std::list`, so we don't spend a lot of time introducing it.
 
 Need to know is that, unlike the implementation of the doubly linked list of `std::list`, `std::forward_list` is implemented using a singly linked list.
 Provides element insertion of `O(1)` complexity, does not support fast random access (this is also a feature of linked lists),
@@ -115,7 +115,7 @@ We are already familiar with the ordered container `std::map`/`std::set` in trad
 The average complexity of inserts and searches is `O(log(size))`. When inserting an element, the element size is compared according to the `<` operator and the element is determined to be the same.
 And select the appropriate location to insert into the container. When traversing the elements in this container, the output will be traversed one by one in the order of the `<` operator.
 
-The elements in the unordered container are not sorted, and the internals are implemented by the Hash table. The average complexity of inserting and searching for elements is `O(constant)`,
+The elements in the unordered container are not sorted, and the internals is implemented by the Hash table. The average complexity of inserting and searching for elements is `O(constant)`,
 Significant performance gains can be achieved without concern for the order of the elements inside the container.
 
 C++11 introduces two sets of unordered containers: `std::unordered_map`/`std::unordered_multimap` and
@@ -142,12 +142,12 @@ int main() {
         {3, "3"},
         {2, "2"}
     };
-    
+
     // iterates in the same way
     std::cout << "std::unordered_map" << std::endl;
     for( const auto & n : u)
         std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
-    
+
     std::cout << std::endl;
     std::cout << "std::map" << std::endl;
     for( const auto & n : v)
@@ -256,8 +256,8 @@ constexpr std::variant<T...> tuple_index(const std::tuple<T...>& tpl, size_t i) 
     return _tuple_index<0>(tpl, i);
 }
 template <typename T0, typename ... Ts>
-std::ostream & operator<< (std::ostream & s, std::variant<T0, Ts...> const & v) { 
-    std::visit([&](auto && x){ s << x;}, v); 
+std::ostream & operator<< (std::ostream & s, std::variant<T0, Ts...> const & v) {
+    std::visit([&](auto && x){ s << x;}, v);
     return s;
 }
 ```
@@ -278,7 +278,7 @@ auto new_tuple = std::tuple_cat(get_student(1), std::move(t));
 ```
 
 You can immediately see how quickly you can traverse a tuple? But we just introduced how to index a `tuple` by a very number at runtime, then the traversal becomes simpler.
-First we need to know the length of a tuple, which can:
+First, we need to know the length of a tuple, which can:
 
 ```cpp
 template <typename T>
@@ -297,7 +297,7 @@ for(int i = 0; i != tuple_len(new_tuple); ++i)
 
 ## Conclusion
 
-This chapter briefly introduces the new containers in modern C++. Their usage is similar to that of the existing containers in C++. It is relatively simple, and you can choose the containers you need to use according to the actual scene, so as to get better performance.
+This chapter briefly introduces the new containers in modern C++. Their usage is similar to that of the existing containers in C++. It is relatively simple, and you can choose the containers you need to use according to the actual scene, to get better performance.
 
 Although `std::tuple` is effective, the standard library provides limited functionality and there is no way to meet the requirements of runtime indexing and iteration. Fortunately, we have other methods that we can implement on our own.
 
