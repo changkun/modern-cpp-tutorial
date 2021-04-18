@@ -28,7 +28,7 @@ int main() {
 
 ## 7.2 Mutex and Critical Section
 
-We have already learned the basics of concurrency technology in the operating system, or in the database, and `mutex` is one of the cores.
+We have already learned the basics of concurrency technology in the operating system, or the database, and `mutex` is one of the cores.
 C++11 introduces a class related to `mutex`, with all related functions in the `<mutex>` header file.
 
 `std::mutex` is the most basic `mutex` class in C++11, and you can create a mutex by instantiating `std::mutex`.
@@ -114,10 +114,10 @@ int main() {
 ## 7.3 Future
 
 The Future is represented by `std::future`, which provides a way to access the results of asynchronous operations. This sentence is very difficult to understand.
-In order to understand this feature, we need to understand the multi-threaded behavior before C++11.
+To understand this feature, we need to understand the multi-threaded behavior before C++11.
 
 Imagine if our main thread A wants to open a new thread B to perform some of our expected tasks and return me a result.
-At this time, thread A may be busy with other things, and have no time to take into account the results of B.
+At this time, thread A may be busy with other things and have no time to take into account the results of B.
 So we naturally hope to get the result of thread B at a certain time.
 
 Before the introduction of `std::future` in C++11, the usual practice is:
@@ -217,15 +217,15 @@ int main() {
 }
 ```
 
-It is worth mentioning that although we can use `notify_one()` in the producer, it is not really recommended to use it here.
-Because in the case of multiple consumers, our consumer implementation simply gives up the lock holding, which makes it possible for other consumers to compete for this lock, so as to better utilize the concurrency between multiple consumers. Having said that, but in fact because of the exclusivity of `std::mutex`,
-We simply can't expect multiple consumers to be able to actually produce content in a parallel consumer queue, and we still need a more granular approach.
+It is worth mentioning that although we can use `notify_one()` in the producer, it is not recommended to use it here.
+Because in the case of multiple consumers, our consumer implementation simply gives up the lock holding, which makes it possible for other consumers to compete for this lock, to better utilize the concurrency between multiple consumers. Having said that, but in fact because of the exclusivity of `std::mutex`,
+We simply can't expect multiple consumers to be able to produce content in a parallel consumer queue, and we still need a more granular approach.
 
 ## 7.5 Atomic Operation and Memory Model
 
-Careful readers may be tempted by the fact that the example of the producer consumer model in the previous section may have compiler optimizations that cause program errors.
+Careful readers may be tempted by the fact that the example of the producer-consumer model in the previous section may have compiler optimizations that cause program errors.
 For example, the boolean `notified` is not modified by `volatile`, and the compiler may have optimizations for this variable, such as the value of a register.
-As a result, the consumer thread can never observe the change of this value. This is a good question. To explain this problem, we need to further discuss the concept of memory model introduced from C++11. Let's first look at a question. What is the output of the following code?
+As a result, the consumer thread can never observe the change of this value. This is a good question. To explain this problem, we need to further discuss the concept of the memory model introduced from C++11. Let's first look at a question. What is the output of the following code?
 
 ```cpp
 #include <thread>
@@ -254,19 +254,19 @@ int main() {
 ```
 
 Intuitively, `a = 5;` seems in `t2` seems to always execute before `flag = 1;`, and `while (flag != 1)` in `t1` seems to guarantee `std ::cout << "b = " << b << std::endl;` will not be executed before the mark is changed. Logically, it seems that the value of `b` should be equal to 5.
-But the actual situation is much more complicated than this, or the code itself is undefined behavior, because for `a` and `flag`, they are read and written in two parallel threads.
-There has been competition. In addition, even if we ignore competing reading and writing, it is still possible to receive out-of-order execution of the CPU, and the impact of the compiler on the rearrangement of instructions.
+But the actual situation is much more complicated than this, or the code itself is undefined behavior because, for `a` and `flag`, they are read and written in two parallel threads.
+There has been competition. Also, even if we ignore competing for reading and writing, it is still possible to receive out-of-order execution of the CPU and the impact of the compiler on the rearrangement of instructions.
 Cause `a = 5` to occur after `flag = 1`. Thus `b` may output 0.
 
 ### Atomic Operation
 
-`std::mutex` can solve the problem of concurrent read and write, but the mutex is an operating system level function.
+`std::mutex` can solve the problem of concurrent read and write, but the mutex is an operating system-level function.
 This is because the implementation of a mutex usually contains two basic principles:
 
 1. Provide automatic state transition between threads, that is, "lock" state
 2. Ensure that the memory of the manipulated variable is isolated from the critical section during the mutex operation
 
-This is a very strong set of synchronization conditions, in other words, when it is finally compiled into a CPU instruction, it will behave as a lot of instructions (we will look at how to implement a simple mutex later).
+This is a very strong set of synchronization conditions, in other words when it is finally compiled into a CPU instruction, it will behave like a lot of instructions (we will look at how to implement a simple mutex later).
 This seems too harsh for a variable that requires only atomic operations (no intermediate state).
 
 The research on synchronization conditions has a very long history, and we will not go into details here. Readers should understand that under the modern CPU architecture, atomic operations at the CPU instruction level are provided.
@@ -335,207 +335,205 @@ Weakening the synchronization conditions between processes, usually we will cons
 
 1. Linear consistency: Also known as strong consistency or atomic consistency. It requires that any read operation can read the most recent write of a certain data, and the order of operation of all threads is consistent with the order under the global clock.
 
-    ```
-            x.store(1)      x.load()
-    T1 ---------+----------------+------>
+   ```
+           x.store(1)      x.load()
+   T1 ---------+----------------+------>
 
 
-    T2 -------------------+------------->
-                    x.store(2)
-    ```
+   T2 -------------------+------------->
+                   x.store(2)
+   ```
 
-    In this case, thread `T1`, `T2` is twice atomic to `x`, and `x.store(1)` is strictly before `x.store(2)`. `x.store(2)` strictly occurs before `x.load()`. It is worth mentioning that linear consistency requirements for global clocks are difficult to achieve, which is why people continue to study other consistent algorithms under this weaker consistency.
+   In this case, thread `T1`, `T2` is twice atomic to `x`, and `x.store(1)` is strictly before `x.store(2)`. `x.store(2)` strictly occurs before `x.load()`. It is worth mentioning that linear consistency requirements for global clocks are difficult to achieve, which is why people continue to study other consistent algorithms under this weaker consistency.
 
 2. Sequential consistency: It is also required that any read operation can read the last data written by the data, but it is not required to be consistent with the order of the global clock.
 
-    ```
-            x.store(1)  x.store(3)   x.load()
-    T1 ---------+-----------+----------+----->
+   ```
+           x.store(1)  x.store(3)   x.load()
+   T1 ---------+-----------+----------+----->
 
 
-    T2 ---------------+---------------------->
-                  x.store(2)
+   T2 ---------------+---------------------->
+                 x.store(2)
 
-    or
+   or
 
-            x.store(1)  x.store(3)   x.load()
-    T1 ---------+-----------+----------+----->
+           x.store(1)  x.store(3)   x.load()
+   T1 ---------+-----------+----------+----->
 
 
-    T2 ------+------------------------------->
-          x.store(2)
-    ```
+   T2 ------+------------------------------->
+         x.store(2)
+   ```
 
-    Under the order consistency requirement, `x.load()` must read the last written data, so `x.store(2)` and `x.store(1)` do not have any guarantees, ie As long as `x.store(2)` of `T2` occurs before `x.store(3)`.
+   Under the order consistency requirement, `x.load()` must read the last written data, so `x.store(2)` and `x.store(1)` do not have any guarantees, ie As long as `x.store(2)` of `T2` occurs before `x.store(3)`.
 
 3. Causal consistency: its requirements are further reduced, only the sequence of causal operations is guaranteed, and the order of non-causal operations is not required.
 
-    ```
-          a = 1      b = 2
-    T1 ----+-----------+---------------------------->
+   ```
+         a = 1      b = 2
+   T1 ----+-----------+---------------------------->
 
 
-    T2 ------+--------------------+--------+-------->
-          x.store(3)         c = a + b    y.load()
+   T2 ------+--------------------+--------+-------->
+         x.store(3)         c = a + b    y.load()
 
-    or
+   or
 
-          a = 1      b = 2
-    T1 ----+-----------+---------------------------->
-
-
-    T2 ------+--------------------+--------+-------->
-          x.store(3)          y.load()   c = a + b
-
-    or
-
-         b = 2       a = 1
-    T1 ----+-----------+---------------------------->
+         a = 1      b = 2
+   T1 ----+-----------+---------------------------->
 
 
-    T2 ------+--------------------+--------+-------->
-          y.load()            c = a + b  x.store(3)
-    ```
+   T2 ------+--------------------+--------+-------->
+         x.store(3)          y.load()   c = a + b
 
-    The three examples given above are all causal consistent, because in the whole process, only `c` has a dependency on `a` and `b`, and `x` and `y` are not related in this example. (But in actual situations we need more detailed information to determine that `x` is not related to `y`)
+   or
 
-4. Final Consistency: It is the weakest consistency requirement. It only guarantees that an operation will be observed at a certain point in the future, but does not require the observed time. So we can even strengthen this condition a bit, for example, to specify that the time observed for an operation is always bounded. Of course this is no longer within our discussion.
-
-    ```
-        x.store(3)  x.store(4)
-    T1 ----+-----------+-------------------------------------------->
+        b = 2       a = 1
+   T1 ----+-----------+---------------------------->
 
 
-    T2 ---------+------------+--------------------+--------+-------->
-             x.read()      x.read()           x.read()   x.read()
-    ```
+   T2 ------+--------------------+--------+-------->
+         y.load()            c = a + b  x.store(3)
+   ```
 
-    In the above case, if we assume that the initial value of x is 0, then the four times ``x.read()` in `T2` may be but not limited to the following:
+   The three examples given above are all causal consistent because, in the whole process, only `c` has a dependency on `a` and `b`, and `x` and `y` are not related in this example. (But in actual situations we need more detailed information to determine that `x` is not related to `y`)
 
-    ```
-    3 4 4 4 // The write operation of x was quickly observed
-    0 3 3 4 // There is a delay in the observed time of the x write operation
-    0 0 0 4 // The last read read the final value of x, but the previous changes were not observed.
-    0 0 0 0 // The write operation of x is not observed in the current time period, but the situation that x is 4 can be observed at some point in the future.
-    ```
+4. Final Consistency: It is the weakest consistency requirement. It only guarantees that an operation will be observed at a certain point in the future, but does not require the observed time. So we can even strengthen this condition a bit, for example, to specify that the time observed for an operation is always bounded. Of course, this is no longer within our discussion.
+
+   ```
+       x.store(3)  x.store(4)
+   T1 ----+-----------+-------------------------------------------->
+
+
+   T2 ---------+------------+--------------------+--------+-------->
+            x.read()      x.read()           x.read()   x.read()
+   ```
+
+   In the above case, if we assume that the initial value of x is 0, then the four times ``x.read()` in `T2` may be but not limited to the following:
+
+   ```
+   3 4 4 4 // The write operation of x was quickly observed
+   0 3 3 4 // There is a delay in the observed time of the x write operation
+   0 0 0 4 // The last read read the final value of x, but the previous changes were not observed.
+   0 0 0 0 // The write operation of x is not observed in the current time period, but the situation that x is 4 can be observed at some point in the future.
+   ```
 
 ### Memory Orders
 
-In order to achieve the ultimate performance and achieve consistency of various strength requirements, C++11 defines six different memory sequences for atomic operations. The option `std::memory_order` expresses four synchronization models between multiple threads:
+To achieve the ultimate performance and achieve consistency of various strength requirements, C++11 defines six different memory sequences for atomic operations. The option `std::memory_order` expresses four synchronization models between multiple threads:
 
 1. Relaxed model: Under this model, atomic operations within a single thread are executed sequentially, and instruction reordering is not allowed, but the order of atomic operations between different threads is arbitrary. The type is specified by `std::memory_order_relaxed`. Let's look at an example:
 
-    ```cpp
-    std::atomic<int> counter = {0};
-    std::vector<std::thread> vt;
-    for (int i = 0; i < 100; ++i) {
-        vt.emplace_back([&](){
-            counter.fetch_add(1, std::memory_order_relaxed);
-        });
-    }
+   ```cpp
+   std::atomic<int> counter = {0};
+   std::vector<std::thread> vt;
+   for (int i = 0; i < 100; ++i) {
+       vt.emplace_back([&](){
+           counter.fetch_add(1, std::memory_order_relaxed);
+       });
+   }
 
-    for (auto& t : vt) {
-        t.join();
-    }
-    std::cout << "current counter:" << counter << std::endl;
-    ```
-
+   for (auto& t : vt) {
+       t.join();
+   }
+   std::cout << "current counter:" << counter << std::endl;
+   ```
 
 2. Release/consumption model: In this model, we begin to limit the order of operations between processes. If a thread needs to modify a value, but another thread will have a dependency on that operation of the value, that is, the latter depends. former. Specifically, thread A has completed three writes to `x`, and thread `B` relies only on the third `x` write operation, regardless of the first two write behaviors of `x`, then `A ` When active `x.release()` (ie using `std::memory_order_release`), the option `std::memory_order_consume` ensures that `B` observes `A` when calling `x.load()` Three writes to `x`. Let's look at an example:
 
-    ```cpp
-    // initialize as nullptr to prevent consumer load a dangling pointer
-    std::atomic<int*> ptr(nullptr);
-    int v;
-    std::thread producer([&]() {
-        int* p = new int(42);
-        v = 1024;
-        ptr.store(p, std::memory_order_release);
-    });
-    std::thread consumer([&]() {
-        int* p;
-        while(!(p = ptr.load(std::memory_order_consume)));
+   ```cpp
+   // initialize as nullptr to prevent consumer load a dangling pointer
+   std::atomic<int*> ptr(nullptr);
+   int v;
+   std::thread producer([&]() {
+       int* p = new int(42);
+       v = 1024;
+       ptr.store(p, std::memory_order_release);
+   });
+   std::thread consumer([&]() {
+       int* p;
+       while(!(p = ptr.load(std::memory_order_consume)));
 
-        std::cout << "p: " << *p << std::endl;
-        std::cout << "v: " << v << std::endl;
-    });
-    producer.join();
-    consumer.join();
-    ```
+       std::cout << "p: " << *p << std::endl;
+       std::cout << "v: " << v << std::endl;
+   });
+   producer.join();
+   consumer.join();
+   ```
 
-3. Release/Acquire model: Under this model, we can further tighten the order of atomic operations between different threads, specifying the timing between releasing `std::memory_order_release` and getting `std::memory_order_acquire`. **All** write operations before the release operation are visible to any other thread, ie, happens-before.
+3. Release/Acquire model: Under this model, we can further tighten the order of atomic operations between different threads, specifying the timing between releasing `std::memory_order_release` and getting `std::memory_order_acquire`. **All** write operations before the release operation is visible to any other thread, i.e., happens before.
 
-    As you can see, `std::memory_order_release` ensures that the write behavior after it does not occur before the release operation, which is a forward barrier, and`std::memory_order_acquire` ensures that its previous write behavior does not occur after this acquisition operation, there is a backward barrier. For the `std::memory_order_acq_rel` option, it combines the characteristics of the two and uniquely determines a memory barrier, so that the current thread's reading and writing of memory will not be rearranged before and after this operation.
+   As you can see, `std::memory_order_release` ensures that the write behavior after it does not occur before the release operation, which is a forward barrier, and`std::memory_order_acquire` ensures that its previous write behavior does not occur after this acquisition operation, there is a backward barrier. For the `std::memory_order_acq_rel` option, combines the characteristics of the two and uniquely determines a memory barrier, so that the current thread's reading and writing of memory will not be rearranged before and after this operation.
 
-    Let's check an example:
+   Let's check an example:
 
-    ```cpp
-    std::vector<int> v;
-    std::atomic<int> flag = {0};
-    std::thread release([&]() {
-        v.push_back(42);
-        flag.store(1, std::memory_order_release);
-    });
-    std::thread acqrel([&]() {
-        int expected = 1; // must before compare_exchange_strong
-        while(!flag.compare_exchange_strong(expected, 2, std::memory_order_acq_rel)) {
-            expected = 1; // must after compare_exchange_strong
-        }
-        // flag has changed to 2
-    });
-    std::thread acquire([&]() {
-        while(flag.load(std::memory_order_acquire) < 2);
+   ```cpp
+   std::vector<int> v;
+   std::atomic<int> flag = {0};
+   std::thread release([&]() {
+       v.push_back(42);
+       flag.store(1, std::memory_order_release);
+   });
+   std::thread acqrel([&]() {
+       int expected = 1; // must before compare_exchange_strong
+       while(!flag.compare_exchange_strong(expected, 2, std::memory_order_acq_rel)) {
+           expected = 1; // must after compare_exchange_strong
+       }
+       // flag has changed to 2
+   });
+   std::thread acquire([&]() {
+       while(flag.load(std::memory_order_acquire) < 2);
 
-        std::cout << v.at(0) << std::endl; // must be 42
-    });
-    release.join();
-    acqrel.join();
-    acquire.join();
-    ```
+       std::cout << v.at(0) << std::endl; // must be 42
+   });
+   release.join();
+   acqrel.join();
+   acquire.join();
+   ```
 
-    In this case we used `compare_exchange_strong`, which is the Compare-and-swap primitive, which has a weaker version, `compare_exchange_weak`, which allows a failure to be returned even if the exchange is successful. The reason is due to a false failure on some platforms, specifically, when the CPU performs a context switch, another thread loads the same address to produce an inconsistency. In addition, the performance of `compare_exchange_strong` may be slightly worse than `compare_exchange_weak`, but in most cases, `compare_exchange_strong` should be limited.
+   In this case we used `compare_exchange_strong`, which is the Compare-and-swap primitive, which has a weaker version, `compare_exchange_weak`, which allows a failure to be returned even if the exchange is successful. The reason is due to a false failure on some platforms, specifically when the CPU performs a context switch, another thread loads the same address to produce an inconsistency. In addition, the performance of `compare_exchange_strong` may be slightly worse than `compare_exchange_weak`, but in most cases, `compare_exchange_strong` should be limited.
 
-4. Sequential Consistent Model: Under this model, atomic operations satisfy sequence consistency, which in turn can cause performance loss. It can be specified explicitly by `std::memory_order_seq_cst`. Let's look a final example:
+4. Sequential Consistent Model: Under this model, atomic operations satisfy sequence consistency, which in turn can cause performance loss. It can be specified explicitly by `std::memory_order_seq_cst`. Let's look at a final example:
 
-    ```cpp
-    std::atomic<int> counter = {0};
-    std::vector<std::thread> vt;
-    for (int i = 0; i < 100; ++i) {
-        vt.emplace_back([&](){
-            counter.fetch_add(1, std::memory_order_seq_cst);
-        });
-    }
+   ```cpp
+   std::atomic<int> counter = {0};
+   std::vector<std::thread> vt;
+   for (int i = 0; i < 100; ++i) {
+       vt.emplace_back([&](){
+           counter.fetch_add(1, std::memory_order_seq_cst);
+       });
+   }
 
-    for (auto& t : vt) {
-        t.join();
-    }
-    std::cout << "current counter:" << counter << std::endl;
-    ```
+   for (auto& t : vt) {
+       t.join();
+   }
+   std::cout << "current counter:" << counter << std::endl;
+   ```
 
-    This example is essentially the same as the first loose model example. Just change the memory order of the atomic operation to `memory_order_seq_cst`. Interested readers can write their own programs to measure the performance difference caused by these two different memory sequences.
-
+   This example is essentially the same as the first loose model example. Just change the memory order of the atomic operation to `memory_order_seq_cst`. Interested readers can write their own programs to measure the performance difference caused by these two different memory sequences.
 
 ## Conclusion
 
 The C++11 language layer provides support for concurrent programming. This section briefly introduces `std::thread`/`std::mutex`/`std::future`, an important tool that can't be avoided in concurrent programming.
 In addition, we also introduced the "memory model" as one of the most important features of C++11.
-They provide an critical foundation for standardized high performance computing for C++.
+They provide a critical foundation for standardized high-performance computing for C++.
 
 ## Exercises
 
 1. Write a simple thread pool that provides the following features:
 
-    ```cpp
-    ThreadPool p(4); // specify four work thread
+   ```cpp
+   ThreadPool p(4); // specify four work thread
 
-    // enqueue a task, and return a std::future
-    auto f = pool.enqueue([](int life) {
-        return meaning;
-    }, 42);
+   // enqueue a task, and return a std::future
+   auto f = pool.enqueue([](int life) {
+       return meaning;
+   }, 42);
 
-    // fetch result from future
-    std::cout << f.get() << std::endl;
-    ```
+   // fetch result from future
+   std::cout << f.get() << std::endl;
+   ```
 
 2. Use `std::atomic<bool>` to implement a mutex.
 

@@ -12,22 +12,20 @@ order: 9
 
 ### `long long int`
 
-`long long int` is not the first to be introduced in C++11. 
-In fact, as early as C99, `long long int` has been included in the C standard, 
-so most compilers already support it. 
-C++11 now formally incorporate it into the standard library, 
+`long long int` is not the first to be introduced in C++11.
+As early as C99, `long long int` has been included in the C standard,
+so most compilers already support it.
+C++11 now formally incorporate it into the standard library,
 specifying a `long long int` type with at least 64 bits.
 
 ## 9.2 `noexcept` and Its Operations
 
-One of the big advantages of C++ over C is that 
-C++ itself defines a complete set of exception handling mechanisms. 
-However, before C++11, almost no one used to write 
-an exception declaration expression after the function name. 
-Starting from C++11, this mechanism was deprecated, 
-so we will not discuss or introduce the previous mechanism. 
-How to work and how to use it, you should not take the initiative 
-to understand it.
+One of the big advantages of C++ over C is that
+C++ itself defines a complete set of exception handling mechanisms.
+However, before C++11, almost no one used to write an exception declaration expression after the function name.
+Starting from C++11, this mechanism was deprecated,
+so we will not discuss or introduce the previous mechanism.
+How to work and how to use it, you should not take the initiative to understand it.
 
 C++11 simplifies exception declarations into two cases:
 
@@ -41,13 +39,13 @@ void may_throw();           // May throw any exception
 void no_throw() noexcept;   // Cannot throw any exception
 ```
 
-If a function modified with `noexcept` is thrown, 
-the compiler will use `std::terminate()` to 
+If a function modified with `noexcept` is thrown,
+the compiler will use `std::terminate()` to
 immediately terminate the program.
 
-`noexcept` can also be used as an operator to manipulate an expression. 
-When the expression has no exception, it returns `true`, 
-otherwise it returns `false`.
+`noexcept` can also be used as an operator to manipulate an expression.
+When the expression has no exception, it returns `true`,
+otherwise, it returns `false`.
 
 ```cpp
 #include <iostream>
@@ -75,8 +73,8 @@ int main()
 }
 ```
 
-`noexcept` can modify the function of blocking exceptions 
-after modifying a function. If an exception is generated internally, 
+`noexcept` can modify the function of blocking exceptions
+after modifying a function. If an exception is generated internally,
 the external will not trigger. For instance:
 
 ```cpp
@@ -108,13 +106,13 @@ exception captured, from non_block_throw()
 
 ### Raw String Literal
 
-In traditional C++, it is very painful to write a string full of 
-special characters. For example, a string containing HTML ontology 
-needs to add a large number of escape characters. 
+In traditional C++, it is very painful to write a string full of
+special characters. For example, a string containing HTML ontology
+needs to add a large number of escape characters.
 For example, a file path on Windows often as: `C:\\Path\\To\\File`.
 
-C++11 provides the original string literals, 
-which can be decorated with `R` in front of a string, 
+C++11 provides the original string literals,
+which can be decorated with `R` in front of a string,
 and the original string is wrapped in parentheses, for example:
 
 ```cpp
@@ -130,7 +128,7 @@ int main() {
 
 ### Custom Literal
 
-C++11 introduces the ability to customize literals by 
+C++11 introduces the ability to customize literals by
 overloading the double quotes suffix operator:
 
 ```cpp
@@ -190,15 +188,15 @@ int main() {
 }
 ```
 
-where `std::max_align_t` requires exactly the same alignment for each scalar type, so it has almost no difference in maximum scalars.
+where `std::max_align_t` requires the same alignment for each scalar type, so it has almost no difference in maximum scalars.
 In turn, the result on most platforms is `long double`, so the alignment requirement for `AlignasStorage` we get here is 8 or 16.
 
 ## Conclusion
 
-Several of the features introduced in this section are those that 
-use more frequent features from modern C++ features that 
-have not yet been introduced. `noexcept` is the most important feature. 
-One of its features is to prevent the spread of anomalies, 
+Several of the features introduced in this section are those that
+use more frequent features from modern C++ features that
+have not yet been introduced. `noexcept` is the most important feature.
+One of its features is to prevent the spread of anomalies,
 effective Let the compiler optimize our code to the maximum extent possible.
 
 [Table of Content](./toc.md) | [Previous Chapter](./08-filesystem.md) | [Next Chapter: Outlook: Introduction of C++20](./10-cpp20.md)
