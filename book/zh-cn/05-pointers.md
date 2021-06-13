@@ -27,7 +27,7 @@ order: 5
 
 ## 5.2 `std::shared_ptr`
 
-`std::shared_ptr` 是一种智能指针，它能够记录多少个 `shared_ptr` 共同指向一个对象，从而消除显示的调用 
+`std::shared_ptr` 是一种智能指针，它能够记录多少个 `shared_ptr` 共同指向一个对象，从而消除显式的调用 
 `delete`，当引用计数变为零的时候就会将对象自动删除。
 
 但还不够，因为使用 `std::shared_ptr` 仍然需要使用 `new` 来调用，这使得代码出现了某种程度上的不对称。
