@@ -619,35 +619,6 @@ int main() {
 }
 ```
 
-### 默认模板参数
-
-我们可能定义了一个加法函数：
-
-```cpp
-// c++11 version
-template<typename T, typename U>
-auto add(T x, U y) -> decltype(x+y) {
-    return x+y;
-}
-
-// Call add function
-auto ret = add<int, int>(1,3);
-```
-
-但在使用时发现，要使用 `add`，就必须每次都指定其模板参数的类型。
-
-在 C++11 中提供了一种便利，可以指定模板的默认参数：
-
-```cpp
-template<typename T = int, typename U = int>
-auto add(T x, U y) -> decltype(x+y) {
-    return x+y;
-}
-
-// Call add function
-auto ret = add(1,3);
-```
-
 ### 变长参数模板
 
 模板一直是 C++ 所独有的**黑魔法**（一起念：**Dark Magic**）之一。
