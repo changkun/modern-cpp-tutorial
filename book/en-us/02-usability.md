@@ -709,28 +709,6 @@ int main() {
 }
 ```
 
-### Default template parameters
-
-We may have defined an addition function:
-
-```cpp
-template<typename T, typename U>
-auto add(T x, U y) -> decltype(x+y) {
-    return x+y;
-}
-```
-
-However, when used, it is found that to use add, you must specify the type of its template parameters each time.
-
-A convenience is provided in C++11 to specify the default parameters of the template:
-
-```cpp
-template<typename T = int, typename U = int>
-auto add(T x, U y) -> decltype(x+y) {
-    return x+y;
-}
-```
-
 ### Variadic templates
 
 The template has always been one of C++'s unique **Black Magic**.
