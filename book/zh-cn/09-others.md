@@ -89,7 +89,7 @@ try {
 最终输出为：
 
 ```
-捕获异常, 来自 my_throw()
+捕获异常, 来自 may_throw()
 捕获异常, 来自 non_block_throw()
 ```
 
