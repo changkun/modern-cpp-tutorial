@@ -72,7 +72,7 @@ int main()
 try {
     may_throw();
 } catch (...) {
-    std::cout << "捕获异常, 来自 my_throw()" << std::endl;
+    std::cout << "捕获异常, 来自 may_throw()" << std::endl;
 }
 try {
     non_block_throw();
@@ -89,7 +89,7 @@ try {
 最终输出为：
 
 ```
-捕获异常, 来自 my_throw()
+捕获异常, 来自 may_throw()
 捕获异常, 来自 non_block_throw()
 ```
 
