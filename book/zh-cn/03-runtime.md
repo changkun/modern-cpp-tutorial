@@ -544,7 +544,7 @@ constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type&& __t) noexcep
 而 `std::is_lvalue_reference` 用于检查类型推导是否正确，在 `std::forward` 的第二个实现中
 检查了接收到的值确实是一个左值，进而体现了坍缩规则。
 
-当 `std::forward` 接受左值时，`_Tp` 被推导为左值，而所以返回值为左值；而当其接受右值时，
+当 `std::forward` 接受左值时，`_Tp` 被推导为左值，所以返回值为左值；而当其接受右值时，
 `_Tp` 被推导为 右值引用，则基于坍缩规则，返回值便成为了 `&& + &&` 的右值。
 可见 `std::forward` 的原理在于巧妙的利用了模板类型推导中产生的差异。
 
