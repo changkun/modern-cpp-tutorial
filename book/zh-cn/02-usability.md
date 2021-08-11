@@ -258,7 +258,8 @@ int main() {
 ```Cpp
 public:
     void foo(std::initializer_list<int> list) {
-            for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) vec.push_back(*it);
+        for (std::initializer_list<int>::iterator it = list.begin();
+            it != list.end(); ++it) vec.push_back(*it);
     }
 
 magicFoo.foo({6,7,8,9});
@@ -964,7 +965,9 @@ if (new_enum::value3 == new_enum::value4) {
 ```cpp
 #include <iostream>
 template<typename T>
-std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::ostream>::type& stream, const T& e)
+std::ostream& operator<<(
+    typename std::enable_if<std::is_enum<T>::value,
+        std::ostream>::type& stream, const T& e)
 {
     return stream << static_cast<typename std::underlying_type<T>::type>(e);
 }

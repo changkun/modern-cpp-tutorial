@@ -312,7 +312,8 @@ be used as a formal parameter of a normal function, for example:
 ```Cpp
 public:
     void foo(std::initializer_list<int> list) {
-            for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) vec.push_back(*it);
+        for (std::initializer_list<int>::iterator it = list.begin();
+            it != list.end(); ++it) vec.push_back(*it);
     }
 
 magicFoo.foo({6,7,8,9});
@@ -1046,7 +1047,9 @@ And we want to get the value of the enumeration value, we will have to explicitl
 ```cpp
 #include <iostream>
 template<typename T>
-std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::ostream>::type& stream, const T& e)
+std::ostream& operator<<(
+    typename std::enable_if<std::is_enum<T>::value,
+        std::ostream>::type& stream, const T& e)
 {
     return stream << static_cast<typename std::underlying_type<T>::type>(e);
 }
