@@ -90,7 +90,8 @@ C++14 给与了我们方便，允许捕获的成员用任意的表达式进行�
 
 ```cpp
 #include <iostream>
-#include <utility>
+#include <memory>  // std::make_unique
+#include <utility> // std::move
 
 int main() {
     auto important = std::make_unique<int>(1);

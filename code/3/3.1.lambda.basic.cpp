@@ -9,7 +9,8 @@
 
 
 #include <iostream>
-#include <utility>
+#include <memory>  // std::make_unique
+#include <utility> // std::move
 
 void lambda_value_capture() {
     int value = 1;
