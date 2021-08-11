@@ -348,20 +348,24 @@ auto i = 5;              // i 被推导为 int
 auto arr = new auto(10); // arr 被推导为 int *
 ```
 
-> **注意**：`auto` 不能用于函数传参，因此下面的做法是无法通过编译的（考虑重载的问题，我们应该使用模板）：
+从 C++ 20 起，`auto` 甚至能用于函数传参，考虑下面的例子：
+
+
+```cpp
+int add(auto x, auto y) {
+    return x+y;
+}
+
+auto i = 5; // 被推导为 int
+auto j = 6; // 被推导为 int
+std::cout << add(i, j) << std::endl;
+```
+
+>
+> **注意**：`auto` 还不能用于推导数组类型：
 >
 > ```cpp
-> int add(auto x, auto y);
->
-> 2.6.auto.cpp:16:9: error: 'auto' not allowed in function prototype
-> int add(auto x, auto y) {
->         ^~~~
-> ```
->
-> 此外，`auto` 还不能用于推导数组类型：
->
-> ```cpp
-> auto auto_arr2[10] = {arr};   // 错误,  无法推导数组元素类型
+> auto auto_arr2[10] = {arr}; // 错误, 无法推导数组元素类型
 >
 > 2.6.auto.cpp:30:19: error: 'auto_arr2' declared as array of 'auto'
 >     auto auto_arr2[10] = {arr};
@@ -415,7 +419,7 @@ R add(T x, U y) {
 > 注意：typename 和 class 在模板参数列表中没有区别，在 typename 这个关键字出现之前，都是使用 class 来定义模板参数的。但在模板中定义有[嵌套依赖类型](http://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names)的变量时，需要用 typename 消除歧义
 
 
-这样的代码其实变得很丑陋，因为程序员在使用这个模板函数的时候，必须明确指出返回类型。但事实上我们并不知道 `add()` 这个函数会做什么样的操作，获得一个什么样的返回类型。
+这样的代码其实变得很丑陋，因为程序员在使用这个模板函数的时候，必须明确指出返回类型。但事实上我们并不知道 `add()` 这个函数会做什么样的操作，以及获得一个什么样的返回类型。
 
 在 C++11 中这个问题得到解决。虽然你可能马上会反应出来使用 `decltype` 推导 `x+y` 的类型，写出这样的代码：
 

@@ -411,19 +411,20 @@ auto i = 5;              // i as int
 auto arr = new auto(10); // arr as int *
 ```
 
-> **Note**: `auto` cannot be used for function arguments, so the following
-> is not possible to compile (considering overloading,
-> we should use templates):
->
-> ```cpp
-> int add(auto x, auto y);
->
-> 2.6.auto.cpp:16:9: error: 'auto' not allowed in function prototype
-> int add(auto x, auto y) {
->         ^~~~
-> ```
->
-> In addition, `auto` cannot be used to derive array types:
+Since C++ 20, `auto` can even be used as function arguments. Consider
+the following example:
+
+```cpp
+int add(auto x, auto y) {
+    return x+y;
+}
+
+auto i = 5; // type int
+auto j = 6; // type int
+std::cout << add(i, j) << std::endl;
+```
+
+> **Note**: `auto` cannot be used to derive array types yet:
 >
 > ```cpp
 > auto auto_arr2[10] = {arr};   // illegal, can't infer array type

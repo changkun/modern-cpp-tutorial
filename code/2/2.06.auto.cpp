@@ -21,10 +21,9 @@ public:
     }
 };
 
-// wrong
-// int add(auto x, auto y) {
-//     return x+y;
-// }
+int add(auto x, auto y) { // Supported in C++20
+    return x+y;
+}
 
 int main() {
     MagicFoo magicFoo = {1, 2, 3, 4, 5};
@@ -34,10 +33,11 @@ int main() {
     }
     std::cout << std::endl;
 
-    auto i = 5;                 // type int
-    auto j = 6;                 // type int
-    auto arr = new auto(10);    // type int*
-    // auto auto_arr2[10] = {arr};
-    // std::cout << add(i, j) << std::endl;
+    auto i = 5;                    // type int
+    auto j = 6;                    // type int
+    std::cout << add(i, j) << std::endl;
+
+    auto arr = new auto(10);       // type int*
+    // auto auto_arr2[10] = {arr}; // invalid
     return 0;
 }
