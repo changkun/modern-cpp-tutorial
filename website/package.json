@@ -9,7 +9,7 @@
     "hexo-generator-index": "^2.0.0",
     "hexo-image-caption": "^0.1.1",
     "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-marked": "^3.3.0",
+    "hexo-renderer-marked": "^4.0.0",
     "hexo-renderer-stylus": "^2.0.1"
   },
   "devDependencies": {
