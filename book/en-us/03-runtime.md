@@ -105,7 +105,9 @@ The type of the captured variable being declared is judged according to the expr
 and the judgment is the same as using `auto`:
 
 ```cpp
-#include <memory>
+#include <iostream>
+#include <memory>  // std::make_unique
+#include <utility> // std::move
 
 void lambda_expression_capture() {
     auto important = std::make_unique<int>(1);
