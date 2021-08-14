@@ -293,7 +293,7 @@ int main()
 
     const std::string& lv2 = lv1 + lv1; // 合法, 常量左值引用能够延长临时变量的生命周期
     // lv2 += "Test"; // 非法, 常量引用无法被修改
-    std::cout << lv2 << std::endl; // string,string
+    std::cout << lv2 << std::endl; // string,string,
 
     std::string&& rv2 = lv1 + lv2; // 合法, 右值引用延长临时对象生命周期
     rv2 += "Test"; // 合法, 非常量引用能够修改临时变量
