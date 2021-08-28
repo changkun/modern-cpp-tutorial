@@ -480,7 +480,7 @@ You may think that when we introduce `auto`, we have already mentioned that `aut
 ```cpp
 template<typename R, typename T, typename U>
 R add(T x, U y) {
-    return x+y
+    return x+y;
 }
 ```
 
