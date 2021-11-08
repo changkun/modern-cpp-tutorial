@@ -11,11 +11,10 @@
 #include "foo.h"
 #include <iostream>
 #include <functional>
-
+using namespace std;
 int main() {
     // use lambda expression
-    [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
-        out.get() << ".\n";
-    }();
+        cout << "Result from C code: " << add(1, 2)<<endl;
+    }
     return 0;
 }
