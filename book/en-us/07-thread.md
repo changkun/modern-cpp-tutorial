@@ -322,7 +322,7 @@ int main() {
 }
 ```
 
-### Concistency Model
+### Consistency Model
 
 Multiple threads executing in parallel, discussed at some macro level, can be roughly considered a distributed system.
 In a distributed system, any communication or even local operation takes a certain amount of time, and even unreliable communication occurs.
