@@ -322,7 +322,7 @@ int main() {
 }
 ```
 
-### Concistency Model
+### Consistency Model
 
 Multiple threads executing in parallel, discussed at some macro level, can be roughly considered a distributed system.
 In a distributed system, any communication or even local operation takes a certain amount of time, and even unreliable communication occurs.
@@ -366,7 +366,7 @@ Weakening the synchronization conditions between processes, usually we will cons
          x.store(2)
    ```
 
-   Under the order consistency requirement, `x.load()` must read the last written data, so `x.store(2)` and `x.store(1)` do not have any guarantees, ie As long as `x.store(2)` of `T2` occurs before `x.store(3)`.
+   Under the order consistency requirement, `x.load()` must read the last written data, so `x.store(2)` and `x.store(1)` do not have any guarantees, as long as `x.store(2)` of `T2` occurs before `x.store(3)`.
 
 3. Causal consistency: its requirements are further reduced, only the sequence of causal operations is guaranteed, and the order of non-causal operations is not required.
 
@@ -440,7 +440,7 @@ To achieve the ultimate performance and achieve consistency of various strength 
    std::cout << "current counter:" << counter << std::endl;
    ```
 
-2. Release/consumption model: In this model, we begin to limit the order of operations between processes. If a thread needs to modify a value, but another thread will have a dependency on that operation of the value, that is, the latter depends. former. Specifically, thread A has completed three writes to `x`, and thread `B` relies only on the third `x` write operation, regardless of the first two write behaviors of `x`, then `A ` When active `x.release()` (ie using `std::memory_order_release`), the option `std::memory_order_consume` ensures that `B` observes `A` when calling `x.load()` Three writes to `x`. Let's look at an example:
+2. Release/consumption model: In this model, we begin to limit the order of operations between processes. If a thread needs to modify a value, but another thread will have a dependency on that operation of the value, that is, the latter depends on the former. Specifically, thread A has completed three writes to `x`, and thread `B` relies only on the third `x` write operation, regardless of the first two write behaviors of `x`, then `A ` When active `x.release()` (ie using `std::memory_order_release`), the option `std::memory_order_consume` ensures that `B` observes `A` when calling `x.load()` Three writes to `x`. Let's look at an example:
 
    ```cpp
    // initialize as nullptr to prevent consumer load a dangling pointer
