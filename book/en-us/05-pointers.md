@@ -185,7 +185,8 @@ The solution to this problem is to use the weak reference pointer `std::weak_ptr
 
 In the above figure, only B is left in the last step, and B does not have any smart pointers to reference it, so this memory resource will also be released.
 
-`std::weak_ptr` has no `*` operator and `->` operator, so it can't operate on resources. Its only function is to check if `std::shared_ptr` exists, its `expired()` method can return `false` when the resource is not released, otherwise, it returns `true`.
+`std::weak_ptr` has no `*` operator and `->` operator, so it can't operate on resources. It can check if `std::shared_ptr` exists, its `expired()` method can return `false` when the resource is not released, otherwise, it returns `true`. It can also get a `std::shared_ptr` to the original object,its `lock()` method 
+can return a `std::shared_ptr` to the original object when the resource is not released, otherwise, it returns `nullptr`.
 
 ## Conclusion
 
