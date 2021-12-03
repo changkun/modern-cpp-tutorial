@@ -41,6 +41,7 @@ RAII guarantees the exceptional security of the code while keeping the simplicit
 
 ```cpp
 #include <iostream>
+#include <mutex>
 #include <thread>
 
 int v = 1;
@@ -80,6 +81,7 @@ For instance:
 
 ```cpp
 #include <iostream>
+#include <mutex>
 #include <thread>
 
 int v = 1;

@@ -42,6 +42,7 @@ RAII 在不失代码简洁性的同时，很好的保证了代码的异常安全
 
 ```cpp
 #include <iostream>
+#include <mutex>
 #include <thread>
 
 int v = 1;
@@ -82,6 +83,7 @@ int main() {
 
 ```cpp
 #include <iostream>
+#include <mutex>
 #include <thread>
 
 int v = 1;
