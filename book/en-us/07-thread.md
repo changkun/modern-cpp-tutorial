@@ -69,7 +69,7 @@ int main() {
 Because C++ guarantees that all stack objects will be destroyed at the end of the declaration period, such code is also extremely safe.
 Whether `critical_section()` returns normally or if an exception is thrown in the middle, a stack rollback is thrown, and `unlock()` is automatically called.
 
-And `std::unique_lock` is more flexible than `std::lock_guard`, `std::unique_lock` is more flexible.
+`std::unique_lock` is more flexible than `std::lock_guard`.
 Objects of `std::unique_lock` manage the locking and unlocking operations on the `mutex` object with exclusive ownership (no other `unique_lock` objects owning the ownership of a `mutex` object). So in concurrent programming, it is recommended to use `std::unique_lock`.
 
 `std::lock_guard` cannot explicitly call `lock` and `unlock`, and `std::unique_lock` can be called anywhere after the declaration.
@@ -255,7 +255,7 @@ int main() {
 }
 ```
 
-Intuitively, `a = 5;` seems in `t2` seems to always execute before `flag = 1;`, and `while (flag != 1)` in `t1` seems to guarantee `std ::cout << "b = " << b << std::endl;` will not be executed before the mark is changed. Logically, it seems that the value of `b` should be equal to 5.
+Intuitively, it  seems that `a = 5;` in `t2` always executes before `flag = 1;` and `while (flag != 1)` in `t1`. It looks like there is a guarantee the line `std ::cout << "b = " << b << std::endl;` will not be executed before the mark is changed. Logically, it seems that the value of `b` should be equal to 5.
 But the actual situation is much more complicated than this, or the code itself is undefined behavior because, for `a` and `flag`, they are read and written in two parallel threads.
 There has been competition. Also, even if we ignore competing for reading and writing, it is still possible to receive out-of-order execution of the CPU and the impact of the compiler on the rearrangement of instructions.
 Cause `a = 5` to occur after `flag = 1`. Thus `b` may output 0.
@@ -272,7 +272,7 @@ This is a very strong set of synchronization conditions, in other words when it 
 This seems too harsh for a variable that requires only atomic operations (no intermediate state).
 
 The research on synchronization conditions has a very long history, and we will not go into details here. Readers should understand that under the modern CPU architecture, atomic operations at the CPU instruction level are provided.
-Therefore, in the C + + 11 multi-threaded shared variable reading and writing, the introduction of the `std::atomic` template, so that we instantiate an atomic type, will be a
+Therefore, in the C++11 multi-threaded shared variable reading and writing, the introduction of the `std::atomic` template, so that we instantiate an atomic type, will be a
 Atomic type read and write operations are minimized from a set of instructions to a single CPU instruction. E.g:
 
 ```cpp
@@ -544,7 +544,7 @@ They provide a critical foundation for standardized high-performance computing f
 
 ## Further Readings
 
-- [C++ 并发编程(中文版)](https://www.amazon.com/dp/1617294691/ref=cm_sw_em_r_mt_dp_U_siEmDbRMMF960)
+- [C++ Concurrency in Action](https://www.amazon.com/dp/1617294691/ref=cm_sw_em_r_mt_dp_U_siEmDbRMMF960)
 - [Thread document](http://en.cppreference.com/w/cpp/thread)
 - Herlihy, M. P., & Wing, J. M. (1990). Linearizability: a correctness condition for concurrent objects. ACM Transactions on Programming Languages and Systems, 12(3), 463–492. https://doi.org/10.1145/78969.78972
 
