@@ -484,7 +484,7 @@ R add(T x, U y) {
 }
 ```
 
-> Note: There is no difference between typename and class in the template parameter list. Before the keyword typename appears, class is used to define the template parameters. However, when defining a variable with [nested dependency type](http://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names) in the template, you need to use typename to eliminate ambiguity.
+> Note: There is no difference between typename and class in the template parameter list. Before the keyword typename appears, class is used to define the template parameters. However, when defining a variable with [nested dependency type](https://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names) in the template, you need to use typename to eliminate ambiguity.
 
 Such code is very ugly because the programmer must explicitly
 indicate the return type when using this template function.
@@ -1105,4 +1105,4 @@ This section introduces the enhancements to language usability in modern C++, wh
 
 ## Licenses
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).
