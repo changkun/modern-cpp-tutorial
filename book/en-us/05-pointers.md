@@ -202,8 +202,8 @@ The technology of smart pointers is not novel. It is a common technology in many
 
 ## Further Readings
 
-- [Why does C++11 have `make_shared` but not `make_unique`](http://stackoverflow.com/questions/12580432/why-does-c11-have-make-shared-but-not-make-unique)
+- [Why does C++11 have `make_shared` but not `make_unique`](https://stackoverflow.com/questions/12580432/why-does-c11-have-make-shared-but-not-make-unique)
 
 ## Licenses
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).

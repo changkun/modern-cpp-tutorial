@@ -227,9 +227,9 @@ An suggested solution can be found [here](../../exercises/6).
 
 ## Further Readings
 
-1. [Comments from `std::regex`'s author](http://zhihu.com/question/23070203/answer/84248248)
-2. [Library document of Regular Expression](http://en.cppreference.com/w/cpp/regex)
+1. [Comments from `std::regex`'s author](https://zhihu.com/question/23070203/answer/84248248)
+2. [Library document of Regular Expression](https://en.cppreference.com/w/cpp/regex)
 
 ## Licenses
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work was written by [Ou Changkun](https://changkun.de) and licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. The code of this repository is open sourced under the [MIT license](../../LICENSE).
