@@ -84,7 +84,8 @@ We use a simple example to briefly introduce the use of this library. Consider t
 
 int main() {
     std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
-    // In C++, `\` will be used as an escape character in the string. In order for `\.` to be passed as a regular expression, it is necessary to perform second escaping of `\`, thus we have `\\.`
+    // In C++, `\` will be used as an escape character in the string. In order for `\.` 
+    // to be passed as a regular expression, it is necessary to perform second escaping of `\`, thus we have `\\.`
     std::regex txt_regex("[a-z]+\\.txt");
     for (const auto &fname: fnames)
         std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
