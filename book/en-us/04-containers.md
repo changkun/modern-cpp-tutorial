@@ -118,7 +118,7 @@ And select the appropriate location to insert into the container. When traversin
 The elements in the unordered container are not sorted, and the internals is implemented by the Hash table. The average complexity of inserting and searching for elements is `O(constant)`,
 Significant performance gains can be achieved without concern for the order of the elements inside the container.
 
-C++11 introduces two sets of unordered containers: `std::unordered_map`/`std::unordered_multimap` and
+C++11 introduces two unordered containers: `std::unordered_map`/`std::unordered_multimap` and
 `std::unordered_set`/`std::unordered_multiset`.
 
 Their usage is basically similar to the original `std::map`/`std::multimap`/`std::set`/`set::multiset`
