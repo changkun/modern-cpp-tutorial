@@ -115,7 +115,7 @@ std::sort(arr.begin(), arr.end());
 而无序容器中的元素是不进行排序的，内部通过 Hash 表实现，插入和搜索元素的平均复杂度为 `O(constant)`，
 在不关心容器内部元素顺序时，能够获得显著的性能提升。
 
-C++11 引入了两组无序容器：`std::unordered_map`/`std::unordered_multimap` 和 
+C++11 引入了的两组无序容器分别是：`std::unordered_map`/`std::unordered_multimap` 和 
 `std::unordered_set`/`std::unordered_multiset`。
 
 它们的用法和原有的 `std::map`/`std::multimap`/`std::set`/`set::multiset` 基本类似，
