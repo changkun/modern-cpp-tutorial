@@ -94,7 +94,8 @@ C++11 提供的正则表达式库操作 `std::string` 对象，
 
 int main() {
     std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
-    // 在 C++ 中 \ 会被作为字符串内的转义符，为使 \. 作为正则表达式传递进去生效，需要对 \ 进行二次转义，从而有 \\.
+    // 在 C++ 中 \ 会被作为字符串内的转义符，
+    // 为使 \. 作为正则表达式传递进去生效，需要对 \ 进行二次转义，从而有 \\.
     std::regex txt_regex("[a-z]+\\.txt");
     for (const auto &fname: fnames)
         std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
@@ -103,7 +104,7 @@ int main() {
 
 另一种常用的形式就是依次传入 `std::string`/`std::smatch`/`std::regex` 三个参数，
 其中 `std::smatch` 的本质其实是 `std::match_results`。
-在标准库中， `std::smatch` 被定义为了 `std::match_results<std::string::const_iterator>`，
+故而在标准库的实现中， `std::smatch` 被定义为了 `std::match_results<std::string::const_iterator>`，
 也就是一个子串迭代器类型的 `match_results`。
 使用 `std::smatch` 可以方便的对匹配的结果进行获取，例如：
 
@@ -193,16 +194,23 @@ protected:
 template<typename SERVER_TYPE>
 void start_server(SERVER_TYPE &server) {
 
-    // process GET request for /match/[digit+numbers], e.g. GET request is /match/abc123, will return abc123
-    server.resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
+    // process GET request for /match/[digit+numbers], 
+    // e.g. GET request is /match/abc123, will return abc123
+    server.resource["fill_your_reg_ex"]["GET"] = 
+        [](ostream& response, Request& request) 
+    {
         string number=request.path_match[1];
-        response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length() << "\r\n\r\n" << number;
+        response << "HTTP/1.1 200 OK\r\nContent-Length: " 
+                 << number.length() << "\r\n\r\n" << number;
     };
 
-    // peocess default GET request; anonymous function will be called if no other matches
-    // response files in folder web/
+    // peocess default GET request; 
+    // anonymous function will be called 
+    // if no other matches response files in folder web/
     // default: index.html
-    server.default_resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
+    server.default_resource["fill_your_reg_ex"]["GET"] = 
+        [](ostream& response, Request& request) 
+    {
         string filename = "www/";
 
         string path = request.path_match[1];

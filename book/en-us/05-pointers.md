@@ -57,27 +57,27 @@ And see the reference count of an object by `use_count()`. E.g:
 auto pointer = std::make_shared<int>(10);
 auto pointer2 = pointer; // reference count+1
 auto pointer3 = pointer; // reference count+1
-int *p = pointer.get(); // no increase of reference count
+int *p = pointer.get();  // no increase of reference count
 
-std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl; // 3
+std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;   // 3
 std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl; // 3
 std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl; // 3
 
 pointer2.reset();
 std::cout << "reset pointer2:" << std::endl;
 
-std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl; // 2
+std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;   // 2
 std::cout << "pointer2.use_count() = " 
-    << pointer2.use_count() << std::endl; // 0, pointer2 has reset        
+    << pointer2.use_count() << std::endl;                // pointer2 has reset, 0
 std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl; // 2
 
 pointer3.reset();
 std::cout << "reset pointer3:" << std::endl;
 
-std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl; // 1
+std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;   // 1
 std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl; // 0
 std::cout << "pointer3.use_count() = " 
-    << pointer3.use_count() << std::endl; // 0, pointer3 has reset
+    << pointer3.use_count() << std::endl;                // pointer3 has reset, 0
 ```
 
 ## 5.3 `std::unique_ptr`
@@ -85,7 +85,7 @@ std::cout << "pointer3.use_count() = "
 `std::unique_ptr` is an exclusive smart pointer that prohibits other smart pointers from sharing the same object, thus keeping the code safe:
 
 ```cpp
-std::unique_ptr<int> pointer = std::make_unique<int>(10); // make_unique was introduced in C++14
+std::unique_ptr<int> pointer = std::make_unique<int>(10); // make_unique, from C++14
 std::unique_ptr<int> pointer2 = pointer; // illegal
 ```
 

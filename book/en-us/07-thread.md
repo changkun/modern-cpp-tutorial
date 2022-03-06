@@ -145,7 +145,8 @@ int main() {
     std::cout << "waiting...";
     result.wait(); // block until future has arrived
     // output result
-    std::cout << "done!" << std:: endl << "future result is " << result.get() << std::endl;
+    std::cout << "done!" << std:: endl << "future result is " 
+              << result.get() << std::endl;
     return 0;
 }
 ```
@@ -196,7 +197,8 @@ int main() {
             // temporal unlock to allow producer produces more rather than
             // let consumer hold the lock until its consumed.
             lock.unlock();
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // consumer is slower
+            // consumer is slower
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             lock.lock();
             if (!produced_nums.empty()) {
                 std::cout << "consuming " << produced_nums.front() << std::endl;
@@ -272,7 +274,8 @@ This is a very strong set of synchronization conditions, in other words when it 
 This seems too harsh for a variable that requires only atomic operations (no intermediate state).
 
 The research on synchronization conditions has a very long history, and we will not go into details here. Readers should understand that under the modern CPU architecture, atomic operations at the CPU instruction level are provided.
-Therefore, in the C++11 multi-threaded shared variable reading and writing, the introduction of the `std::atomic` template, so that we instantiate an atomic type, will be a
+// FIXME
+Therefore, in the C++11 multi-threaded shared variable reading and writing, the introduction of the `std::atomic` template, so that we instantiate an atomic type, will be an
 Atomic type read and write operations are minimized from a set of instructions to a single CPU instruction. E.g:
 
 ```cpp
@@ -417,8 +420,11 @@ Weakening the synchronization conditions between processes, usually we will cons
    ```
    3 4 4 4 // The write operation of x was quickly observed
    0 3 3 4 // There is a delay in the observed time of the x write operation
-   0 0 0 4 // The last read read the final value of x, but the previous changes were not observed.
-   0 0 0 0 // The write operation of x is not observed in the current time period, but the situation that x is 4 can be observed at some point in the future.
+   0 0 0 4 // The last read read the final value of x, 
+           // but the previous changes were not observed.
+   0 0 0 0 // The write operation of x is not observed in the current time period, 
+           // but the situation that x is 4 can be observed 
+           // at some point in the future.
    ```
 
 ### Memory Orders
@@ -480,9 +486,8 @@ To achieve the ultimate performance and achieve consistency of various strength 
    });
    std::thread acqrel([&]() {
        int expected = 1; // must before compare_exchange_strong
-       while(!flag.compare_exchange_strong(expected, 2, std::memory_order_acq_rel)) {
+       while(!flag.compare_exchange_strong(expected, 2, std::memory_order_acq_rel)) 
            expected = 1; // must after compare_exchange_strong
-       }
        // flag has changed to 2
    });
    std::thread acquire([&]() {
