@@ -397,8 +397,8 @@ int main() {
 
 int main() {
 
-std::string str = "Hello world.";
-std::vector<std::string> v;
+    std::string str = "Hello world.";
+    std::vector<std::string> v;
 
     // 将使用 push_back(const T&), 即产生拷贝行为
     v.push_back(str);
