@@ -224,20 +224,24 @@ int main() {
 要么是求值结果相当于字面量或匿名临时对象，例如 `1+2`。非引用返回的临时变量、运算表达式产生的临时变量、
 原始字面量、Lambda 表达式都属于纯右值。
 
-需要注意的是，字符串字面量只有在类中才是右值，当其位于普通函数中是左值。例如：
+需要注意的是，字面量除了字符串字面量以外，均为纯右值。而字符串字面量是一个左值，类型为 `const char` 数组。例如：
 
 ```cpp
-class Foo {
-        const char*&& right = "this is a rvalue"; // 此处字符串字面量为右值
-public:
-        void bar() {
-            right = "still rvalue"; // 此处字符串字面量为右值
-        }
-};
+#include <type_traits>
 
 int main() {
-    const char* const &left = "this is an lvalue"; // 此处字符串字面量为左值
+    const char (&left)[6] = "01234";      // 正确，"01234" 类型为 const char [6]，因此是左值
+    static_assert(std::is_same<decltype("01234"), const char(&)[6]>::value, ""); // 断言正确，确实是 const char [6] 类型，注意 decltype(expr) 在 expr 是左值且非 id 表达式与类成员表达式时，会返回左值引用
+    // const char (&&right)[6] = "01234"; // 错误，"01234" 是左值，不可被右值引用
 }
+```
+
+但是注意，数组可以被隐式转换成相对应的指针类型，而转换表达式的结果（如果不是左值引用）则一定是个右值（右值引用为将亡值，否则为纯右值）。例如：
+
+```cpp
+const char* p = "01234";       // 正确，"01234" 被隐式转换为 const char*
+const char*&& pr = "01234";    // 正确，"01234" 被隐式转换为 const char*，该转换的结果是纯右值
+// const char*& pl = "01234";  // 错误，此处不存在 const char* 类型的左值
 ```
 
 **将亡值(xvalue, expiring value)**，是 C++11 为了引入右值引用而提出的概念（因此在传统 C++ 中，
