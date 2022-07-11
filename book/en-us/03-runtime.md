@@ -374,7 +374,7 @@ int main() {
 }
 ```
 
-The first question, why not allow non-linear references to bind to non-lvalues?
+The first question, why not allow non-constant references to bind to non-lvalues?
 This is because there is a logic error in this approach:
 
 ```cpp
