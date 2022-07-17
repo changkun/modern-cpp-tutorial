@@ -136,7 +136,7 @@ Lambda 表达式的本质是一个和函数对象类型相似的类类型（称�
 #include <iostream>
 
 using foo = void(int); // 定义函数类型, using 的使用见上一节中的别名语法
-void functional(foo f) { // 定义在参数列表中的函数类型 foo 被视为退化后的函数指针类型 foo*
+void functional(foo f) { // 参数列表中定义的函数类型 foo 被视为退化后的函数指针类型 foo*
     f(1); // 通过函数指针调用函数
 }
 
@@ -193,7 +193,8 @@ int foo(int a, int b, int c) {
     ;
 }
 int main() {
-    // 将参数1,2绑定到函数 foo 上，但是使用 std::placeholders::_1 来对第一个参数进行占位
+    // 将参数1,2绑定到函数 foo 上，
+    // 但使用 std::placeholders::_1 来对第一个参数进行占位
     auto bindFoo = std::bind(foo, std::placeholders::_1, 1,2);
     // 这时调用 bindFoo 时，只需要提供第一个参数即可
     bindFoo(1);
@@ -551,7 +552,7 @@ constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type&& __t) noexcep
 ```
 
 在这份实现中，`std::remove_reference` 的功能是消除类型中的引用，
-而 `std::is_lvalue_reference` 用于检查类型推导是否正确，在 `std::forward` 的第二个实现中
+`std::is_lvalue_reference` 则用于检查类型推导是否正确，在 `std::forward` 的第二个实现中
 检查了接收到的值确实是一个左值，进而体现了坍缩规则。
 
 当 `std::forward` 接受左值时，`_Tp` 被推导为左值，所以返回值为左值；而当其接受右值时，

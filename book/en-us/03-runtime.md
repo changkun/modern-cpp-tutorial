@@ -221,8 +221,8 @@ int foo(int a, int b, int c) {
     ;
 }
 int main() {
-    // bind parameter 1, 2 on function foo, and use std::placeholders::_1 as placeholder
-    // for the first parameter.
+    // bind parameter 1, 2 on function foo, 
+    // and use std::placeholders::_1 as placeholder for the first parameter.
     auto bindFoo = std::bind(foo, std::placeholders::_1, 1,2);
     // when call bindFoo, we only need one param left
     bindFoo(1);
@@ -355,7 +355,8 @@ int main()
     std::string&& rv1 = std::move(lv1); // legal, std::move can convert lvalue to rvalue
     std::cout << rv1 << std::endl;      // string,
 
-    const std::string& lv2 = lv1 + lv1; // legal, const lvalue reference can extend temp variable's lifecycle
+    const std::string& lv2 = lv1 + lv1; // legal, const lvalue reference can
+                                        // extend temp variable's lifecycle
     // lv2 += "Test";                   // illegal, const ref can't be modified
     std::cout << lv2 << std::endl;      // string,string,
 
@@ -482,8 +483,9 @@ int main() {
     // "str: Hello world."
     std::cout << "str: " << str << std::endl;
 
-    // use push_back(const T&&), no copy
-    // the string will be moved to vector, and therefore std::move can reduce copy cost
+    // use push_back(const T&&), 
+    // no copy the string will be moved to vector, 
+    // and therefore std::move can reduce copy cost
     v.push_back(std::move(str));
     // str is empty now
     std::cout << "str: " << str << std::endl;

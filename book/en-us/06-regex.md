@@ -84,8 +84,9 @@ We use a simple example to briefly introduce the use of this library. Consider t
 
 int main() {
     std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
-    // In C++, `\` will be used as an escape character in the string. In order for `\.`
-    // to be passed as a regular expression, it is necessary to perform second escaping of `\`, thus we have `\\.`
+    // In C++, `\` will be used as an escape character in the string.
+    // In order for `\.` to be passed as a regular expression,
+    // it is necessary to perform second escaping of `\`, thus we have `\\.`
     std::regex txt_regex("[a-z]+\\.txt");
     for (const auto &fname: fnames)
         std::cout << fname << ": " << std::regex_match(fname, txt_regex) << std::endl;
@@ -104,7 +105,8 @@ std::smatch base_match;
 for(const auto &fname: fnames) {
     if (std::regex_match(fname, base_match, base_regex)) {
         // the first element of std::smatch matches the entire string
-        // the second element of std::smatch matches the first expression with brackets
+        // the second element of std::smatch matches the first expression
+        // with brackets
         if (base_match.size() == 2) {
             std::string base = base_match[1].str();
             std::cout << "sub-match[0]: " << base_match[0].str() << std::endl;
@@ -187,32 +189,36 @@ Please implement the member functions `start()` and `parse_request`. Enable serv
 template<typename SERVER_TYPE>
 void start_server(SERVER_TYPE &server) {
 
-    // process GET request for /match/[digit+numbers], e.g.
-    // GET request is /match/abc123, will return abc123
-    server.resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
+    // process GET request for /match/[digit+numbers],
+    // e.g. GET request is /match/abc123, will return abc123
+    server.resource["fill_your_reg_ex"]["GET"] =
+        [](ostream& response, Request& request)
+    {
         string number=request.path_match[1];
         response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length()
             << "\r\n\r\n" << number;
     };
 
-    // peocess default GET request; anonymous function will be called if no other matches
-    // response files in folder web/
+    // peocess default GET request;
+    // anonymous function will be called
+    // if no other matches response files in folder web/
     // default: index.html
     server.default_resource["fill_your_reg_ex"]["GET"] =
-        [](ostream& response, Request& request) {
-            string filename = "www/";
+        [](ostream& response, Request& request)
+    {
+        string filename = "www/";
 
-            string path = request.path_match[1];
+        string path = request.path_match[1];
 
-            // forbidden use `..` access content outside folder web/
-            size_t last_pos = path.rfind(".");
-            size_t current_pos = 0;
-            size_t pos;
-            while((pos=path.find('.', current_pos)) != string::npos && pos != last_pos) {
-                current_pos = pos;
-                path.erase(pos, 1);
-                last_pos--;
-            }
+        // forbidden use `..` access content outside folder web/
+        size_t last_pos = path.rfind(".");
+        size_t current_pos = 0;
+        size_t pos;
+        while((pos=path.find('.', current_pos)) != string::npos && pos != last_pos) {
+            current_pos = pos;
+            path.erase(pos, 1);
+            last_pos--;
+        }
 
         // (...)
     };

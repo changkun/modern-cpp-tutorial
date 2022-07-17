@@ -176,7 +176,8 @@ int main() {
     }
 
     // 将输出 1, 4, 3, 4
-    for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); ++element)
+    for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); 
+        ++element)
         std::cout << *element << std::endl;
 }
 ```
@@ -228,7 +229,7 @@ int main() {
 }
 ```
 
-为了解决这个问题，C++11 首先把初始化列表的概念绑定到了类型上，并将其称之为 `std::initializer_list`，允许构造函数或其他函数像参数一样使用初始化列表，这就为类对象的初始化与普通数组和 POD 的初始化方法提供了统一的桥梁，例如：
+为解决这个问题，C++11 首先把初始化列表的概念绑定到类型上，称其为 `std::initializer_list`，允许构造函数或其他函数像参数一样使用初始化列表，这就为类对象的初始化与普通数组和 POD 的初始化方法提供了统一的桥梁，例如：
 
 ```cpp
 #include <initializer_list>
@@ -249,7 +250,9 @@ int main() {
     MagicFoo magicFoo = {1, 2, 3, 4, 5};
 
     std::cout << "magicFoo: ";
-    for (std::vector<int>::iterator it = magicFoo.vec.begin(); it != magicFoo.vec.end(); ++it) std::cout << *it << std::endl;
+    for (std::vector<int>::iterator it = magicFoo.vec.begin(); 
+        it != magicFoo.vec.end(); ++it) 
+        std::cout << *it << std::endl;
 }
 ```
 

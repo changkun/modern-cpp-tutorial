@@ -214,7 +214,8 @@ int main() {
     }
 
     // should output: 1, 4, 3, 4. can be simplified using `auto`
-    for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); ++element)
+    for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); 
+        ++element)
         std::cout << *element << std::endl;
 }
 ```
@@ -301,7 +302,8 @@ int main() {
     MagicFoo magicFoo = {1, 2, 3, 4, 5};
 
     std::cout << "magicFoo: ";
-    for (std::vector<int>::iterator it = magicFoo.vec.begin(); it != magicFoo.vec.end(); ++it) 
+    for (std::vector<int>::iterator it = magicFoo.vec.begin(); 
+        it != magicFoo.vec.end(); ++it) 
         std::cout << *it << std::endl;
 }
 ```

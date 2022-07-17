@@ -19,15 +19,15 @@ order: 5
 也就是我们常说的 RAII 资源获取即初始化技术。
 
 凡事都有例外，我们总会有需要将对象在自由存储上分配的需求，在传统 C++ 里我们只好使用 `new` 和 `delete` 去
-『记得』对资源进行释放。而 C++11 引入智能指针的概念，使用引用计数的想法，让程序员不再需要关心手动释放内存。
-这些智能指针就包括 `std::shared_ptr`/`std::unique_ptr`/`std::weak_ptr`，使用它们需要包含头文件 `<memory>`。
+『记得』对资源进行释放。而 C++11 引入了智能指针的概念，使用了引用计数的想法，让程序员不再需要关心手动释放内存。
+这些智能指针包括 `std::shared_ptr`/`std::unique_ptr`/`std::weak_ptr`，使用它们需要包含头文件 `<memory>`。
 
 > 注意：引用计数不是垃圾回收，引用计数能够尽快收回不再被使用的对象，同时在回收的过程中也不会造成长时间的等待，
 > 更能够清晰明确的表明资源的生命周期。
 
 ## 5.2 `std::shared_ptr`
 
-`std::shared_ptr` 是一种智能指针，它能够记录多少个 `shared_ptr` 共同指向一个对象，从而消除显式的调用 
+`std::shared_ptr` 是一种智能指针，它能够记录多少个 `shared_ptr` 共同指向一个对象，从而消除显式的调用
 `delete`，当引用计数变为零的时候就会将对象自动删除。
 
 但还不够，因为使用 `std::shared_ptr` 仍然需要使用 `new` 来调用，这使得代码出现了某种程度上的不对称。
@@ -59,21 +59,23 @@ int main() {
 auto pointer = std::make_shared<int>(10);
 auto pointer2 = pointer; // 引用计数+1
 auto pointer3 = pointer; // 引用计数+1
-int *p = pointer.get(); // 这样不会增加引用计数
-std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl; // 3
+int *p = pointer.get();  // 这样不会增加引用计数
+std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;   // 3
 std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl; // 3
 std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl; // 3
 
 pointer2.reset();
 std::cout << "reset pointer2:" << std::endl;
-std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl; // 2
-std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl; // 0, pointer2 已 reset
+std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;   // 2
+std::cout << "pointer2.use_count() = "
+          << pointer2.use_count() << std::endl;           // pointer2 已 reset; 0
 std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl; // 2
 pointer3.reset();
 std::cout << "reset pointer3:" << std::endl;
-std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl; // 1
+std::cout << "pointer.use_count() = " << pointer.use_count() << std::endl;   // 1
 std::cout << "pointer2.use_count() = " << pointer2.use_count() << std::endl; // 0
-std::cout << "pointer3.use_count() = " << pointer3.use_count() << std::endl; // 0, pointer3 已 reset
+std::cout << "pointer3.use_count() = "
+          << pointer3.use_count() << std::endl;           // pointer3 已 reset; 0
 ```
 
 ## 5.3 `std::unique_ptr`
