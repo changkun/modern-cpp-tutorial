@@ -147,7 +147,7 @@ int main() {
     std::cout << "waiting...";
     result.wait(); // 在此设置屏障，阻塞到期物的完成
     // 输出执行结果
-    std::cout << "done!" << std:: endl << "future result is " 
+    std::cout << "done!" << std:: endl << "future result is "
               << result.get() << std::endl;
     return 0;
 }
@@ -421,7 +421,7 @@ int main() {
 
 
     T2 ---------+------------+--------------------+--------+-------->
-             [x read](x.read)()      x.read()           x.read()   x.read()
+             x.read      x.read()           x.read()   x.read()
     ```
 
     在上面的情况中，如果我们假设 x 的初始值为 0，则 `T2` 中四次 `x.read()` 结果可能但不限于以下情况：
@@ -492,7 +492,7 @@ int main() {
     });
     std::thread acqrel([&]() {
         int expected = 1; // must before compare_exchange_strong
-        while(!flag.compare_exchange_strong(expected, 2, std::memory_order_acq_rel)) 
+        while(!flag.compare_exchange_strong(expected, 2, std::memory_order_acq_rel))
             expected = 1; // must after compare_exchange_strong
         // flag has changed to 2
     });
