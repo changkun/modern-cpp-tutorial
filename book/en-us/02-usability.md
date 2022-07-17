@@ -285,6 +285,8 @@ such as:
 ```cpp
 #include <initializer_list>
 #include <vector>
+#include <iostream>
+
 class MagicFoo {
 public:
     std::vector<int> vec;
