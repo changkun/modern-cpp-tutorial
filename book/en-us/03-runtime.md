@@ -529,7 +529,7 @@ both lvalue and rvalue. But follow the rules below:
 |           T&&           |       rvalue ref        |                   T&&                   |
 
 Therefore, the use of `T&&` in a template function may not be able to make an rvalue reference, and when a lvalue is passed, a reference to this function will be derived as an lvalue.
-More precisely, ** no matter what type of reference the template parameter is, the template parameter can be derived as a right reference type** if and only if the argument type is a right reference.
+More precisely, **no matter what type of reference the template parameter is, the template parameter can be derived as a right reference type** if and only if the argument type is a right reference.
 This makes `v` successful delivery of lvalues.
 
 Perfect forwarding is based on the above rules. The so-called perfect forwarding is to let us pass the parameters,
@@ -586,7 +586,7 @@ static_cast<T&&> param passing: lvalue reference
 Regardless of whether the pass parameter is an lvalue or an rvalue, the normal pass argument will forward the argument as an lvalue.
 So `std::move` will always accept an lvalue, which forwards the call to `reference(int&&)` to output the rvalue reference.
 
-Only `std::forward` does not cause any extra copies and ** perfectly forwards ** (passes) the arguments of the function to other functions that are called internally.
+Only `std::forward` does not cause any extra copies and **perfectly forwards** (passes) the arguments of the function to other functions that are called internally.
 
 `std::forward` is the same as `std::move`, and nothing is done. `std::move` simply converts the lvalue to the rvalue.
 `std::forward` is just a simple conversion of the parameters. From the point of view of the phenomenon,
