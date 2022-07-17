@@ -34,7 +34,7 @@ and lowercase letters, all numbers, all punctuation, and some other symbols.
 
 A special character is a character with special meaning in a regular expression and is also the core matching syntax of a regular expression. See the table below:
 
-| Special characters | Description                                                                                                                                                                                                                                                                                                |
+| Symbol | Description                                                                                                                                                                                                                                                                                                |
 | :----------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |        `$`         | Matches the end position of the input string.                                                                                                                                                                                                                                                              |
 |      `(`,`)`       | Marks the start and end of a subexpression. Subexpressions can be obtained for later use.                                                                                                                                                                                                                  |
@@ -52,7 +52,7 @@ A special character is a character with special meaning in a regular expression 
 
 The qualifier is used to specify how many times a given component of a regular expression must appear to satisfy the match. See the table below:
 
-| Character | Description                                                                                                                                                                                                                                                                                                       |
+| Symbol | Description                                                                                                                                                                                                                                                                                                       |
 | :-------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |    `*`    | matches the previous subexpression zero or more times. For example, `foo*` matches `fo` and `foooo`. `*` is equivalent to `{0,}`.                                                                                                                                                                                 |
 |    `+`    | matches the previous subexpression one or more times. For example, `foo+` matches `foo` and `foooo` but does not match `fo`. `+` is equivalent to `{1,}`.                                                                                                                                                         |
@@ -84,7 +84,7 @@ We use a simple example to briefly introduce the use of this library. Consider t
 
 int main() {
     std::string fnames[] = {"foo.txt", "bar.txt", "test", "a0.txt", "AAA.txt"};
-    // In C++, `\` will be used as an escape character in the string. In order for `\.` 
+    // In C++, `\` will be used as an escape character in the string. In order for `\.`
     // to be passed as a regular expression, it is necessary to perform second escaping of `\`, thus we have `\\.`
     std::regex txt_regex("[a-z]+\\.txt");
     for (const auto &fname: fnames)
@@ -187,18 +187,18 @@ Please implement the member functions `start()` and `parse_request`. Enable serv
 template<typename SERVER_TYPE>
 void start_server(SERVER_TYPE &server) {
 
-    // process GET request for /match/[digit+numbers], e.g. 
+    // process GET request for /match/[digit+numbers], e.g.
     // GET request is /match/abc123, will return abc123
     server.resource["fill_your_reg_ex"]["GET"] = [](ostream& response, Request& request) {
         string number=request.path_match[1];
-        response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length() 
+        response << "HTTP/1.1 200 OK\r\nContent-Length: " << number.length()
             << "\r\n\r\n" << number;
     };
 
     // peocess default GET request; anonymous function will be called if no other matches
     // response files in folder web/
     // default: index.html
-    server.default_resource["fill_your_reg_ex"]["GET"] = 
+    server.default_resource["fill_your_reg_ex"]["GET"] =
         [](ostream& response, Request& request) {
             string filename = "www/";
 
