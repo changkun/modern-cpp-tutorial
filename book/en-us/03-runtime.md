@@ -586,7 +586,7 @@ static_cast<T&&> param passing: lvalue reference
 Regardless of whether the pass parameter is an lvalue or an rvalue, the normal pass argument will forward the argument as an lvalue.
 So `std::move` will always accept an lvalue, which forwards the call to `reference(int&&)` to output the rvalue reference.
 
-Only `std::forward` does not cause any extra copies and ** perfectly forwards ** (passes) the arguments of the function to other functions that are called internally.
+Only `std::forward` does not cause any extra copies and **perfectly forwards** (passes) the arguments of the function to other functions that are called internally.
 
 `std::forward` is the same as `std::move`, and nothing is done. `std::move` simply converts the lvalue to the rvalue.
 `std::forward` is just a simple conversion of the parameters. From the point of view of the phenomenon,
