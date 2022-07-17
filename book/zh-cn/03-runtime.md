@@ -69,7 +69,7 @@ void lambda_reference_capture() {
 
 #### 3. 隐式捕获
 
-手动书写捕获列表有时候是非常复杂的，这种机械性的工作可以交给编译器来处理，这时候可以在捕获列表中写一个 
+手动书写捕获列表有时候是非常复杂的，这种机械性的工作可以交给编译器来处理，这时候可以在捕获列表中写一个
 `&` 或 `=` 向编译器声明采用引用捕获或者值捕获.
 
 总结一下，捕获提供了 Lambda 表达式对外部值进行使用的功能，捕获列表的最常用的四种形式可以是：
@@ -213,14 +213,14 @@ int main() {
 
 要弄明白右值引用到底是怎么一回事，必须要对左值和右值做一个明确的理解。
 
-**左值(lvalue, left value)**，顾名思义就是赋值符号左边的值。准确来说，
+**左值** (lvalue, left value)，顾名思义就是赋值符号左边的值。准确来说，
 左值是表达式（不一定是赋值表达式）后依然存在的持久对象。
 
-**右值(rvalue, right value)**，右边的值，是指表达式结束后就不再存在的临时对象。
+**右值** (rvalue, right value)，右边的值，是指表达式结束后就不再存在的临时对象。
 
 而 C++11 中为了引入强大的右值引用，将右值的概念进行了进一步的划分，分为：纯右值、将亡值。
 
-**纯右值(prvalue, pure rvalue)**，纯粹的右值，要么是纯粹的字面量，例如 `10`, `true`；
+**纯右值** (prvalue, pure rvalue)，纯粹的右值，要么是纯粹的字面量，例如 `10`, `true`；
 要么是求值结果相当于字面量或匿名临时对象，例如 `1+2`。非引用返回的临时变量、运算表达式产生的临时变量、
 原始字面量、Lambda 表达式都属于纯右值。
 
@@ -232,7 +232,7 @@ class Foo {
 public:
         void bar() {
             right = "still rvalue"; // 此处字符串字面量为右值
-        } 
+        }
 };
 
 int main() {
@@ -352,19 +352,19 @@ void foo() {
 class A {
 public:
     int *pointer;
-    A():pointer(new int(1)) { 
-        std::cout << "构造" << pointer << std::endl; 
+    A():pointer(new int(1)) {
+        std::cout << "构造" << pointer << std::endl;
     }
-    A(A& a):pointer(new int(*a.pointer)) { 
-        std::cout << "拷贝" << pointer << std::endl; 
+    A(A& a):pointer(new int(*a.pointer)) {
+        std::cout << "拷贝" << pointer << std::endl;
     } // 无意义的对象拷贝
-    A(A&& a):pointer(a.pointer) { 
+    A(A&& a):pointer(a.pointer) {
         a.pointer = nullptr;
-        std::cout << "移动" << pointer << std::endl; 
+        std::cout << "移动" << pointer << std::endl;
     }
-    ~A(){ 
-        std::cout << "析构" << pointer << std::endl; 
-        delete pointer; 
+    ~A(){
+        std::cout << "析构" << pointer << std::endl;
+        delete pointer;
     }
 };
 // 防止编译器优化
