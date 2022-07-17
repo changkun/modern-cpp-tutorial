@@ -468,7 +468,7 @@ To achieve the ultimate performance and achieve consistency of various strength 
 
    As you can see, `std::memory_order_release` ensures that a write before a release does not occur after the release operation, which is a **backward barrier**, and `std::memory_order_acquire` ensures that a subsequent read or write after a acquire does not occur before the acquire operation, which is a **forward barrier**.
    For the `std::memory_order_acq_rel` option, combines the characteristics of the two barriers and determines a unique memory barrier, such that reads and writes of the current thread will not be rearranged across the barrier.
- 
+
    Let's check an example:
 
    ```cpp
@@ -495,7 +495,7 @@ To achieve the ultimate performance and achieve consistency of various strength 
    acquire.join();
    ```
 
-   In this case we used `compare_exchange_strong`, which is the Compare-and-swap primitive, which has a weaker version, `compare_exchange_weak`, which allows a failure to be returned even if the exchange is successful. The reason is due to a false failure on some platforms, specifically when the CPU performs a context switch, another thread loads the same address to produce an inconsistency. In addition, the performance of `compare_exchange_strong` may be slightly worse than `compare_exchange_weak`, but in most cases, `compare_exchange_strong` should be limited.
+   In this case we used `compare_exchange_strong`, which is the Compare-and-swap primitive, which has a weaker version, `compare_exchange_weak`, which allows a failure to be returned even if the exchange is successful. The reason is due to a false failure on some platforms, specifically when the CPU performs a context switch, another thread loads the same address to produce an inconsistency. In addition, the performance of `compare_exchange_strong` may be slightly worse than `compare_exchange_weak`. However, in most cases, `compare_exchange_weak` is discouraged due to the complexity of its usage.
 
 4. Sequential Consistent Model: Under this model, atomic operations satisfy sequence consistency, which in turn can cause performance loss. It can be specified explicitly by `std::memory_order_seq_cst`. Let's look at a final example:
 
