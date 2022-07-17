@@ -263,20 +263,32 @@ Temporary variables returned by non-references, temporary variables generated
 by operation expressions, original literals, and Lambda expressions
 are all pure rvalue values.
 
-Note that a string literal became rvalue in a class, and remains an lvalue in other cases (e.g., in a function)：
+Note that a literal (except a string literal) is a prvalue. However, a string
+literal is an lvalue with type `const char` array. Consider the following examples:
 
 ```cpp
-class Foo {
-        const char*&& right = "this is a rvalue";
-public:
-        void bar() {
-            right = "still rvalue"; // the string literal is a rvalue
-        }
-};
+#include <type_traits>
 
 int main() {
-    const char* const &left = "this is an lvalue"; // the string literal is an lvalue
+    // Correct. The type of "01234" is const char [6], so it is an lvalue
+    const char (&left)[6] = "01234";
+
+    // Assert success. It is a const char [6] indeed. Note that decltype(expr)
+    // yields lvalue reference if expr is an lvalue and neither an unparenthesized
+    // id-expression nor an unparenthesized class member access expression.
+    static_assert(std::is_same<decltype("01234"), const char(&)[6]>::value, "");
+
+    // Error. "01234" is an lvalue, which cannot be referenced by an rvalue reference
+    // const char (&&right)[6] = "01234";
 }
+```
+
+However, an array can be implicitly converted to a corresponding pointer.The result, if not an lvalue reference, is an rvalue (xvalue if the result is an rvalue reference, prvalue otherwise):
+
+```cpp
+const char*   p    = "01234"; // Correct. "01234" is implicitly converted to const char*
+const char*&& pr   = "01234"; // Correct. "01234" is implicitly converted to const char*, which is a prvalue.
+// const char*& pl = "01234"; // Error. There is no type const char* lvalue
 ```
 
 **xvalue, expiring value** is the concept proposed by C++11 to introduce
