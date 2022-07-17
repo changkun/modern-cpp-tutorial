@@ -230,18 +230,24 @@ int main() {
 #include <type_traits>
 
 int main() {
-    const char (&left)[6] = "01234";      // 正确，"01234" 类型为 const char [6]，因此是左值
-    static_assert(std::is_same<decltype("01234"), const char(&)[6]>::value, ""); // 断言正确，确实是 const char [6] 类型，注意 decltype(expr) 在 expr 是左值且非无括号包裹的 id 表达式与类成员表达式时，会返回左值引用
-    // const char (&&right)[6] = "01234"; // 错误，"01234" 是左值，不可被右值引用
+    // 正确，"01234" 类型为 const char [6]，因此是左值
+    const char (&left)[6] = "01234";
+
+    // 断言正确，确实是 const char [6] 类型，注意 decltype(expr) 在 expr 是左值
+    // 且非无括号包裹的 id 表达式与类成员表达式时，会返回左值引用
+    static_assert(std::is_same<decltype("01234"), const char(&)[6]>::value, "");
+
+    // 错误，"01234" 是左值，不可被右值引用
+    // const char (&&right)[6] = "01234";
 }
 ```
 
 但是注意，数组可以被隐式转换成相对应的指针类型，而转换表达式的结果（如果不是左值引用）则一定是个右值（右值引用为将亡值，否则为纯右值）。例如：
 
 ```cpp
-const char* p = "01234";       // 正确，"01234" 被隐式转换为 const char*
-const char*&& pr = "01234";    // 正确，"01234" 被隐式转换为 const char*，该转换的结果是纯右值
-// const char*& pl = "01234";  // 错误，此处不存在 const char* 类型的左值
+const char*   p   = "01234";  // 正确，"01234" 被隐式转换为 const char*
+const char*&& pr  = "01234";  // 正确，"01234" 被隐式转换为 const char*，该转换的结果是纯右值
+// const char*& pl = "01234"; // 错误，此处不存在 const char* 类型的左值
 ```
 
 **将亡值(xvalue, expiring value)**，是 C++11 为了引入右值引用而提出的概念（因此在传统 C++ 中，
