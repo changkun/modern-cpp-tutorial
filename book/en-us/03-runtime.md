@@ -126,13 +126,9 @@ initialize it in the expression.
 
 In the previous section, we mentioned that the `auto` keyword cannot be used
 in the parameter list because it would conflict with the functionality of the template.
-But Lambda expressions are not ordinary functions, so Lambda expressions are not templated.
-This has caused us some trouble: the parameter table cannot be generalized,
-and the parameter table type must be clarified.
-
-Fortunately, this trouble only exists in C++11, starting with C++14.
-The formal parameters of the Lambda function can use the `auto` keyword
-to generate generic meanings:
+But lambda expressions are not regular functions, without further specification on the typed parameter list, lambda expressions cannot utilize templates. Fortunately, this trouble
+only exists in C++11, starting with C++14. The formal parameters of the lambda function
+can use the `auto` keyword to utilize template generics:
 
 ```cpp
 void lambda_generic() {
@@ -221,7 +217,7 @@ int foo(int a, int b, int c) {
     ;
 }
 int main() {
-    // bind parameter 1, 2 on function foo, 
+    // bind parameter 1, 2 on function foo,
     // and use std::placeholders::_1 as placeholder for the first parameter.
     auto bindFoo = std::bind(foo, std::placeholders::_1, 1,2);
     // when call bindFoo, we only need one param left
@@ -483,8 +479,8 @@ int main() {
     // "str: Hello world."
     std::cout << "str: " << str << std::endl;
 
-    // use push_back(const T&&), 
-    // no copy the string will be moved to vector, 
+    // use push_back(const T&&),
+    // no copy the string will be moved to vector,
     // and therefore std::move can reduce copy cost
     v.push_back(std::move(str));
     // str is empty now
