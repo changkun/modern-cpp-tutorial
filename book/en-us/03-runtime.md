@@ -529,7 +529,7 @@ both lvalue and rvalue. But follow the rules below:
 |           T&&           |       rvalue ref        |                   T&&                   |
 
 Therefore, the use of `T&&` in a template function may not be able to make an rvalue reference, and when a lvalue is passed, a reference to this function will be derived as an lvalue.
-More precisely, ** no matter what type of reference the template parameter is, the template parameter can be derived as a right reference type** if and only if the argument type is a right reference.
+More precisely, **no matter what type of reference the template parameter is, the template parameter can be derived as a right reference type** if and only if the argument type is a right reference.
 This makes `v` successful delivery of lvalues.
 
 Perfect forwarding is based on the above rules. The so-called perfect forwarding is to let us pass the parameters,
