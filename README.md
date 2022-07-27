@@ -34,7 +34,7 @@ Each chapter of this book contains a lot of code. If you encounter problems whil
 
 ## Exercises
 
-There are few exercises at the end of each chapter of the book. These are meant to test whether you have mastered the knowledge in the current chapter. You can find the possible answer to the problem [here](./exercises). Again, the folder name is the chapter number.
+There are a few exercises at the end of each chapter of the book. These are meant to test whether you have mastered the knowledge in the current chapter. You can find the possible answer to the problem [here](./exercises). Again, the folder name is the chapter number.
 
 ## Website
 
