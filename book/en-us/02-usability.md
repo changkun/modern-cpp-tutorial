@@ -378,8 +378,8 @@ One of the most common and notable examples of type derivation using `auto` is t
 ```cpp
 // before C++11
 // cbegin() returns vector<int>::const_iterator
-// and therefore itr is type vector<int>::const_iterator
-for(vector<int>::const_iterator it = vec.cbegin(); itr != vec.cend(); ++it)
+// and therefore it is type vector<int>::const_iterator
+for(vector<int>::const_iterator it = vec.cbegin(); it != vec.cend(); ++it)
 ```
 
 When we have `auto`:

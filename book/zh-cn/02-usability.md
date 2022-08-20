@@ -314,8 +314,8 @@ C++11 引入了 `auto` 和 `decltype` 这两个关键字实现了类型推导，
 ```cpp
 // 在 C++11 之前
 // 由于 cbegin() 将返回 vector<int>::const_iterator
-// 所以 itr 也应该是 vector<int>::const_iterator 类型
-for(vector<int>::const_iterator it = vec.cbegin(); itr != vec.cend(); ++it)
+// 所以 it 也应该是 vector<int>::const_iterator 类型
+for(vector<int>::const_iterator it = vec.cbegin(); it != vec.cend(); ++it)
 ```
 
 而有了 `auto` 之后可以：
