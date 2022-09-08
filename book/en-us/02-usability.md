@@ -222,7 +222,7 @@ int main() {
 
 In the above code, we can see that the `itr` variable is defined in the scope of
 the entire `main()`, which causes us to rename the other when a variable need to traverse
-the entire `std::vectors` again. C++17 eliminates this limitation so that
+the entire `std::vector` again. C++17 eliminates this limitation so that
 we can do this in if(or switch):
 
 ```cpp
