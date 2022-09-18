@@ -153,7 +153,7 @@ actually returns a constant at runtime, which causes illegal production.
 C++11 provides `constexpr` to let the user explicitly declare that the function or
 object constructor will become a constant expression at compile time.
 This keyword explicitly tells the compiler that it should verify that `len_foo`
-should be a compile-time constant expression. Constant expression.
+should be a compile-time constant expression.
 
 In addition, the function of `constexpr` can use recursion:
 
