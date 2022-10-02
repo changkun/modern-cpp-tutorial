@@ -134,7 +134,7 @@ inline ThreadPool::~ThreadPool()
     // wake up all threads
     condition.notify_all();
 
-    // let all processes into synchronous execution, use c++11 new for-loop: for(value:values)
+    // let all processes go into synchronous execution, using c++11 new for-loop: for(value:values)
     for(std::thread &worker: workers)
         worker.join();
 }

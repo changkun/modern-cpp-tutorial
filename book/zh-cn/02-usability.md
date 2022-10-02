@@ -574,7 +574,7 @@ C++ 的模板一直是这门语言的一种特殊的艺术，模板甚至可以�
 
 ```cpp
 template class std::vector<bool>;          // 强行实例化
-extern template class std::vector<double>; // 不在该当前编译文件中实例化模板
+extern template class std::vector<double>; // 不在当前编译文件中实例化模板
 ```
 
 ### 尖括号 ">"
@@ -614,9 +614,9 @@ template<typename T>
 typedef MagicType<std::vector<T>, std::string> FakeDarkMagic;
 ```
 
-C++11 使用 `using` 引入了下面这种形式的写法，并且同时支持对传统 `typedef` 相同的功效：
+C++11 使用 `using` 引入了下面这种形式的写法，并且同时支持与传统 `typedef` 相同的功效：
 
-> 通常我们使用 `typedef` 定义别名的语法是：`typedef 原名称 新名称;`，但是对函数指针等别名的定义语法却不相同，这通常给直接阅读造成了一定程度的困难。
+> 通常我们使用 `typedef` 定义别名的语法是：`typedef 原名称 新名称;`，但是对函数指针等类型定义别名的语法却不相同，这通常会造成一定的阅读困难。
 
 ```cpp
 typedef int (*process)(void *);
@@ -640,7 +640,7 @@ int main() {
 template<typename... Ts> class Magic;
 ```
 
-模板类 Magic 的对象，能够接受不受限制个数的 typename 作为模板的形式参数，例如下面的定义：
+模板类 Magic 的对象，能够接受不受限制个数的 typename 作为模板的类型参数，例如下面的定义：
 
 ```cpp
 class Magic<int,
@@ -651,7 +651,7 @@ class Magic<int,
 
 既然是任意形式，所以个数为 `0` 的模板参数也是可以的：`class Magic<> nothing;`。
 
-如果不希望产生的模板参数个数为 `0`，可以手动的定义至少一个模板参数：
+如果不希望产生的模板参数个数为 `0`，可以手动定义至少一个模板参数：
 
 ```cpp
 template<typename Require, typename... Args> class Magic;
@@ -810,7 +810,7 @@ int main() {
 
 ### 委托构造
 
-C++11 引入了委托构造的概念，这使得构造函数可以在同一个类中一个构造函数调用另一个构造函数，从而达到简化代码的目的：
+C++11 引入了委托构造的概念，这使得构造函数可以调用同一个类中的另一个构造函数，从而简化代码：
 
 ```cpp
 #include <iostream>
@@ -863,7 +863,7 @@ int main() {
 
 ### 显式虚函数重载
 
-在传统 C++ 中，经常容易发生意外重载虚函数的事情。例如：
+在传统 C++ 中，经常容易发生意外重写虚函数的事情。例如：
 
 ```cpp
 struct Base {
@@ -874,7 +874,7 @@ struct SubClass: Base {
 };
 ```
 
-`SubClass::foo` 可能并不是程序员尝试重载虚函数，只是恰好加入了一个具有相同名字的函数。另一个可能的情形是，当基类的虚函数被删除后，子类拥有旧的函数就不再重载该虚拟函数并摇身一变成为了一个普通的类方法，这将造成灾难性的后果。
+`SubClass::foo` 可能并不是程序员尝试重写虚函数，只是恰好加入了一个具有相同名字的函数。另一个可能的情形是，当基类的虚函数被删除后，子类中对应的函数就不再重写该虚拟函数并摇身一变成为了普通的类方法，这将造成灾难性的后果。
 
 C++11 引入了 `override` 和 `final` 这两个关键字来防止上述情形的发生。
 
@@ -894,7 +894,7 @@ struct SubClass: Base {
 
 #### final
 
-`final` 则是为了防止类被继续继承以及终止虚函数继续重载引入的。
+`final` 用于防止类被继续继承或者终止虚函数被继续重写。
 
 ```cpp
 struct Base {
@@ -926,14 +926,14 @@ struct SubClass3: Base {
 若用户定义了任何构造函数，编译器将不再生成默认构造函数，
 但有时候我们却希望同时拥有这两种构造函数，这就造成了尴尬。
 
-C++11 提供了上述需求的解决方案，允许显式的声明采用或拒绝编译器自带的函数。
+C++11 提供了上述需求的解决方案，允许显式地采用或拒绝编译器自带的函数。
 例如：
 
 ```cpp
 class Magic {
     public:
-    Magic() = default; // 显式声明使用编译器生成的构造
-    Magic& operator=(const Magic&) = delete; // 显式声明拒绝编译器生成构造
+    Magic() = default; // 显式使用编译器生成的构造函数
+    Magic& operator=(const Magic&) = delete; // 显式拒绝编译器生成的构造函数
     Magic(int magic_number);
 }
 ```

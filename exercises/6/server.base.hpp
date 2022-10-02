@@ -22,13 +22,13 @@ namespace Web {
         std::shared_ptr<std::istream> content;
         // hash container, key-value dict
         std::unordered_map<std::string, std::string> header;
-        // use regular expression for path match
+        // use regular expression for path matching
         std::smatch path_match;
     };
 
-    // use typedef simplify resource type
+    // use typedef to simplify resource type
     typedef std::map<std::string, std::unordered_map<std::string,
-    std::function<void(std::ostream&, Request&)>>> resource_type;
+        std::function<void(std::ostream&, Request&)>>> resource_type;
 
     // socket_type is HTTP or HTTPS
     template <typename socket_type>
@@ -44,7 +44,7 @@ namespace Web {
             num_threads(num_threads) {}
 
         void start() {
-            // default resource in the end of vector, as response method
+            // default resource at the end of vector, as response method
             for(auto it = resource.begin(); it != resource.end(); it++) {
                 all_resources.push_back(it);
             }
@@ -149,7 +149,7 @@ namespace Web {
 
                 bool matched;
                 e="^([^:]*): ?(.*)$";
-                // parse head information
+                // parse headers
                 do {
                     getline(stream, line);
                     line.pop_back();

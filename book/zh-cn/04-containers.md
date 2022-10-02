@@ -170,7 +170,7 @@ Key:[3] Value:[3]
 
 了解过 Python 的程序员应该知道元组的概念，纵观传统 C++ 中的容器，除了 `std::pair` 外，
 似乎没有现成的结构能够用来存放不同类型的数据（通常我们会自己定义结构）。
-但 `std::pair` 的缺陷是显而易见的，只能保存两个元素。
+但 `std::pair` 的局限性是显而易见的，只能保存两个元素。
 
 ### 元组基本操作
 
@@ -237,8 +237,8 @@ int index = 1;
 std::get<index>(t);
 ```
 
-那么要怎么处理？答案是，使用 `std::variant<>`（C++ 17 引入），提供给 `variant<>` 的类型模板参数
-可以让一个 `variant<>` 从而容纳提供的几种类型的变量（在其他语言，例如 Python/JavaScript 等，表现为动态类型）：
+那么要怎么处理？答案是，使用 `std::variant<>`（C++ 17 引入），向 `variant<>` 提供多个类型模板参数
+可以让 `variant<>` 容纳不定类型的值（在 Python/JavaScript 等其他语言中表现为动态类型）：
 
 ```cpp
 #include <variant>
@@ -276,7 +276,7 @@ std::cout << tuple_index(t, i) << std::endl;
 auto new_tuple = std::tuple_cat(get_student(1), std::move(t));
 ```
 
-马上就能够发现，应该如何快速遍历一个元组？但是我们刚才介绍了如何在运行期通过非常数索引一个 `tuple` 那么遍历就变得简单了，
+马上就能够发现，应该如何快速遍历一个元组？我们刚才介绍了如何在运行期通过非常数索引一个 `tuple` 那么遍历就变得简单了，
 首先我们需要知道一个元组的长度，可以：
 
 ```cpp
