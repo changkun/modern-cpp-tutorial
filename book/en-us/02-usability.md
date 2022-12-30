@@ -548,7 +548,7 @@ std::cout << "q: " << q << std::endl;
 
 > To understand it you need to know the concept of parameter forwarding
 > in C++, which we will cover in detail in the
-> [Language Runtime Hardening](./03-runtime.md) chapter,
+> [Language Runtime Enhancements](./03-runtime.md) chapter,
 > and you can come back to the contents of this section later.
 
 In simple terms, `decltype(auto)` is mainly used to derive
