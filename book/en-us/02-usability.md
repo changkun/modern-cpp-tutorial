@@ -971,7 +971,7 @@ C++11 introduces the two keywords `override` and `final` to prevent this from ha
 
 ### override
 
-When overriding a virtual function, introducing the `override` keyword will explicitly tell the compiler to overload, and the compiler will check if the base function has such a virtual function, otherwise it will not compile:
+When overriding a virtual function, introducing the `override` keyword will explicitly tell the compiler to overload, and the compiler will check if the base function has such a virtual function with consistent function signature, otherwise it will not compile:
 
 ```cpp
 struct Base {
