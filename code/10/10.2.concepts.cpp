@@ -8,10 +8,11 @@
 //
 
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <list>
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// #include <list>
+#include<bits/stdc++.h>
 
 using namespace std;
 
