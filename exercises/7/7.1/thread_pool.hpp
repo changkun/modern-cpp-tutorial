@@ -11,6 +11,7 @@
 #ifndef THREAD_POOL_H
 #define THREAD_POOL_H
 
+#include <type_traits>
 #include <vector>               // std::vector
 #include <queue>                // std::queue
 #include <memory>               // std::make_shared
@@ -96,7 +97,7 @@ inline ThreadPool::ThreadPool(size_t threads): stop(false) {
 template<class F, class... Args>
 decltype(auto) ThreadPool::enqueue(F&& f, Args&&... args) {
     // deduce return type
-    using return_type = typename std::result_of<F(Args...)>::type;
+    using return_type = typename std::invoke_result<F,Args...>::type;
 
     // fetch task
     auto task = std::make_shared<std::packaged_task<return_type()>>(
