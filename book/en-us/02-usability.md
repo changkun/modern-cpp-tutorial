@@ -18,20 +18,21 @@ which refers to the language behavior that occurred before the runtime.
 
 ### nullptr
 
-The purpose of `nullptr` appears to replace `NULL`. In a sense,
-traditional C++ treats `NULL` and `0` as the same thing,
-depending on how the compiler defines NULL,
-and some compilers define NULL as `((void*)0)` Some will define it directly as `0`.
+The purpose of `nullptr` appears to replace `NULL`. There are **null pointer constants** in the C and C++ languages,
+which can be implicitly converted to null pointer value of any pointer type,
+or null member pointer value of any pointer-to-member type in C++.
+`NULL` is provided by the standard library implementation and defined as an implementation-defined null pointer constant.
+In C, some standard libraries defines `NULL` as `((void*)0)` and some define it as `0`.
 
-C++ **does not allow** to implicitly convert `void *` to other types.
-But if the compiler tries to define `NULL` as `((void*)0)`, then in the following code:
+C++ **does not allow** to implicitly convert `void *` to other types, and thus `((void*)0)` is not a valid implementation
+of `NULL`. If the standard library tries to define `NULL` as `((void*)0)`, then compilation error would occur in the following code:
 
 ```cpp
 char *ch = NULL;
 ```
 
 C++ without the `void *` implicit conversion has to define `NULL` as `0`.
-This still creates a new problem. Defining `NULL` to 0 will cause the overloading feature in `C++` to be confusing.
+This still creates a new problem. Defining `NULL` to `0` will cause the overloading feature in `C++` to be confusing.
 Consider the following two `foo` functions:
 
 ```cpp
@@ -41,7 +42,7 @@ void foo(int);
 
 Then the `foo(NULL);` statement will call `foo(int)`, which will cause the code to be counterintuitive.
 
-To solve this problem, C++11 introduced the `nullptr` keyword, which is specifically used to distinguish null pointers, 0. The type of `nullptr` is `nullptr_t`, which can be implicitly converted to any pointer or member pointer type, and can be compared equally or unequally with them.
+To solve this problem, C++11 introduced the `nullptr` keyword, which is specifically used to distinguish null pointers, `0`. The type of `nullptr` is `nullptr_t`, which can be implicitly converted to any pointer or member pointer type, and can be compared equally or unequally with them.
 
 You can try to compile the following code using clang++:
 
