@@ -228,7 +228,7 @@ We simply can't expect multiple consumers to be able to produce content in a par
 ## 7.5 Atomic Operation and Memory Model
 
 Careful readers may be tempted by the fact that the example of the producer-consumer model in the previous section may have compiler optimizations that cause program errors.
-For example, the boolean `notified` is not modified by `volatile`, and the compiler may have optimizations for this variable, such as the value of a register.
+For example, the compiler may have optimizations for the variable `notified`, such as the value of a register.
 As a result, the consumer thread can never observe the change of this value. This is a good question. To explain this problem, we need to further discuss the concept of the memory model introduced from C++11. Let's first look at a question. What is the output of the following code?
 
 ```cpp
