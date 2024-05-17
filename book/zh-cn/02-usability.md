@@ -354,17 +354,22 @@ auto i = 5;              // i 被推导为 int
 auto arr = new auto(10); // arr 被推导为 int *
 ```
 
-从 C++ 20 起，`auto` 甚至能用于函数传参，考虑下面的例子：
+从 C++ 14 起，`auto` 能用于 lambda 表达式中的函数传参，而 C++ 20 起该功能推广到了一般的函数。考虑下面的例子：
 
 
 ```cpp
-int add(auto x, auto y) {
+auto add14 = [](auto x, auto y) -> int {
     return x+y;
 }
 
-auto i = 5; // 被推导为 int
-auto j = 6; // 被推导为 int
-std::cout << add(i, j) << std::endl;
+int add20(auto x, auto y) {
+    return x+y;
+}
+
+auto i = 5; // type int
+auto j = 6; // type int
+std::cout << add14(i, j) << std::endl;
+std::cout << add20(i, j) << std::endl;
 ```
 
 >
@@ -413,7 +418,7 @@ type z == type x
 
 ### 尾返回类型推导
 
-你可能会思考，在介绍 `auto` 时，我们已经提过 `auto` 不能用于函数形参进行类型推导，那么 `auto` 能不能用于推导函数的返回类型呢？还是考虑一个加法函数的例子，在传统 C++ 中我们必须这么写：
+你可能会思考， `auto` 能不能用于推导函数的返回类型呢？还是考虑一个加法函数的例子，在传统 C++ 中我们必须这么写：
 
 ```cpp
 template<typename R, typename T, typename U>
