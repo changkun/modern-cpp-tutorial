@@ -418,17 +418,23 @@ auto i = 5;              // i as int
 auto arr = new auto(10); // arr as int *
 ```
 
-Since C++ 20, `auto` can even be used as function arguments. Consider
-the following example:
+Since C++ 14, `auto` can even be used as function arguments in generic lambda expressions,
+and such functionality is generalized to normal functions in C++ 20.
+Consider the following example:
 
 ```cpp
-int add(auto x, auto y) {
+auto add14 = [](auto x, auto y) -> int {
+    return x+y;
+}
+
+int add20(auto x, auto y) {
     return x+y;
 }
 
 auto i = 5; // type int
 auto j = 6; // type int
-std::cout << add(i, j) << std::endl;
+std::cout << add14(i, j) << std::endl;
+std::cout << add20(i, j) << std::endl;
 ```
 
 > **Note**: `auto` cannot be used to derive array types yet:
@@ -481,7 +487,7 @@ type z == type x
 
 ### tail type inference
 
-You may think that when we introduce `auto`, we have already mentioned that `auto` cannot be used for function arguments for type derivation. Can `auto` be used to derive the return type of a function? Still consider an example of an add function, which we have to write in traditional C++:
+You may think that whether `auto` can be used to deduce the return type of a function. Still consider an example of an add function, which we have to write in traditional C++:
 
 ```cpp
 template<typename R, typename T, typename U>
