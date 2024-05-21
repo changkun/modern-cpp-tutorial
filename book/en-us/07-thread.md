@@ -67,7 +67,9 @@ int main() {
 ```
 
 Because C++ guarantees that all stack objects will be destroyed at the end of the declaration period, such code is also extremely safe.
-Whether `critical_section()` returns normally or if an exception is thrown in the middle, a stack rollback is thrown, and `unlock()` is automatically called.
+Whether `critical_section()` returns normally or if an exception is thrown in the middle, a stack unwinding is thrown, and `unlock()` is automatically called.
+
+> An exception is thrown and not caught (it is implementation-defined whether any stack unwinding is done in this case).
 
 `std::unique_lock` is more flexible than `std::lock_guard`.
 Objects of `std::unique_lock` manage the locking and unlocking operations on the `mutex` object with exclusive ownership (no other `unique_lock` objects owning the ownership of a `mutex` object). So in concurrent programming, it is recommended to use `std::unique_lock`.
