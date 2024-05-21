@@ -35,7 +35,7 @@ C++11 introduces a class related to `mutex`, with all related functions in the `
 It can be locked by its member function `lock()`, and `unlock()` can be unlocked.
 But in the process of actually writing the code, it is best not to directly call the member function,
 Because calling member functions, you need to call `unlock()` at the exit of each critical section, and of course, exceptions.
-At this time, C++11 also provides a template class `std::lock_guard` for the RAII syntax for the mutex.
+At this time, C++11 also provides a template class `std::lock_guard` for the RAII mechanism for the mutex.
 
 RAII guarantees the exceptional security of the code while keeping the simplicity of the code.
 
