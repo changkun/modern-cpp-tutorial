@@ -68,7 +68,9 @@ int main() {
 ```
 
 由于 C++ 保证了所有栈对象在生命周期结束时会被销毁，所以这样的代码也是异常安全的。
-无论 `critical_section()` 正常返回、还是在中途抛出异常，都会引发堆栈回退，也就自动调用了 `unlock()`。
+无论 `critical_section()` 正常返回、还是在中途抛出异常，都会引发栈回溯，也就自动调用了 `unlock()`。
+
+> 没有捕获抛出的异常（此时由实现定义是否进行栈回溯）。
 
 而 `std::unique_lock` 则是相对于 `std::lock_guard` 出现的，`std::unique_lock` 更加灵活，
 `std::unique_lock` 的对象会以独占所有权（没有其他的 `unique_lock` 对象同时拥有某个 `mutex` 对象的所有权）
