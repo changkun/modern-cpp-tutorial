@@ -147,9 +147,7 @@ we need to use the `constexpr` feature introduced in C++11, which will be introd
 to solve this problem; for `arr_5`, before C++98 The compiler cannot know that `len_foo()`
 actually returns a constant at runtime, which causes illegal production.
 
-> Note that most compilers now have their compiler optimizations.
-> Many illegal behaviors become legal under the compiler's optimization.
-> If you need to reproduce the error, you need to use the old version of the compiler.
+> Note that some compilers (e.g. GCC, Clang) have compiler extensions enabled by default, supporting a C feature called "[variable-length arrays](https://en.cppreference.com/w/c/language/array#.E9.9D.9E.E5.B8.B8.E9.87.8F.E9.95.BF.E5.BA.A6.E6.95.B0.E7.BB.84)", which allows you to define an array whose length can be a non-constant expression. Code that causes the above comments to be illegal can be compiled. To disable the extension, add the compilation option [`-pedantic-errors`](https://clang.llvm.org/docs/ClangCommandLineReference.html#cmdoption-clang-pedantic-errors) (both GCC and Clang are available).
 
 C++11 provides `constexpr` to let the user explicitly declare that the function or
 object constructor will become a constant expression at compile time.
