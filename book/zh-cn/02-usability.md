@@ -963,7 +963,7 @@ enum class new_enum : unsigned int {
 
 ```cpp
 if (new_enum::value3 == new_enum::value4) {
-    // 会输出
+    // 会输出true
     std::cout << "new_enum::value3 == new_enum::value4" << std::endl;
 }
 ```
