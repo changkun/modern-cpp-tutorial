@@ -82,7 +82,7 @@ std::cout << "pointer3.use_count() = "
 
 ## 5.3 `std::unique_ptr`
 
-`std::unique_ptr` is an exclusive smart pointer that prohibits other smart pointers from sharing the same object, thus keeping the code safe:
+`std::unique_ptr` is an exclusive smart pointer that prohibits other smart pointers from sharing the same object by copy construction or copy assignment, thus avoiding errors due to repeated destruction or freeing:
 
 ```cpp
 std::unique_ptr<int> pointer = std::make_unique<int>(10); // make_unique, from C++14

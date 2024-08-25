@@ -80,7 +80,7 @@ std::cout << "pointer3.use_count() = "
 
 ## 5.3 `std::unique_ptr`
 
-`std::unique_ptr` 是一种独占的智能指针，它禁止其他智能指针与其共享同一个对象，从而保证代码的安全：
+`std::unique_ptr` 是一种独占的智能指针，它禁止其他智能指针经由拷贝构造或拷贝赋值的方式与其共享同一个对象，从而避免重复析构或释放带来的错误：
 
 ```cpp
 std::unique_ptr<int> pointer = std::make_unique<int>(10); // make_unique 从 C++14 引入
