@@ -39,9 +39,9 @@ void may_throw();           // May throw any exception
 void no_throw() noexcept;   // Cannot throw any exception
 ```
 
-If a function modified with `noexcept` is thrown,
-the compiler will use `std::terminate()` to
-immediately terminate the program.
+If a function marked `noexcept` performs an operation that possibly throws an exception,
+the compiler will insert a `std::terminate()` call to the path exiting the function via an exception,
+in order to make the program terminate.
 
 `noexcept` can also be used as an operator to manipulate an expression.
 When the expression has no exception, it returns `true`,
