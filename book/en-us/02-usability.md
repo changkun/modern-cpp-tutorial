@@ -203,18 +203,19 @@ E.g:
 int main() {
     std::vector<int> vec = {1, 2, 3, 4};
 
-    // since c++17, can be simplified by using `auto`
+    // before C++17, can be simplified by using `auto`
     const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 2);
     if (itr != vec.end()) {
         *itr = 3;
     }
 
-    if (const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 3);
-        itr != vec.end()) {
-        *itr = 4;
+    // need to define a new variable
+    const std::vector<int>::iterator itr2 = std::find(vec.begin(), vec.end(), 3);
+    if (itr2 != vec.end()) {
+        *itr2 = 4;
     }
 
-    // should output: 1, 4, 3, 4. can be simplified using `auto`
+    // will output: 1, 4, 3, 4; can be simplified using `auto`
     for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); 
         ++element)
         std::cout << *element << std::endl;
@@ -227,6 +228,7 @@ the entire `std::vector` again. C++17 eliminates this limitation so that
 we can do this in if(or switch):
 
 ```cpp
+// put the temporary variable into the if-statement
 if (const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 3);
     itr != vec.end()) {
     *itr = 4;
