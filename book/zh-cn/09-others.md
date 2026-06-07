@@ -179,6 +179,20 @@ int main() {
 其中 `std::max_align_t` 要求每个标量类型的对齐方式严格一样，因此它几乎是最大标量没有差异，
 进而大部分平台上得到的结果为 `long double`，因此我们这里得到的 `AlignasStorage` 的对齐要求是 8 或 16。
 
+### 过对齐类型的动态分配
+
+在 C++17 之前，`new` 表达式无法保证满足**过对齐 (over-aligned)** 类型（即对齐要求超过 `alignof(std::max_align_t)` 的类型）的对齐需求，使用这类类型常常需要借助平台特定的 `posix_memalign`、`_aligned_malloc` 等手段。C++17 引入了接受 `std::align_val_t` 参数的 `operator new` / `operator delete` 重载，使得 `new` 表达式在为过对齐类型分配内存时会自动选用对齐版本：
+
+```cpp
+struct alignas(64) Aligned {
+    double v[8];
+};
+
+Aligned* p = new Aligned; // C++17：自动使用对齐版本的 operator new
+// 此时 reinterpret_cast<std::uintptr_t>(p) % 64 == 0
+delete p;
+```
+
 ## 总结
 
 本节介绍的几个特性是从仍未介绍的现代 C++ 新特性里使用频次较靠前的特性了，`noexcept` 是最为重要的特性，它的一个功能在于能够阻止异常的扩散传播，有效的让编译器最大限度的优化我们的代码。

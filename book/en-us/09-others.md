@@ -191,6 +191,20 @@ int main() {
 where `std::max_align_t` requires the same alignment for each scalar type, so it has almost no difference in maximum scalars.
 In turn, the result on most platforms is `long double`, so the alignment requirement for `AlignasStorage` we get here is 8 or 16.
 
+### Dynamic allocation of over-aligned types
+
+Before C++17, a `new` expression could not guarantee the alignment requirement of an **over-aligned** type (one whose alignment exceeds `alignof(std::max_align_t)`); using such types often required platform-specific facilities such as `posix_memalign` or `_aligned_malloc`. C++17 introduced `operator new` / `operator delete` overloads taking a `std::align_val_t`, so a `new` expression automatically selects the aligned version when allocating an over-aligned type:
+
+```cpp
+struct alignas(64) Aligned {
+    double v[8];
+};
+
+Aligned* p = new Aligned; // C++17: automatically uses the aligned operator new
+// now reinterpret_cast<std::uintptr_t>(p) % 64 == 0
+delete p;
+```
+
 ## Conclusion
 
 Several of the features introduced in this section are those that
