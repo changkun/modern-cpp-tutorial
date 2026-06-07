@@ -16,6 +16,8 @@ So anonymous functions are almost standard in modern programming languages.
 
 ### Basics
 
+*(since C++11)*
+
 The basic syntax of a Lambda expression is as follows:
 
 ```
@@ -124,6 +126,8 @@ initialize it in the expression.
 
 ### Generic Lambda
 
+*(since C++14)*
+
 In the previous section, we mentioned that the `auto` keyword cannot be used
 in the parameter list because it would conflict with the functionality of the template.
 But lambda expressions are not regular functions, without further specification on the typed parameter list, lambda expressions cannot utilize templates. Fortunately, this trouble
@@ -148,6 +152,10 @@ it enhances the runtime capabilities of the C++ language.
 This part of the content is also very important, so put it here for the introduction.
 
 ### `std::function`
+
+*(since C++11)*
+
+In C++, "things that can be called" come in many shapes — ordinary functions, function pointers, lambda expressions, and any object that overloads `operator()` — and they all have different types, which makes them hard to store and pass around uniformly. `std::function` exists precisely to solve this: it is a type-safe "container for callables" that can uniformly store, copy, and invoke any callable target, letting us handle "functions" as ordinary objects.
 
 The essence of a Lambda expression is an object of a class type (called a closure type)
 that is similar to a function object type (called a closure object).
@@ -205,6 +213,8 @@ int main() {
 ```
 
 ### `std::bind` and `std::placeholder`
+
+*(since C++11)*
 
 And `std::bind` is used to bind the parameters of the function call.
 It solves the requirement that we may not always be able to get all the parameters
@@ -331,6 +341,8 @@ This is the move semantics we will mention later.
 
 ### rvalue reference and lvalue reference
 
+*(since C++11)*
+
 To get a xvalue, you need to use the declaration of the rvalue reference: `T &&`,
 where `T` is the type.
 The statement of the rvalue reference extends the lifecycle of this temporary value,
@@ -412,6 +424,8 @@ The second question, why do constant references allow binding to non-lvalues?
 The reason is simple because Fortran needs it.
 
 ### Move semantics
+
+*(since C++11)*
 
 Traditional C++ has designed the concept of copy/copy for class objects
 through copy constructors and assignment operators,
@@ -498,6 +512,8 @@ int main() {
 ```
 
 ### Perfect forwarding
+
+*(since C++11)*
 
 As we mentioned earlier, the rvalue reference of a declaration is actually an lvalue.
 This creates problems for us to parameterize (pass):
@@ -638,6 +654,8 @@ At this point, we can answer the question: Why is `auto&&` the safest way to use
 Because when `auto` is pushed to a different lvalue and rvalue reference, the collapsed combination with `&&` is perfectly forwarded.
 
 ### Guaranteed copy elision
+
+*(since C++17)*
 
 Before C++17, when an object was initialized from a prvalue of the same type, the compiler *was permitted* (but not required) to omit the copy/move construction — this is known as copy elision. Because it was merely allowed, the object's type still had to have an accessible copy or move constructor, even though it would not actually be called.
 
