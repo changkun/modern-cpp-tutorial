@@ -1152,6 +1152,33 @@ static_assert(sizeof(int) >= 2);                          // C++17: message opti
 static_assert(sizeof(int) >= 2, "int must be >= 2 bytes"); // a message is still allowed
 ```
 
+### New aggregate rules
+
+C++17 relaxed the definition of an aggregate: an aggregate may now have public base classes (which must themselves be aggregates), and the base subobject can be brace-initialized along with the rest:
+
+```cpp
+struct Base { int a; };
+struct Derived : Base { int b; };
+
+Derived d{{1}, 2}; // {a}, b — legal since C++17
+```
+
+### Boolean logic metafunctions
+
+C++17 added `std::conjunction`, `std::disjunction`, and `std::negation` to `<type_traits>` for composing other type traits with logical AND/OR/NOT at compile time (and `conjunction`/`disjunction` short-circuit):
+
+```cpp
+#include <type_traits>
+
+template <typename T>
+constexpr bool is_signed_integral =
+    std::conjunction_v<std::is_integral<T>, std::is_signed<T>>;
+
+static_assert(is_signed_integral<int>);
+static_assert(!is_signed_integral<unsigned>);
+static_assert(std::negation_v<std::is_floating_point<int>>);
+```
+
 ## Conclusion
 
 This section introduces the enhancements to language usability in modern C++, which I believe are the most important features that almost everyone needs to know and use:
