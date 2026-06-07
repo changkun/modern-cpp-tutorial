@@ -1011,6 +1011,52 @@ std::ostream& operator<<(
 std::cout << new_enum::value3 << std::endl
 ```
 
+## 2.7 其他语言特性
+
+### 内联变量
+
+在 C++17 之前，类的非常量静态成员变量必须在类外单独定义，而在头文件中定义全局变量则会因为被多个翻译单元包含而导致重复定义的链接错误。C++17 引入了 `inline` 变量，允许在头文件中定义变量（包括类的静态成员），即便被多个翻译单元包含也不会违反单一定义规则 (ODR)：
+
+```cpp
+struct Widget {
+    static inline int count = 0; // C++17：在类内定义并初始化静态成员
+};
+inline int global_value = 42;    // 可安全地放在头文件中
+```
+
+这极大地简化了「仅有头文件」的库的编写。
+
+### 嵌套命名空间
+
+C++17 允许使用 `::` 一次性书写嵌套命名空间的定义，不再需要层层缩进：
+
+```cpp
+// C++17 之前
+namespace A {
+    namespace B {
+        namespace C {
+            int value;
+        }
+    }
+}
+
+// C++17 起
+namespace A::B::C {
+    int value;
+}
+```
+
+### constexpr lambda
+
+从 C++17 开始，满足常量表达式要求的 Lambda 表达式会隐式地成为 `constexpr`（也可以显式标注 `constexpr`），从而能够在编译期求值：
+
+```cpp
+constexpr auto add = [](int a, int b) { return a + b; };
+static_assert(add(1, 2) == 3, "");
+
+constexpr int result = add(3, 4); // 在编译期求值，result == 7
+```
+
 ## 总结
 
 本节介绍了现代 C++ 中对语言可用性的增强，其中笔者认为最为重要的几个特性是几乎所有人都需要了解并熟练使用的：
