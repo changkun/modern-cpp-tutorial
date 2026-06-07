@@ -295,6 +295,37 @@ for(int i = 0; i != tuple_len(new_tuple); ++i)
     std::cout << tuple_index(new_tuple, i) << std::endl;
 ```
 
+不过，上面这种「先实现运行期索引、再逐个索引」的遍历方式虽然可行，却相当迂回。如果只是想对元组的每个元素施加同一个操作，更直接、惯用的做法是借助 `std::index_sequence`（C++14 引入）在编译期展开下标。在 C++17 中可以配合折叠表达式写成：
+
+```cpp
+template <typename Func, typename Tuple, std::size_t... idx>
+void iterate_impl(Func&& f, Tuple&& tpl, std::index_sequence<idx...>) {
+    (f(std::get<idx>(std::forward<Tuple>(tpl))), ...);
+}
+template <typename Func, typename Tuple>
+void iterate_tuple(Func&& f, Tuple&& tpl) {
+    iterate_impl(std::forward<Func>(f), std::forward<Tuple>(tpl),
+        std::make_index_sequence<std::tuple_size_v<std::remove_reference_t<Tuple>>>{});
+}
+```
+
+到了 C++20，还可以利用允许显式书写模板参数的 Lambda，把辅助函数也一并省去：
+
+```cpp
+template <typename Func, typename... Args>
+void iterate_tuple(Func f, const std::tuple<Args...>& tpl) {
+    [&]<std::size_t... idx>(std::index_sequence<idx...>) {
+        (f(std::get<idx>(tpl)), ...);
+    }(std::make_index_sequence<sizeof...(Args)>());
+}
+```
+
+这样调用就非常直观了，而且无需事先实现运行期索引：
+
+```cpp
+iterate_tuple([](const auto& v) { std::cout << v << ' '; }, new_tuple);
+```
+
 ## 总结
 
 本章简单介绍了现代 C++ 中新增的容器，它们的用法和传统 C++ 中已有的容器类似，相对简单，可以根据实际场景丰富的选择需要使用的容器，从而获得更好的性能。
