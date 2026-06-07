@@ -98,10 +98,22 @@
     + 9.4 Memory Alignment
 - [**Chapter 10 Outlook: Introduction of C++20**](./10-cpp20.md)
     + 10.1 Concept
-    + 10.2 Range
-    + 10.3 Module
+    + 10.2 Module
+    + 10.3 Range
     + 10.4 Coroutine
-    + 10.5 Transaction Memory
+- [**Chapter 11 Introduction of C++23**](./11-cpp23.md)
+    + 11.1 Language features
+      - Deducing this (explicit object parameter)
+      - if consteval
+      - Multidimensional subscript operator
+      - auto(x) and static operator()
+      - [[assume]]
+    + 11.2 The standard library
+      - std::expected
+      - std::print and std::println
+      - std::mdspan
+      - std::flat_map and std::flat_set
+      - Ranges additions
 - [**Appendix 1: Further Study Materials**](./appendix1.md)
 - [**Appendix 2: Modern C++ Best Practices**](./appendix2.md)
 
