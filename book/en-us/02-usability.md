@@ -1005,8 +1005,7 @@ SFINAE is powerful but obscure to write and produces verbose error messages. C++
 
 *(since C++11)*
 
-C++11 introduces the concept of a delegate construct, which allows a constructor to call another constructor
-in a constructor in the same class, thus simplifying the code:
+A class often has several constructors that share a lot of the same initialization logic. Before C++11, the only ways to reuse that logic were to copy it into every constructor, or to extract a private init function — but the latter cannot initialize `const` members or reference members. C++11's **delegating constructors** let one constructor delegate its initialization to another constructor of the same class, removing that duplication:
 
 ```cpp
 #include <iostream>
@@ -1033,7 +1032,7 @@ int main() {
 
 *(since C++11)*
 
-In traditional C++, constructors need to pass arguments one by one if they need inheritance, which leads to inefficiency. C++11 introduces the concept of inheritance constructors using the keyword using:
+In traditional C++, if a derived class wants to reuse its base class's constructors, it must redeclare each of them and forward the arguments one by one to the base, which is tedious and error-prone. C++11 introduces inheriting constructors via the `using` keyword, letting a derived class inherit all of the base class's constructors at once:
 
 ```cpp
 #include <iostream>
