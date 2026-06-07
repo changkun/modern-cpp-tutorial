@@ -26,6 +26,8 @@ These smart pointers include `std::shared_ptr`/`std::unique_ptr`/`std::weak_ptr`
 
 ## 5.2 `std::shared_ptr`
 
+*(since C++11)*
+
 `std::shared_ptr` is a smart pointer that records how many `shared_ptr` points to an object, eliminating to call `delete`, which automatically deletes the object when the reference count becomes zero.
 
 But not enough, because using `std::shared_ptr` still needs to be called with `new`, which makes the code a certain degree of asymmetry.
@@ -81,6 +83,8 @@ std::cout << "pointer3.use_count() = "
 ```
 
 ## 5.3 `std::unique_ptr`
+
+*(since C++11)*
 
 `std::unique_ptr` is an exclusive smart pointer that prohibits other smart pointers from sharing the same object by copy construction or copy assignment, thus avoiding errors due to repeated destruction or freeing:
 
@@ -147,6 +151,8 @@ int main() {
 ```
 
 ## 5.4 `std::weak_ptr`
+
+*(since C++11)*
 
 If you think about `std::shared_ptr` carefully, you will still find that there is still a problem that resources cannot be released. Look at the following example:
 
