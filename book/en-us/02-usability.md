@@ -878,7 +878,7 @@ public:
     void free(T& item);
 private:
     T data[BufSize];
-}
+};
 
 buffer_t<int, 100> buf; // 100 as template parameter
 ```
