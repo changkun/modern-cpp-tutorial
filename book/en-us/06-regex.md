@@ -1,10 +1,10 @@
 ---
-title: "Chapter 06 Regular Expression"
+title: "Chapter 06: Regular Expression"
 type: book-en-us
 order: 6
 ---
 
-# Chapter 06 Regular Expression
+# Chapter 06: Regular Expression
 
 [TOC]
 

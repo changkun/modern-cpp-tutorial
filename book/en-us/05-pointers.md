@@ -1,10 +1,10 @@
 ---
-title: "Chapter 05 Smart Pointers and Memory Management"
+title: "Chapter 05: Smart Pointers and Memory Management"
 type: book-en-us
 order: 5
 ---
 
-# Chapter 05 Smart Pointers and Memory Management
+# Chapter 05: Smart Pointers and Memory Management
 
 [TOC]
 

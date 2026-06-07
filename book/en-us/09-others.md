@@ -1,10 +1,10 @@
 ---
-title: Chapter 09 Minor Features
+title: Chapter 09: Minor Features
 type: book-en-us
 order: 9
 ---
 
-# Chapter 09 Minor Features
+# Chapter 09: Minor Features
 
 [TOC]
 

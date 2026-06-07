@@ -1,10 +1,10 @@
 ---
-title: "Chapter 08 File System"
+title: "Chapter 08: File System"
 type: book-en-us
 order: 8
 ---
 
-# Chapter 08 File System
+# Chapter 08: File System
 
 [TOC]
 

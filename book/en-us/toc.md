@@ -51,7 +51,7 @@
         + rvalue reference and lvalue reference
         + Move semantics
         + Perfect forwarding
-- [**Chapter 04 Containers**](./04-containers.md)
+- [**Chapter 04: Containers**](./04-containers.md)
     + 4.1 Linear containers
         + `std::array`
         + `std::forward_list`
@@ -62,12 +62,12 @@
         + basic operation
         + runtime indexing `std::variant`
         + merge and iteration
-- [**Chapter 05 Smart Pointers and Memory Management**](./05-pointers.md)
+- [**Chapter 05: Smart Pointers and Memory Management**](./05-pointers.md)
     + 5.1 RAII and reference counting
     + 5.2 `std::shared_ptr`
     + 5.3 `std::unique_ptr`
     + 5.4 `std::weak_ptr`
-- [**Chapter 06 Regular Expression**](./06-regex.md)
+- [**Chapter 06: Regular Expression**](./06-regex.md)
     + 6.1 Introduction
         + Ordinary characters
         + Special characters
@@ -76,7 +76,7 @@
         + `std::regex`
         + `std::regex_match`
         + `std::match_results`
-- [**Chapter 07 Parallelism and Concurrency**](./07-thread.md)
+- [**Chapter 07: Parallelism and Concurrency**](./07-thread.md)
     + 7.1 Basic of Parallelism
     + 7.2 Mutex and Critical Section
     + 7.3 Futures
@@ -85,10 +85,10 @@
         + Atomic Operation
         + Consistency Model
         + Memory Orders
-- [**Chapter 08 File System**](./08-filesystem.md)
+- [**Chapter 08: File System**](./08-filesystem.md)
     + 8.1 Documents and links
     + 8.2 `std::filesystem`
-- [**Chapter 09 Minor Features**](./09-others.md)
+- [**Chapter 09: Minor Features**](./09-others.md)
     + 9.1 New Types
         + `long long int`
     + 9.2 `noexcept` and Its Operations
@@ -96,12 +96,12 @@
         + Raw String Literal
         + Custom String Literal
     + 9.4 Memory Alignment
-- [**Chapter 10 Outlook: Introduction of C++20**](./10-cpp20.md)
+- [**Chapter 10: C++20**](./10-cpp20.md)
     + 10.1 Concept
     + 10.2 Module
     + 10.3 Range
     + 10.4 Coroutine
-- [**Chapter 11 Introduction of C++23**](./11-cpp23.md)
+- [**Chapter 11: C++23**](./11-cpp23.md)
     + 11.1 Language features
       - Deducing this (explicit object parameter)
       - if consteval
@@ -114,7 +114,7 @@
       - std::mdspan
       - std::flat_map and std::flat_set
       - Ranges additions
-- [**Chapter 12 Outlook: Introduction of C++26**](./12-cpp26.md)
+- [**Chapter 12: C++26 (Outlook)**](./12-cpp26.md)
     + 12.1 Language features
       - Static reflection
       - Contracts

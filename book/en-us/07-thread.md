@@ -1,10 +1,10 @@
 ---
-title: "Chapter 07 Parallelism and Concurrency"
+title: "Chapter 07: Parallelism and Concurrency"
 type: book-en-us
 order: 7
 ---
 
-# Chapter 07 Parallelism and Concurrency
+# Chapter 07: Parallelism and Concurrency
 
 [TOC]
 
