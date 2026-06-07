@@ -10,6 +10,8 @@ order: 9
 
 ## 9.1 New Type
 
+*(since C++11)*
+
 ### `long long int`
 
 `long long int` is not the first to be introduced in C++11.
@@ -19,6 +21,8 @@ C++11 now formally incorporate it into the standard library,
 specifying a `long long int` type with at least 64 bits.
 
 ## 9.2 `noexcept` and Its Operations
+
+*(since C++11)*
 
 One of the big advantages of C++ over C is that
 C++ itself defines a complete set of exception handling mechanisms.
@@ -104,6 +108,8 @@ exception captured, from non_block_throw()
 
 ## 9.3 Literal
 
+*(since C++11)*
+
 ### Raw String Literal
 
 In traditional C++, it is very painful to write a string full of
@@ -159,6 +165,8 @@ Custom literals support four literals:
 
 ## 9.4 Memory Alignment
 
+*(since C++11)*
+
 C++ 11 introduces two new keywords, `alignof` and `alignas`, to support control of memory alignment.
 The `alignof` keyword can get a platform-dependent value of type `std::size_t` to query the alignment of the platform.
 Of course, we are sometimes not satisfied with this, and even want to customize the alignment of the structure. Similarly, C++ 11 introduces `alignas`.
@@ -207,6 +215,8 @@ delete p;
 
 ## 9.5 Type punning and `std::bit_cast`
 
+*(since C++20)*
+
 "Type punning" means reinterpreting the same memory as a different type, common in low-level code (e.g. reading the bit pattern of a floating-point number). Many people reach for `reinterpret_cast` through a pointer or reference:
 
 ```cpp
@@ -233,6 +243,8 @@ float back = std::bit_cast<float>(bits);
 
 ## 9.6 Mathematical special functions
 
+*(since C++17)*
+
 C++17 added a set of mathematical special functions to `<cmath>` — such as `std::riemann_zeta`, `std::beta`, `std::assoc_legendre`, and `std::cyl_bessel_j` — useful in scientific computing and machine-learning related domains:
 
 ```cpp
@@ -250,7 +262,7 @@ have not yet been introduced. `noexcept` is the most important feature.
 One of its features is to prevent the spread of anomalies,
 effective Let the compiler optimize our code to the maximum extent possible.
 
-[Table of Content](./toc.md) | [Previous Chapter](./08-filesystem.md) | [Next Chapter: Outlook: Introduction of C++20](./10-cpp20.md)
+[Table of Content](./toc.md) | [Previous Chapter](./08-filesystem.md) | [Next Chapter: C++20](./10-cpp20.md)
 
 ## Licenses
 

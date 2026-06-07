@@ -10,6 +10,8 @@ order: 7
 
 ## 7.1 Basic of Parallelism
 
+*(since C++11)*
+
 `std::thread` is used to create an execution thread instance, so it is the basis for all concurrent programming. It needs to include the `<thread>` header file when using it.
 It provides a number of basic thread operations, such as `get_id()` to get the thread ID of the thread being created, use `join()` to join a thread, etc., for example:
 
@@ -27,6 +29,8 @@ int main() {
 ```
 
 ## 7.2 Mutex and Critical Section
+
+*(since C++11)*
 
 We have already learned the basics of concurrency technology in the operating system, or the database, and `mutex` is one of the cores.
 C++11 introduces a class related to `mutex`, with all related functions in the `<mutex>` header file.
@@ -117,6 +121,8 @@ int main() {
 
 ## 7.3 Future
 
+*(since C++11)*
+
 The Future is represented by `std::future`, which provides a way to access the results of asynchronous operations. This sentence is very difficult to understand.
 To understand this feature, we need to understand the multi-threaded behavior before C++11.
 
@@ -156,6 +162,8 @@ int main() {
 After encapsulating the target to be called, you can use `get_future()` to get a `std::future` object to implement thread synchronization later.
 
 ## 7.4 Condition Variable
+
+*(since C++11)*
 
 The condition variable `std::condition_variable` was born to solve the deadlock and was introduced when the mutex operation was not enough.
 For example, a thread may need to wait for a condition to be true to continue execution.
@@ -228,6 +236,8 @@ Because in the case of multiple consumers, our consumer implementation simply gi
 We simply can't expect multiple consumers to be able to produce content in a parallel consumer queue, and we still need a more granular approach.
 
 ## 7.5 Atomic Operation and Memory Model
+
+*(since C++11)*
 
 Careful readers may be tempted by the fact that the example of the producer-consumer model in the previous section may have compiler optimizations that cause program errors.
 For example, the compiler may have optimizations for the variable `notified`, such as the value of a register.

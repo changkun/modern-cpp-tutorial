@@ -65,6 +65,8 @@ With these two tables, we can usually read almost all regular expressions.
 
 ## 6.2 `std::regex` and Its Related
 
+*(since C++11)*
+
 The most common way to match string content is to use regular expressions. Unfortunately, in traditional C++, regular expressions have not been supported by the language level, and are not included in the standard library. C++ is a high-performance language. In the development of background services, the use of regular expressions is also used when judging URL resource links. The most mature and common practice in the industry.
 
 The general solution is to use the regular expression library of `boost`. C++11 officially incorporates the processing of regular expressions into the standard library, providing standard support from the language level and no longer relying on third parties.
