@@ -2,7 +2,7 @@
 
 # Modern C++ Tutorial: C++11/14/17/20 On the Fly
 
-![](https://img.shields.io/travis/changkun/modern-cpp-tutorial/master?style=flat-square) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md)
+[![](https://img.shields.io/github/actions/workflow/status/changkun/modern-cpp-tutorial/website.yml?branch=master&style=flat-square)](https://github.com/changkun/modern-cpp-tutorial/actions/workflows/website.yml) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md)
 ## Purpose
 
 The book claims to be "On the Fly". Its intent is to provide a comprehensive introduction to the relevant features regarding modern C++ (before 2020s).
