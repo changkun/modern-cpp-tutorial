@@ -957,7 +957,7 @@ auto has_size(const T& c) -> decltype(c.size(), std::true_type{}) {
 std::false_type has_size(...) { return std::false_type{}; }
 ```
 
-SFINAE is powerful but obscure to write and produces verbose error messages. C++20's [concepts](./10-cpp20.md#concept-and-constraints) were introduced precisely to express such constraints in a more intuitive and readable way, and can be regarded as the modern replacement for SFINAE.
+SFINAE is powerful but obscure to write and produces verbose error messages. C++20's [concepts](./10-cpp20.md#concept) were introduced precisely to express such constraints in a more intuitive and readable way, and can be regarded as the modern replacement for SFINAE.
 
 ## 2.6 Object-oriented
 
