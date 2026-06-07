@@ -333,18 +333,11 @@ Foo foo2 {3, 4};
 
 ### Structured binding
 
-Structured bindings provide functionality similar to the multiple return values
-provided in other languages. In the chapter on containers,
-we will learn that C++11 has added a `std::tuple` container for
-constructing a tuple that encloses multiple return values. But the flaw
-is that C++11/14 does not provide a simple way to get and define
-the elements in the tuple from the tuple,
-although we can unpack the tuple using `std::tie`
-But we still have to be very clear about how many objects this tuple contains,
-what type of each object is, very troublesome.
+*(since C++17)*
 
-C++17 completes this setting,
-and the structured bindings let us write code like this:
+**Why do we need it?** Functions frequently need to "return several values at once" — for example, a computed result together with a status flag. In traditional C++ we either define a dedicated struct for this, or pack the values into a `std::tuple` and return that; but getting the values back out is clumsy. Unpacking with `std::tie` forces us to **declare every variable in advance** and to **know exactly** how many elements the tuple holds and the type of each — and any mismatch is an error.
+
+**What problem does it solve?** C++17's **structured bindings** let us, in a single line, "unpack" a tuple, a `std::pair`, a raw array, or a struct with public data members, and bind the pieces directly to a set of **named** variables, with the types deduced by the compiler:
 
 ```cpp
 #include <iostream>
@@ -358,6 +351,21 @@ int main() {
     auto [x, y, z] = f();
     std::cout << x << ", " << y << ", " << z << std::endl;
     return 0;
+}
+```
+
+**Why is this better than `std::tie`?** Structured bindings need no prior declaration and no spelled-out types, and they work not only on tuples but also on raw arrays and aggregate structs — making "multiple return values" read as naturally as in other modern languages.
+
+**A typical use case**: iterating an associative container becomes especially clean, binding each key/value pair to meaningful names instead of writing `it->first` / `it->second`:
+
+```cpp
+#include <iostream>
+#include <map>
+#include <string>
+
+std::map<std::string, int> scores{{"alice", 90}, {"bob", 80}};
+for (const auto& [name, score] : scores) {
+    std::cout << name << ": " << score << '\n';
 }
 ```
 
