@@ -205,6 +205,43 @@ Aligned* p = new Aligned; // C++17: automatically uses the aligned operator new
 delete p;
 ```
 
+## 9.5 Type punning and `std::bit_cast`
+
+"Type punning" means reinterpreting the same memory as a different type, common in low-level code (e.g. reading the bit pattern of a floating-point number). Many people reach for `reinterpret_cast` through a pointer or reference:
+
+```cpp
+float f = 3.14f;
+std::uint32_t bits = *reinterpret_cast<std::uint32_t*>(&f); // undefined behavior!
+```
+
+But this violates the **strict-aliasing rule**: except through `char`, `unsigned char`, or `std::byte`, accessing an object via an lvalue of a type incompatible with the object's actual type is undefined behavior, and the optimizer is free to assume it never happens.
+
+The correct, portable approach is `std::memcpy` (valid under any standard):
+
+```cpp
+std::uint32_t bits;
+std::memcpy(&bits, &f, sizeof bits); // well-defined
+```
+
+C++20 further provides `std::bit_cast` (in `<bit>`), which reinterprets the object representation in a well-defined way with clearer semantics and can be used in constant expressions:
+
+```cpp
+#include <bit>
+auto bits = std::bit_cast<std::uint32_t>(f); // both types must be the same size and trivially copyable
+float back = std::bit_cast<float>(bits);
+```
+
+## 9.6 Mathematical special functions
+
+C++17 added a set of mathematical special functions to `<cmath>` — such as `std::riemann_zeta`, `std::beta`, `std::assoc_legendre`, and `std::cyl_bessel_j` — useful in scientific computing and machine-learning related domains:
+
+```cpp
+#include <cmath>
+double z = std::riemann_zeta(2.0); // ~ 1.6449 (i.e. pi^2 / 6)
+```
+
+> Note that although these special functions are part of the standard, **standard-library support varies**: libstdc++ (GCC) provides a complete implementation, while libc++ (Clang) did not implement them for a long time. The code above therefore may not compile on every toolchain; check your standard library's support before using them.
+
 ## Conclusion
 
 Several of the features introduced in this section are those that

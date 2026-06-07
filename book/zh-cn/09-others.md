@@ -193,6 +193,43 @@ Aligned* p = new Aligned; // C++17：自动使用对齐版本的 operator new
 delete p;
 ```
 
+## 9.5 类型双关与 `std::bit_cast`
+
+「类型双关」(type punning) 指的是把同一段内存按另一种类型重新解读，常见于底层编程（例如读取浮点数的位模式）。许多人习惯用 `reinterpret_cast` 通过指针或引用来做这件事：
+
+```cpp
+float f = 3.14f;
+std::uint32_t bits = *reinterpret_cast<std::uint32_t*>(&f); // 未定义行为！
+```
+
+但这违反了**严格别名规则 (strict aliasing rule)**：除了 `char`、`unsigned char` 与 `std::byte` 之外，通过与对象实际类型不兼容的左值去访问该对象是未定义行为，编译器在优化时完全可以假设这种情况不会发生。
+
+正确且可移植的做法是使用 `std::memcpy`（在任何标准下都合法）：
+
+```cpp
+std::uint32_t bits;
+std::memcpy(&bits, &f, sizeof bits); // 良好定义
+```
+
+C++20 进一步提供了 `std::bit_cast`（位于 `<bit>`），它以良好定义的方式重新解读对象表示，语义更清晰，并且可以用于常量表达式：
+
+```cpp
+#include <bit>
+auto bits = std::bit_cast<std::uint32_t>(f); // 要求两个类型大小相同且可平凡复制
+float back = std::bit_cast<float>(bits);
+```
+
+## 9.6 数学特殊函数
+
+C++17 在 `<cmath>` 中引入了一组数学特殊函数（special mathematical functions），例如 `std::riemann_zeta`、`std::beta`、`std::assoc_legendre`、`std::cyl_bessel_j` 等，便于科学计算与机器学习相关领域使用：
+
+```cpp
+#include <cmath>
+double z = std::riemann_zeta(2.0); // ≈ 1.6449 (即 π²/6)
+```
+
+> 需要注意的是，这些特殊函数属于标准的一部分，但**各标准库实现的支持程度不一**：libstdc++ (GCC) 提供了完整实现，而 libc++ (Clang) 在很长时间内并未实现它们。因此上面的代码不一定能在所有工具链上编译，使用前请确认你的标准库支持情况。
+
 ## 总结
 
 本节介绍的几个特性是从仍未介绍的现代 C++ 新特性里使用频次较靠前的特性了，`noexcept` 是最为重要的特性，它的一个功能在于能够阻止异常的扩散传播，有效的让编译器最大限度的优化我们的代码。
