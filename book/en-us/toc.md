@@ -127,6 +127,7 @@
       - Other library facilities
 - [**Appendix 1: Further Study Materials**](./appendix1.md)
 - [**Appendix 2: Modern C++ Best Practices**](./appendix2.md)
+- [**Appendix 3: Modern C++ Feature Index**](./appendix3.md)
 
 Table of Content | Last Chapter | [Next Chapter: Preface](./00-preface.md)
 

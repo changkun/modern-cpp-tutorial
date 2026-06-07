@@ -55,7 +55,7 @@ order: 14
 - 优先使用标准库而非平台特定的 API（例如 `<filesystem>`、`<thread>`、`<chrono>`），让同一份代码可以跨平台构建。
 - 当字节序很重要时，显式地查询它（C++20 的 `std::endian`），而不是假设是小端或大端。
 
-[返回目录](./toc.md) | [上一章](./11-appendix1.md)
+[返回目录](./toc.md) | [上一章](./appendix1.md) | [下一章 现代 C++ 特性索引](./appendix3.md)
 
 ## 许可
 

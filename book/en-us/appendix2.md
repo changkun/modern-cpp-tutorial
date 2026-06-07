@@ -55,7 +55,7 @@ A consistent style makes a codebase far easier to read and maintain:
 - Prefer the standard library over platform-specific APIs (e.g. `<filesystem>`, `<thread>`, `<chrono>`) so the same code builds across platforms.
 - When byte order matters, query it explicitly (`std::endian` in C++20) rather than assuming little- or big-endian.
 
-[Table of Content](./toc.md) | [Previous Chapter](./appendix1.md)
+[Table of Content](./toc.md) | [Previous Chapter](./appendix1.md) | [Next Chapter: Modern C++ Feature Index](./appendix3.md)
 
 ## Licenses
 
