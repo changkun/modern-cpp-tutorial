@@ -241,6 +241,13 @@ and making the function object container `std::function` possible.
 To understand what the rvalue reference is all about, you must have a clear
 understanding of the lvalue and the rvalue.
 
+> Strictly speaking, **a value category is a property of an *expression*, not of an
+> object**: every C++ expression belongs to exactly one of the three primary value
+> categories — lvalue, prvalue (pure rvalue), and xvalue (expiring value). The phrasings
+> below ("an lvalue is a persistent object", "an rvalue is a temporary object") are
+> intuitive approximations meant to help beginners; for the rigorous definitions, see
+> [cppreference: value category](https://en.cppreference.com/w/cpp/language/value_category).
+
 **lvalue, left value**, as the name implies, is the value to the left of the assignment
 symbol. To be precise, an lvalue is a persistent object that still exists after
 an expression (not necessarily an assignment expression).
@@ -252,7 +259,7 @@ In C++11, in order to introduce powerful rvalue references,
 the concept of rvalue values ​​is further divided into:
 prvalue, and xvalue.
 
-**pvalue, pure rvalue**, purely rvalue, either purely literal,
+**prvalue, pure rvalue**, purely rvalue, either purely literal,
 such as `10`, `true`; either the result of the evaluation is equivalent to
 a literal or anonymous temporary object, for example `1+2`.
 Temporary variables returned by non-references, temporary variables generated
