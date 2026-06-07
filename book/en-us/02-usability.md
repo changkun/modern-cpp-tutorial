@@ -1097,6 +1097,52 @@ At this point, the following code will be able to be compiled:
 std::cout << new_enum::value3 << std::endl
 ```
 
+## 2.7 Other Language Features
+
+### Inline variables
+
+Before C++17, a non-const static data member of a class had to be defined separately outside the class, and defining a global variable in a header would cause duplicate-definition link errors when the header was included by multiple translation units. C++17 introduces `inline` variables, which allow a variable (including a static data member) to be defined in a header without violating the One Definition Rule (ODR), even when included by multiple translation units:
+
+```cpp
+struct Widget {
+    static inline int count = 0; // C++17: define and initialize a static member in-class
+};
+inline int global_value = 42;    // safe to place in a header
+```
+
+This greatly simplifies writing header-only libraries.
+
+### Nested namespace definitions
+
+C++17 allows writing nested namespace definitions in a single line using `::`, instead of indenting level by level:
+
+```cpp
+// before C++17
+namespace A {
+    namespace B {
+        namespace C {
+            int value;
+        }
+    }
+}
+
+// since C++17
+namespace A::B::C {
+    int value;
+}
+```
+
+### constexpr lambda
+
+Since C++17, a lambda expression that satisfies the requirements of a constant expression is implicitly `constexpr` (and may also be explicitly marked `constexpr`), so it can be evaluated at compile time:
+
+```cpp
+constexpr auto add = [](int a, int b) { return a + b; };
+static_assert(add(1, 2) == 3, "");
+
+constexpr int result = add(3, 4); // evaluated at compile time, result == 7
+```
+
 ## Conclusion
 
 This section introduces the enhancements to language usability in modern C++, which I believe are the most important features that almost everyone needs to know and use:
