@@ -1093,6 +1093,21 @@ static_assert(!is_signed_integral<unsigned>);
 static_assert(std::negation_v<std::is_floating_point<int>>);
 ```
 
+### `__has_include`
+
+C++17 标准化了预处理器运算符 `__has_include`，用于在编译期检查某个头文件是否可用，从而写出可移植的条件包含逻辑：
+
+```cpp
+#if __has_include(<optional>)
+#  include <optional>
+#  define HAS_OPTIONAL 1
+#else
+#  define HAS_OPTIONAL 0
+#endif
+```
+
+这在需要兼容不同标准库版本，或在某个特性可能缺失时提供回退实现的场景中非常有用。
+
 ## 总结
 
 本节介绍了现代 C++ 中对语言可用性的增强，其中笔者认为最为重要的几个特性是几乎所有人都需要了解并熟练使用的：

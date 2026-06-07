@@ -1179,6 +1179,21 @@ static_assert(!is_signed_integral<unsigned>);
 static_assert(std::negation_v<std::is_floating_point<int>>);
 ```
 
+### `__has_include`
+
+C++17 standardized the preprocessor operator `__has_include`, which checks at compile time whether a header is available, enabling portable conditional inclusion:
+
+```cpp
+#if __has_include(<optional>)
+#  include <optional>
+#  define HAS_OPTIONAL 1
+#else
+#  define HAS_OPTIONAL 0
+#endif
+```
+
+This is very useful when supporting different standard-library versions, or providing a fallback when a feature might be missing.
+
 ## Conclusion
 
 This section introduces the enhancements to language usability in modern C++, which I believe are the most important features that almost everyone needs to know and use:
