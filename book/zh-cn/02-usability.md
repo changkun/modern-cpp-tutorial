@@ -384,7 +384,7 @@ std::cout << add20(i, j) << std::endl;
 
 ### decltype
 
-`decltype` 关键字是为了解决 `auto` 关键字只能对变量进行类型推导的缺陷而出现的。它的用法和 `typeof` 很相似：
+`decltype` 关键字是为了解决 `auto` 关键字只能对变量进行类型推导的缺陷而出现的。它的用法和 `typeof` 很相似（`typeof` 是 GCC、Clang 等编译器长期提供的非标准扩展，虽然最终在 C23 中被标准化，但从未成为 C++ 的标准特性）：
 
 ```cpp
 decltype(表达式)
