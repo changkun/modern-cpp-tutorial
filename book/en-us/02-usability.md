@@ -18,6 +18,8 @@ which refers to the language behavior that occurred before the runtime.
 
 ### nullptr
 
+*(since C++11)*
+
 The purpose of `nullptr` appears to replace `NULL`. There are **null pointer constants** in the C and C++ languages,
 which can be implicitly converted to null pointer value of any pointer type,
 or null member pointer value of any pointer-to-member type in C++.
@@ -92,6 +94,8 @@ and `std::is_same` is used to compare the equality of the two types.
 We will discuss them in detail later in the [decltype](#decltype) section.
 
 ### constexpr
+
+*(since C++11; relaxed in C++14)*
 
 C++ itself already has the concept of constant expressions, such as 1+2,
 3\*4. Such expressions always produce the same result without any side effects.
@@ -188,6 +192,8 @@ constexpr int fibonacci(const int n) {
 
 ### if-switch
 
+*(since C++17)*
+
 In traditional C++, the declaration of a variable can declare a temporary variable `int`
 even though it can be located anywhere, even within a `for` statement,
 but there is always no way to declare a temporary variable in the `if` and `switch` statements.
@@ -236,6 +242,8 @@ if (const std::vector<int>::iterator itr = std::find(vec.begin(), vec.end(), 3);
 Is it similar to the Go?
 
 ### Initializer list
+
+*(since C++11)*
 
 Initialization is a very important language feature,
 the most common one is when the object is initialized.
@@ -378,6 +386,8 @@ C++11 introduces the two keywords `auto` and `decltype` to implement type deriva
 
 ### auto
 
+*(since C++11)*
+
 `auto` has been in C++ for a long time, but it always exists as an indicator of a storage type, coexisting with `register`. In traditional C++, if a variable is not declared as a `register` variable, it is automatically treated as an `auto` variable. And with `register` being deprecated (used as a reserved keyword in C++17 and later used, it doesn't currently make sense), the semantic change to `auto` is very natural.
 
 One of the most common and notable examples of type derivation using `auto` is the iterator. You should see the lengthy iterative writing in traditional C++ in the previous section:
@@ -454,6 +464,8 @@ std::cout << add20(i, j) << std::endl;
 
 ### decltype
 
+*(since C++11)*
+
 The `decltype` keyword is used to solve the defect that the `auto` keyword
 can only deduce the type of a variable. Its usage is very similar to `typeof`,
 a non-standard extension long provided by some compilers (e.g. GCC and Clang)
@@ -494,6 +506,8 @@ type z == type x
 ```
 
 ### tail type inference
+
+*(since C++11)*
 
 You may think that whether `auto` can be used to deduce the return type of a function. Still consider an example of an add function, which we have to write in traditional C++:
 
@@ -559,6 +573,8 @@ std::cout << "q: " << q << std::endl;
 
 ### decltype(auto)
 
+*(since C++14)*
+
 `decltype(auto)` is a slightly more complicated use of C++14.
 
 > To understand it you need to know the concept of parameter forwarding
@@ -604,6 +620,8 @@ decltype(auto) look_up_a_string_2() {
 
 ### if constexpr
 
+*(since C++17)*
+
 As we saw at the beginning of this chapter, we know that C++11 introduces the `constexpr` keyword, which compiles expressions or functions into constant results. A natural idea is that if we introduce this feature into the conditional judgment, let the code complete the branch judgment at compile-time, can it make the program more efficient? C++17 introduces the `constexpr` keyword into the `if` statement, allowing you to declare the condition of a constant expression in your code. Consider the following code:
 
 ```cpp
@@ -639,6 +657,8 @@ int main() {
 ```
 
 ### Range-based for loop
+
+*(since C++11)*
 
 Finally, C++11 introduces a range-based iterative method, and we can write loops that are as concise
 as Python, and we can further simplify the previous example:
@@ -689,6 +709,8 @@ C++ templates have always been a special art of the language, and templates can 
 
 ### Extern templates
 
+*(since C++11)*
+
 In traditional C++, templates are instantiated by the compiler only when they are used. In other words, as long as a fully defined template is encountered in the code compiled in each compilation unit (file), it will be instantiated. This results in an increase in compile time due to repeated instantiations. Also, we have no way to tell the compiler not to trigger the instantiation of the template.
 
 To this end, C++11 introduces an external template that extends the syntax of the original mandatory compiler to instantiate a template at a specific location, allowing us to explicitly tell the compiler when to instantiate the template:
@@ -699,6 +721,8 @@ extern template class std::vector<double>; // should not instantiation in curren
 ```
 
 ### The ">"
+
+*(since C++11)*
 
 In the traditional C++ compiler, `>>` is always treated as a right shift operator. But actually we can easily write the code for the nested template:
 
@@ -722,6 +746,8 @@ std::vector<MagicType<(1>2)>> magic; // legal, but not recommended
 ```
 
 ### Type alias templates
+
+*(since C++11)*
 
 Before you understand the type alias template, you need to understand the difference between "template" and "type". Carefully understand this sentence: **Templates are used to generate types.** In traditional C++, `typedef` can define a new name for the type, but there is no way to define a new name for the template. Because the template is not a type. E.g:
 
@@ -754,6 +780,8 @@ int main() {
 ```
 
 ### Variadic templates
+
+*(since C++11)*
 
 The template has always been one of C++'s unique **Black Magic**.
 In traditional C++,
@@ -874,6 +902,8 @@ To avoid compiler warnings, we can explicitly convert `std::initializer_list` to
 
 ### Fold expression
 
+*(since C++17)*
+
 In C++ 17, this feature of the variable length parameter is further brought to the expression, consider the following example:
 
 ```cpp
@@ -888,6 +918,8 @@ int main() {
 ```
 
 ### Non-type template parameter deduction
+
+*(since C++17)*
 
 What we mainly mentioned above is a form of template parameters: type template parameters.
 
@@ -935,6 +967,8 @@ int main() {
 
 ### SFINAE and `std::enable_if`
 
+*(since C++11)*
+
 SFINAE stands for "Substitution Failure Is Not An Error". It describes the rule that, when substituting template arguments produces an invalid type or expression in the **immediate context**, the compiler does not raise an error but silently removes that candidate from the overload set. This was the main way to constrain template parameters before C++20's concepts.
 
 The most common tool is `std::enable_if` from `<type_traits>`. The `describe` below is visible only for integral types:
@@ -969,6 +1003,8 @@ SFINAE is powerful but obscure to write and produces verbose error messages. C++
 
 ### Delegate constructor
 
+*(since C++11)*
+
 C++11 introduces the concept of a delegate construct, which allows a constructor to call another constructor
 in a constructor in the same class, thus simplifying the code:
 
@@ -994,6 +1030,8 @@ int main() {
 ```
 
 ### Inheritance constructor
+
+*(since C++11)*
 
 In traditional C++, constructors need to pass arguments one by one if they need inheritance, which leads to inefficiency. C++11 introduces the concept of inheritance constructors using the keyword using:
 
@@ -1022,6 +1060,8 @@ int main() {
 ```
 
 ### Explicit virtual function overwrite
+
+*(since C++11)*
 
 In traditional C++, it is often prone to accidentally overloading virtual functions. E.g:
 
@@ -1074,6 +1114,8 @@ struct SubClass3: Base {
 
 ### Explicit delete default function
 
+*(since C++11)*
+
 In traditional C++, if the programmer does not provide it, the compiler will default to generating default constructors, copy constructs, assignment operators, and destructors for the object. Besides, C++ also defines operators such as `new` `delete` for all classes. This part of the function can be overridden when the programmer needs it.
 
 This raises some requirements: the ability to accurately control the generation of default functions cannot be controlled. For example, when copying a class is prohibited, the copy constructor and the assignment operator must be declared as `private`. Trying to use these undefined functions will result in compilation or link errors, which is a very unconventional way.
@@ -1092,6 +1134,8 @@ class Magic {
 ```
 
 ### Strongly typed enumerations
+
+*(since C++11)*
 
 In traditional C++, enumerated types are not type-safe, and enumerated types are treated as integers, which allows two completely different enumerated types to be directly compared (although the compiler gives the check, but not all), ** Even the enumeration value names of different enum types in the same namespace cannot be the same**, which is usually not what we want to see.
 
@@ -1139,6 +1183,8 @@ std::cout << new_enum::value3 << std::endl
 
 ### Inline variables
 
+*(since C++17)*
+
 Before C++17, a non-const static data member of a class had to be defined separately outside the class, and defining a global variable in a header would cause duplicate-definition link errors when the header was included by multiple translation units. C++17 introduces `inline` variables, which allow a variable (including a static data member) to be defined in a header without violating the One Definition Rule (ODR), even when included by multiple translation units:
 
 ```cpp
@@ -1151,6 +1197,8 @@ inline int global_value = 42;    // safe to place in a header
 This greatly simplifies writing header-only libraries.
 
 ### Nested namespace definitions
+
+*(since C++17)*
 
 C++17 allows writing nested namespace definitions in a single line using `::`, instead of indenting level by level:
 
@@ -1172,6 +1220,8 @@ namespace A::B::C {
 
 ### constexpr lambda
 
+*(since C++17)*
+
 Since C++17, a lambda expression that satisfies the requirements of a constant expression is implicitly `constexpr` (and may also be explicitly marked `constexpr`), so it can be evaluated at compile time:
 
 ```cpp
@@ -1183,6 +1233,8 @@ constexpr int result = add(3, 4); // evaluated at compile time, result == 7
 
 ### Single-argument static_assert
 
+*(since C++17)*
+
 `static_assert` performs a compile-time assertion. Before C++17 it required a diagnostic message as its second argument; since C++17 that message is optional:
 
 ```cpp
@@ -1191,6 +1243,8 @@ static_assert(sizeof(int) >= 2, "int must be >= 2 bytes"); // a message is still
 ```
 
 ### New aggregate rules
+
+*(since C++17)*
 
 C++17 relaxed the definition of an aggregate: an aggregate may now have public base classes (which must themselves be aggregates), and the base subobject can be brace-initialized along with the rest:
 
@@ -1202,6 +1256,8 @@ Derived d{{1}, 2}; // {a}, b — legal since C++17
 ```
 
 ### Boolean logic metafunctions
+
+*(since C++17)*
 
 C++17 added `std::conjunction`, `std::disjunction`, and `std::negation` to `<type_traits>` for composing other type traits with logical AND/OR/NOT at compile time (and `conjunction`/`disjunction` short-circuit):
 
@@ -1218,6 +1274,8 @@ static_assert(std::negation_v<std::is_floating_point<int>>);
 ```
 
 ### `__has_include`
+
+*(since C++17)*
 
 C++17 standardized the preprocessor operator `__has_include`, which checks at compile time whether a header is available, enabling portable conditional inclusion:
 
