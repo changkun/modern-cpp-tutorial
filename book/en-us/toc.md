@@ -114,6 +114,17 @@
       - std::mdspan
       - std::flat_map and std::flat_set
       - Ranges additions
+- [**Chapter 12 Outlook: Introduction of C++26**](./12-cpp26.md)
+    + 12.1 Language features
+      - Static reflection
+      - Contracts
+      - Pack indexing
+      - = delete with a reason
+      - The placeholder _
+    + 12.2 The standard library
+      - std::execution
+      - Saturation arithmetic
+      - Other library facilities
 - [**Appendix 1: Further Study Materials**](./appendix1.md)
 - [**Appendix 2: Modern C++ Best Practices**](./appendix2.md)
 

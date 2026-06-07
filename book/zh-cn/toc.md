@@ -114,6 +114,17 @@
       - std::mdspan
       - std::flat_map 与 std::flat_set
       - 范围库的增强
+- [**第 12 章 展望: C++26 简介**](./12-cpp26.md)
+    + 12.1 语言特性
+      - 静态反射（Reflection）
+      - 契约（Contracts）
+      - 形参包索引
+      - 带原因的 = delete
+      - 占位符 _
+    + 12.2 标准库
+      - std::execution
+      - 饱和算术
+      - 其他库设施
 - [**附录 1：进一步阅读的学习材料**](./appendix1.md)
 - [**附录 2：现代 C++ 的最佳实践**](./appendix2.md)
 

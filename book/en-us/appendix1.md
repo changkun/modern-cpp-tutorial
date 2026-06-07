@@ -1,7 +1,7 @@
 ---
 title: "Appendix 1: Further Study Materials"
 type: book-en-us
-order: 12
+order: 13
 ---
 
 # Appendix 1: Further Study Materials
@@ -15,7 +15,7 @@ As mentioned in the introduction to this book, this book is just a book that tak
 - [Ulrich Drepper. What Every Programmer Should Know About Memory. 2007](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 - to be added
 
-[Table of Content](./toc.md) | [Previous Chapter](./11-cpp23.md) | [Next Chapter](./appendix2.md)
+[Table of Content](./toc.md) | [Previous Chapter](./12-cpp26.md) | [Next Chapter](./appendix2.md)
 
 ## Licenses
 

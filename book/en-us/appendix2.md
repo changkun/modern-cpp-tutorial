@@ -1,7 +1,7 @@
 ---
 title: "Appendix 2: Modern C++ Best Practices"
 type: book-en-us
-order: 13
+order: 14
 ---
 
 # Appendix 2: Modern C++ Best Practices

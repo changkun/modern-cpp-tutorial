@@ -1,7 +1,7 @@
 ---
 title: 附录 1：进一步阅读的学习材料
 type: book-zh-cn
-order: 12
+order: 13
 ---
 
 # 附录 1：进一步阅读的学习材料
@@ -15,7 +15,7 @@ order: 12
 - [Ulrich Drepper. 每位程序员都需要知道的内存知识. 2007](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 - 待补充
 
-[返回目录](./toc.md) | [上一章](./11-cpp23.md) | [下一章 现代 C++ 的最佳实践](./appendix2.md)
+[返回目录](./toc.md) | [上一章](./12-cpp26.md) | [下一章 现代 C++ 的最佳实践](./appendix2.md)
 
 ## 许可
 
