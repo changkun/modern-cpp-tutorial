@@ -40,7 +40,7 @@ void foo(char*);
 void foo(int);
 ```
 
-Then the `foo(NULL);` statement will call `foo(int)`, which will cause the code to be counterintuitive.
+Then the behavior of the `foo(NULL);` statement depends on how `NULL` is implemented: when `NULL` is defined as `0` (for example, on MSVC), it calls `foo(int)`, which is counterintuitive; when `NULL` is defined as the GCC/Clang builtin `__null`, the call `foo(NULL)` becomes ambiguous between the `char*` and `int` overloads and fails to compile. In either case, `NULL` does not behave the way a proper null pointer should during overload resolution.
 
 To solve this problem, C++11 introduced the `nullptr` keyword, which is specifically used to distinguish null pointers, `0`. The type of `nullptr` is `nullptr_t`, which can be implicitly converted to any pointer or member pointer type, and can be compared equally or unequally with them.
 
