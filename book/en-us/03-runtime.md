@@ -637,6 +637,30 @@ It can be seen that the principle of `std::forward` is to make clever use of the
 At this point, we can answer the question: Why is `auto&&` the safest way to use looping statements?
 Because when `auto` is pushed to a different lvalue and rvalue reference, the collapsed combination with `&&` is perfectly forwarded.
 
+### Guaranteed copy elision
+
+Before C++17, when an object was initialized from a prvalue of the same type, the compiler *was permitted* (but not required) to omit the copy/move construction — this is known as copy elision. Because it was merely allowed, the object's type still had to have an accessible copy or move constructor, even though it would not actually be called.
+
+C++17 makes copy elision **guaranteed** in this case: when an object is initialized from a prvalue of the same type, there is no temporary object at all — the object is constructed directly in its target location. As a result, returning a prvalue by value is well-formed even for a type that is neither copyable nor movable:
+
+```cpp
+struct NonMovable {
+    NonMovable() = default;
+    NonMovable(const NonMovable&) = delete; // non-copyable
+    NonMovable(NonMovable&&) = delete;      // non-movable
+};
+
+NonMovable make() {
+    return NonMovable{}; // OK in C++17: guaranteed elision, no copy/move needed
+}
+
+int main() {
+    NonMovable n = make(); // constructed directly into n
+}
+```
+
+The code above would not compile before C++17 (an accessible move or copy constructor was required), but is well-formed in C++17. This lets factory functions safely return non-movable types.
+
 ## Conclusion
 
 This chapter introduces the most important runtime enhancements in modern C++, and I believe that all the features mentioned in this section are worth knowing:

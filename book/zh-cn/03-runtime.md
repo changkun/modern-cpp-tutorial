@@ -562,6 +562,30 @@ constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type&& __t) noexcep
 这时我们能回答这样一个问题：为什么在使用循环语句的过程中，`auto&&` 是最安全的方式？
 因为当 `auto` 被推导为不同的左右引用时，与 `&&` 的坍缩组合是完美转发。
 
+### 强制复制消除
+
+在 C++17 之前，编译器对于「用一个纯右值初始化对象」这种情形 *可以*（但不强制）省略复制/移动构造，这被称为复制消除 (copy elision)。由于它只是「允许」而非「保证」，被初始化对象的类型仍然必须拥有可访问的复制或移动构造函数，即便它实际上不会被调用。
+
+C++17 将这种情形下的复制消除变为 **强制 (guaranteed copy elision)**：当用一个同类型的纯右值初始化对象时，不再存在临时对象，对象被直接构造在目标位置上。因此，即便类型既不可复制也不可移动，按值返回一个纯右值也是合法的：
+
+```cpp
+struct NonMovable {
+    NonMovable() = default;
+    NonMovable(const NonMovable&) = delete; // 不可复制
+    NonMovable(NonMovable&&) = delete;      // 不可移动
+};
+
+NonMovable make() {
+    return NonMovable{}; // C++17 合法：强制复制消除，无需复制/移动构造
+}
+
+int main() {
+    NonMovable n = make(); // 直接在 n 上构造
+}
+```
+
+上面的代码在 C++17 之前无法编译（需要可访问的移动或复制构造函数），而在 C++17 中是良构的。这使得工厂函数可以安全地返回不可移动的类型。
+
 ## 总结
 
 本章介绍了现代 C++ 中最为重要的几个语言运行时的增强，其中笔者认为本节中提到的所有特性都是值得掌握的：
