@@ -326,6 +326,41 @@ The call site is then very straightforward, and no runtime indexing is needed be
 iterate_tuple([](const auto& v) { std::cout << v << ' '; }, new_tuple);
 ```
 
+## 4.4 `std::string_view` and `std::byte`
+
+### `std::string_view`
+
+`std::string_view`, introduced in C++17, is a **non-owning, read-only** view over a sequence of characters; it holds just a pointer and a length. Declaring a parameter as `std::string_view` accepts both a `std::string` and a string literal, **without any copy or allocation**:
+
+```cpp
+#include <string_view>
+
+void print(std::string_view sv) {
+    std::cout << sv << " (size = " << sv.size() << ")" << std::endl;
+}
+
+std::string_view sv = "hello, world";
+print(sv.substr(0, 5)); // "hello"; substr does not allocate
+
+std::string s = "from std::string";
+print(s);               // implicit conversion, no copy
+```
+
+Mind its **lifetime**: a `string_view` does not own the underlying data, so the referenced character sequence must outlive the view, otherwise you get a dangling reference.
+
+### `std::byte`
+
+`std::byte` represents a single byte of **raw memory**. Unlike `char` or `unsigned char`, it is not an arithmetic type — the standard defines only bitwise operators for it, which prevents accidental arithmetic on raw bytes at the type level:
+
+```cpp
+#include <cstddef>
+
+std::byte b{0b0000'1100};        // 12
+b <<= 2;                         // 48
+b |= std::byte{0b0000'0001};     // 49
+int v = std::to_integer<int>(b); // explicit conversion to an integer: 49
+```
+
 ## Conclusion
 
 This chapter briefly introduces the new containers in modern C++. Their usage is similar to that of the existing containers in C++. It is relatively simple, and you can choose the containers you need to use according to the actual scene, to get better performance.

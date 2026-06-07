@@ -326,6 +326,41 @@ void iterate_tuple(Func f, const std::tuple<Args...>& tpl) {
 iterate_tuple([](const auto& v) { std::cout << v << ' '; }, new_tuple);
 ```
 
+## 4.4 `std::string_view` 与 `std::byte`
+
+### `std::string_view`
+
+C++17 引入的 `std::string_view` 是对一段字符序列的**非拥有 (non-owning)、只读**视图，它仅保存一个指针和一个长度。把函数形参写成 `std::string_view` 既可以接受 `std::string`，也可以接受字符串字面量，而且**不会发生任何拷贝或内存分配**：
+
+```cpp
+#include <string_view>
+
+void print(std::string_view sv) {
+    std::cout << sv << " (size = " << sv.size() << ")" << std::endl;
+}
+
+std::string_view sv = "hello, world";
+print(sv.substr(0, 5)); // "hello"，substr 不分配内存
+
+std::string s = "from std::string";
+print(s);               // 隐式转换，无拷贝
+```
+
+需要特别注意其**生命周期**：`string_view` 不拥有底层数据，因此必须保证被引用的字符序列在视图存活期间一直有效，否则会产生悬垂引用。
+
+### `std::byte`
+
+`std::byte` 用于表示一段**原始内存**中的一个字节。与 `char` 或 `unsigned char` 不同，它不是算术类型——标准只为其定义了位运算符，从而在类型层面避免了对原始字节进行意外的算术运算：
+
+```cpp
+#include <cstddef>
+
+std::byte b{0b0000'1100};       // 12
+b <<= 2;                        // 48
+b |= std::byte{0b0000'0001};    // 49
+int v = std::to_integer<int>(b); // 需要显式转换为整数：49
+```
+
 ## 总结
 
 本章简单介绍了现代 C++ 中新增的容器，它们的用法和传统 C++ 中已有的容器类似，相对简单，可以根据实际场景丰富的选择需要使用的容器，从而获得更好的性能。
