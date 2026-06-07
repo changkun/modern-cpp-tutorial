@@ -655,6 +655,28 @@ int main() {
 }
 ```
 
+A range-based for loop is essentially syntactic sugar. The compiler expands
+
+```cpp
+for (range_declaration : range_expression) loop_statement
+```
+
+roughly into (since C++17):
+
+```cpp
+{
+    auto && __range = range_expression;
+    auto __begin = begin_expr; // __range for an array; __range.begin() or begin(__range) for a class
+    auto __end = end_expr;     // __range + N for an array; __range.end() or end(__range) for a class
+    for (; __begin != __end; ++__begin) {
+        range_declaration = *__begin;
+        loop_statement
+    }
+}
+```
+
+Therefore, any type that provides usable `begin()` and `end()` (member functions, or free functions found via ADL) whose returned iterators support `!=`, dereference `*`, and pre-increment `++` can be traversed by a range-based for loop — which is exactly how you make a custom container work with it.
+
 ## 2.5 Templates
 
 C++ templates have always been a special art of the language, and templates can even be used independently as a new language. The philosophy of the template is to throw all the problems that can be processed at compile time into the compile time, and only deal with those core dynamic services at runtime, to greatly optimize the performance of the runtime. Therefore, templates are also regarded by many as one of the black magic of C++.

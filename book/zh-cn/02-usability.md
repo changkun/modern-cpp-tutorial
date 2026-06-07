@@ -567,6 +567,28 @@ int main() {
 }
 ```
 
+基于范围的 for 循环本质上只是语法糖，编译器会把
+
+```cpp
+for (range_declaration : range_expression) loop_statement
+```
+
+大致展开为（C++17 起）：
+
+```cpp
+{
+    auto && __range = range_expression;
+    auto __begin = begin_expr; // 数组为 __range，类类型为 __range.begin() 或 begin(__range)
+    auto __end = end_expr;     // 数组为 __range + N，类类型为 __range.end() 或 end(__range)
+    for (; __begin != __end; ++__begin) {
+        range_declaration = *__begin;
+        loop_statement
+    }
+}
+```
+
+因此，只要一个类型提供了可用的 `begin()` 与 `end()`（成员函数，或可通过 ADL 找到的自由函数），并且返回的迭代器支持 `!=`、解引用 `*` 与前置 `++`，它就能被基于范围的 for 循环遍历——这也正是让自定义容器支持区间 for 的方法。
+
 ## 2.5 模板
 
 C++ 的模板一直是这门语言的一种特殊的艺术，模板甚至可以独立作为一门新的语言来进行使用。模板的哲学在于将一切能够在编译期处理的问题丢到编译期进行处理，仅在运行时处理那些最核心的动态服务，进而大幅优化运行期的性能。因此模板也被很多人视作 C++ 的黑魔法之一。
