@@ -214,14 +214,14 @@ and then complete the call after the parameters are complete. e.g:
 
 ```cpp
 int foo(int a, int b, int c) {
-    ;
+    return a + b + c;
 }
 int main() {
     // bind parameter 1, 2 on function foo,
     // and use std::placeholders::_1 as placeholder for the first parameter.
-    auto bindFoo = std::bind(foo, std::placeholders::_1, 1,2);
+    auto bindFoo = std::bind(foo, std::placeholders::_1, 1, 2);
     // when call bindFoo, we only need one param left
-    bindFoo(1);
+    std::cout << bindFoo(1) << std::endl; // outputs 4
 }
 ```
 
