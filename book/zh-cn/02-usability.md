@@ -833,6 +833,38 @@ int main() {
 }
 ```
 
+### SFINAE 与 `std::enable_if`
+
+SFINAE 是 “Substitution Failure Is Not An Error”（替换失败并非错误）的缩写。它描述的是这样一条规则：在对模板参数进行替换时，如果在**直接上下文 (immediate context)** 中产生了非法的类型或表达式，编译器并不会报错，而是悄悄地把这个候选从重载集合中剔除。这正是在 C++20 的 concept 出现之前，对模板参数进行约束的主要手段。
+
+最常见的工具是 `<type_traits>` 中的 `std::enable_if`。下面的 `describe` 只对整型可见：
+
+```cpp
+#include <type_traits>
+
+template <typename T,
+          typename = std::enable_if_t<std::is_integral_v<T>>>
+void describe(T) {
+    std::cout << "integral" << std::endl;
+}
+
+describe(42);   // 正确
+// describe(3.14); // 编译错误：浮点类型不满足约束，该重载被剔除
+```
+
+另一种常见形式是**表达式 SFINAE**，它借助 `decltype` 来探测某个表达式是否合法，从而在编译期检测类型是否具备某种能力：
+
+```cpp
+// 当且仅当 c.size() 是合法表达式时，这个重载才会参与候选
+template <typename T>
+auto has_size(const T& c) -> decltype(c.size(), std::true_type{}) {
+    return std::true_type{};
+}
+std::false_type has_size(...) { return std::false_type{}; }
+```
+
+SFINAE 虽然强大，但写法晦涩、错误信息冗长。C++20 的 [概念 (concept)](./10-cpp20.md#概念与约束) 正是为了以更直观、可读的方式表达这类约束而引入的，可以将其视为 SFINAE 的现代替代品。
+
 ## 2.6 面向对象
 
 ### 委托构造

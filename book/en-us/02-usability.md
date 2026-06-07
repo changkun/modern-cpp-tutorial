@@ -927,6 +927,38 @@ int main() {
 }
 ```
 
+### SFINAE and `std::enable_if`
+
+SFINAE stands for "Substitution Failure Is Not An Error". It describes the rule that, when substituting template arguments produces an invalid type or expression in the **immediate context**, the compiler does not raise an error but silently removes that candidate from the overload set. This was the main way to constrain template parameters before C++20's concepts.
+
+The most common tool is `std::enable_if` from `<type_traits>`. The `describe` below is visible only for integral types:
+
+```cpp
+#include <type_traits>
+
+template <typename T,
+          typename = std::enable_if_t<std::is_integral_v<T>>>
+void describe(T) {
+    std::cout << "integral" << std::endl;
+}
+
+describe(42);   // OK
+// describe(3.14); // compile error: floating point does not satisfy the constraint
+```
+
+Another common form is **expression SFINAE**, which uses `decltype` to probe whether an expression is valid, thereby detecting at compile time whether a type has a certain capability:
+
+```cpp
+// participates only if c.size() is a valid expression
+template <typename T>
+auto has_size(const T& c) -> decltype(c.size(), std::true_type{}) {
+    return std::true_type{};
+}
+std::false_type has_size(...) { return std::false_type{}; }
+```
+
+SFINAE is powerful but obscure to write and produces verbose error messages. C++20's [concepts](./10-cpp20.md#concept-and-constraints) were introduced precisely to express such constraints in a more intuitive and readable way, and can be regarded as the modern replacement for SFINAE.
+
 ## 2.6 Object-oriented
 
 ### Delegate constructor
