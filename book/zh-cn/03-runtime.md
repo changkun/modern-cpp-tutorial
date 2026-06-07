@@ -212,6 +212,8 @@ int main() {
 
 要弄明白右值引用到底是怎么一回事，必须要对左值和右值做一个明确的理解。
 
+> 严格来说，**值类别 (value category) 是表达式的性质，而不是对象的性质**：每个 C++ 表达式都恰好属于三种基本值类别之一——左值 (lvalue)、纯右值 (prvalue)、将亡值 (xvalue)。下文中“左值是持久对象”“右值是临时对象”一类的说法，是为了便于初学者建立直觉的近似描述；严谨的定义请参阅 [cppreference：值类别](https://zh.cppreference.com/w/cpp/language/value_category)。
+
 **左值** (lvalue, left value)，顾名思义就是赋值符号左边的值。准确来说，
 左值是表达式（不一定是赋值表达式）后依然存在的持久对象。
 
