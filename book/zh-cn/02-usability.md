@@ -1057,6 +1057,15 @@ static_assert(add(1, 2) == 3, "");
 constexpr int result = add(3, 4); // 在编译期求值，result == 7
 ```
 
+### 单参数 static_assert
+
+`static_assert` 用于在编译期进行断言。在 C++17 之前，它必须提供一条诊断消息作为第二个参数；C++17 起，该消息成为可选项：
+
+```cpp
+static_assert(sizeof(int) >= 2);                       // C++17：消息可省略
+static_assert(sizeof(int) >= 2, "int 至少需要 2 字节"); // 仍然可以提供消息
+```
+
 ## 总结
 
 本节介绍了现代 C++ 中对语言可用性的增强，其中笔者认为最为重要的几个特性是几乎所有人都需要了解并熟练使用的：

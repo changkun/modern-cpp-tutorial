@@ -1143,6 +1143,15 @@ static_assert(add(1, 2) == 3, "");
 constexpr int result = add(3, 4); // evaluated at compile time, result == 7
 ```
 
+### Single-argument static_assert
+
+`static_assert` performs a compile-time assertion. Before C++17 it required a diagnostic message as its second argument; since C++17 that message is optional:
+
+```cpp
+static_assert(sizeof(int) >= 2);                          // C++17: message optional
+static_assert(sizeof(int) >= 2, "int must be >= 2 bytes"); // a message is still allowed
+```
+
 ## Conclusion
 
 This section introduces the enhancements to language usability in modern C++, which I believe are the most important features that almost everyone needs to know and use:
