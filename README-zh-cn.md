@@ -2,7 +2,7 @@
 
 # 现代 C++ 教程：高速上手 C++11/14/17/20
 
-![](https://img.shields.io/travis/changkun/modern-cpp-tutorial/master?style=flat-square) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md)
+[![](https://img.shields.io/github/actions/workflow/status/changkun/modern-cpp-tutorial/website.yml?branch=master&style=flat-square)](https://github.com/changkun/modern-cpp-tutorial/actions/workflows/website.yml) [![](https://img.shields.io/badge/language-English-blue.svg?style=flat-square)](./README.md) [![](https://img.shields.io/badge/language-简体中文-red.svg?style=flat-square)](./README-zh-cn.md) [![](https://img.shields.io/badge/€-donate-ff69b4.svg?style=flat-square)](./assets/donate.md)
 
 ## 本书目的
 
