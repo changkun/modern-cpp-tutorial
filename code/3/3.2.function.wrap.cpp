@@ -20,7 +20,7 @@ int foo2(int para) {
 }
 
 int foo3(int a, int b, int c) {
-    return 0;
+    return a + b + c;
 }
 
 int main() {
@@ -43,9 +43,9 @@ int main() {
 
     // bind parameter 1, 2 on function foo, and use std::placeholders::_1 as placeholder
     // for the first parameter.
-    auto bindFoo = std::bind(foo3, std::placeholders::_1, 1,2);
+    auto bindFoo = std::bind(foo3, std::placeholders::_1, 1, 2);
     // when call bindFoo, we only need one param left
-    bindFoo(1);
+    std::cout << bindFoo(1) << std::endl; // outputs 4
 
     return 0;
 }

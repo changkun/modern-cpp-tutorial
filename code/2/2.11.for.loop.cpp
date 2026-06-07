@@ -10,6 +10,17 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cstddef>
+
+// A minimal custom container: any type that provides usable begin()/end()
+// (whose iterators support !=, * and pre-++) can be used with range-based for,
+// because the loop is just syntactic sugar over those operations.
+struct IntRange {
+    int* data;
+    std::size_t n;
+    int* begin() const { return data; }
+    int* end()   const { return data + n; }
+};
 
 int main() {
     std::vector<int> vec = {1, 2, 3, 4};
@@ -21,4 +32,11 @@ int main() {
     }
     for (auto element : vec)
         std::cout << element << std::endl; // read only
+
+    // range-based for over a user-defined container
+    int arr[] = {10, 20, 30};
+    IntRange range{arr, 3};
+    for (auto&& x : range)
+        std::cout << x << ' ';
+    std::cout << std::endl;
 }

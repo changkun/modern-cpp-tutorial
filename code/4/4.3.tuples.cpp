@@ -11,6 +11,7 @@
 #include <tuple>
 #include <iostream>
 #include <variant>
+#include <utility>
 
 auto get_student(int id)
 {
@@ -40,6 +41,25 @@ constexpr std::variant<T...> tuple_index(const std::tuple<T...>& tpl, size_t i) 
 template <typename T>
 auto tuple_len(T &tpl) {
     return std::tuple_size<T>::value;
+}
+
+// idiomatic traversal: C++17 fold expression + std::index_sequence
+template <typename Func, typename Tuple, std::size_t... idx>
+void iterate_impl(Func&& f, Tuple&& tpl, std::index_sequence<idx...>) {
+    (f(std::get<idx>(std::forward<Tuple>(tpl))), ...);
+}
+template <typename Func, typename Tuple>
+void iterate_tuple(Func&& f, Tuple&& tpl) {
+    iterate_impl(std::forward<Func>(f), std::forward<Tuple>(tpl),
+        std::make_index_sequence<std::tuple_size_v<std::remove_reference_t<Tuple>>>{});
+}
+
+// idiomatic traversal: C++20 lambda with explicit template parameters
+template <typename Func, typename... Args>
+void iterate_tuple_cpp20(Func f, const std::tuple<Args...>& tpl) {
+    [&]<std::size_t... idx>(std::index_sequence<idx...>) {
+        (f(std::get<idx>(tpl)), ...);
+    }(std::make_index_sequence<sizeof...(Args)>());
 }
 
 template <typename T0, typename ... Ts>
@@ -76,8 +96,17 @@ int main()
     // concat
     auto new_tuple = std::tuple_cat(get_student(1), std::move(t));
     
-    // iteration
+    // iteration via runtime indexing
     for(int i = 0; i != tuple_len(new_tuple); ++i) {
         std::cout << tuple_index(new_tuple, i) << std::endl; // runtime indexing
     }
+
+    // idiomatic traversal (C++17 fold + index_sequence)
+    auto print = [](const auto& v) { std::cout << v << ' '; };
+    iterate_tuple(print, new_tuple);
+    std::cout << std::endl;
+
+    // idiomatic traversal (C++20 templated lambda)
+    iterate_tuple_cpp20(print, new_tuple);
+    std::cout << std::endl;
 }
