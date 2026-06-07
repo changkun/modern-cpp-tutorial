@@ -295,6 +295,37 @@ for(int i = 0; i != tuple_len(new_tuple); ++i)
     std::cout << tuple_index(new_tuple, i) << std::endl;
 ```
 
+That said, traversing a tuple by "first implementing runtime indexing, then indexing element by element" works but is rather roundabout. If all you want is to apply the same operation to every element, the more direct and idiomatic way is to expand the indices at compile time with `std::index_sequence` (introduced in C++14). In C++17, it can be combined with a fold expression:
+
+```cpp
+template <typename Func, typename Tuple, std::size_t... idx>
+void iterate_impl(Func&& f, Tuple&& tpl, std::index_sequence<idx...>) {
+    (f(std::get<idx>(std::forward<Tuple>(tpl))), ...);
+}
+template <typename Func, typename Tuple>
+void iterate_tuple(Func&& f, Tuple&& tpl) {
+    iterate_impl(std::forward<Func>(f), std::forward<Tuple>(tpl),
+        std::make_index_sequence<std::tuple_size_v<std::remove_reference_t<Tuple>>>{});
+}
+```
+
+In C++20, we can further drop the helper function by using a lambda that allows explicitly written template parameters:
+
+```cpp
+template <typename Func, typename... Args>
+void iterate_tuple(Func f, const std::tuple<Args...>& tpl) {
+    [&]<std::size_t... idx>(std::index_sequence<idx...>) {
+        (f(std::get<idx>(tpl)), ...);
+    }(std::make_index_sequence<sizeof...(Args)>());
+}
+```
+
+The call site is then very straightforward, and no runtime indexing is needed beforehand:
+
+```cpp
+iterate_tuple([](const auto& v) { std::cout << v << ' '; }, new_tuple);
+```
+
 ## Conclusion
 
 This chapter briefly introduces the new containers in modern C++. Their usage is similar to that of the existing containers in C++. It is relatively simple, and you can choose the containers you need to use according to the actual scene, to get better performance.
