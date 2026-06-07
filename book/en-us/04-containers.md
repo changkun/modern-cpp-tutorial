@@ -12,6 +12,8 @@ order: 4
 
 ### `std::array`
 
+*(since C++11)*
+
 When you see this container, you will have this problem:
 
 1. Why introduce `std::array` instead of `std::vector` directly?
@@ -103,6 +105,8 @@ std::sort(arr.begin(), arr.end());
 
 ### `std::forward_list`
 
+*(since C++11)*
+
 `std::forward_list` is a list container, and the usage is similar to `std::list`, so we don't spend a lot of time introducing it.
 
 Need to know is that, unlike the implementation of the doubly linked list of `std::list`, `std::forward_list` is implemented using a singly linked list.
@@ -110,6 +114,8 @@ Provides element insertion of `O(1)` complexity, does not support fast random ac
 It is also the only container in the standard library container that does not provide the `size()` method. Has a higher space utilization than `std::list` when bidirectional iteration is not required.
 
 ## 4.2 Unordered Container
+
+*(since C++11)*
 
 We are already familiar with the ordered container `std::map`/`std::set` in traditional C++. These elements are internally implemented by red-black trees.
 The average complexity of inserts and searches is `O(log(size))`. When inserting an element, the element size is compared according to the `<` operator and the element is determined to be the same.
@@ -176,6 +182,8 @@ there seems to be no ready-made structure to store different types of data (usua
 But the flaw of `std::pair` is obvious, only two elements can be saved.
 
 ### Basic Operations
+
+*(since C++11)*
 
 There are three core functions for the use of tuples:
 
@@ -330,6 +338,8 @@ iterate_tuple([](const auto& v) { std::cout << v << ' '; }, new_tuple);
 
 ### `std::string_view`
 
+*(since C++17)*
+
 `std::string_view`, introduced in C++17, is a **non-owning, read-only** view over a sequence of characters; it holds just a pointer and a length. Declaring a parameter as `std::string_view` accepts both a `std::string` and a string literal, **without any copy or allocation**:
 
 ```cpp
@@ -350,6 +360,8 @@ Mind its **lifetime**: a `string_view` does not own the underlying data, so the 
 
 ### `std::byte`
 
+*(since C++17)*
+
 `std::byte` represents a single byte of **raw memory**. Unlike `char` or `unsigned char`, it is not an arithmetic type — the standard defines only bitwise operators for it, which prevents accidental arithmetic on raw bytes at the type level:
 
 ```cpp
@@ -362,6 +374,8 @@ int v = std::to_integer<int>(b); // explicit conversion to an integer: 49
 ```
 
 ## 4.5 Associative container improvements
+
+*(since C++17)*
 
 C++17 added several more precise and more efficient operations to associative containers such as `std::map` / `std::unordered_map`:
 
@@ -386,6 +400,8 @@ m.merge(more);                  // splice more's nodes into m
 ```
 
 ## 4.6 Polymorphic allocators `std::pmr`
+
+*(since C++17)*
 
 C++17 introduced the `std::pmr` namespace in `<memory_resource>`, providing polymorphic allocators based on a **memory resource**. It decouples the *where to allocate* policy from the container type: the same `pmr` container backed by different memory resources is still a single type, avoiding the type bloat caused by template allocators.
 
