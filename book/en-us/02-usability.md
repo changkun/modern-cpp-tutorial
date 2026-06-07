@@ -335,9 +335,9 @@ Foo foo2 {3, 4};
 
 *(since C++17)*
 
-**Why do we need it?** Functions frequently need to "return several values at once" — for example, a computed result together with a status flag. In traditional C++ we either define a dedicated struct for this, or pack the values into a `std::tuple` and return that; but getting the values back out is clumsy. Unpacking with `std::tie` forces us to **declare every variable in advance** and to **know exactly** how many elements the tuple holds and the type of each — and any mismatch is an error.
+Functions frequently need to "return several values at once" — for example, a computed result together with a status flag. In traditional C++ this is not elegant: we either define a dedicated struct for it, or pack the values into a `std::tuple` and return that, but getting the values back out is clumsy — unpacking with `std::tie` forces us to declare every variable in advance and to know exactly how many elements the tuple holds and the type of each, and any mismatch is an error.
 
-**What problem does it solve?** C++17's **structured bindings** let us, in a single line, "unpack" a tuple, a `std::pair`, a raw array, or a struct with public data members, and bind the pieces directly to a set of **named** variables, with the types deduced by the compiler:
+C++17's **structured bindings** exist precisely to remove that clumsiness: they let us, in a single line, "unpack" a tuple, a `std::pair`, a raw array, or a struct with public data members, and bind the pieces directly to a set of named variables, with the types deduced by the compiler:
 
 ```cpp
 #include <iostream>
@@ -354,9 +354,7 @@ int main() {
 }
 ```
 
-**Why is this better than `std::tie`?** Structured bindings need no prior declaration and no spelled-out types, and they work not only on tuples but also on raw arrays and aggregate structs — making "multiple return values" read as naturally as in other modern languages.
-
-**A typical use case**: iterating an associative container becomes especially clean, binding each key/value pair to meaningful names instead of writing `it->first` / `it->second`:
+Compared with `std::tie`, structured bindings need no prior declaration and no spelled-out types, and they work not only on tuples but also on raw arrays and aggregate structs. This is especially handy when iterating an associative container: we can bind each key/value pair to meaningful names instead of writing `it->first` / `it->second`:
 
 ```cpp
 #include <iostream>
