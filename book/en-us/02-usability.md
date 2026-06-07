@@ -448,8 +448,10 @@ std::cout << add20(i, j) << std::endl;
 
 ### decltype
 
-The `decltype` keyword is used to solve the defect that the auto keyword
-can only type the variable. Its usage is very similar to `typeof`:
+The `decltype` keyword is used to solve the defect that the `auto` keyword
+can only deduce the type of a variable. Its usage is very similar to `typeof`,
+a non-standard extension long provided by some compilers (e.g. GCC and Clang)
+that was eventually standardized in C23 but has never been part of standard C++:
 
 ```cpp
 decltype(expression)
