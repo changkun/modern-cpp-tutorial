@@ -361,6 +361,49 @@ b |= std::byte{0b0000'0001};     // 49
 int v = std::to_integer<int>(b); // explicit conversion to an integer: 49
 ```
 
+## 4.5 Associative container improvements
+
+C++17 added several more precise and more efficient operations to associative containers such as `std::map` / `std::unordered_map`:
+
+- `try_emplace`: inserts only when the key is absent; when the key already exists it does **not** modify the existing value nor move from its arguments, which makes it better than `emplace` for "insert if not present".
+- `insert_or_assign`: inserts a new element, or **overwrites** the value when the key already exists, returning whether an insertion happened.
+- Node-based operations `extract` / `merge`: `extract` detaches a node from the container without copying or moving the element, and `merge` splices nodes from another container directly in.
+
+```cpp
+#include <map>
+#include <string>
+
+std::map<int, std::string> m;
+m.try_emplace(1, "one");
+m.try_emplace(1, "uno");        // no effect, key 1 already present
+m.insert_or_assign(1, "ONE");   // overwrites with "ONE"
+
+std::map<int, std::string> other;
+other.insert(m.extract(1));     // move node 1 into other, no element copy
+
+std::map<int, std::string> more{{3, "three"}};
+m.merge(more);                  // splice more's nodes into m
+```
+
+## 4.6 Polymorphic allocators `std::pmr`
+
+C++17 introduced the `std::pmr` namespace in `<memory_resource>`, providing polymorphic allocators based on a **memory resource**. It decouples the *where to allocate* policy from the container type: the same `pmr` container backed by different memory resources is still a single type, avoiding the type bloat caused by template allocators.
+
+For instance, `std::pmr::monotonic_buffer_resource` can allocate from a pre-prepared buffer (even one on the stack) and frees everything only when the resource is destroyed — ideal for allocation-heavy workloads with a shared lifetime:
+
+```cpp
+#include <array>
+#include <cstddef>
+#include <memory_resource>
+#include <vector>
+
+std::array<std::byte, 1024> buffer;
+std::pmr::monotonic_buffer_resource pool{buffer.data(), buffer.size()};
+
+std::pmr::vector<int> v{&pool}; // allocates from the stack buffer, not the heap
+for (int i = 0; i < 5; ++i) v.push_back(i);
+```
+
 ## Conclusion
 
 This chapter briefly introduces the new containers in modern C++. Their usage is similar to that of the existing containers in C++. It is relatively simple, and you can choose the containers you need to use according to the actual scene, to get better performance.

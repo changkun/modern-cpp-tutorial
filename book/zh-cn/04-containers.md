@@ -361,6 +361,49 @@ b |= std::byte{0b0000'0001};    // 49
 int v = std::to_integer<int>(b); // 需要显式转换为整数：49
 ```
 
+## 4.5 关联容器的改进
+
+C++17 为 `std::map` / `std::unordered_map` 等关联容器增加了若干更精确、也更高效的操作：
+
+- `try_emplace`：仅当键不存在时才插入；当键已存在时，它**不会**修改已有的值，也不会从实参中移动，因此比 `emplace` 更适合「不存在则插入」的场景。
+- `insert_or_assign`：插入新元素，或在键已存在时**覆盖**其值，并返回是否发生了插入。
+- 基于节点的操作 `extract` / `merge`：`extract` 可以把一个节点从容器中「摘下」而不发生元素的拷贝或移动，`merge` 则能把另一个容器的节点直接「拼接」过来。
+
+```cpp
+#include <map>
+#include <string>
+
+std::map<int, std::string> m;
+m.try_emplace(1, "one");
+m.try_emplace(1, "uno");        // 无效果，键 1 已存在
+m.insert_or_assign(1, "ONE");   // 覆盖为 "ONE"
+
+std::map<int, std::string> other;
+other.insert(m.extract(1));     // 将节点 1 移动到 other，不拷贝元素
+
+std::map<int, std::string> more{{3, "three"}};
+m.merge(more);                  // 将 more 的节点拼接进 m
+```
+
+## 4.6 多态分配器 `std::pmr`
+
+C++17 在 `<memory_resource>` 中引入了 `std::pmr` 命名空间，提供了基于**内存资源 (memory resource)** 的多态分配器。它把「从哪里分配内存」这一策略与容器类型解耦：不同内存资源支撑的同一种 `pmr` 容器仍然是同一个类型，从而避免了模板分配器带来的类型膨胀。
+
+例如，`std::pmr::monotonic_buffer_resource` 可以从一块预先准备好的缓冲区（甚至是栈上的缓冲区）中分配内存，直到资源析构时才统一释放，非常适合分配密集且生命周期一致的场景：
+
+```cpp
+#include <array>
+#include <cstddef>
+#include <memory_resource>
+#include <vector>
+
+std::array<std::byte, 1024> buffer;
+std::pmr::monotonic_buffer_resource pool{buffer.data(), buffer.size()};
+
+std::pmr::vector<int> v{&pool}; // 从栈上的 buffer 分配，而非堆
+for (int i = 0; i < 5; ++i) v.push_back(i);
+```
+
 ## 总结
 
 本章简单介绍了现代 C++ 中新增的容器，它们的用法和传统 C++ 中已有的容器类似，相对简单，可以根据实际场景丰富的选择需要使用的容器，从而获得更好的性能。
