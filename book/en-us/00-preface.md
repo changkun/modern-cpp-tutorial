@@ -27,9 +27,21 @@ In conclusion, as an advocate and practitioner of C++, we always maintain an ope
 
 - This book introduces to a certain extent of the dark magic of modern C++. However, these magics are very limited, they are not suitable for readers who want to learn advanced C++. The purpose of this book is to offer a quick start for modern C++. Of course, advanced readers can also use this book to review and examine themselves on modern C++.
 
+## How to read this book
+
+Modern C++ is large, and you do not need to read every page in order. This book assumes you are already comfortable with the basics of C++ — roughly the C++11-era language: classes, templates, and the common standard-library containers. If that describes you (for example, you learned some C++ at university), feel free to skim the parts you already know and focus on what is new to you.
+
+Several aids are built in to help you navigate:
+
+- Each feature is marked with the standard that introduced it (for example, *(since C++17)*), so you can tell at a glance what is newer than the C++ you already know.
+- [Appendix 3](./appendix3.md) is a feature index that maps each feature to the chapter where it appears and the standard it came from — handy for jumping straight to "what's new in C++20", or for looking a feature up later.
+- The book is organized in three parts: the **language core** (Chapters 1–3), the **standard library** (Chapters 4–9), and a **tour by standard version** (Chapters 10–12, covering C++20, C++23, and the forthcoming C++26).
+
+Rather than trying to memorize every feature, treat this book as a reference you return to: reach for a feature when a real problem calls for it.
+
 ## Purpose
 
-The book claims "On the Fly". It intends to provide a comprehensive introduction to the relevant features regarding modern C++ (before the 2020s).
+The book claims "On the Fly". It intends to provide a comprehensive introduction to the relevant features of modern C++, from C++11 all the way to C++26.
 Readers can choose interesting content according to the following table of contents to learn and quickly familiarize themselves with the new features that are available.
 Readers should aware that all of these features are not required. It should be learned when you need it.
 
