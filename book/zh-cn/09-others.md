@@ -36,7 +36,7 @@ void may_throw(); // 可能抛出异常
 void no_throw() noexcept; // 不可能抛出异常
 ```
 
-使用 `noexcept` 修饰过的函数如果抛出异常，编译器会使用 `std::terminate()` 来立即终止程序运行。
+如果使用 `noexcept` 标记过的函数进行可能抛出异常的操作，编译器会在通过异常退出函数的路径上插入 `std::terminate()` 的调用，以使得程序终止运行。
 
 `noexcept` 还能够做操作符，用于操作一个表达式，当表达式无异常时，返回 `true`，否则返回 `false`。
 
