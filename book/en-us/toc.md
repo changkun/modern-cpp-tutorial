@@ -3,7 +3,11 @@
 ## Table of Contents
 
 - [**Preface**](./00-preface.md)
-- [**Chapter 01 Towards Modern C++**](./01-intro.md)
+### Part I — Language Core
+
+*Enhancements to the language itself: how you declare and deduce types, and what happens at runtime.*
+
+- [**Chapter 01: Towards Modern C++**](./01-intro.md)
     + 1.1 Deprecated Features
     + 1.2 Compatibility with C
     + Further Readings
@@ -51,6 +55,10 @@
         + rvalue reference and lvalue reference
         + Move semantics
         + Perfect forwarding
+### Part II — The Standard Library
+
+*Batteries included: containers, smart pointers, regular expressions, concurrency, and the filesystem.*
+
 - [**Chapter 04: Containers**](./04-containers.md)
     + 4.1 Linear containers
         + `std::array`
@@ -96,6 +104,10 @@
         + Raw String Literal
         + Custom String Literal
     + 9.4 Memory Alignment
+### Part III — By Standard Version
+
+*A tour of what each recent standard adds: C++20, C++23, and the forthcoming C++26.*
+
 - [**Chapter 10: C++20**](./10-cpp20.md)
     + 10.1 Concept
     + 10.2 Module
@@ -125,6 +137,8 @@
       - std::execution
       - Saturation arithmetic
       - Other library facilities
+### Appendices
+
 - [**Appendix 1: Further Study Materials**](./appendix1.md)
 - [**Appendix 2: Modern C++ Best Practices**](./appendix2.md)
 - [**Appendix 3: Modern C++ Feature Index**](./appendix3.md)
