@@ -12,6 +12,8 @@ order: 7
 
 *(since C++11)*
 
+Before C++11, the C++ standard library had no notion of threads at all: writing concurrent code meant reaching for platform-specific APIs such as POSIX `pthread` or the Windows thread API, which made that code hard to port. C++11 brought threading into the language standard for the first time, so the same concurrent code now builds across platforms.
+
 `std::thread` is used to create an execution thread instance, so it is the basis for all concurrent programming. It needs to include the `<thread>` header file when using it.
 It provides a number of basic thread operations, such as `get_id()` to get the thread ID of the thread being created, use `join()` to join a thread, etc., for example:
 
