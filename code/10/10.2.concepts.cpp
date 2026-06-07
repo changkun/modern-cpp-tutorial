@@ -12,17 +12,18 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <concepts>
 
 using namespace std;
 
  template<typename T>
-concept bool Stringable = requires(T a){
-    {a.to_string()} -> string;
+concept Stringable = requires(T a){
+    {a.to_string()} -> std::convertible_to<std::string>;
 };
 
  template<typename T>
-concept bool HasStringFunc = requires(T a){
-    { to_string(a) } -> string;
+concept HasStringFunc = requires(T a){
+    { to_string(a) } -> std::convertible_to<std::string>;
 };
 
 struct Person {
@@ -55,11 +56,11 @@ string to_string(std::vector<int> v){
 }
 
 
- void print(Stringable a){
+ void print(Stringable auto a){
     std::cout << a.to_string() << std::endl;
 }
 
- void print(HasStringFunc a){
+ void print(HasStringFunc auto a){
     std::cout << to_string(a) << std::endl;
 }
 
