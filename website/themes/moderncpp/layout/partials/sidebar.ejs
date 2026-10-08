@@ -1,42 +1,20 @@
-<% var isEn = page.type == 'book-en-us' || page.type == 'about-en' %>
-<div class="sidebar">
-  <div class="sidebar-inner">
-    <ul class="main-menu">
-      <% if (isEn) { %>
-        <%- partial('partials/main_menu_en', { context: 'nav' }) %>
-      <% } else {%>
-        <%- partial('partials/main_menu', { context: 'nav' }) %>
-      <% } %>
-    </ul>
-    <div class="list">
-      <h2>
-        <% if (isEn) { %>
-          <%-
-          type === 'exercises'
-              ? 'Exercises'
-              : type === 'book-en-us' || type === 'book-zh-cn'
-              ? 'Main'
-              : type === 'answers'
-                  ? 'Reference Answers'
-                  : type === 'about' || type === 'about-en'
-                  ? 'About'
-                  : (type.charAt(0).toUpperCase() + type.slice(1))
-          %>
-        <% } else {%>
-          <%-
-          type === 'exercises'
-            ? '习题'
-            : type === 'book-zh-cn'
-              ? '正文'
-              : type === 'answers'
-                ? '参考答案'
-                : type === 'about'
-                  ? '关于'
-                  : (type.charAt(0).toUpperCase() + type.slice(1)) 
-          %>
-        <% } %>
-      </h2>
-      <%- partial('partials/toc', { type: type }) %>
-    </div>
+<% var ui = mcpp_ui(page); %>
+<aside id="sidebar" class="sidebar" aria-label="<%- ui.contents %>">
+  <div class="nav-head"><%- ui.contents %></div>
+  <ol class="nav-list">
+    <% mcpp_pages(ui.bookType).forEach(function (p) { var c = mcpp_chapter(p.title); %>
+      <li><a href="<%- url_for(p.path).replace(/index\.html$/, '') %>"<%- p.path === page.path ? ' aria-current="page"' : '' %>><span class="nav-num"><%- c.num %></span><span class="nav-title"><%- c.name %></span></a></li>
+    <% }) %>
+  </ol>
+  <div class="nav-head"><%- ui.about %></div>
+  <ol class="nav-list nav-about">
+    <% mcpp_pages(ui.aboutType).forEach(function (p) { %>
+      <li><a href="<%- url_for(p.path) %>"<%- p.path === page.path ? ' aria-current="page"' : '' %>><span class="nav-num"></span><span class="nav-title"><%- p.title %></span></a></li>
+    <% }) %>
+  </ol>
+  <div class="nav-downloads">
+    <a href="<%- url_for('/modern-cpp/' + ui.pdfFile) %>"><%- ui.pdf %></a>
+    <a href="<%- url_for('/modern-cpp/' + ui.epubFile) %>"><%- ui.epub %></a>
+    <a href="<%- mcpp_repo() %>">GitHub</a>
   </div>
-</div>
+</aside>

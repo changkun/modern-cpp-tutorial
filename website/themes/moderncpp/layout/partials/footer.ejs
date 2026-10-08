@@ -1,0 +1,14 @@
+<% var ui = mcpp_ui(page); var isIndex = mcpp_is_index(page); %>
+<footer class="site-footer">
+  <div>&copy; 2016–<%- new Date().getFullYear() %> <a href="https://changkun.de"><%- ui.author %></a> · <%- ui.license %></div>
+  <div>
+    <a href="<%- url_for(ui.donateHref) %>"><%- ui.donate %></a>
+    <% if (!isIndex) { %>
+      · <a href="<%- mcpp_source_url(page) %>"><%- ui.edit %></a>
+      · <a href="<%- mcpp_repo() %>/issues/new?title=<%- encodeURIComponent((page.title || '') + ': ') %>"><%- ui.issue %></a>
+    <% } else { %>
+      · <a href="<%- mcpp_repo() %>">GitHub</a>
+    <% } %>
+    <span class="page-stat"> · PV/UV <span id="urlstat-page-pv"></span>/<span id="urlstat-page-uv"></span></span>
+  </div>
+</footer>

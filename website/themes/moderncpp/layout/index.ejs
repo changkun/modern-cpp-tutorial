@@ -1,67 +1,49 @@
-<% var isEn = page.type == 'book-en-us' %>
-
-<div class="sidebar">
-  <div class="sidebar-inner-index">
-    <ul class="main-menu">
-      <% if (isEn) { %>
-        <%- partial('partials/main_menu_en', { context: 'nav' }) %>
-      <% } else {%>
-        <%- partial('partials/main_menu', { context: 'nav' }) %>
-      <% } %>
-    </ul>
-  </div>
-</div>
-
-<% if (isEn) { %>
-  <div id="hero">
-    <div class="inner">
-      <div class="left">
-        <img class="hero-logo" src="<%- url_for("/modern-cpp/assets/cover-2nd-en.png") %>" alt="Modern C++ Tutorial book cover">
-      </div><div class="right">
-        <h4>Changkun Ou</h4>
-        <h1>
-          Modern C++ Tutorial
-        </h1>
-        <h2>C++11 to C++26 On the Fly</h2>
-        <h3>SECOND EDITION</h3>
-        <p>
-          <a class="button white" href="<%- url_for("/modern-cpp/en-us/00-preface/") %>">🇬🇧 Read Online</a>
-          <a class="button download" href="<%- url_for("/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf") %>">🇬🇧 Download</a>
+<%
+  var ui = mcpp_ui(page);
+  var chapters = mcpp_pages(ui.bookType);
+  var first = chapters[0];
+  var href = function (p) { return url_for(p.path).replace(/index\.html$/, ''); };
+%>
+<main id="content" class="landing">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow"><span><%- ui.byline %></span><span class="hero-edition"><%- ui.edition %></span></p>
+        <h1><%- ui.site %></h1>
+        <p class="hero-tagline"><%- ui.tagline %></p>
+        <p class="hero-blurb"><%- ui.blurb %></p>
+        <div class="hero-actions">
+          <% if (first) { %><a class="btn btn-primary" href="<%- href(first) %>"><%- ui.start %> <span aria-hidden="true">→</span></a><% } %>
+          <a class="btn btn-ghost" href="<%- url_for('/modern-cpp/' + ui.pdfFile) %>"><%- ui.downloadPdf %></a>
+        </div>
+        <p class="hero-links">
+          <a href="<%- url_for('/modern-cpp/' + ui.epubFile) %>"><%- ui.epub %></a>
+          <a href="<%- mcpp_repo() %>">GitHub</a>
+          <a href="<%- url_for(mcpp_other_href(page)) %>" hreflang="<%- ui.otherPref === 'zh' ? 'zh-CN' : 'en' %>" onclick="try{localStorage.setItem('mcpp-lang','<%- ui.otherPref %>')}catch(e){}"><%- ui.otherTitle %></a>
         </p>
       </div>
-    </div>
-  </div>
-<% } else { %>
-  <div id="hero">
-    <div class="inner">
-      <div class="left">
-        <img class="hero-logo" src="<%- url_for("/modern-cpp/assets/cover-2nd.png") %>" alt="现代 C++ 教程封面">
-      </div><div class="right">
-        <h4>欧长坤 著</h4>
-        <h1>
-          现代 C++ 教程<br>
-        </h1>
-        <h2>高速上手 C++11 到 C++26</h2>
-        <h3>第二版</h3>
-        <p>
-          <a class="button white" href="<%- url_for("/modern-cpp/zh-cn/00-preface/") %>">🇨🇳 在线阅读</a>
-          <a class="button download" href="<%- url_for("/modern-cpp/pdf/modern-cpp-tutorial-zh-cn.pdf") %>">🇨🇳 下载</a>
-        </p>
+      <div class="hero-cover">
+        <img src="<%- url_for('/modern-cpp/' + ui.cover) %>" alt="<%- ui.coverAlt %>" width="720" height="944">
       </div>
     </div>
-  </div>
-<% } %>
+  </section>
 
-<div id="footer">
-  <% if (isEn) { %>
-    <p>
-      <a href="https://changkun.de">Changkun Ou</a> &copy; 2016-<%- new Date().getFullYear() %>.
-      The book is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0</a>, code is open sourced under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> License.
-    </p>
-  <% } else { %>
-    <p>
-      <a href="https://changkun.de">欧长坤</a> &copy; 2016-<%- new Date().getFullYear() %> 版权所有，
-      采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。
-    </p>
-  <% } %>
-</div>
+  <section class="contents" aria-labelledby="contents-title">
+    <h2 id="contents-title"><%- ui.contents %></h2>
+    <ol class="chapter-grid">
+      <% chapters.forEach(function (p) { var c = mcpp_chapter(p.title); %>
+        <li>
+          <a href="<%- href(p) %>">
+            <span class="cg-num"><%- c.num %></span>
+            <span class="cg-text">
+              <% if (c.label) { %><span class="cg-label"><%- c.label %></span><% } %>
+              <span class="cg-name"><%- c.name %></span>
+            </span>
+          </a>
+        </li>
+      <% }) %>
+    </ol>
+  </section>
+
+  <div class="landing-footer"><%- partial('partials/footer') %></div>
+</main>

@@ -1,49 +1,38 @@
-<% var isEn = page.type == 'book-en-us' || page.type == 'about-en' %>
-<% if (page.type) { %>
-  <%- partial('partials/sidebar', { type: page.type, index: page.index }) %>
-<% } else { %>
-  <div class="sidebar">
-    <ul class="main-menu">
-        <% if (isEn) { %>
-          <%- partial('partials/main_menu_en', { context: 'nav' }) %>
-        <% } else {%>
-          <%- partial('partials/main_menu', { context: 'nav' }) %>
-        <% } %>
-    </ul>
-  </div>
-<% } %>
-<div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
-  <%- page.content %>
-  <div class="guide-links">
-    <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
-      <span>← <a href="<%- url_for(page.path) %>"><%- page.title %></a></span>
-    <% }) %>
-    <% site.pages.find({ type: page.type, order: page.order + 1 }).each(function (page) { %>
-      <span style="float: right;"><a href="<%- url_for(page.path) %>"><%- page.title %></a> →</span>
-    <% }) %>
-  </div>
+<%
+  var ui = mcpp_ui(page);
+  var outline = toc(page.content, { class: 'toc', list_number: false, min_depth: 2, max_depth: 3 });
+  var hasOutline = (outline.match(/<a /g) || []).length >= 2;
 
-  <% if (isEn) { %>
-    <div class="footer">
-        <p>
-          <a href="https://changkun.de">Changkun Ou</a> &copy; 2016-<%- new Date().getFullYear() %>.
-          The book is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0</a>, code is open sourced under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> License.
-        </p>
-        <p>
-          If you like the book, you could <a href="/modern-cpp/about/en/donate.html">donate the author</a>.
-        </p>
-      </div>
-  <% } else {%>
-    <div class="footer">
-        <p>
-          <a href="https://changkun.de">欧长坤</a> &copy; 2016-<%- new Date().getFullYear() %> 版权所有，
-          采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。
-        </p>
-        <p>
-            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
-        </p>
-      </div>
+  // Neighbours in reading order, among the pages of the same kind.
+  var siblings = page.type ? mcpp_pages(page.type) : [];
+  var at = siblings.findIndex(function (p) { return p.path === page.path; });
+  var prev = at > 0 ? siblings[at - 1] : null;
+  var next = at >= 0 && at < siblings.length - 1 ? siblings[at + 1] : null;
+  var href = function (p) { return url_for(p.path).replace(/index\.html$/, ''); };
+%>
+<div class="layout<%- hasOutline ? '' : ' no-outline' %>">
+  <%- partial('partials/sidebar') %>
+  <main id="content" class="main">
+    <article class="article">
+      <%- mcpp_enhance(page.content, page.title) %>
+    </article>
+    <% if (prev || next) { %>
+    <nav class="pager" aria-label="<%- ui.prev %> / <%- ui.next %>">
+      <% if (prev) { %>
+        <a class="pager-prev" href="<%- href(prev) %>"><span class="pager-dir">← <%- ui.prev %></span><span class="pager-title"><%- prev.title %></span></a>
+      <% } else { %><span></span><% } %>
+      <% if (next) { %>
+        <a class="pager-next" href="<%- href(next) %>"><span class="pager-dir"><%- ui.next %> →</span><span class="pager-title"><%- next.title %></span></a>
+      <% } %>
+    </nav>
+    <% } %>
+    <%- partial('partials/footer') %>
+  </main>
+  <% if (hasOutline) { %>
+  <nav class="outline" aria-label="<%- ui.onThisPage %>">
+    <div class="outline-head"><%- ui.onThisPage %></div>
+    <%- outline %>
+  </nav>
   <% } %>
-
-
 </div>
+<div class="scrim" aria-hidden="true"></div>

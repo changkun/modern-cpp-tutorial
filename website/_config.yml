@@ -31,6 +31,11 @@ highlight:
   enable: true
   line_number: false
   tab_replace:
+  # Plain <pre><code> with highlight.js class names (hljs-keyword, …) instead
+  # of the table-wrapped figure; the theme styles these and adds a label and
+  # a copy button around each block.
+  wrap: false
+  hljs: true
 toc:
   maxdepth: 3
   class: toc

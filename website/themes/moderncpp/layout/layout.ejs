@@ -1,6 +1,7 @@
 <%
-  var isEn = page.type == 'book-en-us' || page.type == 'about-en';
-  var isIndex = page.layout === 'index' || page.path === 'index.html';
+  var ui = mcpp_ui(page);
+  var isEn = mcpp_lang(page) === 'en';
+  var isIndex = mcpp_is_index(page);
 
   // Absolute URLs for this page and its other-language twin. Book chapters and
   // About pages have a same-path twin; everything else maps to the landing.
@@ -27,16 +28,17 @@
   }
   var canonicalUrl = isEn ? enUrl : zhUrl;
 
-  var siteName = isEn ? 'Modern C++ Tutorial' : '现代 C++ 教程';
+  var siteName = ui.site;
   var siteTagline = isEn ? 'Modern C++ Tutorial: C++11 to C++26 On the Fly' : '现代 C++ 教程: 高速上手 C++11 到 C++26';
   var pageTitle = (page.title ? page.title + ' - ' : '') + siteTagline;
   var pageDesc = page.description ? page.description : (isEn
     ? 'A fast, comprehensive guide to the features of modern C++, from C++11 through C++26.'
     : '高速上手现代 C++ 特性的全面教程，覆盖 C++11 到 C++26。');
   var ogImage = SITE + ROOT + 'assets/' + (isEn ? 'cover-2nd-en.png' : 'cover-2nd.png');
+  var fonts = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap';
 %>
 <!DOCTYPE html>
-<html lang="<%- isEn ? 'en' : 'zh-CN' %>">
+<html lang="<%- ui.htmlLang %>" class="<%- isIndex ? 'is-landing' : 'is-page' %>">
   <head>
     <meta charset="utf-8">
     <% if (isIndex && !isEn) { %>
@@ -67,7 +69,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/modern-cpp/assets/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/modern-cpp/assets/apple-touch-icon.png">
     <meta name="msapplication-TileColor" content="#7e2d36">
-    <meta name="theme-color" content="#7e2d36">
+    <meta name="theme-color" content="#ffffff">
 
     <meta property="og:type" content="<%- isIndex ? 'website' : 'article' %>">
     <meta property="og:site_name" content="<%- siteName %>">
@@ -82,41 +84,21 @@
     <meta name="twitter:description" content="<%- pageDesc %>">
     <meta name="twitter:image" content="<%- ogImage %>">
 
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Web fonts load without blocking the first paint: where Google Fonts
+         is slow or unreachable the page renders at once in the system faces
+         named in the stylesheet, and swaps in Inter when it arrives. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="<%- fonts %>" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="<%- fonts %>"></noscript>
 
-    <!-- main page styles -->
-    <%- css(isIndex ? 'modern-cpp/css/index' : 'modern-cpp/css/page') %>
-
-    <!-- this needs to be loaded before guide's inline scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script>window.PAGE_TYPE = "<%- page.type %>"</script>
-    <script async src="//changkun.de/urlstat/client.js"></script>
+    <link rel="stylesheet" href="<%- url_for('/modern-cpp/css/book.css') %>?v=<%- mcpp_build() %>">
+    <script async src="https://changkun.de/urlstat/client.js"></script>
   </head>
-  <body class="<%- isIndex ? '' : 'docs' -%>">
-    <% if (isEn) { %>
-      <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" <%- isIndex ? 'class="top"' : '' %>>
-        <a class="menu-button"></a>
-        <a class="logo" href="/modern-cpp/"></a>
-      </div>
-    <% } else {%>
-      <div id="mobile-bar" data-bg-text="现代 C++ 教程" <%- isIndex ? 'class="top"' : '' %>>
-        <a class="menu-button"></a>
-        <a class="logo" href="/modern-cpp/"></a>
-      </div>
-    <% } %>
-    <%- partial('partials/header') %>
-    <% if (!isIndex) { %>
-      <div id="main" class="fix-sidebar">
-        <%- body %>
-      </div>
-    <% } else { %>
-        <%- body %>
-    <% } %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
-
-    <!-- main custom script for sidebars, version selects etc. -->
-    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
-    <script src="<%- url_for("/modern-cpp/js/common.js") %>"></script>
+  <body>
+    <a class="skip" href="#content"><%- ui.skip %></a>
+    <%- partial('partials/topbar') %>
+    <%- body %>
+    <script src="<%- url_for('/modern-cpp/js/book.js') %>?v=<%- mcpp_build() %>" defer></script>
   </body>
 </html>
