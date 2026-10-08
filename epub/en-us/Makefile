@@ -20,7 +20,7 @@ epub: markdown
 	@echo "Compiling PDF file..."
 	pandoc -f markdown+smart --toc -t epub -o $(filename).epub \
 		--highlight-style haddock \
-		--epub-cover-image ../../assets/cover-2nd-en.png \
+		--epub-cover-image ../../assets/cover-en.png \
 		--title-prefix $(title) \
 		meta.markdown \
 		00-preface.md.markdown \

@@ -1,4 +1,4 @@
-<img src="assets/cover-2nd.png" alt="logo" height="550" align="right" />
+<img src="assets/cover-zh.png" alt="logo" height="550" align="right" />
 
 # 现代 C++ 教程：高速上手 C++11 到 C++26
 

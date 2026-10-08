@@ -1,4 +1,4 @@
-<img src="assets/cover-2nd-en.png" alt="logo" height="550" align="right" />
+<img src="assets/cover-en.png" alt="logo" height="550" align="right" />
 
 # Modern C++ Tutorial: C++11 to C++26 On the Fly
 

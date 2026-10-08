@@ -11,7 +11,7 @@ const UI = {
     tagline: 'C++11 to C++26 On the Fly',
     author: 'Changkun Ou',
     byline: 'Changkun Ou',
-    edition: 'Second Edition',
+    edition: 'Third Edition',
     blurb: 'A fast, comprehensive guide to the features of modern C++, from C++11 through C++26. It explains not only how each feature works, but the problem it was introduced to solve.',
     start: 'Start reading',
     pdf: 'PDF',
@@ -38,10 +38,10 @@ const UI = {
     aboutType: 'about-en',
     pdfFile: 'pdf/modern-cpp-tutorial-en-us.pdf',
     epubFile: 'epub/modern-cpp-tutorial-en-us.epub',
-    cover: 'assets/cover-2nd-en-web.jpg',
+    cover: 'assets/cover-en-web.jpg',
     donateHref: '/modern-cpp/about/en/donate.html',
     coverAlt: 'Modern C++ Tutorial book cover',
-    logo: 'assets/cover-2nd-en-logo.png',
+    logo: 'assets/cover-en-logo.png',
     home: '/modern-cpp/en/'
   },
   zh: {
@@ -50,7 +50,7 @@ const UI = {
     tagline: '高速上手 C++11 到 C++26',
     author: '欧长坤',
     byline: '欧长坤 著',
-    edition: '第二版',
+    edition: '第三版',
     blurb: '高速上手现代 C++ 特性的全面教程，覆盖 C++11 到 C++26。不只讲每个特性怎么用，也讲清它为解决什么问题而诞生。',
     start: '开始阅读',
     pdf: 'PDF',
@@ -77,10 +77,10 @@ const UI = {
     aboutType: 'about',
     pdfFile: 'pdf/modern-cpp-tutorial-zh-cn.pdf',
     epubFile: 'epub/modern-cpp-tutorial-zh-cn.epub',
-    cover: 'assets/cover-2nd-web.jpg',
+    cover: 'assets/cover-zh-web.jpg',
     donateHref: '/modern-cpp/about/donate.html',
     coverAlt: '现代 C++ 教程封面',
-    logo: 'assets/cover-2nd-logo.png',
+    logo: 'assets/cover-zh-logo.png',
     home: '/modern-cpp/'
   }
 };
