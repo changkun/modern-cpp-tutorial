@@ -1,7 +1,9 @@
-// The cover, computed rather than drawn: C++ as the rings of a tree. A faint
-// core of yearly rings is C++98/03, the language the book assumes; outside it,
-// one ring for every year from 2011 to 2026. The six years that brought a
-// standard are drawn stronger and carry a dot for each feature that the
+// The cover: a cloth-bound board, its title foil-stamped, and the baboon of
+// the first two editions stamped in cream, walking along a timeline of C++.
+// Behind it, C++ grows as the rings of a tree, computed from the book: a
+// faint core of yearly rings is C++98/03, the language the book assumes;
+// outside it, a ring for every year from 2011 to 2026. The six years that
+// brought a standard are drawn stronger and carry a dot for each feature the
 // book's Feature Index (book/*/appendix3.md) lists under that standard. The
 // outermost, C++26, is still an outlook: dashed, in gold.
 //
@@ -21,7 +23,7 @@
 //
 // (PLAYWRIGHT_CORE=/path/to/playwright-core/index.mjs points at another copy.)
 
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -66,9 +68,14 @@ const TEXT = {
 // The cover is 823 × 1079 CSS pixels, the old cover's proportions; ×3 gives
 // the 2469 × 3237 image the PDF and EPUB builds already expect.
 const W = 823, H = 1079;
-const CX = 150, BASE = H - 84; // the rings' centre, on the baseline
-const CREAM = '#f6ece0', GOLD = '#e7b45e';
-const radius = (year) => (year < 2011 ? 20 + (year - 1998) * 10 : 150 + (year - 2011) * 28);
+const CX = 300, BASE = H - 84; // the rings' centre, on the baseline
+const CREAM = '#f6ece0', INK = '#f3e5cc', GOLD = '#e7b45e';
+const radius = (year) => (year < 2011 ? 16 + (year - 1998) * 8 : 130 + (year - 2011) * 20.7);
+
+// The baboon from the first two editions' covers, lifted onto transparency
+// (black ink, alpha only), stamped here in cream and walking the baseline.
+const BABOON = 'data:image/png;base64,' + readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'baboon.png')).toString('base64');
+const BW = 600, BH = BW * 1371 / 1722, BX = 186, BY = BASE - BH + 3;
 
 function art() {
   const f = (n) => n.toFixed(1);
@@ -78,61 +85,132 @@ function art() {
   for (let y = 1998; y <= 2026; y++) {
     const r = radius(y), s = stds.get(y);
     if (!s) {
-      rings += `<path d="${ring(r)}" stroke-opacity="${y < 2011 ? 0.11 : 0.07}"/>`;
+      rings += `<path d="${ring(r)}" stroke-opacity="${y < 2011 ? 0.13 : 0.08}"/>`;
       continue;
     }
     rings += s.outlook
       ? `<path d="${ring(r)}" stroke="${GOLD}" stroke-opacity="0.85" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"/>`
-      : `<path d="${ring(r)}" stroke-opacity="0.34" stroke-width="1.2"/>`;
-    // Dots fill the part of the ring inside the cover, evenly, from the
-    // baseline round towards the left edge.
+      : `<path d="${ring(r)}" stroke-opacity="0.32" stroke-width="1.2"/>`;
+    // Dots spread evenly over the part of the ring inside the cover; the
+    // baboon walks in front of some of them.
+    const near = Math.acos(Math.min(1, (W - 24 - CX) / r)) * 180 / Math.PI;
     const far = Math.acos(Math.max(-1, (24 - CX) / r)) * 180 / Math.PI;
-    const a0 = 5, a1 = Math.min(far, 176) - 3, n = s.features.length;
+    const a0 = Math.max(near, 2) + 3, a1 = Math.min(far, 178) - 3, n = s.features.length;
     for (let k = 0; k < n; k++) {
       const a = (a0 + ((k + 0.5) * (a1 - a0)) / n) * Math.PI / 180;
       const x = CX + r * Math.cos(a), yy = BASE - r * Math.sin(a);
       dots += s.outlook
         ? `<circle cx="${f(x)}" cy="${f(yy)}" r="4.2" fill="none" stroke="${GOLD}" stroke-width="1.6"><title>${s.features[k]}</title></circle>`
-        : `<circle cx="${f(x)}" cy="${f(yy)}" r="3.4" fill="${CREAM}"><title>${s.features[k]}</title></circle>`;
+        : `<circle cx="${f(x)}" cy="${f(yy)}" r="3.2" fill="${CREAM}" fill-opacity="0.85"><title>${s.features[k]}</title></circle>`;
     }
     labels += `<text x="${f(CX + r)}" y="${BASE + 26}"${s.outlook ? ` fill="${GOLD}" fill-opacity="1"` : ''}>${s.name}</text>`;
   }
-  labels += `<text x="${CX}" y="${BASE + 26}" fill-opacity="0.38">C++98</text>`;
+  labels += `<text x="${CX}" y="${BASE + 26}" fill-opacity="0.4">C++98</text>`;
   return `<svg class="art" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="${CREAM}" stroke-width="1">${rings}</g>
-  <line x1="0" x2="${W}" y1="${BASE}" y2="${BASE}" stroke="${CREAM}" stroke-opacity="0.3"/>
-  <g>${dots}</g>
+  <defs>
+    <filter id="ink" x="0" y="0" width="1" height="1"><feFlood flood-color="${INK}"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+    <filter id="grain" x="0" y="0" width="1" height="1">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11"/>
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.9  0 0 0 0.1 0"/>
+    </filter>
+    <mask id="behind" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}">
+      <rect width="${W}" height="${H}" fill="white"/>
+      <image id="silhouette" x="${BX}" y="${f(BY)}" width="${BW}" height="${f(BH)}" preserveAspectRatio="none"/>
+    </mask>
+  </defs>
+  <rect width="${W}" height="${H}" filter="url(#grain)"/>
+  <g mask="url(#behind)">
+    <g fill="none" stroke="${CREAM}" stroke-width="1">${rings}</g>
+    <g>${dots}</g>
+  </g>
+  <line x1="0" x2="${W}" y1="${BASE}" y2="${BASE}" stroke="${CREAM}" stroke-opacity="0.34"/>
+  <image href="${BABOON}" x="${BX}" y="${f(BY)}" width="${BW}" height="${f(BH)}" preserveAspectRatio="none" filter="url(#ink)"/>
   <g font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="500" text-anchor="middle" fill="${CREAM}" fill-opacity="0.62">${labels}</g>
 </svg>`;
 }
 
+// The baboon's silhouette, which hides the rings behind it: its ink, grown a
+// few pixels so the strokes close, then everything the outside cannot reach.
+const SILHOUETTE = `<script>
+window.coverReady = false;
+(async () => {
+  const img = new Image(); img.src = ${JSON.stringify(BABOON)}; await img.decode();
+  const w = img.width, h = img.height, c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+  const px = g.getImageData(0, 0, w, h);
+  let m = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i++) m[i] = px.data[i * 4 + 3] > 50 ? 1 : 0;
+  const grow = (src, r, val) => { // a square brush: max (val 1) or min (val 0)
+    const a = new Uint8Array(w * h), b = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      let v = 1 - val; for (let d = -r; d <= r && v !== val; d++) { const xx = x + d; if (xx >= 0 && xx < w && src[y * w + xx] === val) v = val; } a[y * w + x] = v; }
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      let v = 1 - val; for (let d = -r; d <= r && v !== val; d++) { const yy = y + d; if (yy >= 0 && yy < h && a[yy * w + x] === val) v = val; } b[y * w + x] = v; }
+    return b;
+  };
+  const R = 9, closed = grow(m, R, 1), out = new Uint8Array(w * h), stack = [];
+  const push = (x, y) => { const i = y * w + x; if (!closed[i] && !out[i]) { out[i] = 1; stack.push(i); } };
+  for (let x = 0; x < w; x++) { push(x, 0); push(x, h - 1); }
+  for (let y = 0; y < h; y++) { push(0, y); push(w - 1, y); }
+  while (stack.length) {
+    const i = stack.pop(), x = i % w, y = (i - x) / w;
+    if (x > 0) push(x - 1, y); if (x < w - 1) push(x + 1, y); if (y > 0) push(x, y - 1); if (y < h - 1) push(x, y + 1);
+  }
+  for (let i = 0; i < w * h; i++) m[i] = out[i] ? 0 : 1;
+  m = grow(m, R - 4, 0); // shrink back, leaving a thin margin around the body
+  const o = g.createImageData(w, h);
+  for (let i = 0; i < w * h; i++) o.data[i * 4 + 3] = m[i] ? 255 : 0;
+  g.putImageData(o, 0, 0);
+  document.getElementById('silhouette').setAttribute('href', c.toDataURL('image/png'));
+  window.coverReady = true;
+})();
+</script>`;
+
 const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Source+Serif+4:opsz,wght@8..60,600&family=Noto+Serif+SC:wght@600&display=block">`;
 const FIELD = `background:
-    radial-gradient(620px 520px at ${CX}px ${BASE}px, rgba(255, 214, 196, 0.10), transparent 70%),
+    radial-gradient(560px 460px at ${CX}px ${BASE}px, rgba(255, 214, 196, 0.11), transparent 70%),
     linear-gradient(172deg, #8a323d 0%, #74272f 42%, #521a22 100%);`;
+
+// Cloth over board: a fine weave, and the hinge groove beside the spine.
+const BINDING = `
+  .cover::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background:
+      repeating-linear-gradient(0deg, rgba(255, 240, 225, 0.028) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(20, 0, 4, 0.05) 0 1px, transparent 1px 3px); }
+  .cover::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 40px; pointer-events: none; z-index: 2;
+    background: linear-gradient(90deg, rgba(20, 2, 6, 0.30) 0, rgba(20, 2, 6, 0.08) 18px,
+      rgba(255, 235, 220, 0.10) 22px, rgba(20, 2, 6, 0.22) 26px, rgba(20, 2, 6, 0.0) 40px); }`;
 
 function coverPage(t) {
   return `<!doctype html><html lang="${t.lang}"><head><meta charset="utf-8">${FONTS}<style>
   html, body { margin: 0; }
   .cover { position: relative; width: ${W}px; height: ${H}px; overflow: hidden; ${FIELD} color: ${CREAM}; font-family: Inter, "PingFang SC", sans-serif; }
+  ${BINDING}
   .art { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .head { position: absolute; top: 60px; left: 64px; right: 64px; display: flex; justify-content: space-between;
+  .art text { font-variant-ligatures: none; }
+  .head { position: absolute; top: 60px; left: 72px; right: 64px; display: flex; justify-content: space-between;
     font-size: 13px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
-  .author { opacity: 0.74; }
-  .edition { color: ${GOLD}; }
-  h1 { position: absolute; top: 118px; left: 60px; margin: 0;
+  .author { opacity: 0.78; }
+  /* Foil: a little light across the stamped letters, and a deboss below. */
+  .foil { background: linear-gradient(176deg, #fffaf0 0%, #f4e6cd 52%, #e2cba5 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1.5px 0 rgba(36, 6, 10, 0.45)); }
+  .edition { background: linear-gradient(180deg, #f7d891 0%, #d9a24c 60%, #b98337 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(36, 6, 10, 0.45)); }
+  h1 { position: absolute; top: 118px; left: 68px; margin: 0;
     font: 600 92px/1.0 "Source Serif 4", "Noto Serif SC", serif; letter-spacing: -0.02em; }
-  .sub { position: absolute; top: 330px; left: 64px; margin: 0; font-size: 25px; font-weight: 400; opacity: 0.86; letter-spacing: -0.005em; }
+  .sub { position: absolute; top: 330px; left: 72px; margin: 0; font-size: 25px; font-weight: 400; opacity: 0.88; letter-spacing: -0.005em; }
   :lang(zh-CN) .head { letter-spacing: 0.12em; }
   :lang(zh-CN) h1 { font-size: 96px; line-height: 1.12; letter-spacing: 0.01em; }
   :lang(zh-CN) .sub { top: 362px; }
-  .art text { font-variant-ligatures: none; }
 </style></head><body><div class="cover">
   ${art()}
   <div class="head"><span class="author">${t.author}</span><span class="edition">${t.edition}</span></div>
-  <h1>${t.title}</h1>
+  <h1 class="foil">${t.title}</h1>
   <p class="sub">${t.sub}</p>
-</div></body></html>`;
+</div>${SILHOUETTE}</body></html>`;
 }
 
 // A link preview: the cover beside the title, 1200 × 630.
@@ -175,6 +253,7 @@ async function shoot(html, { width, height, scale, out, type = 'png', quality })
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: scale });
   await page.setContent(html, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
+  await page.waitForFunction(() => window.coverReady !== false, null, { timeout: 60000 });
   mkdirSync(dirname(out), { recursive: true });
   await page.screenshot({ path: out, type, quality, clip: { x: 0, y: 0, width, height } });
   await page.close();
@@ -187,7 +266,7 @@ for (const ed of ['en', 'zh']) {
   await shoot(html, { width: W, height: H, scale: 3, out: full });
   await shoot(html, { width: W, height: H, scale: 720 / W, out: join(SITE_ASSETS, `cover-${ed}-web.jpg`), type: 'jpeg', quality: 88 });
   await shoot(html, { width: W, height: H, scale: 100 / W, out: join(SITE_ASSETS, `cover-${ed}-logo.png`) });
-  const web = 'data:image/jpeg;base64,' + (await import('node:fs')).readFileSync(join(SITE_ASSETS, `cover-${ed}-web.jpg`)).toString('base64');
+  const web = 'data:image/jpeg;base64,' + readFileSync(join(SITE_ASSETS, `cover-${ed}-web.jpg`)).toString('base64');
   await shoot(ogPage(TEXT[ed], web), { width: 1200, height: 630, scale: 1, out: join(SITE_ASSETS, `og-${ed}.png`) });
 }
 await shoot(iconPage(), { width: 180, height: 180, scale: 1, out: join(SITE_ASSETS, 'apple-touch-icon.png') });
