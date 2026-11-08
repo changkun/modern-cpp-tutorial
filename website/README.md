@@ -14,4 +14,5 @@ Start from the terminal:
 ```
 $ make    # build
 $ make s  # start serve
+$ make deploy  # build and rsync public/modern-cpp/ to changkunde:/www/changkun.de/modern-cpp/
 ```
