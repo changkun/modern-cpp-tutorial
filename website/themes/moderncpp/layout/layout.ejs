@@ -35,7 +35,7 @@
     ? 'A fast, comprehensive guide to the features of modern C++, from C++11 through C++26.'
     : '高速上手现代 C++ 特性的全面教程，覆盖 C++11 到 C++26。');
   var ogImage = SITE + ROOT + 'assets/' + (isEn ? 'og-en.png' : 'og-zh.png');
-  var fonts = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap';
+  var fonts = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap';
 %>
 <!DOCTYPE html>
 <html lang="<%- ui.htmlLang %>" class="<%- isIndex ? 'is-landing' : 'is-page' %>">
@@ -57,6 +57,9 @@
     })();
     </script>
     <% } %>
+    <!-- The theme the reader picked here or on another changkun.de page,
+         before the first paint; without one, the system's. -->
+    <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
     <title><%- pageTitle %></title>
     <meta name="description" content="<%- pageDesc %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,7 +72,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/modern-cpp/assets/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/modern-cpp/assets/apple-touch-icon.png">
     <meta name="msapplication-TileColor" content="#7e2d36">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)">
 
     <meta property="og:type" content="<%- isIndex ? 'website' : 'article' %>">
     <meta property="og:site_name" content="<%- siteName %>">
@@ -86,8 +90,8 @@
     <meta name="twitter:description" content="<%- pageDesc %>">
     <meta name="twitter:image" content="<%- ogImage %>">
 
-    <!-- Web fonts load without blocking the first paint: where Google Fonts
-         is slow or unreachable the page renders at once in the system faces
+    <!-- Inter loads without blocking the first paint: where Google Fonts is
+         slow or unreachable the page renders at once in the system faces
          named in the stylesheet, and swaps in Inter when it arrives. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

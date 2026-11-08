@@ -6,6 +6,17 @@
     ? { copy: '复制', copied: '已复制' }
     : { copy: 'Copy', copied: 'Copied' };
 
+  // Theme: follows the system unless the reader picks one, here or on another
+  // changkun.de page: they share the "theme" key.
+  var themeBtn = document.querySelector('.theme-btn');
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    var dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
   // The contents drawer on narrow screens.
   var menu = document.querySelector('.menu-btn');
   var sidebar = document.querySelector('.sidebar');

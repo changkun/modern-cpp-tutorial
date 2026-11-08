@@ -34,7 +34,7 @@
       <% chapters.forEach(function (p) { var c = mcpp_chapter(p.title); %>
         <li>
           <a href="<%- href(p) %>">
-            <span class="cg-num"><%- c.num %></span>
+            <span class="cg-num"><%- c.label ? c.num.replace(/^0(?=\d)/, '') : '' %></span>
             <span class="cg-text">
               <% if (c.label) { %><span class="cg-label"><%- c.label %></span><% } %>
               <span class="cg-name"><%- c.name %></span>

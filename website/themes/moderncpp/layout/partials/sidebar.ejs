@@ -3,7 +3,7 @@
   <div class="nav-head"><%- ui.contents %></div>
   <ol class="nav-list">
     <% mcpp_pages(ui.bookType).forEach(function (p) { var c = mcpp_chapter(p.title); %>
-      <li><a href="<%- url_for(p.path).replace(/index\.html$/, '') %>"<%- p.path === page.path ? ' aria-current="page"' : '' %>><span class="nav-num"><%- c.num %></span><span class="nav-title"><%- c.name %></span></a></li>
+      <li><a href="<%- url_for(p.path).replace(/index\.html$/, '') %>"<%- p.path === page.path ? ' aria-current="page"' : '' %>><span class="nav-num"><%- c.label ? c.num.replace(/^0(?=\d)/, '') : '' %></span><span class="nav-title"><%- c.name %></span></a></li>
     <% }) %>
   </ol>
   <div class="nav-head"><%- ui.about %></div>
