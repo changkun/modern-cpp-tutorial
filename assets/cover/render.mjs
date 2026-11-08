@@ -16,12 +16,19 @@
 //   website/src/modern-cpp/assets/og-{en,zh}.png            link previews
 //   website/src/modern-cpp/assets/{favicon,apple-touch-icon}.png  the icon
 //
+// The link previews and the icon are set apart from the cover, in the
+// site's look: the ink of its dark theme, Inter, and navy for one accent.
+// The cover keeps its cloth and foil.
+//
 // Run from the repository root with playwright-core available:
 //
 //   npm i --no-save playwright-core && npx playwright-core install chromium
-//   node assets/cover/render.mjs
+//   node assets/cover/render.mjs            everything
+//   node assets/cover/render.mjs --cards    only the link previews and the icon,
+//                                           from the cover-{en,zh}-web.jpg there
 //
-// (PLAYWRIGHT_CORE=/path/to/playwright-core/index.mjs points at another copy.)
+// (PLAYWRIGHT_CORE=/path/to/playwright-core/index.mjs points at another copy,
+// and CHROME=/path/to/chrome at a browser other than the one it installed.)
 
 import { mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -168,6 +175,10 @@ window.coverReady = false;
 </script>`;
 
 const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Source+Serif+4:opsz,wght@8..60,600&family=Noto+Serif+SC:wght@600&display=block">`;
+// The site's dark theme, for the link previews and the icon.
+const SITE = { bg: '#161616', lift: '#232323', text: '#ececec', secondary: '#b4b4b4', muted: '#9a9a9a', navy: '#9bb0e4' };
+const CARD_FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=block">`;
+const SANS = `Inter, "Noto Sans SC", "PingFang SC", sans-serif`;
 const FIELD = `background:
     radial-gradient(560px 460px at ${CX}px ${BASE}px, rgba(255, 214, 196, 0.11), transparent 70%),
     linear-gradient(172deg, #8a323d 0%, #74272f 42%, #521a22 100%);`;
@@ -213,42 +224,42 @@ function coverPage(t) {
 </div>${SILHOUETTE}</body></html>`;
 }
 
-// A link preview: the cover beside the title, 1200 × 630.
+// A link preview: the cover beside the title, 1200 × 630, on the site's ink.
 function ogPage(t, coverUrl) {
-  return `<!doctype html><html lang="${t.lang}"><head><meta charset="utf-8">${FONTS}<style>
+  return `<!doctype html><html lang="${t.lang}"><head><meta charset="utf-8">${CARD_FONTS}<style>
   html, body { margin: 0; }
   .card { width: 1200px; height: 630px; display: flex; align-items: center; gap: 72px; padding: 0 96px; box-sizing: border-box;
-    background: radial-gradient(900px 600px at 20% 30%, #7a2a34, #4a161d 75%); color: ${CREAM}; font-family: Inter, "PingFang SC", sans-serif; }
-  img { width: 330px; height: auto; border-radius: 4px; box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 30px 60px -10px rgba(0,0,0,0.55); }
-  h1 { margin: 0; font: 600 76px/1.02 "Source Serif 4", "Noto Serif SC", serif; letter-spacing: -0.02em; }
-  .sub { margin: 22px 0 0; font-size: 30px; opacity: 0.86; }
-  .meta { margin: 46px 0 0; font-size: 17px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
-  .meta span { color: ${GOLD}; }
-  .url { margin: 10px 0 0; font-size: 22px; opacity: 0.6; }
-  :lang(zh-CN) h1 { font-size: 80px; line-height: 1.12; letter-spacing: 0.01em; }
-  :lang(zh-CN) .meta { letter-spacing: 0.12em; }
+    background: radial-gradient(900px 600px at 20% 30%, ${SITE.lift}, ${SITE.bg} 75%); color: ${SITE.text}; font-family: ${SANS}; }
+  img { width: 330px; height: auto; border-radius: 4px; box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 30px 60px -10px rgba(0,0,0,0.6); }
+  h1 { margin: 0; font: 600 72px/1.06 ${SANS}; letter-spacing: -0.025em; }
+  .sub { margin: 22px 0 0; font-size: 30px; color: ${SITE.secondary}; }
+  .meta { margin: 46px 0 0; font-size: 24px; font-weight: 500; color: ${SITE.secondary}; }
+  .meta span { color: ${SITE.navy}; }
+  .url { margin: 12px 0 0; font-size: 22px; color: ${SITE.muted}; }
+  :lang(zh-CN) h1 { font-size: 76px; line-height: 1.14; letter-spacing: 0.02em; }
 </style></head><body><div class="card">
   <img src="${coverUrl}" alt="">
   <div><h1>${t.title}</h1><p class="sub">${t.sub}</p><p class="meta">${t.author} · <span>${t.edition}</span></p><p class="url">${t.url}</p></div>
 </div></body></html>`;
 }
 
-// The icon: the cover's field and rings behind a serif "C++".
+// The icon: "C++" in Inter on the site's ink, with the cover's rings behind
+// it, faint, and the outermost, C++26's, dashed in navy.
 function iconPage() {
   const rings = [44, 70, 96, 122, 148].map((r, i) =>
-    `<path d="M${18 + r},180A${r},${r} 0 0 0 ${18 - r},180" stroke="${i === 4 ? GOLD : CREAM}" stroke-opacity="${i === 4 ? 0.9 : 0.3}" stroke-width="3"${i === 4 ? ' stroke-dasharray="3 9" stroke-linecap="round"' : ''}/>`).join('');
-  return `<!doctype html><html><head><meta charset="utf-8">${FONTS}<style>
+    `<path d="M${18 + r},180A${r},${r} 0 0 0 ${18 - r},180" stroke="${i === 4 ? SITE.navy : SITE.text}" stroke-opacity="${i === 4 ? 0.9 : 0.16}" stroke-width="3"${i === 4 ? ' stroke-dasharray="3 9" stroke-linecap="round"' : ''}/>`).join('');
+  return `<!doctype html><html><head><meta charset="utf-8">${CARD_FONTS}<style>
   html, body { margin: 0; }
-  .icon { position: relative; width: 180px; height: 180px; overflow: hidden; ${FIELD.replace(`${CX}px ${BASE}px`, '18px 180px')} }
+  .icon { position: relative; width: 180px; height: 180px; overflow: hidden; background: ${SITE.bg}; }
   svg { position: absolute; inset: 0; }
-  b { position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: 8px;
-    font: 600 76px/1 "Source Serif 4", serif; letter-spacing: -0.03em; color: ${CREAM}; }
+  b { position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: 6px;
+    font: 600 80px/1 ${SANS}; letter-spacing: -0.04em; color: #f5f5f5; }
 </style></head><body><div class="icon">
   <svg viewBox="0 0 180 180" width="180" height="180" fill="none">${rings}</svg><b>C++</b>
 </div></body></html>`;
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
 async function shoot(html, { width, height, scale, out, type = 'png', quality }) {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: scale });
   await page.setContent(html, { waitUntil: 'networkidle' });
@@ -260,12 +271,15 @@ async function shoot(html, { width, height, scale, out, type = 'png', quality })
   console.log('wrote', out.replace(ROOT + '/', ''));
 }
 
+const cardsOnly = process.argv.includes('--cards');
 for (const ed of ['en', 'zh']) {
-  const html = coverPage(TEXT[ed]);
-  const full = join(ROOT, 'assets', `cover-${ed}.png`);
-  await shoot(html, { width: W, height: H, scale: 3, out: full });
-  await shoot(html, { width: W, height: H, scale: 720 / W, out: join(SITE_ASSETS, `cover-${ed}-web.jpg`), type: 'jpeg', quality: 88 });
-  await shoot(html, { width: W, height: H, scale: 100 / W, out: join(SITE_ASSETS, `cover-${ed}-logo.png`) });
+  if (!cardsOnly) {
+    const html = coverPage(TEXT[ed]);
+    const full = join(ROOT, 'assets', `cover-${ed}.png`);
+    await shoot(html, { width: W, height: H, scale: 3, out: full });
+    await shoot(html, { width: W, height: H, scale: 720 / W, out: join(SITE_ASSETS, `cover-${ed}-web.jpg`), type: 'jpeg', quality: 88 });
+    await shoot(html, { width: W, height: H, scale: 100 / W, out: join(SITE_ASSETS, `cover-${ed}-logo.png`) });
+  }
   const web = 'data:image/jpeg;base64,' + readFileSync(join(SITE_ASSETS, `cover-${ed}-web.jpg`)).toString('base64');
   await shoot(ogPage(TEXT[ed], web), { width: 1200, height: 630, scale: 1, out: join(SITE_ASSETS, `og-${ed}.png`) });
 }
