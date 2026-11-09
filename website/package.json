@@ -15,5 +15,8 @@
   "devDependencies": {
     "hexo": "^8.1.2",
     "serve": "^14.2.6"
+  },
+  "overrides": {
+    "compression": "^1.8.2"
   }
 }
